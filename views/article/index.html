@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <head>
     <meta name="viewport" content="width = device-width" />
     <meta name="referrer" content="never">
@@ -23,7 +24,8 @@
                 <input type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="输入完后按回车" />
                 <i class="layui-icon layui-icon-search"></i>
             </div>
-            <a href="../article/addarticle" target="_blank" class="layui-btn" style="color:white !important;font-size:14px !important">写一写</a>
+            <a href="../article/addarticle" target="_blank" class="layui-btn"
+                style="color:white !important;font-size:14px !important">写一写</a>
         </div>
         <hr class="bor" />
         <div class="list-item box-left">
@@ -125,6 +127,7 @@
 </div>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
+<script src="/style/js/request.js"></script>
 <script type="text/javascript">
     var articletype = '';
     layui.config({
@@ -132,37 +135,42 @@
     }).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
         element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
         menu.init();
-        var total = loadtotal(articletype);
+        var total =loadtotal(articletype);
         var article = document.getElementById('article-item').innerHTML;
         laypage.render({
             elem: 'page'
-            , count: total 
+            , count: total
             , jump: function (obj) {
                 var index = layer.load(3);
                 var pageSize = obj.limit;
                 var pageIndex = obj.curr;
                 loadarticle(pageIndex, pageSize, article, index, articletype);
-            }
+            },
+
         });
     })
     function loadtotal(articletype) {
-        var total = 0;
-        $.ajax({
-            url: "http://127.0.0.1:5000/article/loadtotal",
-            type: "get",
-            async: false,
-            data: {
-                'articletype': articletype
-            },
-            success: function (response) {
-                total = response;
-            },
-        });
+        var total =requestajax('article/loadtotal','get','text') ;
+        // var apiurl = "https://127.0.0.1:5001/blogh/article/loadtotal";
+        // $.ajax({
+        //     url: apiurl,
+        //     type: "get",
+        //     data: {
+        //         'articletype': articletype
+        //     },
+        //     async:false,
+        //     success: function (response) {
+        //         total = response;
+        //     },
+        //     error: function (response) {
+        //         total = 0;
+        //     }
+        // });
         return total;
     }
     function loadarticle(pageIndex, pageSize, article, index, articletype) {
         $.ajax({
-            url: 'http://127.0.0.1:5000/article/loadarticle',
+            url: 'https://127.0.0.1:5001/blogh/article/loadarticle',
             type: 'get',
             data: {
                 'pageIndex': pageIndex,
@@ -170,6 +178,7 @@
                 'articletype': articletype
             },
             datatype: 'json',
+            async:false,
             success: function (response) {
                 var data = { 'list': response.data };
                 articleview = document.getElementById('article-item-id');
@@ -191,9 +200,7 @@
                 $(this).removeClass('active');
             });
             var thisItem = $(this)[0];
-            articletype = '';
             $(this).addClass('active');
-            var index = layer.load(3);
             if (thisItem.innerText == '散文礼记') {
                 articletype = '1';
             }

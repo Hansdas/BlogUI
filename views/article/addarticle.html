@@ -41,7 +41,8 @@
                 <div class="layui-tab layui-tab-brief" lay-filter="user">
                     <ul class="layui-tab-title">
                         <li class="layui-this">发表文章</li>
-                        <li>   <button type="button" class="layui-btn-primary layui-btn" data-method="notice" data-type="content">预览</button></li>
+                        <li> <button type="button" class="layui-btn-primary layui-btn" data-method="notice"
+                                data-type="content">预览</button></li>
                     </ul>
 
                     <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
@@ -51,7 +52,7 @@
                                     <div class="layui-col-md3">
                                         <label class="layui-form-label">所在专栏</label>
                                         <div class="layui-input-block">
-                                            <select lay-verify="articletype" name="type" lay-filter="column">
+                                            <select id="selecttype" lay-verify="articletype" name="type" lay-filter="column">
                                                 <option>...</option>
                                                 <!-- @foreach (var item in dic)
                                                 {
@@ -63,21 +64,25 @@
                                     <div class="layui-col-md9">
                                         <label for="L_title" class="layui-form-label">标题</label>
                                         <div class="layui-input-block">
-                                            <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+                                            <input type="text" id="L_title" name="title" required lay-verify="required"
+                                                autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="layui-form-item layui-form-text">
                                     <div class="layui-input-block">
-                                        <textarea id="L_content" name="content" required lay-verify="required" placeholder="写一写" class="layui-textarea"></textarea>
+                                        <textarea id="L_content" name="content" required lay-verify="required"
+                                            placeholder="写一写" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                                 <div class="add-chechbox">
                                     <input type="checkbox" name="" title="有人评论时邮箱通知我" lay-skin="primary" checked>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn" lay-filter="save" data-type="save" lay-submit>存为草稿</button>
-                                    <button class="layui-btn" lay-filter="publish" data-type="publish" lay-submit>立即发布</button>
+                                    <button class="layui-btn" lay-filter="save" data-type="save"
+                                        lay-submit>存为草稿</button>
+                                    <button class="layui-btn" lay-filter="publish" data-type="publish"
+                                        lay-submit>立即发布</button>
                                 </div>
                             </form>
                         </div>
@@ -86,16 +91,40 @@
             </div>
         </div>
     </div>
+    <script src="/style/layui/layui.js"></script>
+    <script src="/style/js/request.js"></script>
     <script>
+        function checklogin(layer) {
+            var response = requestajax('auth', 'get', 'json', false)
+            if (response.message != '200') {
+                layer.msg('你还未登录', {
+                    time: 2000,
+                }, function (layero, index) {
+                    //window.location.href = '../login/login'
+                });
+            }
+        }
+        function bindselect() {
+            var response = requestajax('upload/initpage', 'get', 'json', false)
+            $('#selecttype').empty();
+            $('#selecttype').append('<option>...</option>');
+            for(var item in response.data)
+            {
+                $('#selecttype').append('<option value='+item+'>'+response.data[item]+'</option>');
+            }
+        }
         layui.use(['form', 'layer', 'layedit'], function () {
+            var layer = layui.layer;
             var layedit = layui.layedit, $ = layui.jquery
+            checklogin(layer);
+            bindselect(); 
             var form = layui.form;
             var imgUrls = "";
             layui.form.render("select");
 
             layedit.set({
                 uploadImage: {
-                    url: '/Upload/UploadImage',
+                    url: 'https://127.0.0.1:5001/blogh/upload/uploadImage',
                     accept: 'image',
                     acceptMime: 'image/*',
                     exts: 'jpg|png|gif|bmp|jpeg',
@@ -208,7 +237,7 @@
                         var content = layedit.getContent(textcontent);
                         var textsection = layedit.getText(textcontent);
                         if (textsection.length > 30)
-                            textsection=textsection.substring(-1, 30);
+                            textsection = textsection.substring(-1, 30);
                         var index = layer.load(2)
                         $.ajax({
                             url: '/article/publish',
@@ -247,4 +276,5 @@
         });
     </script>
 </body>
+
 </html>
