@@ -16,12 +16,12 @@
 </head>
 
 <body>
-    <div class="content whisper-content leacots-content details-content" style="background:#ddd">
+    <div class="content whisper-content leacots-content details-content" >
         <div class="cont w1000">
             <div class="whisper-list">
                 <div class="item-box">
                     <div class="review-version">
-                        <div class="form-box" style="background:white;border:1px solid #ddd;border-radius:4px;">
+                        <div class="form-box">
                             <div class="article-cont" id="detail" style="margin-top:20px;padding:15px">
                                 <script type="text/html" id="buildview">
                                     <div class="title">
@@ -33,6 +33,7 @@
                             </div>
                             <div class="btn-box" style="text-align:center">
                                 <button class="layui-btn layui-btn-primary">上一篇</button>
+                                <br/>
                                 <button class="layui-btn layui-btn-primary">下一篇</button>
                             </div>
                             <div class="form">
@@ -123,15 +124,18 @@
     <script src="/style/js/jquery.js"></script>
     <script src="/style/js/request.js"></script>
     <script type="text/javascript">
+        var layertip;
         layui.config({
             base: '/style/js/'
         }).use(['element', 'jquery', 'layer', 'menu', 'laytpl'], function () {
             element = layui.element, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, layer = layui.layer;
-            var layertip = layer.load(2);
+            layertip = layer.load(2);
             menu.init();
-            var para = getSearchString('id');
-            loadarticle(para, layer)
-        })
+            var id = getSearchString('id');
+            var type=getSearchString('t');
+            loadarticle(id, layer);
+            loadupnext(id,type);
+        });
         function binddetail(response) {
             if (response.code == '200') {
                 var data = {
@@ -140,6 +144,7 @@
                     'articletype': response.data.articleType,
                     'content': response.data.content
                 };
+
                 $('title').html(data.title);
                 var article = document.getElementById('buildview').innerHTML;
                 articleview = document.getElementById('detail');
@@ -151,10 +156,27 @@
             else {
                 layer.msg('响应服务器失败', { icon: 7 });
             }
+        };
+        function bindbtn(response)
+        {
+            if (response.code == '200') {
+                
+            }
         }
-        function loadarticle(id, article, layer) {
-            requestajax('article/detail/' + id, 'get', 'json', true, binddetail)
-        }
+        function loadarticle(id,layer) {
+            requestajax({
+                route:'article/detail/' + id,              
+                async:true,
+                func:binddetail
+            })
+        };
+        function loadupnext(id,type){
+            requestajax({
+                route:'article/nextup/' + id+'/'+type,              
+                async:true,
+                func:bindbtn
+            })
+        };
     </script>
 </body>
 

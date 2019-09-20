@@ -37,9 +37,9 @@
                             <div class="layui-row">
                                 <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                                     <div class="item-cont item-title">
-                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}">{{item.title}}</a> <button class="layui-btn layui-btn-danger new-icon">new</button><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
+                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a> <button class="layui-btn layui-btn-danger new-icon">new</button><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
 
-                                        <p><a target="_blank" href="../article/detail?id={{item.id}}">{{item.textSection}}</a></p>
+                                        <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -134,6 +134,7 @@
         base: '/style/js/'
     }).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
         element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
+        var index = layer.load(3);
         menu.init();
         var total =loadtotal(articletype);
         var article = document.getElementById('article-item').innerHTML;
@@ -141,13 +142,13 @@
             elem: 'page'
             , count: total
             , jump: function (obj) {
-                var index = layer.load(3);
                 var pageSize = obj.limit;
                 var pageIndex = obj.curr;
                 loadarticle(pageIndex, pageSize, article, index, articletype);
             },
 
         });
+        layer.close(index);
     })
     function loadtotal(articletype) {
         var total =requestajax('article/loadtotal','get','text') ;
@@ -185,10 +186,8 @@
                 laytpl(article).render(data, function (html) {
                     articleview.innerHTML = html;
                 });
-                layer.close(index)
             },
             error: function () {
-                layer.close(index)
                 layer.msg('响应服务器失败', { icon: 7 });
             }
         });
