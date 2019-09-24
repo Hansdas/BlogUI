@@ -17,7 +17,6 @@ $(function () {
 		$(".header .btn").empty();
 		if (thisItem.innerText == "微语") {
 			$("#console").attr("src", "../whisper/index");
-			$(".header .btn").append('<a href="../whisper/addWhisper" class="layui-btn layui-btn-normal">发表微语</a>');
 		}
 		if (thisItem.innerText == "文章") {
 			$("#console").attr("src", "../article/index");

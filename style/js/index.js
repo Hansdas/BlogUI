@@ -2,34 +2,41 @@
  * 加载文章首页
  */
 function loadtotal(articletype) {
-    var total =requestajax('article/loadtotal','get','text') ;
+    var total = requestajax({
+        route: 'article/loadtotal/'+articletype,
+        type: 'get',
+        datatype: 'text'
+    });
     return total;
 }
+
 function loadarticle(pageIndex, pageSize, article, articletype) {
-    $.ajax({
-        url: 'https://127.0.0.1:5001/blogh/article/loadarticle',
+    var response = requestajax({
+        route: 'article/loadarticle',
         type: 'get',
+        datatype: 'json',
         data: {
             'pageIndex': pageIndex,
             'pageSize': pageSize,
             'articletype': articletype
-        },
-        datatype: 'json',
-        async:false,
-        success: function (response) {
-            var data = { 'list': response.data };
-            articleview = document.getElementById('article-item-id');
-            laytpl(article).render(data, function (html) {
-                articleview.innerHTML = html;
-            });
-        },
-        error: function () {
-            layer.msg('响应服务器失败', { icon: 7 });
         }
     });
+    if (response != undefined) {
+        var data = {
+            'list': response.data
+        };
+        articleview = document.getElementById('article-item-id');
+        laytpl(article).render(data, function (html) {
+            articleview.innerHTML = html;
+        })
+    } else {
+        layer.msg('响应服务器失败', {
+            icon: 7
+        });
+    }
 }
-function inittab()
-{
+
+function inittab() {
     var articleDom = document.getElementById('article-item').innerHTML;
     $('.title-type a').click(function () {
         $('.title-type a').each(function () {
@@ -40,14 +47,17 @@ function inittab()
         if (thisItem.innerText == '散文礼记') {
             articletype = '1';
         }
-        if (thisItem.innerText == '编程世界') {
+       else if (thisItem.innerText == '编程世界') {
             articletype = '2';
         }
-        if (thisItem.innerText == '旅游杂记') {
+        else if (thisItem.innerText == '旅游杂记') {
             articletype = '3';
         }
-        if (thisItem.innerText == '游戏人生') {
+        else if (thisItem.innerText == '游戏人生') {
             articletype = '4';
+        }
+        else{
+            articletype = '';
         }
         loadarticle(1, 10, articleDom, articletype);
     });

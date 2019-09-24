@@ -10,7 +10,7 @@ function requestajax(args) {
     };
     var result=undefined;
     $.ajax({
-        url: 'https://127.0.0.1:5001/blogh/' + options.route,
+        url: 'http://127.0.0.1:5000/blogh/' + options.route,
         data:options.data,
         type: options.type,
         datatype: options.datatype,
@@ -25,9 +25,6 @@ function requestajax(args) {
                 options.func(response);
             }           
         },
-        error: function (response) {
-            result=response
-        }
     });
     return result;
 }

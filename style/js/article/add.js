@@ -1,8 +1,9 @@
 layui.use(['form', 'layer', 'layedit'], function () {
     var layer = layui.layer;
-    var layedit = layui.layedit, $ = layui.jquery
+    var layedit = layui.layedit,
+        $ = layui.jquery
     checklogin(layer);
-    bindselect(); 
+    bindselect();
     var form = layui.form;
     var imgUrls = "";
     layui.form.render("select");
@@ -28,8 +29,8 @@ layui.use(['form', 'layer', 'layedit'], function () {
             done: function (data) {
                 console.log(data);
             }
-        }
-        , uploadFiles: {
+        },
+        uploadFiles: {
             url: '',
             accept: 'file',
             acceptMime: 'file/*',
@@ -44,36 +45,39 @@ layui.use(['form', 'layer', 'layedit'], function () {
         //图片： imgpath --图片路径
         //视频： filepath --视频路径 imgpath --封面路径
         //附件： filepath --附件路径
-        , calldel: {
+        ,
+        calldel: {
             url: '/Upload/DeleteFile',
             datatype: 'json',
             async: 'true',
         }
         //测试参数
-        , backDelImg: true
-        //开发者模式 --默认为false
-        , devmode: false
-        //是否自动同步到textarea
-        , autoSync: true
-        //内容改变监听事件
-        , onchange: function (content) {
-            console.log(content);
-        }
-        //插入代码设置 --hide:false 等同于不配置codeConfig
-        , codeConfig: {
-            hide: true,  //是否隐藏编码语言选择框
+        ,
+        backDelImg: true
+            //开发者模式 --默认为false
+            ,
+        devmode: false
+            //是否自动同步到textarea
+            ,
+        autoSync: true
+            //内容改变监听事件
+            ,
+        onchange: function (content) {
+                console.log(content);
+            }
+            //插入代码设置 --hide:false 等同于不配置codeConfig
+            ,
+        codeConfig: {
+            hide: true, //是否隐藏编码语言选择框
             default: 'javascript', //hide为true时的默认语言格式
             encode: true //是否转义
-            , class: 'layui-code' //默认样式
-        }
-        , tool: [
-            'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'removeformat', 'fontFomatt', 'fontfamily', 'fontSize', 'fontBackColor', 'colorpicker', 'face'
-            , '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'attachment'
-            , '|'
-            , 'table'
-            , 'fullScreen'
-        ]
-        , height: '500px'
+                ,
+            class: 'layui-code' //默认样式
+        },
+        tool: [
+            'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'removeformat', 'fontFomatt', 'fontfamily', 'fontSize', 'fontBackColor', 'colorpicker', 'face', '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'attachment', '|', 'table', 'fullScreen'
+        ],
+        height: '500px'
     });
     form.verify({
         articletype: function (value) {
@@ -86,20 +90,23 @@ layui.use(['form', 'layer', 'layedit'], function () {
     var active = {
         content: function () {
             layer.open({
-                type: 0
-                , title: false //不显示标题栏
-                , skin: 'demo-class'
-                , closeBtn: false
-                , area: ['1200px', '700px']
-                , shade: 0.8
-                , id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                , btn: ['确定']
-                , btnAlign: 'c'
-                , moveType: 1 //拖拽模式，0或者1
-                , content: layedit.getContent(textcontent)
+                type: 0,
+                title: false //不显示标题栏
+                    ,
+                skin: 'demo-class',
+                closeBtn: false,
+                area: ['1200px', '700px'],
+                shade: 0.8,
+                id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,
+                btn: ['确定'],
+                btnAlign: 'c',
+                moveType: 1 //拖拽模式，0或者1
+                    ,
+                content: layedit.getContent(textcontent)
             });
-        }
-        , save: function () {
+        },
+        save: function () {
             form.on('submit(save)', function (data) {
                 var articleData = data.field;
                 var content = layedit.getContent(textcontent);
@@ -123,17 +130,18 @@ layui.use(['form', 'layer', 'layedit'], function () {
                         if (response.message == "ok") {
                             window.location.href = "../home/index";
 
-                        }
-                        else {
+                        } else {
                             layer.close(index)
-                            layer.msg(response.message, { icon: 5 });
+                            layer.msg(response.message, {
+                                icon: 5
+                            });
                         }
                     },
                 });
                 return false;
             })
-        }
-        , publish: function () {
+        },
+        publish: function () {
             alert("11");
         }
     };
@@ -142,22 +150,35 @@ layui.use(['form', 'layer', 'layedit'], function () {
         active[type] ? active[type].call(this) : '';
     });
 });
+
 function checklogin(layer) {
-    var response = requestajax('auth', 'get', 'json', false)
-    if (response.message != '200') {
-        layer.msg('你还未登录', {
-            time: 1500,
-        }, function (layero, index) {
-            window.location.href = '../login/login'
-        });
+    var response = requestajax({
+        route:'auth',
+        type:'get',
+        datatype:'json'
+    });
+    if (response != undefined) {
+        if (response.message != '200') {
+            layer.msg('你还未登录', {
+                time: 1500,
+            }, function () {
+                window.location.href = '../login/login'
+            });
+        }
+    } 
+    else
+    {
+        window.location.href = '../login/login' 
     }
 };
+
 function bindselect() {
     var response = requestajax('upload/initpage', 'get', 'json', false)
-    $('#selecttype').empty();
-    $('#selecttype').append('<option>...</option>');
-    for(var item in response.data)
-    {
-        $('#selecttype').append('<option value='+item+'>'+response.data[item]+'</option>');
+    if (response != undefined) {
+        $('#selecttype').empty();
+        $('#selecttype').append('<option>...</option>');
+        for (var item in response.data) {
+            $('#selecttype').append('<option value=' + item + '>' + response.data[item] + '</option>');
+        }
     }
 };
