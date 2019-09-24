@@ -10,11 +10,12 @@
     <link href="/style/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
     <link href="/style/css/common.css" rel="stylesheet" />
     <style>
-        .layui-nav-child{
-            color:white !important
+        .layui-nav-child {
+            color: white !important
         }
-        .layui-nav-child a{
-            color:#333 !important
+
+        .layui-nav-child a {
+            color: #333 !important
         }
     </style>
 </head>
@@ -23,7 +24,7 @@
     <div class="fly-header layui-bg-black">
         <div class="layui-header">
             <img class="header-bg" src="/style/images/logo.png">
-            <ul class="layui-nav layui-layout-right nav-right">
+            <ul id="top" class="layui-nav layui-layout-right nav-right">
                 <!-- <li class="layui-nav-item">
                     <a href="../login/login">还未登录</a>
                 </li>
@@ -34,14 +35,14 @@
                 <li class="layui-nav-item">
                     <a href="">个人中心<span class="layui-badge-dot"></span></a>
                 </li> -->
-                <li class="layui-nav-item" lay-unselect="">
+                <!-- <li class="layui-nav-item" lay-unselect="">
                     <a href=""><img src="" class="layui-nav-img" />123</a>
-                    <dl class="layui-nav-child" >
+                    <dl class="layui-nav-child">
                         <dd><a href="javascript:;">修改信息</a></dd>
                         <dd><a href="javascript:;">安全管理</a></dd>
                         <dd><a href="../Login/LoginOut">退了</a></dd>
                     </dl>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
@@ -83,20 +84,17 @@
         </div>
     </div>
     <script src="/style/js/jquery.js"></script>
-    <!-- <script src="/style/layui/lay/modules/layer.js"></script> -->
     <script src="/style/layui/layui.js"></script>
+    <script src="/style//js/request.js"></script>
     <script src="/style/js/layout.js?v=201907310951"></script>
     <script>
-        layui.use('element', function(){
-          var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-          
-          //监听导航点击
-          element.on('nav(demo)', function(elem){
-            //console.log(elem)
-            layer.msg(elem.text());
-          });
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块         
+            //监听导航点击
+            element.on('nav(demo)', function (elem) {
+            });
         });
-        </script>
+    </script>
 </body>
 
 </html>

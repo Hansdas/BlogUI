@@ -1,5 +1,12 @@
 
 $(function () {
+	requestajax({
+		route: 'auth',
+		type: 'get',
+		datatype: 'json',
+		async: true,
+		func: load
+	});
 	//导航栏点击变色
 	$(".nav a").click(function () {
 		$(".nav a").each(function () {
@@ -32,13 +39,13 @@ $(function () {
 	//});
 });
 function setIframeHeight(iframe) {
-    if (iframe) {
-        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-        if (iframeWin.document.body) {
-            iframe.height = iframeWin.document.body.scrollHeight;
-        }
-    }
-}
+	if (iframe) {
+		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+		if (iframeWin.document.body) {
+			iframe.height = iframeWin.document.body.scrollHeight;
+		}
+	}
+};
 function showPage() {
 	var urlParamater = window.location.search;
 	if (urlParamater == "")
@@ -55,18 +62,29 @@ function showPage() {
 		}
 
 	});
-}
-function getSearchString(key, Url) {
-	var str = Url;
-	str = str.substring(1, str.length); // 获取URL中?之后的字符（去掉第一位的问号）
-	// 以&分隔字符串，获得类似name=xiaoli这样的元素数组
-	var arr = str.split("&");
-	var obj = new Object();
-
-	// 将每一个数组元素以=分隔并赋给obj对象 
-	for (var i = 0; i < arr.length; i++) {
-		var tmp_arr = arr[i].split("=");
-		obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
+};
+function load(response) {
+	if (response.message != '200') {
+		$('#top').append('<li class="layui-nav-item"><a href="../login/login">还未登录</a></li>');
 	}
-	return obj[key];
+	else {
+		$('#top').append('<li class="layui-nav-item"><a href="">控制台<span class="layui-badge">9</span></a></li>');
+		$('#top').append('<li class="layui-nav-item"><a href="">个人中心<span class="layui-badge-dot"></span></a></li>');
+		$('#top').append('<li class="layui-nav-item" lay-unselect="">'
+			+ '<a href="">'
+			+ '<img src="" class="layui-nav-img" />'+response.data.username+''
+			+ '</a>'
+			+ '<dl class="layui-nav-child"><dd>'
+			+ '<a href="javascript:;">修改信息</a>'
+			+ '</dd>'
+			+ '<dd>'
+			+ '<a href="javascript:;">安全管理</a>'
+			+ '</dd>'
+			+ '<dd>'
+			+ '<a href="../Login/LoginOut">退了</a>'
+			+ '</dd>'
+			+ '</dl>'
+			+ '</li>');
+	}
 }
+

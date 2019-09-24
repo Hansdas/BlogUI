@@ -9,6 +9,12 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
+    <style>
+        .layui-layer-loading{
+            top: 233px !important;
+            left: 500.5px !important;
+        }
+    </style>
 </head>
 <div class="content">
     <div class="cont h1370">
@@ -128,91 +134,28 @@
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
 <script src="/style/js/request.js"></script>
-<script type="text/javascript">
-    var articletype = '';
-    layui.config({
-        base: '/style/js/'
-    }).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
-        element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
-        var index = layer.load(3);
-        menu.init();
-        var total =loadtotal(articletype);
-        var article = document.getElementById('article-item').innerHTML;
-        laypage.render({
-            elem: 'page'
-            , count: total
-            , jump: function (obj) {
-                var pageSize = obj.limit;
-                var pageIndex = obj.curr;
-                loadarticle(pageIndex, pageSize, article, index, articletype);
-            },
+<script src="/style/js/index.js"></script>
+<script>
+var articletype = '';
+layui.config({
+    base: '/style/js/'
+}).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
+    element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
+    var index =  layer.load(0);
+    inittab();
+    menu.init();
+    var total =loadtotal(articletype);
+    var article = document.getElementById('article-item').innerHTML;
+    laypage.render({
+        elem: 'page'
+        , count: total
+        , jump: function (obj) {
+            var pageSize = obj.limit;
+            var pageIndex = obj.curr;
+            loadarticle(pageIndex, pageSize, article, articletype);
+        },
 
-        });
-        layer.close(index);
-    })
-    function loadtotal(articletype) {
-        var total =requestajax('article/loadtotal','get','text') ;
-        // var apiurl = "https://127.0.0.1:5001/blogh/article/loadtotal";
-        // $.ajax({
-        //     url: apiurl,
-        //     type: "get",
-        //     data: {
-        //         'articletype': articletype
-        //     },
-        //     async:false,
-        //     success: function (response) {
-        //         total = response;
-        //     },
-        //     error: function (response) {
-        //         total = 0;
-        //     }
-        // });
-        return total;
-    }
-    function loadarticle(pageIndex, pageSize, article, index, articletype) {
-        $.ajax({
-            url: 'https://127.0.0.1:5001/blogh/article/loadarticle',
-            type: 'get',
-            data: {
-                'pageIndex': pageIndex,
-                'pageSize': pageSize,
-                'articletype': articletype
-            },
-            datatype: 'json',
-            async:false,
-            success: function (response) {
-                var data = { 'list': response.data };
-                articleview = document.getElementById('article-item-id');
-                laytpl(article).render(data, function (html) {
-                    articleview.innerHTML = html;
-                });
-            },
-            error: function () {
-                layer.msg('响应服务器失败', { icon: 7 });
-            }
-        });
-    }
-    $(function () {
-        var article = document.getElementById('article-item').innerHTML;
-        $('.title-type a').click(function () {
-            $('.title-type a').each(function () {
-                $(this).removeClass('active');
-            });
-            var thisItem = $(this)[0];
-            $(this).addClass('active');
-            if (thisItem.innerText == '散文礼记') {
-                articletype = '1';
-            }
-            if (thisItem.innerText == '编程世界') {
-                articletype = '2';
-            }
-            if (thisItem.innerText == '旅游杂记') {
-                articletype = '3';
-            }
-            if (thisItem.innerText == '游戏人生') {
-                articletype = '4';
-            }
-            loadarticle(1, 10, article, index, articletype);
-        });
     });
+    layer.close(index);
+})
 </script>

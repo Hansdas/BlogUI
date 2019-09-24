@@ -4,17 +4,19 @@ function requestajax(args) {
         route:args.route,
         type:args.type||'get',
         datatype:args.datatype||'json',
+        data:args.data||'',
         async:args.async|| false,
         func:args.func||undefined,
     };
     var result=undefined;
     $.ajax({
         url: 'https://127.0.0.1:5001/blogh/' + options.route,
+        data:options.data,
         type: options.type,
         datatype: options.datatype,
         async: options.async,
         success: function (response) {
-            if(typeof(options.func)==undefined)
+            if(options.func==undefined)
             {
                 result=response;
             }
