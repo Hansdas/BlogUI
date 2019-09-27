@@ -13,15 +13,14 @@ $(function () {
 			$(this).removeClass("active");
 		});
 		var thisItem = $(this)[0];
-		$(this).addClass("active");
-		$(".header .btn").empty();
 		if (thisItem.innerText == "微语") {
 			$("#console").attr("src", "../whisper/index");
 		}
 		if (thisItem.innerText == "文章") {
 			$("#console").attr("src", "../article/index");
-			//$(".header .btn").append('<a href="../whisper/addWhisper" class="layui-btn layui-btn-normal">发表文章</a>');
 		}
+		$(this).addClass("active");
+		$(".header .btn").empty();
 	});
 	//iframe自适应内容高度
 	$("#console").each(function (index) {
@@ -64,7 +63,7 @@ function showPage() {
 };
 function load(response) {
 	if (response.message != '200') {
-		$('#top').append('<li class="layui-nav-item"><a href="../login/login">还未登录</a></li>');
+		$('#top').append('<div style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a href="../login/login"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>');
 	}
 	else {
 		$('#top').append('<li class="layui-nav-item"><a href="">控制台<span class="layui-badge">9</span></a></li>');

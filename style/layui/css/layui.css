@@ -1722,7 +1722,9 @@ a {
 }
 
 .layui-bg-black {
-    background-color: burlywood !important
+    background-color: #393D49 !important;
+    position:fixed;
+    width: 100%
 }
 
 

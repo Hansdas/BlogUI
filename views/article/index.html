@@ -18,6 +18,9 @@
             top: 233px !important;
             left: 500.5px !important;
         }
+        .title-type{
+            font-size: 14px !important
+        }
     </style>
 </head>
 <div class="content">
@@ -35,10 +38,10 @@
                 <i class="layui-icon layui-icon-search"></i>
             </div>
             <a href="../article/addarticle" target="_blank" class="layui-btn"
-                style="color:white !important;font-size:14px !important">写一写</a>
+                style="color:white !important;font-size:14px !important; float: right;margin-right: 144px">写一写</a>
         </div>
         <hr class="bor" />
-        <div class="list-item box-left">
+        <div class="list-item box-left" style="margin-left: 19px">
             <div id="article-item-id">
                 <script type="text/html" id="article-item">
                     {{# layui.each(d.list,function(index,item){}}
@@ -47,7 +50,7 @@
                             <div class="layui-row">
                                 <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                                     <div class="item-cont item-title">
-                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a> <button class="layui-btn layui-btn-danger new-icon">new</button><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
+                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a><br/> <button class="layui-btn layui-btn-danger new-icon">new</button><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
 
                                         <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
                                     </div>
@@ -61,7 +64,7 @@
             </div>
             <div id="page" style="text-align: center;"></div>
         </div>
-        <div class="box-right">
+        <div class="box-right" style="margin-right: 56px">
             <div class="box h251">
                 <div class="box-title">
                     <h3>热门推荐</h3>
