@@ -1,2 +1,2 @@
-http-server --cors -c-1
+http-server --cors  -c-1
 pause

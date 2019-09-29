@@ -25,6 +25,16 @@ function requestajax(args) {
                 options.func(response);
             }           
         },
+        error:function(response){
+            if(options.func==undefined)
+            {
+                result=response;
+            }
+            else
+            {
+                options.func();
+            }           
+        }
     });
     return result;
 }

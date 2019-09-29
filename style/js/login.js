@@ -13,7 +13,7 @@
 				"Password": loginData.Password
 			}
 		});
-		if (response.message == "OK") {
+		if (response.message == "ok") {
 			window.location.href = "../home/index";
 
 		}
