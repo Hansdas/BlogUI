@@ -2,8 +2,8 @@
 	var form = layui.form;
 	var layer = layui.layer;
 	form.on("submit(login)", function (data) {
-		var loginData = data.field;
 		var index = layer.load(2)
+		var loginData = data.field;
 		var response = requestajax({
 			route: 'login/login',
 			type: 'post',

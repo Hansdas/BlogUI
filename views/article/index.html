@@ -147,8 +147,8 @@ var articletype = '';
 layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
-    element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
     var index =  layer.load(0);
+    element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
     inittab();
     menu.init();
     var total =loadtotal(articletype);
