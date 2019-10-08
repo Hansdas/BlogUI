@@ -7,6 +7,7 @@ function requestajax(args) {
         data:args.data||'',
         async:args.async|| false,
         func:args.func||undefined,
+        beforeSend:args.beforefunc||undefined
     };
     var result=undefined;
     $.ajax({
@@ -15,6 +16,12 @@ function requestajax(args) {
         type: options.type,
         datatype: options.datatype,
         async: options.async,
+        beforeSend: function (xhr) {
+            if(options.beforeSend!==undefined)
+            {
+                options.beforeSend(xhr);
+            }
+        },
         success: function (response) {
             if(options.func==undefined)
             {

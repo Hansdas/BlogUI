@@ -4,7 +4,8 @@ $(function () {
 		type: 'get',
 		datatype: 'json',
 		async: true,
-		func: load
+		func: load,
+		beforefunc:beforesend
 	});
 	//导航栏点击变色
 	$(".nav a").click(function () {
@@ -35,7 +36,13 @@ $(function () {
 	//	$(this).attr("style", "color:black !important");
 	//});
 });
-
+function beforesend(xhr)
+{
+	if (localStorage.getItem("token") !== null) {
+		alert( localStorage.getItem("token"));
+		xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
+	}
+};
 function setIframeHeight(iframe) {
 	if (iframe) {
 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
@@ -85,5 +92,9 @@ function load(response) {
 				'</dl>' +
 				'</li>');
 		}
+	}
+	else
+	{
+		$('#top').append('<div style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a href="../login/login"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>');	
 	}
 }

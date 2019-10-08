@@ -11,9 +11,10 @@
 			data: {
 				"Account": loginData.Account,
 				"Password": loginData.Password
-			}
+			},
 		});
-		if (response.message == "ok") {
+		if (response.code == "200") {
+			localStorage.setItem("token", response.message);
 			window.location.href = "../home/index";
 
 		}
