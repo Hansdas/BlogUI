@@ -12,6 +12,54 @@
         .btn-box a {
             border: none;
         }
+
+        .detail-about {
+            position: relative;
+            line-height: 20px;
+            padding: 15px 15px 15px 75px;
+            font-size: 13px;
+            background-color: #f8f8f8;
+            color: #999;
+        }
+
+        .fly-avatar {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .fly-detail-user {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .fly-avatar img {
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin: 0;
+            border-radius: 2px;
+        }
+
+        img {
+            border: none;
+        }
+        .fly-detail-user a {
+    padding-right: 10px;
+    font-size: 14px;
+}
+.fly-link {
+    color: #01AAED;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
     </style>
 </head>
 
@@ -23,12 +71,17 @@
                     <div class="form-box">
                         <div class="article-cont" id="detail" style="margin-top:20px;padding:15px">
                             <script type="text/html" id="buildview">
-                                    <div class="title">
-                                        <h3>{{d.title}}</h3>
-                                        <p class="cont-info"><span class="data">{{d.createtime}}</span><span class="types">{{d.articletype}}</span></p>
-                                    </div>
-                                    {{d.content}}
-                                </script>
+                                <div class="title">
+                                    <h3>{{d.title}}</h3>
+                                    
+                                    <p class="cont-info"> 
+                                        <a class="author" href="">茂菇凉</a>                                     
+                                        <span class="data">{{d.createtime}}</span>
+                                        <span class="types">{{d.articletype}}</span>
+                                    </p>
+                                </div>
+                                {{d.content}}
+                            </script>
                         </div>
                         <div class="btn-box" style="text-align:center">
                             <!-- <a href="" class="layui-btn layui-btn-primary">上一篇</a>

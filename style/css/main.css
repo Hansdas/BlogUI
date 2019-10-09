@@ -107,6 +107,10 @@ form input[type=checkbox] {
   -webkit-box-orient: vertical;
   /* autoprefixer: on */
 }
+.details-content .article-cont .title .author {
+    margin-right: 26px;
+    color: #01AAED !important
+}
 .content .review-version{padding:20px; border-top: 1px dashed #dddddd;}
 .content .review-version img{float: left;}
 .content .review-version .form{margin-bottom: 16px;}

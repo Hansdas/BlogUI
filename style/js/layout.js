@@ -39,7 +39,6 @@ $(function () {
 function beforesend(xhr)
 {
 	if (localStorage.getItem("token") !== null) {
-		alert( localStorage.getItem("token"));
 		xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
 	}
 };
@@ -71,30 +70,17 @@ function showPage() {
 
 function load(response) {
 	if (response != undefined) {
-		if (response.message != '200') {
-			$('#top').append('<div style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a href="../login/login"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>');
+		if (response.code != '200') {
+			$("#nologin").show();	
+			$("#user").hide();
 		} else {
-			$('#top').append('<li class="layui-nav-item"><a href="">控制台<span class="layui-badge">9</span></a></li>');
-			$('#top').append('<li class="layui-nav-item"><a href="">个人中心<span class="layui-badge-dot"></span></a></li>');
-			$('#top').append('<li class="layui-nav-item" lay-unselect="">' +
-				'<a href="">' +
-				'<img src="" class="layui-nav-img" />' + response.data.username + '' +
-				'</a>' +
-				'<dl class="layui-nav-child"><dd>' +
-				'<a href="javascript:;">修改信息</a>' +
-				'</dd>' +
-				'<dd>' +
-				'<a href="javascript:;">安全管理</a>' +
-				'</dd>' +
-				'<dd>' +
-				'<a href="../Login/LoginOut">退了</a>' +
-				'</dd>' +
-				'</dl>' +
-				'</li>');
+			$("#nologin").hide();	
+			$("#user").show();
 		}
 	}
 	else
 	{
-		$('#top').append('<div style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a href="../login/login"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>');	
+		$("#nologin").show();	
+			$("#user").hide();	
 	}
 }

@@ -9,7 +9,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
     layui.form.render("select");
     layedit.set({
         uploadImage: {
-            url: 'https://127.0.0.1:5001/blogh/upload/uploadImage',
+            url: 'http://127.0.0.1:5000/blogh/upload/uploadImage',
             accept: 'image',
             acceptMime: 'image/*',
             exts: 'jpg|png|gif|bmp|jpeg',
@@ -155,10 +155,11 @@ function checklogin(layer) {
     var response = requestajax({
         route:'auth',
         type:'get',
-        datatype:'json'
+        datatype:'json',
+        beforefunc:beforesend
     });
     if (response != undefined) {
-        if (response.message != '200') {
+        if (response.code != '200') {
             layer.msg('你还未登录', {
                 time: 1500,
             }, function () {
@@ -171,7 +172,12 @@ function checklogin(layer) {
         window.location.href = '../login/login' 
     }
 };
-
+function beforesend(xhr)
+{
+	if (localStorage.getItem("token") !== null) {
+		xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
+	}
+};
 function bindselect() {
     var response = requestajax('upload/initpage', 'get', 'json', false)
     if (response != undefined) {
