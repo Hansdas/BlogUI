@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width = device-width" />
-    <title>写一写</title>
+    <title>个人资料</title>
     <link href="/style/layui/css/layui.css?201908072009" rel="stylesheet" />
     <link href="/style/css/main.css?v=201922262" rel="stylesheet" />
     <link href="/style/css/layout.css?v=201908072011" rel="stylesheet" />
@@ -23,106 +23,222 @@
         .layui-layedit-tool .layui-colorpicker-trigger-span i {
             display: none !important;
         }
-        .main{
+
+        .main {
             width: 1170px;
-    background-color: white;
-    margin-left: 182px;
-    height: 500px;
-}
-.left{
-    background-color: antiquewhite;
-    width: 20%;
-    height: 500px;
-    float: left;
-}
-.right{
-    width: 78%;
-    height: 500px; 
-    float:right;
-}
-.user-profile{
-    padding:  0 0 0 0 !important;
-}
-.layui-form-item{
-    width: 385px
-}
+            background-color: white;
+            margin-left: 182px;
+            height: 600px;
+        }
+
+        .left {
+
+            width: 20%;
+            height: 500px;
+            float: left;
+            padding: 22px 0px 0px 23px;
+        }
+
+        .right {
+            width: 78%;
+            height: 500px;
+            float: right;
+        }
+
+        .user-profile {
+            padding: 0 0 0 0 !important;
+        }
+
+        .layui-form-item {
+            width: 385px
+        }
+
+        .sign {
+            width: 615px !important;
+        }
+
+        .layui-nav-item {
+            margin-top: 10px;
+        }
+
+        .layui-nav-bar {
+            margin-top: 10px
+        }
     </style>
 </head>
 
-<body class="add">
-    <div class="add-header">
-        <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
-        <ul class="layui-nav layui-layout-right nav-right">
-            <li class="layui-nav-item" lay-unselect="">
-            </li>
-        </ul>
-    </div>
+<body class="marginTop">
+    <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
+    noresize="noresize" src="../master/top"></iframe>
     <div class="main">
         <div class="left">
-
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo"
+                style="margin-right: 10px;height: 506px;background-color: #393D49;">
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:;">个人中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">我的主页</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">我的帖子</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">我的消息</a>
+                </li>
+            </ul>
         </div>
         <div class="right">
-                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                        <ul class="layui-tab-title">
-                          <li class="layui-this">基本资料</li>
-                          <li>用户管理</li>
-                          <li>权限分配</li>
-                          <li>商品管理</li>
-                          <li>订单管理</li>
-                        </ul>
-                        <div class="layui-tab-content" style="height: 100px;">
-                          <div class="layui-tab-item layui-show">
-                                <form class="layui-form layui-form-pane user-profile" action="">
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">登录账号</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="title" lay-verify="title" style="width: 277px !important" autocomplete="off"
-                                                     class="layui-input">
-                                            </div>
-                                        </div>
-                                        <div class="layui-form-item">
-                                                <label class="layui-form-label">昵称</label>
-                                                <div class="layui-input-block">
-                                                    <input type="text" name="title" lay-verify="title" style="width: 277px !important" autocomplete="off"
-                                                         class="layui-input">
-                                                </div>
-                                            </div>
-                                            <div class="layui-form-item" pane="">
-                                                    <label class="layui-form-label">单选框</label>
-                                                    <div class="layui-input-block">
-                                                      <input type="radio" name="sex" value="男" title="男" checked="">
-                                                      <input type="radio" name="sex" value="女" title="女">
-                                                    </div>
-                                                  </div>
-                                                  <div class="layui-form-item">
-                                                        <div class="layui-inline">
-                                                          <label class="layui-form-label">日期选择</label>
-                                                          <div class="layui-input-block">
-                                                            <input type="text"  name="date" id="date"  autocomplete="off" class="layui-input layui-icon-date">
-                                                          </div>
-                                                        </div>
-                                                  </div>
-                                    </form>  
-                            </div>
-                          <div class="layui-tab-item">内容2</div>
-                          <div class="layui-tab-item">内容3</div>
-                          <div class="layui-tab-item">内容4</div>
-                          <div class="layui-tab-item">内容5</div>
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">基本资料</li>
+                    <li>修改头像</li>
+                    <li>修改密码</li>
+                </ul>
+                <div class="layui-tab-content" style="height: 100px;">
+                    <div class="layui-tab-item layui-show">
+                        <div>
                         </div>
+                        <form class="layui-form layui-form-pane user-profile" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">登录账号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" lay-verify="title" style="width: 200px !important"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">昵称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" lay-verify="title" style="width: 200px !important"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" pane="" style="width: 307px !important">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="男" title="男" checked="">
+                                    <input type="radio" name="sex" value="女" title="女">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">出生日期</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="date" id="date" autocomplete="off"
+                                            style="width: 200px !important" class="layui-input layui-icon-date"
+                                            placeholder="年-月-日">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">邮箱</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="email" lay-verify="email" autocomplete="off"
+                                            style="width: 200px !important" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text sign">
+                                <label class="layui-form-label">个性签名</label>
+                                <div class="layui-input-block">
+                                    <textarea placeholder="请输入个性签名" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit="" lay-filter="demo2">保存修改</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-form-item">
+                            <div class="avatar-add">
+                                <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过50KB</p>
+                                <button type="button" class="layui-btn upload-img" id="test1">
+                                    <i class="layui-icon"></i>上传头像 </button>
+                                <input class="layui-upload-file" type="file" accept="" name="file">
+                                <img src="/style/images/weixi.jpg"> <span class="loading"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <form class="layui-form layui-form-pane user-profile" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">当前密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="oldpassword" autocomplete="off"
+                                        lay-verify="oldpassword" style="width: 200px !important" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">新密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="newpassword" autocomplete="off"
+                                        lay-verify="newpassword" style="width: 200px !important" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">确认密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="confirmpassword" autocomplete="off"
+                                        lay-verify="confirmpassword" style="width: 200px !important"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit="" lay-filter="demo2">保存修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <script src="/style/layui/layui.js"></script>
-    <script src="/style/js/request.js"></script>
-    <script>
-        layui.use(['form','element','laydate'],function(){
-            var form = layui.form
-  ,laydate = layui.laydate;
-  laydate.render({
-    elem: '#date'
-    ,theme: 'grid'
-  });
-        })
-    </script>
+        <script src="/style/layui/layui.js"></script>
+        <script src="/style/js/request.js"></script>
+        <script>
+            $(".left ul li").click(function () {
+                $(".left ul li").each(function () {
+                    $(this).removeClass("layui-this");
+                });
+                $(this).addClass("layui-this");
+            });
+            layui.use(['form', 'element', 'laydate', 'upload'], function () {
+                var form = layui.form
+                    , laydate = layui.laydate
+                    , upload = layui.upload;
+                laydate.render({
+                    elem: '#date'
+                });
+                //普通图片上传
+                var uploadInst = upload.render({
+                    elem: '#test1'
+                    , url: '/upload/'
+                    , before: function (obj) {
+                        //预读本地文件示例，不支持ie8
+                        obj.preview(function (index, file, result) {
+                            $('#demo1').attr('src', result); //图片链接（base64）
+                        });
+                    }
+                    , done: function (res) {
+                        //如果上传失败
+                        if (res.code > 0) {
+                            return layer.msg('上传失败');
+                        }
+                        //上传成功
+                    }
+                    , error: function () {
+                        //演示失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function () {
+                            uploadInst.upload();
+                        });
+                    }
+                });
+            })
+        </script>
 </body>
 
 </html>
