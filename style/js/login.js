@@ -14,7 +14,7 @@
 			},
 		});
 		if (response.code == "200") {
-			localStorage.setItem("token", response.message);
+			localStorage.setItem("token", response.data);
 			window.location.href = "../home/index";
 
 		}

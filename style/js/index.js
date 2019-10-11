@@ -3,7 +3,7 @@
  */
 function loadtotal(articletype) {
     var total = requestajax({
-        route: 'article/loadtotal/'+articletype,
+        route: 'article/loadtotal/' + articletype,
         type: 'get',
         datatype: 'text'
     });
@@ -46,19 +46,82 @@ function inittab() {
         $(this).addClass('active');
         if (thisItem.innerText == '散文礼记') {
             articletype = '1';
-        }
-       else if (thisItem.innerText == '编程世界') {
+        } else if (thisItem.innerText == '编程世界') {
             articletype = '2';
-        }
-        else if (thisItem.innerText == '旅游杂记') {
+        } else if (thisItem.innerText == '旅游杂记') {
             articletype = '3';
-        }
-        else if (thisItem.innerText == '游戏人生') {
+        } else if (thisItem.innerText == '游戏人生') {
             articletype = '4';
-        }
-        else{
+        } else {
             articletype = '';
         }
         loadarticle(1, 10, articleDom, articletype);
+    });
+}
+
+/**
+ * user
+ */
+$(".left ul li").click(function () {
+    $(".left ul li").each(function () {
+        $(this).removeClass("layui-this");
+    });
+    $(this).addClass("layui-this");
+});
+
+function verify(form) {
+    form.verify({
+        phone: function (value) {
+            if (value.length > 0) {
+                if (!(/^1\d{10}$/.test(value))) {
+                    return "请输入正确的手机号";
+                }
+            }
+        },
+        pass: [
+            /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+        ],
+        content: function (value) {
+            layedit.sync(editIndex);
+        }
+    });
+}
+
+function beforesend(xhr) {
+    if (localStorage.getItem("token") !== null) {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
+    }
+};
+
+function bindUser(form) {
+    var response = requestajax({
+        route: 'user/userinfo',
+        type: 'get',
+        datatype: 'json',
+        beforefunc: beforesend,
+        async: false
+    });
+    if (response != undefined) {
+        if (response.code == "200") {
+            form.val("userinfo", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                "account": response.data.account,
+                "username": response.data.username,
+                "sex": response.data.sex,
+                "date": response.data.birthdaydate,
+                "phone": response.data.phone,
+                "email": response.data.email,
+                "sign": response.data.sign
+            });
+        }
+    } else {
+        layer.msg('响应服务器失败', {
+            icon: 7
+        });
+    }
+}
+
+function saveUser(form) {
+    form.on('submit(saveUser)', function (data) {
+        return false;
     });
 }
