@@ -78,9 +78,13 @@ function verify(form) {
                 }
             }
         },
-        pass: [
-            /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
-        ],
+        email: function (value) {
+            if (value.length > 0) {
+                if (!(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value))) {
+                    return "请输入正确的邮箱";
+                }
+            }
+        },
         content: function (value) {
             layedit.sync(editIndex);
         }
@@ -107,7 +111,7 @@ function bindUser(form) {
                 "account": response.data.account,
                 "username": response.data.username,
                 "sex": response.data.sex,
-                "date": response.data.birthdaydate,
+                "date": response.data.birthdate,
                 "phone": response.data.phone,
                 "email": response.data.email,
                 "sign": response.data.sign
@@ -122,6 +126,21 @@ function bindUser(form) {
 
 function saveUser(form) {
     form.on('submit(saveUser)', function (data) {
+        var userData = data.field;
+        var response = requestajax({
+            route: 'user/updateuser',
+            type: 'post',
+            data:{
+                'account':userData.account,
+                'username':userData.username,
+                'sex':userData.sex,
+                'birthdate':userData.birthdate,
+                'phone':userData.phone,
+                'email':userData.email,
+                'sign':userData.sign
+            },
+            datatype: 'json',
+        });
         return false;
     });
 }
