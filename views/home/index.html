@@ -27,8 +27,7 @@
             <div class="header-menu">
                 <div class="nav">
                     <a href="javaScript:;" class="active">文章</a>
-                    <a href="javascript:;">微语</a>                  
-                    <!-- <a href="album.html">相册</a> -->
+                    <a href="javascript:;">微语</a>
                     <a href="about.html">关于</a>
                 </div>
             </div>
@@ -67,13 +66,13 @@
     </div>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
-    <script src="/style//js/request.js"></script>
-    <script src="/style/js/layout.js?v=201907310951"></script>
+    <script src="/style/js/request.js"></script>
+    <script src="/style/js/nav.js"></script>
     <script>
-        layui.use('element', function () {
+        layui.use(['element', 'layer'], function () {
             var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块         
             //监听导航点击
-            element.on('nav(demo)', function (elem) {});
+            // element.on('nav(demo)', function (elem) { });
         });
     </script>
 </body>

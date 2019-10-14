@@ -9,6 +9,7 @@ $(function () {
 	});
 	//导航栏点击变色
 	$(".nav a").click(function () {
+		//var index = layer.load(2)
 		$(".nav a").each(function () {
 			$(this).removeClass("active");
 		});
@@ -17,10 +18,9 @@ $(function () {
 			$("#console").attr("src", "../whisper/index");
 		}
 		if (thisItem.innerText == "文章") {
-			$("#console").attr("src", "../article/index");
+		     $("#console").attr("src", "../article/index");
 		}
 		$(this).addClass("active");
-		$(".header .btn").empty();
 	});
 	//iframe自适应内容高度
 	$("#console").each(function (index) {
@@ -32,9 +32,6 @@ $(function () {
 		})(that);
 	});
 	showPage();
-	//$(".layui-nav-item a").mouseover(function () {
-	//	$(this).attr("style", "color:black !important");
-	//});
 });
 function beforesend(xhr)
 {

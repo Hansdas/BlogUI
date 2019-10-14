@@ -9,6 +9,7 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
+    <link href="/style/css/spin.css" rel="stylesheet" />
     <style>
         .layui-layer-loading{
             top: 233px !important;
@@ -42,6 +43,9 @@
         </div>
         <hr class="bor" />
         <div class="list-item box-left" style="margin-left: 19px">
+                <div id="loading" >
+                        <table>...</table>
+                    </div>
             <div id="article-item-id">
                 <script type="text/html" id="article-item">
                     {{# layui.each(d.list,function(index,item){}}
@@ -142,12 +146,17 @@
 <script src="/style/layui/layui.js?v=123"></script>
 <script src="/style/js/request.js"></script>
 <script src="/style/js/index.js"></script>
+<script src="/style/js/util.js"></script>
+<script src="/style/js/spin.js"></script>
 <script>
-var articletype = '';
+    var loading;
+    var articletype = '';
+    $(function(){
+        loading = new SpinLoading('loading');     
+    });
 layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
-    var index =  layer.load(0);
     element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
     inittab();
     menu.init();
@@ -163,6 +172,6 @@ layui.config({
         },
 
     });
-    layer.close(index);
+    loading.close();
 })
 </script>
