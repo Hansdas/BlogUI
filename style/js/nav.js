@@ -7,6 +7,8 @@ $(function () {
 		func: load,
 		beforefunc:beforesend
 	});
+	$("#user").hide();
+	$("#nologin").hide();
 	//导航栏点击变色
 	$(".nav a").click(function () {
 		//var index = layer.load(2)
@@ -73,6 +75,8 @@ function load(response) {
 		} else {
 			$("#nologin").hide();	
 			$("#user").show();
+			//$(".layui-nav-img").html(response.data.username);
+			
 		}
 	}
 	else
