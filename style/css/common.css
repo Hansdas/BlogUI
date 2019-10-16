@@ -193,3 +193,55 @@
     margin-left: -10px;
     margin-bottom: 12px
 }
+.layui-container {
+    width: 1406px !important
+}
+
+.layui-layedit-tool .layui-colorpicker-xs {
+    border: 0;
+}
+
+.layui-layedit-tool .layui-colorpicker-trigger-span i {
+    display: none !important;
+}
+
+.main {
+    width: 1170px;
+    background-color: white;
+    margin-left: 182px;
+    height: 600px;
+}
+
+.left {
+
+    width: 20%;
+    height: 500px;
+    float: left;
+    padding: 22px 0px 0px 23px;
+}
+
+.right {
+    width: 78%;
+    height: 500px;
+    float: right;
+}
+
+.user-profile {
+    padding: 0 0 0 0 !important;
+}
+
+.layui-form-item {
+    width: 385px
+}
+
+.sign {
+    width: 615px !important;
+}
+
+.layui-nav-item {
+    margin-top: 10px;
+}
+
+.layui-nav-bar {
+    margin-top: 10px
+}

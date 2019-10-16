@@ -35,7 +35,7 @@ function requestajax(args) {
         error:function(response){
             if(options.func==undefined)
             {
-                result=response;
+                result=undefined;
             }
             else
             {

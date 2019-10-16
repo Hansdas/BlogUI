@@ -239,11 +239,11 @@ form input[type=checkbox] {
 
 
 /*about*/
-.about-content{background: #faf8fb;}
+.about-content{margin-top: 10px;}
 .about-content .item{padding-bottom: 100px;}
 .about-content .item h3{font-size: 24px; color: #3f2863; line-height: 100px;}
 .about-content .item.info .cont{overflow: hidden;}
-.about-content .item.info img{float: left; height: 220px; margin-right:86px; }
+.about-content .item.info img{ height: 220px; margin-right:86px; }
 .about-content .item.info p{line-height: 50px; margin-top: 15px;}
 .about-content .item.info p{font-size: 16px;}
 .about-content .item.tool .cont-box{text-align: center;}
