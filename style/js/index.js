@@ -127,7 +127,7 @@ function bindUser(form) {
 }
 
 function editUser(form) {
-    form.on('submit(saveUser)', function (data) {
+    form.on('submit(editUser)', function (data) {
         var index = layer.load(2)
         var userData = data.field;
         var response = requestajax({
@@ -143,7 +143,6 @@ function editUser(form) {
                 'sign':userData.sign
             },
             datatype: 'json',
-            beforefunc:beforesend
         });
         if (response.code == "200") {
             localStorage.setItem("token", response.data);
@@ -159,21 +158,25 @@ function editUser(form) {
 }
 function editPassword(form) {
     form.on('submit(editPassword)', function (data) {
-        var userData = data.field;
+        var index = layer.load(2)
         var response = requestajax({
-            route: 'user/updateuser',
+            route: 'user/updatepassword',
             type: 'post',
             data:{
-                'account':userData.account,
-                'username':userData.username,
-                'sex':userData.sex,
-                'birthdate':userData.birthdate,
-                'phone':userData.phone,
-                'email':userData.email,
-                'sign':userData.sign
+                'password':$("#newpassword").val(),
+                'oldpassword':$("#oldpassword").val()
             },
             datatype: 'json',
+            beforefunc:beforesend
         });
+        if (response.code == "200") {
+            layer.close(index);
+            layer.msg("修改成功", { icon: 6 });
+		}
+		else {
+			layer.close(index)
+			layer.msg(response.message, { icon: 5 });
+		}
         return false;
     });
 }
