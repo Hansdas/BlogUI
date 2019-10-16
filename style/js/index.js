@@ -113,7 +113,7 @@ function bindUser(form) {
                 "account": response.data.account,
                 "username": response.data.username,
                 "sex": response.data.sex,
-                "date": response.data.birthdate,
+                "birthdate": response.data.birthDate,
                 "phone": response.data.phone,
                 "email": response.data.email,
                 "sign": response.data.sign
@@ -128,6 +128,7 @@ function bindUser(form) {
 
 function editUser(form) {
     form.on('submit(saveUser)', function (data) {
+        var index = layer.load(2)
         var userData = data.field;
         var response = requestajax({
             route: 'user/updateuser',
@@ -143,6 +144,15 @@ function editUser(form) {
             },
             datatype: 'json',
         });
+        if (response.code == "200") {
+            localStorage.setItem("token", response.data);
+            layer.close(index);
+            layer.msg("修改成功", { icon: 6 });
+		}
+		else {
+			layer.close(index)
+			layer.msg(response.message, { icon: 5 });
+		}
         return false;
     });
 }

@@ -38,7 +38,7 @@
                 <div id="user">
                     <li class="layui-nav-item"><a href="">我的消息<span class="layui-badge">9</span></a></li>
                     <li class="layui-nav-item" lay-unselect="">
-                        <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                        <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
                         <dl class="layui-nav-child">
                             <dd><a href="../user/profile">个人资料</a></dd>
                             <dd><a href="../user/save" target="_blank">安全管理</a></dd>
@@ -70,11 +70,13 @@
     <script src="/style/js/nav.js"></script>
     <script>
         layui.use(['element', 'layer'], function () {
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块         
-            //监听导航点击
-            // element.on('nav(demo)', function (elem) { });
+            var element = layui.element;
+            $(".layui-badge").html("11");
+            element.render();
+            element.render('nav');
         });
     </script>
+
 </body>
 
 </html>

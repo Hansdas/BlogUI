@@ -30,21 +30,8 @@
                     <a href="about.html">关于</a>
                 </div>
             </div>
-
             <ul id="top" class="layui-nav layui-layout-right nav-right">
-                <div id="nologin" style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a
-                        href="../login/login"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>
-                <div id="user">
-                    <li class="layui-nav-item"><a href="">我的消息<span class="layui-badge">9</span></a></li>
-                    <li class="layui-nav-item" lay-unselect="">
-                        <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="../user/profile">个人资料</a></dd>
-                            <dd><a href="../user/save" target="_blank">安全管理</a></dd>
-                            <dd><a href="../user/save">退了</a></dd>
-                        </dl>
-                    </li>
-                </div>
+                    <img src="//t.cn/RCzsdCq" class="layui-nav-img" style="margin-top: 15px"></a>
             </ul>
         </div>
     </div>
@@ -52,12 +39,8 @@
     <script src="/style/layui/layui.js"></script>
     <script src="/style//js/request.js"></script>
     <script src="/style/js/util.js"></script>
+    <script src="/style/js/nav.js"></script>
     <script>
-        layui.use('element', function () {
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块         
-            //监听导航点击
-            element.on('nav(demo)', function (elem) {});
-        });
     </script>
 </body>
 
