@@ -85,8 +85,10 @@ function verify(form) {
                 }
             }
         },
-        content: function (value) {
-            layedit.sync(editIndex);
+        confirmpassword:function(value){
+            if (value!=$("#newpassword").val()) {
+                return "两次输入的密码不一致";
+            }
         }
     });
 }
@@ -124,7 +126,7 @@ function bindUser(form) {
     }
 }
 
-function saveUser(form) {
+function editUser(form) {
     form.on('submit(saveUser)', function (data) {
         var userData = data.field;
         var response = requestajax({
@@ -143,4 +145,39 @@ function saveUser(form) {
         });
         return false;
     });
+}
+function editPassword(form) {
+    form.on('submit(editPassword)', function (data) {
+        var userData = data.field;
+        var response = requestajax({
+            route: 'user/updateuser',
+            type: 'post',
+            data:{
+                'account':userData.account,
+                'username':userData.username,
+                'sex':userData.sex,
+                'birthdate':userData.birthdate,
+                'phone':userData.phone,
+                'email':userData.email,
+                'sign':userData.sign
+            },
+            datatype: 'json',
+        });
+        return false;
+    });
+}
+function setTab(cursor)
+{
+    for(var i=1;i<5;i++)
+    {
+        var con = document.getElementById("tab_"  + i);
+        if(i==cursor)
+        {
+            con.style.display = "block";
+        }
+        else
+        {
+            con.style.display = "none";
+        }
+    }
 }
