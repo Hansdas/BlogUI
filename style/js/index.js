@@ -141,6 +141,7 @@ function saveUser(form) {
                 'sign':userData.sign
             },
             datatype: 'json',
+            beforefunc:beforesend
         });
         if (response.code == "200") {
             localStorage.setItem("token", response.data);
