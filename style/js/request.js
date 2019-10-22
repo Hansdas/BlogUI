@@ -11,7 +11,7 @@ function requestajax(args) {
     };
     var result=undefined;
     $.ajax({
-        url: 'http://127.0.0.1:5000/blogh/' + options.route,
+        url: 'http://127.0.0.1:5000/api/' + options.route,
         data:options.data,
         type: options.type,
         datatype: options.datatype,
