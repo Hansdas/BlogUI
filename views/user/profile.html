@@ -43,12 +43,12 @@
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
                     <div class="layui-tab-item layui-show">
-                        <form class="layui-form layui-form-pane user-profile" lay-filter="userinfo" action="">
+                        <form class="layui-form layui-form-pane user-profile" lay-filter="userinfo">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">登录账号</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="account" lay-verify="required"
-                                        style="width: 200px !important" autocomplete="off" class="layui-input">
+                                        style="width: 200px !important" autocomplete="off" readonly  unselectable="on"  class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -120,7 +120,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">当前密码</label>
                                 <div class="layui-input-block">
-                                    <input type="password" name="oldpassword" autocomplete="off" lay-verify="required"
+                                    <input type="password" name="oldpassword" id="oldpassword" autocomplete="off" lay-verify="required"
                                         style="width: 200px !important" class="layui-input">
                                 </div>
                             </div>
@@ -128,14 +128,14 @@
                                 <label class="layui-form-label">新密码</label>
                                 <div class="layui-input-block">
                                     <input type="password" name="newpassword" id="newpassword" autocomplete="off"
-                                        lay-verify="required" style="width: 200px !important" autocomplete="off"
+                                        lay-verify="required" style="width: 200px !important" 
                                         class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">确认密码</label>
                                 <div class="layui-input-block">
-                                    <input type="password" name="confirmpassword" autocomplete="off"
+                                    <input type="password" name="confirmpassword"  autocomplete="off"
                                         lay-verify="required|confirmpassword" style="width: 200px !important"
                                         class="layui-input">
                                 </div>
@@ -164,7 +164,7 @@
                         <div class="title">
                             <h3>我的技能</h3>
                         </div>
-                        <div class="layui-fluid">
+                        <!-- <div class="layui-fluid">
                             <div class="layui-row">
                                 <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
                                     <div class="cont-box">
@@ -191,9 +191,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="item contact">
+                    <!-- <div class="item contact">
                         <div class="title">
                             <h3>联系方式</h3>
                         </div>
@@ -205,7 +205,7 @@
                                 <p class="iphone">电话：<span>123456789</span></p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_3" style="display: none;">
