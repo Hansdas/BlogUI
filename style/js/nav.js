@@ -1,11 +1,10 @@
 $(function () {
 	requestajax({
-		route: 'auth',
-		type: 'get',
+		route: 'auth/getLoginUser',
+		type: 'post',
 		datatype: 'json',
 		async: true,
 		func: load,
-		beforefunc:beforesend
 	});
 	$("#user").hide();
 	$("#nologin").hide();
@@ -35,12 +34,6 @@ $(function () {
 	});
 	showPage();
 });
-function beforesend(xhr)
-{
-	if (localStorage.getItem("token") !== null) {
-		xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
-	}
-};
 function setIframeHeight(iframe) {
 	if (iframe) {
 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
@@ -75,7 +68,7 @@ function load(response) {
 		} else {
 			$("#nologin").hide();	
 			$("#user").show();
-			//$(".layui-nav-img").html(response.data.username);
+			$(".layui-nav-img").html(response.data.username);
 			
 		}
 	}

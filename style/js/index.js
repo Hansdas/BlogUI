@@ -125,10 +125,10 @@ function bindUser(form) {
         });
     }
 }
-
+var loading;
 function editUser(form) {
     form.on('submit(editUser)', function (data) {
-        var index = layer.load(2)
+        loading = layer.load(2)
         var userData = data.field;
         var response = requestajax({
             route: 'user/updateuser',
@@ -143,22 +143,15 @@ function editUser(form) {
                 'sign':userData.sign
             },
             datatype: 'json',
+            async:true,
+            func:editReponse
         });
-        if (response.code == "200") {
-            localStorage.setItem("token", response.data);
-            layer.close(index);
-            layer.msg("修改成功", { icon: 6 });
-		}
-		else {
-			layer.close(index)
-			layer.msg(response.message, { icon: 5 });
-		}
         return false;
     });
 }
 function editPassword(form) {
     form.on('submit(editPassword)', function (data) {
-        var index = layer.load(2)
+        loading = layer.load(2)
         var response = requestajax({
             route: 'user/updatepassword',
             type: 'post',
@@ -167,18 +160,23 @@ function editPassword(form) {
                 'oldpassword':$("#oldpassword").val()
             },
             datatype: 'json',
-            beforefunc:beforesend
+            async:true,
+            func:editReponse
         });
-        if (response.code == "200") {
-            layer.close(index);
-            layer.msg("修改成功", { icon: 6 });
-		}
-		else {
-			layer.close(index)
-			layer.msg(response.message, { icon: 5 });
-		}
         return false;
     });
+}
+function editReponse(response)
+{
+    if (response.code == "200") {
+        localStorage.setItem("token", response.data);
+        layer.close(loading);
+        layer.msg("修改成功", { icon: 6 });
+    }
+    else {
+        layer.close(loading)
+        layer.msg(response.message, { icon: 5 });
+    }
 }
 function setTab(cursor)
 {

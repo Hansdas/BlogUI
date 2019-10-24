@@ -1,4 +1,4 @@
-
+var url='http://127.0.0.1:5000/api/';
 function requestajax(args) {
     var options={
         route:args.route,
@@ -7,20 +7,17 @@ function requestajax(args) {
         data:args.data||'',
         async:args.async|| false,
         func:args.func||undefined,
-        beforeSend:args.beforefunc||undefined
     };
     var result=undefined;
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/' + options.route,
+        url:url + options.route,
         data:options.data,
         type: options.type,
         datatype: options.datatype,
         async: options.async,
         beforeSend: function (xhr) {
-            if(options.beforeSend!==undefined)
-            {
-                options.beforeSend(xhr);
-            }
+            var token=localStorage.getItem('token');
+             xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         },
         success: function (response) {
             if(options.func==undefined)
@@ -41,22 +38,6 @@ function requestajax(args) {
             {
                 options.func();
             }           
-        }
-    });
-    return result;
-}
-function upload(route, methodtype, datatype, async) {
-    var result;
-    $.ajax({
-        url: 'https://127.0.0.1:5001/blogh/' + route,
-        type: methodtype,
-        datatype: datatype,
-        async: async,
-        success: function (response) {
-            result=response
-        },
-        error: function (response) {
-            result=response
         }
     });
     return result;

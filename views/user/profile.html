@@ -224,9 +224,10 @@
                     , upload = layui.upload;
                 bindUser(form);
                 verify(form);
+                var uploadOptions=setUploadOptions({})
                 var uploadInst = upload.render({
                     elem: '#upload' //绑定元素
-                    , url: '/upload/' //上传接口
+                    , url: url+'upload/uploadImage' //上传接口
                     , done: function (res) {
                         //上传完毕回调
                     }
