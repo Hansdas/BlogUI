@@ -93,18 +93,12 @@ function verify(form) {
     });
 }
 
-function beforesend(xhr) {
-    if (localStorage.getItem("token") !== null) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
-    }
-};
 
 function bindUser(form) {
     var response = requestajax({
         route: 'user/userinfo',
         type: 'get',
         datatype: 'json',
-        beforefunc: beforesend,
         async: false
     });
     if (response != undefined) {
