@@ -9,6 +9,7 @@
     <link href="/style/css/layout.css?v=201908072011" rel="stylesheet" />
     <link href="/style/css/common.css?v=201908072040" rel="stylesheet" />
     <link href="/style/css/global.css?v=1" rel="stylesheet" />
+    <link href="/style/css/spin.css" rel="stylesheet" />
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=3"></script>
 </head>
@@ -224,28 +225,32 @@
                     , upload = layui.upload;
                 bindUser(form);
                 verify(form);
-                var token=localStorage.getItem('token');
+                var token = localStorage.getItem('token');
                 var uploadInst = upload.render({
                     elem: '#upload'
-                    ,headers: {Authorization:'Bearer ' + token}
-                    ,data:{
-                        width :168,
-                        height:168
+                    , headers: { Authorization: 'Bearer ' + token }
+                    , data: {
+                        width: 168,
+                        height: 168,
+                        isAbs: true
                     }
                     , url: url + 'upload/uploadImage' //上传接口
+                    ,before:function(){
+                      var  loading =layer.load(2);
+                    }
                     , done: function (res) {
-                        $("#touxiang").attr("src",res.data.src);
+                        $("#touxiang").attr("src", res.data.src);
 
-                }
+                    }
                     , error: function () {
                         //请求异常回调
                     }
                 });
-            laydate.render({
-                elem: '#birthdate'
-            });
-            editUser(form);
-            editPassword(form);
+                laydate.render({
+                    elem: '#birthdate'
+                });
+                editUser(form);
+                editPassword(form);
             })
         </script>
 </body>
