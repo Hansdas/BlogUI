@@ -6,6 +6,13 @@ $(function () {
 		async: true,
 		func: load,
 	});
+	requestajax({
+		route: 'user/getphoto',
+		type: 'get',
+		datatype: 'json',
+		async: true,
+		func: bindPhoto,
+	});
 	$("#user").hide();
 	$("#nologin").hide();
 	//导航栏点击变色
@@ -34,6 +41,10 @@ $(function () {
 	});
 	showPage();
 });
+function bindPhoto(response)
+{
+	$("#photo").attr('src',Response.HeadPhoto);	
+}
 function setIframeHeight(iframe) {
 	if (iframe) {
 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
