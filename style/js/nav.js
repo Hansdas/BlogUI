@@ -43,7 +43,7 @@ $(function () {
 });
 function bindPhoto(response)
 {
-	$("#photo").attr('src',Response.HeadPhoto);	
+	$("#photo").attr('src',response);	
 }
 function setIframeHeight(iframe) {
 	if (iframe) {

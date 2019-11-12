@@ -20,9 +20,6 @@ function requestajax(args) {
              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         },
         success: function (response) {
-            if (response.code == "200") {
-                localStorage.setItem("token", response.data);
-            }
             if(options.func==undefined)
             {
                 result=response;
