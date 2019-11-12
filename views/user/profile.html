@@ -219,6 +219,7 @@
         <script src="/style/js/request.js"></script>
         <script src="/style/js/index.js"></script>
         <script>
+            var token;
             layui.use(['form', 'element', 'laydate', 'upload'], function () {
                 var form = layui.form
                     , laydate = layui.laydate
@@ -226,7 +227,7 @@
                 var loading;
                 bindUser(form);
                 verify(form);
-                var token = localStorage.getItem('token');
+                token = localStorage.getItem('token');
                 var uploadInst = upload.render({
                     elem: '#upload'
                     , headers: { Authorization: 'Bearer ' + token }
@@ -240,12 +241,11 @@
                         loading = layer.load(2);
                     }
                     , done: function (res) {
-                        localStorage.setItem("token", res.data.token);
+                        token=res.data.token;
+                        localStorage.setItem("token",token );
                         $("#touxiang").attr("src", res.data.path);
                         $("#photo").attr('src', res.data.path);
-                        layer.close(loading);
-                        layer.msg("修改成功", { icon: 6 });
-
+                        location.reload() ;
                     }
                 });
                 laydate.render({
