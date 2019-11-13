@@ -47,16 +47,12 @@
                     <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                         <div class="layui-tab-item layui-show">
                             <form action="" method="post">
-                                <div class="layui-row layui-col-space15 layui-form-item" style="margin-top:-214px">
+                                <div class="layui-row layui-col-space15" style="margin-top:-214px">
                                     <div class="layui-col-md3">
                                         <label class="layui-form-label">所在专栏</label>
                                         <div class="layui-input-block">
                                             <select id="selecttype" lay-verify="articletype" name="type" lay-filter="column">
                                                 <option>...</option>
-                                                <!-- @foreach (var item in dic)
-                                                {
-                                                    <option value="@item.Key">@item.Value</option>
-                                                } -->
                                             </select>
                                         </div>
                                     </div>
@@ -68,7 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-form-item layui-form-text">
+                                <div class="layui-form-text">
                                     <div class="layui-input-block">
                                         <textarea id="L_content" name="content" required lay-verify="required"
                                             placeholder="写一写" class="layui-textarea"></textarea>

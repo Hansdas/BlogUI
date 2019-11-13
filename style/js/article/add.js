@@ -153,13 +153,13 @@ layui.use(['form', 'layer', 'layedit'], function () {
 
 function checklogin(layer) {
     var response = requestajax({
-        route:'auth',
-        type:'get',
+        route:'auth/isLogin',
+        type:'post',
         datatype:'json',
-        beforefunc:beforesend
+        async:false
     });
     if (response != undefined) {
-        if (response.code != '200') {
+        if (response != '200') {
             layer.msg('你还未登录', {
                 time: 1500,
             }, function () {
@@ -172,14 +172,13 @@ function checklogin(layer) {
         window.location.href = '../login/login' 
     }
 };
-function beforesend(xhr)
-{
-	if (localStorage.getItem("token") !== null) {
-		xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("token"));
-	}
-};
 function bindselect() {
-    var response = requestajax('upload/initpage', 'get', 'json', false)
+    var response = requestajax({
+        route:'upload/initPage',
+        type:'get',
+        datatype:'json',
+        async:false
+    });
     if (response != undefined) {
         $('#selecttype').empty();
         $('#selecttype').append('<option>...</option>');
