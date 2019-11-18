@@ -1,3 +1,4 @@
+var loading;
 layui.use(['form', 'layer', 'layedit'], function () {
     var layer = layui.layer;
     var layedit = layui.layedit,
@@ -9,14 +10,20 @@ layui.use(['form', 'layer', 'layedit'], function () {
     layui.form.render("select");
     layedit.set({
         uploadImage: {
-            url: 'http://127.0.0.1:5000/blogh/upload/uploadImage',
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token')},
+            url: url + 'upload/uploadImage',
             accept: 'image',
             acceptMime: 'image/*',
             exts: 'jpg|png|gif|bmp|jpeg',
             size: 1024 * 10,
+            data: {
+                width: 1200,
+                height: 1200,
+                isAbs: false
+            },
             done: function (res) {
                 if (res.code == 0) {
-                    imgUrls = imgUrls + res.data.src + ",";
+                    imgUrls = imgUrls + res.data.virtualPath + ",";
                 }
             }
         },
@@ -54,24 +61,24 @@ layui.use(['form', 'layer', 'layedit'], function () {
         //测试参数
         ,
         backDelImg: true
-            //开发者模式 --默认为false
-            ,
+        //开发者模式 --默认为false
+        ,
         devmode: false
-            //是否自动同步到textarea
-            ,
+        //是否自动同步到textarea
+        ,
         autoSync: true
-            //内容改变监听事件
-            ,
+        //内容改变监听事件
+        ,
         onchange: function (content) {
-                console.log(content);
-            }
-            //插入代码设置 --hide:false 等同于不配置codeConfig
-            ,
+            console.log(content);
+        }
+        //插入代码设置 --hide:false 等同于不配置codeConfig
+        ,
         codeConfig: {
             hide: true, //是否隐藏编码语言选择框
             default: 'javascript', //hide为true时的默认语言格式
             encode: true //是否转义
-                ,
+            ,
             class: 'layui-code' //默认样式
         },
         tool: [
@@ -91,18 +98,15 @@ layui.use(['form', 'layer', 'layedit'], function () {
         content: function () {
             layer.open({
                 type: 0,
-                title: false //不显示标题栏
-                    ,
+                title: false, //不显示标题栏                   
                 skin: 'demo-class',
                 closeBtn: false,
                 area: ['1200px', '700px'],
                 shade: 0.8,
-                id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                    ,
+                id: 'LAY_layuipro', //设定一个id，防止重复弹出
                 btn: ['确定'],
                 btnAlign: 'c',
-                moveType: 1 //拖拽模式，0或者1
-                    ,
+                moveType: 1, //拖拽模式，0或者1
                 content: layedit.getContent(textcontent)
             });
         },
@@ -113,9 +117,9 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 var textsection = layedit.getText(textcontent);
                 if (textsection.length > 30)
                     textsection = textsection.substring(-1, 30);
-                var index = layer.load(2)
-                $.ajax({
-                    url: '/article/publish',
+                loading = layer.load(2);
+                requestajax({
+                    route: 'article/addArticle',
                     type: 'post',
                     datatype: 'json',
                     data: {
@@ -123,26 +127,40 @@ layui.use(['form', 'layer', 'layedit'], function () {
                         'title': articleData.title,
                         'content': content,
                         'imgSrc': imgUrls,
-                        'textsection': textsection
+                        'textsection': textsection,
+                        'isDraft': true
                     },
-                    async: false,
-                    success: function (response) {
-                        if (response.message == "ok") {
-                            window.location.href = "../home/index";
-
-                        } else {
-                            layer.close(index)
-                            layer.msg(response.message, {
-                                icon: 5
-                            });
-                        }
-                    },
+                    async: true,
+                    func: onCompleteSave
                 });
                 return false;
             })
         },
         publish: function () {
-            alert("11");
+            form.on('submit(save)', function (data) {
+                var articleData = data.field;
+                var content = layedit.getContent(textcontent);
+                var textsection = layedit.getText(textcontent);
+                if (textsection.length > 30)
+                    textsection = textsection.substring(-1, 30);
+                loading = layer.load(2);
+                requestajax({
+                    route: 'article/add',
+                    type: 'post',
+                    datatype: 'json',
+                    data: {
+                        'articletype': articleData.type,
+                        'title': articleData.title,
+                        'content': content,
+                        'imgSrc': imgUrls,
+                        'textsection': textsection,
+                        'isDraft': false
+                    },
+                    async: true,
+                    func: onCompletePublish
+                });
+                return false;
+            })
         }
     };
     $('.layui-btn').on('click', function () {
@@ -150,13 +168,37 @@ layui.use(['form', 'layer', 'layedit'], function () {
         active[type] ? active[type].call(this) : '';
     });
 });
+function add(isDraft,onComplete)
+{
+   
+}
+function onCompleteSave(response) {
+    if (response.code == 200) {
+        layer.close(loading);
+        layer.msg("保存成功", { icon: 6 });
 
+    } else {
+        layer.msg("保存失败", {
+            icon: 5
+        });
+    }
+}
+function onCompletePublish()
+{
+    if (response.code == 200) {
+        window.location.href='../home/index';
+    } else {
+        layer.msg("保存失败", {
+            icon: 5
+        });
+    } 
+}
 function checklogin(layer) {
     var response = requestajax({
-        route:'auth/isLogin',
-        type:'post',
-        datatype:'json',
-        async:false
+        route: 'auth/isLogin',
+        type: 'post',
+        datatype: 'json',
+        async: false
     });
     if (response != undefined) {
         if (response != '200') {
@@ -166,18 +208,17 @@ function checklogin(layer) {
                 window.location.href = '../login/login'
             });
         }
-    } 
-    else
-    {
-        window.location.href = '../login/login' 
+    }
+    else {
+        window.location.href = '../login/login'
     }
 };
 function bindselect() {
     var response = requestajax({
-        route:'upload/initPage',
-        type:'get',
-        datatype:'json',
-        async:false
+        route: 'upload/initPage',
+        type: 'get',
+        datatype: 'json',
+        async: false
     });
     if (response != undefined) {
         $('#selecttype').empty();

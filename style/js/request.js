@@ -19,7 +19,7 @@ function requestajax(args) {
             var token=localStorage.getItem('token');
              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         },
-        success: function (response) {
+        success: function (response) {          
             if(options.func==undefined)
             {
                 result=response;
@@ -28,6 +28,12 @@ function requestajax(args) {
             {
                 options.func(response);
             }           
+        },
+        complete:function(xhr,response){
+            var resfrshToken=xhr.getResponseHeader('refreshToken');
+            if (resfrshToken!=null) {
+                localStorage.setItem("token",resfrshToken );
+            }
         },
         error:function(response){
             if(options.func==undefined)

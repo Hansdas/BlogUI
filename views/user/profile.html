@@ -12,6 +12,11 @@
     <link href="/style/css/spin.css" rel="stylesheet" />
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=3"></script>
+    <style>
+        .layui-table-tool-self {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="marginTop">
@@ -165,48 +170,31 @@
                         <div class="title">
                             <h3>我的技能</h3>
                         </div>
-                        <!-- <div class="layui-fluid">
-                            <div class="layui-row">
-                                <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
-                                    <div class="cont-box">
-                                        <img src="../res/img/gr_img2.jpg">
-                                        <p>80%</p>
-                                    </div>
-                                </div>
-                                <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
-                                    <div class="cont-box">
-                                        <img src="../res/img/gr_img3.jpg">
-                                        <p>80%</p>
-                                    </div>
-                                </div>
-                                <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
-                                    <div class="cont-box">
-                                        <img src="../res/img/gr_img4.jpg">
-                                        <p>80%</p>
-                                    </div>
-                                </div>
-                                <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
-                                    <div class="cont-box">
-                                        <img src="../res/img/gr_img5.jpg">
-                                        <p>80%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
-                    <!-- <div class="item contact">
-                        <div class="title">
-                            <h3>联系方式</h3>
-                        </div>
-                        <div class="cont">
-                            <img src="../res/img/erweima.jpg">
-                            <div class="text">
-                                <p class="WeChat">微信：<span>1234567890</span></p>
-                                <p class="qq">qq：<span>123456789</span></p>
-                                <p class="iphone">电话：<span>123456789</span></p>
-                            </div>
-                        </div>
-                    </div> -->
+                </div>
+            </div>
+            <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_3" style="display: none;">
+                <div class="tiezi" style="margin-top: 22px;">
+                    <div style="width: 900px;">
+                        <input type="text" autocomplete="off" placeholder="标题查询" style="width: 200px !important;float: left"
+                            class="layui-input">
+                            <select name="city" lay-verify="">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                  </select>  
+                        <button class="layui-btn"  style="float: right;margin-right: 52px;"
+                            lay-filter="LAY-user-front-search">
+                            <i class="layui-icon layui-icon-search "></i>
+                    </div>
+                    <div style="float: left;">
+                        </button>
+                        <table class="layui-hide" id="test" lay-filter="test"></table>
+                        <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                      </script>
+                    </div>
                 </div>
             </div>
             <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_3" style="display: none;">
@@ -219,16 +207,17 @@
         <script src="/style/js/request.js"></script>
         <script src="/style/js/index.js"></script>
         <script>
-            layui.use(['form', 'element', 'laydate', 'upload'], function () {
+            layui.use(['form', 'element', 'laydate', 'upload', 'table'], function () {
                 var form = layui.form
                     , laydate = layui.laydate
-                    , upload = layui.upload;
+                    , upload = layui.upload
+                    , table = layui.table;
                 var loading;
                 bindUser(form);
                 verify(form);
                 var uploadInst = upload.render({
                     elem: '#upload'
-                    , headers: { Authorization: 'Bearer ' + localStorage.getItem('token')}
+                    , headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
                     , data: {
                         width: 168,
                         height: 168,
@@ -239,10 +228,10 @@
                         loading = layer.load(2);
                     }
                     , done: function (res) {
-                        localStorage.setItem("token",token );
+                        localStorage.setItem("token", res.data.token);
                         $("#touxiang").attr("src", res.data.path);
                         $("#photo").attr('src', res.data.path);
-                        location.reload() ;
+                        location.reload();
                     }
                 });
                 laydate.render({
@@ -250,6 +239,45 @@
                 });
                 editUser(form);
                 editPassword(form);
+                table.render({
+                    elem: '#test'
+                    , url: '/test/table/demo1.json'
+                    , toolbar: false //开启头部工具栏，并为其绑定左侧模板
+                    , width: 850
+                    , title: '用户数据表'
+                    , cols: [[
+                        { type: 'checkbox' }
+                        , { field: 'id', title: 'ID', hide: true, unresize: true }
+                        , { field: 'Title', title: '标题' }
+                        , { field: 'Author', title: '作者' }
+                        , { field: 'IsDraft', title: '是否草稿' }
+                        , { field: 'SubmitDate', title: '提交日期', sort: true }
+                        , { align: 'center', toolbar: '#barDemo' }
+                    ]]
+                    , page: true
+                });
+
+                //监听行工具事件
+                table.on('tool(test)', function (obj) {
+                    var data = obj.data;
+                    //console.log(obj)
+                    if (obj.event === 'del') {
+                        layer.confirm('真的删除行么', function (index) {
+                            obj.del();
+                            layer.close(index);
+                        });
+                    } else if (obj.event === 'edit') {
+                        layer.prompt({
+                            formType: 2
+                            , value: data.email
+                        }, function (value, index) {
+                            obj.update({
+                                email: value
+                            });
+                            layer.close(index);
+                        });
+                    }
+                });
             })
         </script>
 </body>
