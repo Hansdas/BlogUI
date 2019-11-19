@@ -1,6 +1,6 @@
 $(function () {
 	requestajax({
-		route: 'auth/getLoginUser',
+		route: 'auth/isLogin',
 		type: 'post',
 		datatype: 'json',
 		async: true,
@@ -73,7 +73,7 @@ function showPage() {
 
 function load(response) {
 	if (response != undefined) {
-		if (response.code != '200') {
+		if (response != '200') {
 			$("#nologin").show();	
 			$("#user").hide();
 		} else {

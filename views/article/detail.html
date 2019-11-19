@@ -9,24 +9,10 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <style>
-        .btn-box a {
+        /* .btn-box a {
             border: none;
         }
 
-        .detail-about {
-            position: relative;
-            line-height: 20px;
-            padding: 15px 15px 15px 75px;
-            font-size: 13px;
-            background-color: #f8f8f8;
-            color: #999;
-        }
-
-        .fly-avatar {
-            position: absolute;
-            left: 15px;
-            top: 15px;
-        }
 
         a {
             color: #333;
@@ -37,135 +23,146 @@
             white-space: nowrap;
             overflow: hidden;
         }
-
-        .fly-avatar img {
-            display: block;
-            width: 45px;
-            height: 45px;
-            margin: 0;
-            border-radius: 2px;
-        }
-
         img {
             border: none;
         }
+
         .fly-detail-user a {
-    padding-right: 10px;
-    font-size: 14px;
-}
-.fly-link {
-    color: #01AAED;
-}
-a {
-    color: #333;
-    text-decoration: none;
-}
+            padding-right: 10px;
+            font-size: 14px;
+        }
+
+        .fly-link {
+            color: #01AAED;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        } */
+
+        #detail blockquote {
+            position: inherit !important;
+        }
+
+        #detail pre {
+            position: inherit !important;
+        }
+        .btn-box a{
+            border: none;
+        }
     </style>
 </head>
-
+<div class="fly-header layui-bg-black" style="position: fixed;top: 0;">
+    <div class="layui-header">
+        <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
+        <div class="header-menu">
+            <div class="nav">
+                <a href="../home/index?pagepath=article">文章</a>
+                <a href="javascript:;">微语</a>
+                <a href="about.html">关于</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content whisper-content leacots-content details-content">
-    <div class="cont w1000">
-        <div class="whisper-list">
-            <div class="item-box">
-                <div class="review-version">
-                    <div class="form-box">
-                        <div class="article-cont" id="detail" style="margin-top:20px;padding:15px">
-                            <script type="text/html" id="buildview">
+    <div style="width: 1198px;margin-left: 195px;margin-top: 40px;">
+        <div class="review-version">
+            <div class="form-box">
+                <div class="article-cont" id="detail">
+                    <script type="text/html" id="buildview">
                                 <div class="title">
-                                    <h3>{{d.title}}</h3>
-                                    
+                                    <h3>{{d.title}}</h3>                                    
                                     <p class="cont-info"> 
-                                        <a class="author" href="">茂菇凉</a>                                     
+                                        <a class="author" href="">{{d.author}}</a>                                     
                                         <span class="data">{{d.createtime}}</span>
                                         <span class="types">{{d.articletype}}</span>
                                     </p>
                                 </div>
                                 {{d.content}}
                             </script>
-                        </div>
-                        <div class="btn-box" style="text-align:center">
-                            <!-- <a href="" class="layui-btn layui-btn-primary">上一篇</a>
+                </div>
+                <div class="btn-box" style="text-align:center">
+                    <!-- <a href="" class="layui-btn layui-btn-primary">上一篇</a>
                                 <br/>
                                 <a href="" class="layui-btn layui-btn-primary">上一篇</a> -->
-                        </div>
-                        <div class="form">
-                            <form class="layui-form" action="">
-                                <div class="layui-form-item layui-form-text">
-                                    <div class="layui-input-block">
-                                        <textarea name="desc" placeholder="既然来了，就说几句" class="layui-textarea"></textarea>
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <div class="layui-input-block" style="text-align: right;">
-                                        <button class="layui-btn definite">確定</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    @*<div class="volume">
-                        全部留言 <span>10</span>
-                    </div>
-                    <div class="list-cont">
-
-                        <div class="cont">
-                            <div class="img">
-                                <img src="../res/img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
+                </div>
+                <div class="form">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item layui-form-text">
+                            <div class="layui-input-block">
+                                <textarea name="desc" placeholder="既然来了，就说几句" class="layui-textarea"></textarea>
                             </div>
                         </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src="../res/img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="text-align: right;">
+                                <button class="layui-btn definite">確定</button>
                             </div>
                         </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src="../res/img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src="../res/img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <div class="img">
-                                <img src="../res/img/header.png" alt="">
-                            </div>
-                            <div class="text">
-                                <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                            </div>
-                        </div>
-                    </div>*@
+                    </form>
                 </div>
             </div>
+            @*<div class="volume">
+                全部留言 <span>10</span>
+            </div>
+            <div class="list-cont">
+
+                <div class="cont">
+                    <div class="img">
+                        <img src="../res/img/header.png" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
+                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                        </p>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="img">
+                        <img src="../res/img/header.png" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
+                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                        </p>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="img">
+                        <img src="../res/img/header.png" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
+                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                        </p>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="img">
+                        <img src="../res/img/header.png" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
+                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                        </p>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="img">
+                        <img src="../res/img/header.png" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
+                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                        </p>
+                    </div>
+                </div>
+            </div>*@
         </div>
         <div id="demo" style="text-align: center;"></div>
     </div>

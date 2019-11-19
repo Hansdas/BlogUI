@@ -16,7 +16,8 @@ function binddetail(response) {
             'title': response.data.title,
             'createtime': response.data.createTime,
             'articletype': response.data.articleType,
-            'content': response.data.content
+            'content': response.data.content,
+            'author':response.data.author
         };
 
         $('title').html(data.title);
