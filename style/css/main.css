@@ -210,7 +210,7 @@ form input[type=checkbox] {
 /*details*/
 .details-content .article-cont img{float: none;}
 .details-content .article-cont .title{text-align: center; margin-bottom: 0;}
-.details-content .article-cont .title h3{font-size: 24px; margin-bottom: 36px;}
+.details-content .article-cont .title h3{font-size: 30px; margin-bottom: 36px;}
 .details-content .article-cont .title p{padding:0;}
 .details-content .article-cont .title p.cont-info{text-indent: 0;}
 .details-content .article-cont .title p .data{margin-right: 26px;}

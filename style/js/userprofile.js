@@ -42,7 +42,7 @@ function setTab(cursor) {
                 }
             });
             form.on('submit(editUser)', function (data) {
-                loading = layer.load(2)
+                loading = layer.load(2);
                 var userData = data.field;
                 requestajax({
                     route: 'user/updateuser',
@@ -109,10 +109,11 @@ function setTab(cursor) {
         layui.use('table', function () {
             var table = layui.table;
             table.render({
-                elem: '#articleTable'
+                id:'aTable'
+                ,elem: '#articleTable'
                 , url: url + "article/selectArticle"
                 , toolbar: false
-                , width: 850
+                , width: 870
                 , title: '用户数据表'
                 , loading: true
                 , headers: { 'Authorization': localStorage.getItem('token') }
@@ -121,10 +122,10 @@ function setTab(cursor) {
                     { type: 'checkbox' }
                     , { field: 'id', title: 'ID', hide: true, unresize: true }
                     , { field: 'title', title: '标题' }
+                    , { field: 'articleType', title: '专栏',align:'center',width:100 }
                     , { field: 'author', title: '作者' }
-                    , { field: 'isDraft', title: '是否草稿',width:100,align:'center' }
                     , { field: 'createTime', title: '提交日期', sort: true }
-                    , { align: 'center', toolbar: '#bar' }
+                    , { align: 'center', toolbar: '#bar',title:'操作' }
                 ]]
                 , page: true
                 ,parseData: function(res){ 
@@ -140,22 +141,54 @@ function setTab(cursor) {
             //监听行工具事件
             table.on('tool(article)', function (obj) {
                 var data = obj.data;
-                //console.log(obj)
                 if (obj.event === 'del') {
-                    layer.confirm('真的删除行么', function (index) {
-                        obj.del();
-                        layer.close(index);
-                    });
-                } else if (obj.event === 'edit') {
-                    layer.prompt({
-                        formType: 2
-                        , value: data.email
-                    }, function (value, index) {
-                        obj.update({
-                            email: value
+                    layer.confirm('确定删除？', function (index) {
+                        loading = layer.load(2);
+                        requestajax({
+                            route: 'article/delete/'+data.id,
+                            type: 'delete',
+                            datatype: 'json',
+                            async: false                          
                         });
                         layer.close(index);
+                        var route=url + "article/selectArticle";
+                        table.reload('aTable',{
+                            page: {
+                                curr: 1 
+                              }
+                        });
+                        // table.render({
+                        //     elem: '#articleTable'
+                        //     , url: url + "article/selectArticle"
+                        //     , toolbar: false
+                        //     , width: 870
+                        //     , title: '用户数据表'
+                        //     , loading: true
+                        //     , headers: { 'Authorization': localStorage.getItem('token') }
+                        //     ,limit:10
+                        //     , cols: [[
+                        //         { type: 'checkbox' }
+                        //         , { field: 'id', title: 'ID', hide: true, unresize: true }
+                        //         , { field: 'title', title: '标题' }
+                        //         , { field: 'articleType', title: '专栏',align:'center',width:100 }
+                        //         , { field: 'author', title: '作者' }
+                        //         , { field: 'createTime', title: '提交日期', sort: true }
+                        //         , { align: 'center', toolbar: '#bar',title:'操作' }
+                        //     ]]
+                        //     , page: true
+                        //     ,parseData: function(res){ 
+                        //         return {
+                        //           "code": res.code, 
+                        //           "msg": res.message,
+                        //           "count": res.total, 
+                        //           "data": res.data
+                        //         };
+                        //     }
+                        // });
+                        layer.close(loading);
                     });
+                } else if (obj.event === 'edit') {
+                    window.open('../article/addarticle?id='+data.id) 
                 }
                 else
                 {
@@ -188,6 +221,16 @@ function completeBindUser(response) {
 }
 
 function completeResponse(response) {
+    if (response.code == "200") {
+        layer.close(loading);
+        layer.msg("修改成功", { icon: 6 });
+    }
+    else {
+        layer.close(loading)
+        layer.msg(response.message, { icon: 5 });
+    }
+}
+function  completeDelete(params) {
     if (response.code == "200") {
         localStorage.setItem("token", response.data);
         layer.close(loading);

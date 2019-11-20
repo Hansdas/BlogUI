@@ -25,14 +25,19 @@
 </head>
 
 <body class="marginTop">
-    <div class="add-header">
-        <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
-        <ul class="layui-nav layui-layout-right nav-right">
-            <li class="layui-nav-item" lay-unselect="">
-            </li>
-        </ul>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-header">
+            <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
+            <div class="header-menu">
+                <div class="nav">
+                    <a href="../home/index?pagepath=article">文章</a>
+                    <a href="javascript:;">微语</a>                  
+                    <a href="about.html">关于</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="layui-container fly-marginTop">
+    <div class="layui-container fly-marginTop" style="padding-top: 33px;">
         <div class="fly-panel" pad20 style="padding-top: 5px;">
             <div class="layui-form layui-form-pane">
                 <div class="layui-tab layui-tab-brief" lay-filter="user">
@@ -44,7 +49,7 @@
 
                     <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                         <div class="layui-tab-item layui-show">
-                            <form action="" method="post">
+                            <form action="" class="layui-form" lay-filter="articleInfo">
                                 <div class="layui-row layui-col-space15" style="margin-top:-214px">
                                     <div class="layui-col-md3">
                                         <label class="layui-form-label">所在专栏</label>
@@ -57,14 +62,14 @@
                                     <div class="layui-col-md9">
                                         <label for="L_title" class="layui-form-label">标题</label>
                                         <div class="layui-input-block">
-                                            <input type="text" id="L_title" name="title" required lay-verify="required"
+                                            <input type="text" id="L_title" name="title" required lay-verify="required" 
                                                 autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="layui-form-text">
                                     <div class="layui-input-block">
-                                        <textarea id="L_content" name="content" required lay-verify="required"
+                                        <textarea id="L_content" name="content"  lay-verify="content"
                                             placeholder="写一写" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
@@ -86,6 +91,7 @@
     </div>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
+    <script src="/style/js/util.js"></script>
     <script src="/style/js/request.js"></script>
     <script src="/style/js/article/add.js"></script>
 </body>

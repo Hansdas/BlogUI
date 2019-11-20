@@ -27,6 +27,14 @@ function binddetail(response) {
             articleview.innerHTML = html;
         });
         layer.close(layertip);
+        
+        if (response.data.isDraft='是') {
+            $(".comment").hide();           
+        }
+        else
+        {
+            $(".comment").show();      
+        }
     }
     else {
         layer.msg('响应服务器失败', { icon: 7 });

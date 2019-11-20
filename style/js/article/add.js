@@ -1,16 +1,28 @@
-var loading;
+var loading, form,layedit,textcontent;
 layui.use(['form', 'layer', 'layedit'], function () {
-    var layer = layui.layer;
-    var layedit = layui.layedit,
-        $ = layui.jquery
-    checklogin(layer);
-    bindselect();
-    var form = layui.form;
+    var  $ = layui.jquery, layer = layui.layer;
     var imgUrls = "";
-    layui.form.render("select");
+    form = layui.form;
+    layedit = layui.layedit;
+    textcontent = layedit.build('L_content');
+    var id = getSearchString('id');
+    bindselect();
+    if (id == undefined) {
+        checklogin(layer);
+    }
+    else {
+        loading = layer.load(2);
+        requestajax({
+            route: 'article/detail/' + id,
+            type: 'get',
+            datatype: 'json',
+            async: true,
+            func: onCompeteBindEdit
+        });
+    }
     layedit.set({
         uploadImage: {
-            headers: { Authorization: 'Bearer ' + localStorage.getItem('token')},
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
             url: url + 'upload/uploadImage',
             accept: 'image',
             acceptMime: 'image/*',
@@ -91,9 +103,14 @@ layui.use(['form', 'layer', 'layedit'], function () {
             if (value == '...') {
                 return '请选择专栏';
             }
+        },
+        content:function () {
+            var content=layedit.getContent(textcontent);
+            if (content=="") {
+                return '请填写正文内容';
+            }
         }
     });
-    var textcontent = layedit.build('L_content');
     var active = {
         content: function () {
             layer.open({
@@ -123,6 +140,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     type: 'post',
                     datatype: 'json',
                     data: {
+                        'id':id,
                         'articletype': articleData.type,
                         'title': articleData.title,
                         'content': content,
@@ -149,6 +167,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     type: 'post',
                     datatype: 'json',
                     data: {
+                        'id':id,
                         'articletype': articleData.type,
                         'title': articleData.title,
                         'content': content,
@@ -163,35 +182,33 @@ layui.use(['form', 'layer', 'layedit'], function () {
             })
         }
     };
+
     $('.layui-btn').on('click', function () {
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
 });
-function add(isDraft,onComplete)
-{
-   
-}
 function onCompleteSave(response) {
     if (response.code == 200) {
         layer.close(loading);
         layer.msg("保存成功", { icon: 6 });
 
     } else {
+        layer.close(loading);
         layer.msg("保存失败", {
             icon: 5
         });
     }
 }
-function onCompletePublish()
-{
+function onCompletePublish() {
     if (response.code == 200) {
-        window.location.href='../home/index';
+        window.location.href = '../home/index';
     } else {
+        layer.close(loading);
         layer.msg("保存失败", {
             icon: 5
         });
-    } 
+    }
 }
 function checklogin(layer) {
     var response = requestajax({
@@ -226,5 +243,17 @@ function bindselect() {
         for (var item in response.data) {
             $('#selecttype').append('<option value=' + item + '>' + response.data[item] + '</option>');
         }
-    }
+    };
+    layui.form.render("select");
 };
+function onCompeteBindEdit(response) {
+    if (response.code == 200) {
+        form.val("articleInfo", {
+            "type": response.data.articleType,
+            "title": response.data.title,
+            "content": response.data.content
+        });
+        layedit.setContent(textcontent, response.data.content);
+        layer.close(loading);
+    }
+}
