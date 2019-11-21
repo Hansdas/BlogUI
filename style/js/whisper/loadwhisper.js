@@ -1,9 +1,14 @@
 ﻿var loading ,laytpl,form,menu;
+$(function(){
+	loading = new SpinLoading('loading');  
+	$('.layui-textarea').bind('click',function(){
+		window.open('../whisper/addwhisper');
+	});   
+});
 layui.config({
 	base: '/style/js/'
 }).use(['element', 'laypage', 'form', 'menu', 'laytpl'], function () {
 	var element = layui.element, laypage = layui.laypage;
-	loading=layer.load(2);
 	laytpl = layui.laytpl;
 	form = layui.form;
 	menu = layui.menu;
@@ -21,6 +26,7 @@ layui.config({
 
 		}
 	});
+	loading.close();
 })
 function loadtotal() {
 	var total = 0;
@@ -51,9 +57,7 @@ function loadWhisper(pageIndex, pageSize, whisper) {
 		menu.init();
 		menu.off();
 		menu.submit();
-		layer.close(loading)
     } else {
-		layer.close(loading)
 		layer.msg("响应服务器失败", { icon: 7 });
     }
 }

@@ -1,24 +1,37 @@
 ﻿<!DOCTYPE html>
+
 <head>
     <meta name="viewport" content="width = device-width" />
     <meta name="referrer" content="never">
     <title>微语</title>
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=20192225" rel="stylesheet" />
+    <link href="/style/css/spin.css" rel="stylesheet" />
+    <style>
+        .write {
+            margin-top: 59px;
+            padding-bottom: 112px;
+        }
+    </style>
 </head>
 <div class="content whisper-content">
-        <a href="../whisper/addWhisper" target='_blank' class="layui-btn layui-btn-normal">发表微语</a>
     <div class="cont">
-            <div id="loading" >
-                    <table>...</table>
-                </div>
+
+        <div class="write">
+            <textarea placeholder="动态一下。。。" readonly class="layui-textarea"
+                style="width: 600px;float: left;"></textarea>
+        </div>
+        <div id="loading">
+
+        </div>
         <div class="whisper-list" id="whisper-list-id">
             <script type="text/html" id="whisper-item">
                 {{# layui.each(d.list,function(index,item){}}
                 <div class="item-box">
                     <div class="item">
                         <div class="whisper-title">
-                            <i class="layui-icon layui-icon-username"></i> <span class="author">{{item.author}}</span><i class="layui-icon layui-icon-date"></i><span class="hour">{{item.date}}</span>
+                            <i class="layui-icon layui-icon-username"></i> <span class="author">{{item.author}}</span><i
+                                class="layui-icon layui-icon-date"></i><span class="hour">{{item.date}}</span>
                         </div>
                         <p class="text-cont">
                             {{item.content}}
@@ -31,8 +44,10 @@
                         </div>
 
                         <div class="op-list">
-                            <p class="like"><i class="layui-icon layui-icon-praise "></i><span>{{item.praise}}</span></p>
-                            <p class="edit"><i class="layui-icon layui-icon-reply-fill"></i><span>{{item.reply}}</span></p>
+                            <p class="like"><i class="layui-icon layui-icon-praise "></i><span>{{item.praise}}</span>
+                            </p>
+                            <p class="edit"><i class="layui-icon layui-icon-reply-fill"></i><span>{{item.reply}}</span>
+                            </p>
                             <p class="off"><span>评论</span><i class="layui-icon layui-icon-down"></i></p>
                         </div>
                     </div>
@@ -59,7 +74,8 @@
                                     {{commentdata.userphotopath}}
                                 </div>
                                 <div class="text">
-                                    <p class="tit"><span class="name">{{commentdata.commentuser}}</span><span class="data">{{commentdata.commentdate}}</span></p>
+                                    <p class="tit"><span class="name">{{commentdata.commentuser}}</span><span
+                                            class="data">{{commentdata.commentdate}}</span></p>
                                     <p class="ct">{{commentdata.commentcontent}}</p>
                                 </div>
                             </div>
@@ -89,3 +105,5 @@
 <script src="/style/js/spin.js"></script>
 <script src="/style//js/request.js"></script>
 <script src="/style/js/whisper/loadwhisper.js"></script>
+<script>
+</script>
