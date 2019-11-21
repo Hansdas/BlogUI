@@ -78,9 +78,7 @@ function load(response) {
 			$("#user").hide();
 		} else {
 			$("#nologin").hide();	
-			$("#user").show();
-			$(".layui-nav-img").html(response.data.username);
-			
+			$("#user").show();			
 		}
 	}
 	else

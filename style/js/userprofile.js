@@ -157,34 +157,6 @@ function setTab(cursor) {
                                 curr: 1 
                               }
                         });
-                        // table.render({
-                        //     elem: '#articleTable'
-                        //     , url: url + "article/selectArticle"
-                        //     , toolbar: false
-                        //     , width: 870
-                        //     , title: '用户数据表'
-                        //     , loading: true
-                        //     , headers: { 'Authorization': localStorage.getItem('token') }
-                        //     ,limit:10
-                        //     , cols: [[
-                        //         { type: 'checkbox' }
-                        //         , { field: 'id', title: 'ID', hide: true, unresize: true }
-                        //         , { field: 'title', title: '标题' }
-                        //         , { field: 'articleType', title: '专栏',align:'center',width:100 }
-                        //         , { field: 'author', title: '作者' }
-                        //         , { field: 'createTime', title: '提交日期', sort: true }
-                        //         , { align: 'center', toolbar: '#bar',title:'操作' }
-                        //     ]]
-                        //     , page: true
-                        //     ,parseData: function(res){ 
-                        //         return {
-                        //           "code": res.code, 
-                        //           "msg": res.message,
-                        //           "count": res.total, 
-                        //           "data": res.data
-                        //         };
-                        //     }
-                        // });
                         layer.close(loading);
                     });
                 } else if (obj.event === 'edit') {

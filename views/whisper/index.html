@@ -9,6 +9,9 @@
 <div class="content whisper-content">
         <a href="../whisper/addWhisper" target='_blank' class="layui-btn layui-btn-normal">发表微语</a>
     <div class="cont">
+            <div id="loading" >
+                    <table>...</table>
+                </div>
         <div class="whisper-list" id="whisper-list-id">
             <script type="text/html" id="whisper-item">
                 {{# layui.each(d.list,function(index,item){}}
@@ -83,4 +86,6 @@
 </script>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
-<script src="/style/js/blog/loadwhisper.js?v=1"></script>
+<script src="/style/js/spin.js"></script>
+<script src="/style//js/request.js"></script>
+<script src="/style/js/whisper/loadwhisper.js"></script>
