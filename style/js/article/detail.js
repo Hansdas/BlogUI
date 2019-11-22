@@ -28,7 +28,7 @@ function binddetail(response) {
         });
         layer.close(layertip);
         
-        if (response.data.isDraft='是') {
+        if (response.data.isDraft=='是') {
             $(".comment").hide();           
         }
         else

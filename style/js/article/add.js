@@ -4,7 +4,6 @@ layui.use(['form', 'layer', 'layedit'], function () {
     var imgUrls = "";
     form = layui.form;
     layedit = layui.layedit;
-    textcontent = layedit.build('L_content');
     var id = getSearchString('id');
     bindselect();
     if (id == undefined) {
@@ -98,6 +97,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
         ],
         height: '500px'
     });
+    textcontent = layedit.build('L_content');
     form.verify({
         articletype: function (value) {
             if (value == '...') {
@@ -155,7 +155,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             })
         },
         publish: function () {
-            form.on('submit(save)', function (data) {
+            form.on('submit(publish)', function (data) {
                 var articleData = data.field;
                 var content = layedit.getContent(textcontent);
                 var textsection = layedit.getText(textcontent);
@@ -163,7 +163,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     textsection = textsection.substring(-1, 30);
                 loading = layer.load(2);
                 requestajax({
-                    route: 'article/add',
+                    route: 'article/addArticle',
                     type: 'post',
                     datatype: 'json',
                     data: {
@@ -200,7 +200,7 @@ function onCompleteSave(response) {
         });
     }
 }
-function onCompletePublish() {
+function onCompletePublish(response) {
     if (response.code == 200) {
         window.location.href = '../home/index';
     } else {
