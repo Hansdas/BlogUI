@@ -110,7 +110,7 @@ form input[type=checkbox] {
 }
 .details-content .article-cont .title .author {
     margin-right: 26px;
-    color: #01AAED !important
+    color:  #ff7f21 !important 
 }
 .content .review-version{padding:20px; border-top: 1px dashed #dddddd;}
 .content .review-version img{float: left;}
@@ -120,8 +120,8 @@ form input[type=checkbox] {
 .content .review-version .form .layui-input-block .layui-btn{width: 100px; height: 40px; line-height: 40px; background: #ff7f21;}
 .content .review-version .list-cont .cont{padding:40px 0 30px 0; border-bottom: 1px solid #e5e5e5;}
 .content .review-version .list-cont .cont:last-child{border-bottom: 0;}
-.content .review-version .list-cont .cont .text{padding-left: 70px; line-height: 22px; color: #333; } 
-.content .review-version .list-cont .cont .text .tit{margin-bottom: 18px;}
+.content .review-version .list-cont .cont .text{line-height: 22px; color: #333; } 
+.content .review-version .list-cont .cont .text .tit{margin-bottom: 14px;}
 .content .review-version .list-cont .cont .text .data{float: right;} 
 
 
@@ -211,11 +211,11 @@ form input[type=checkbox] {
 /*details*/
 .details-content .article-cont img{float: none;}
 .details-content .article-cont .title{text-align: center; margin-bottom: 0;}
-.details-content .article-cont .title h3{font-size: 30px; margin-bottom: 36px;}
+.details-content .article-cont .title h3{font-size: 30px; margin-bottom: 7px;}
 .details-content .article-cont .title p{padding:0;}
 .details-content .article-cont .title p.cont-info{text-indent: 0;}
 .details-content .article-cont .title p .data{margin-right: 26px;}
-.details-content .article-cont .title p .types{color: #ff7f21;}
+.details-content .article-cont .title p .types{color: #01AAED;}
 .details-content .article-cont p{line-height: 24px; color: #333;}
 .details-content .article-cont .btn-box{text-align: center; margin-top: 50px;}
 .comment form{padding: 0 0 0 0;}

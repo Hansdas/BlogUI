@@ -8,7 +8,7 @@
     <title>正在加载中...</title>
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
-    <style>  
+    <style>
         #detail blockquote {
             position: inherit !important;
         }
@@ -16,12 +16,21 @@
         #detail pre {
             position: inherit !important;
         }
-        .btn-box a{
+
+        .btn-box a {
             border: none;
-            color: #009688 ;
+            color: #009688;
         }
-        .btn-box a:hover{
-            color: #009688 ;
+
+        .btn-box a:hover {
+            color: #009688;
+        }
+
+        .volume {
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 20px 0 10px;
         }
     </style>
 </head>
@@ -43,16 +52,16 @@
             <div class="form-box">
                 <div class="article-cont" id="detail">
                     <script type="text/html" id="buildview">
-                                <div class="title">
-                                    <h3>{{d.title}}</h3>                                    
-                                    <p class="cont-info"> 
-                                        <a class="author" href="">{{d.author}}</a>                                     
-                                        <span class="data">{{d.createtime}}</span>
-                                        <span class="types">{{d.articletype}}</span>
-                                    </p>
-                                </div>
-                                {{d.content}}
-                            </script>
+                        <div class="title">
+                            <h3>{{d.title}}</h3>
+                            <p class="cont-info" style="font-size:13px;color: #808080 !important;border-bottom:1px solid #ddd" >
+                                作者：<a class="author" href="">{{d.author}}</a>
+                                时间：<span class="data">{{d.createtime}}</span>
+                                类别：<span class="types">{{d.articletype}}</span>
+                            </p>
+                        </div>
+                        {{d.content}}
+                    </script>
                 </div>
                 <div class="btn-box" style="text-align:center;padding-top: 50px;">
                 </div>
@@ -68,29 +77,74 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="text-align: right;">
-                                <button class="layui-btn definite">確定</button>
+                                <button class="layui-btn definite">留言</button>
                             </div>
                         </div>
                     </form>
                 </div>
-            <div class="volume">
-                全部留言 <span>10</span>
-            </div>
-            <div class="list-cont">
+                <div class="volume">
+                    全部留言
+                </div>
+                <div class="list-cont">
 
-                <div class="cont">
-                    <div class="img">
-                        <img  alt="">
-                    </div>
-                    <div class="text">
-                        <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
-                        <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                            不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                        </p>
+                    <div class="cont">
+                        <div class="img">
+                            <img alt="">
+                        </div>
+                        <div class="text">
+                            <div style="width: 1175px;padding-left:12px">
+                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
+                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
+                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                                </p>
+                                <p style="line-height: 23px;float: right;" class="reply">
+                                    <input type="hidden" name="username" value="吳亦凡">
+                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
+                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
+                        <div class="img">
+                            <img alt="">
+                        </div>
+                        <div class="text">
+                            <div style="width: 1175px;padding-left:12px">
+                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
+                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
+                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                                </p>
+                                <p style="line-height: 23px;color: #808080;float: right;" class="reply">
+                                        <input type="hidden" name="username" value="吳亦凡1">
+                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
+                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
+                        <div class="img">
+                            <img alt="">
+                        </div>
+                        <div class="text">
+                            <div style="width: 1175px;padding-left:12px">
+                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
+                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
+                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
+                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
+                                </p>
+                                <p style="line-height: 23px;color: #808080;float: right;" class="reply">
+                                        <input type="hidden" name="username" value="吳亦凡2">
+                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
+                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -99,3 +153,12 @@
 <script src="/style/js/jquery.js"></script>
 <script src="/style/js/request.js"></script>
 <script src="/style/js/article/detail.js"></script>
+<script>
+    $(function () {
+        $('.reply').bind('click', function () {
+           var username=$(this).children('input[type=hidden]').val();
+            $('.layui-textarea').focus();
+            $('.layui-textarea').val('@ '+username+'：');
+        })
+    })
+</script>
