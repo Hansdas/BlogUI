@@ -34,7 +34,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             },
             done: function (res) {
                 if (res.code == 0) {
-                    filePath = filePath + res.data.Src + ",";
+                    filePath = filePath + res.data.src + ",";
                 }
             }
         },
