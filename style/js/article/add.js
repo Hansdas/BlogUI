@@ -1,7 +1,7 @@
 var loading, form,layedit,textcontent;
 layui.use(['form', 'layer', 'layedit'], function () {
     var  $ = layui.jquery, layer = layui.layer;
-    var imgUrls = "";
+    var filePath = "";
     form = layui.form;
     layedit = layui.layedit;
     var id = getSearchString('id');
@@ -34,7 +34,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             },
             done: function (res) {
                 if (res.code == 0) {
-                    imgUrls = imgUrls + res.data.virtualPath + ",";
+                    filePath = filePath + res.data.Src + ",";
                 }
             }
         },
@@ -144,7 +144,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                         'articletype': articleData.type,
                         'title': articleData.title,
                         'content': content,
-                        'imgSrc': imgUrls,
+                        'imgSrc': filePath,
                         'textsection': textsection,
                         'isDraft': true
                     },
@@ -171,7 +171,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                         'articletype': articleData.type,
                         'title': articleData.title,
                         'content': content,
-                        'imgSrc': imgUrls,
+                        'imgSrc': filePath,
                         'textsection': textsection,
                         'isDraft': false
                     },

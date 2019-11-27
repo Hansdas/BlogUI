@@ -1102,7 +1102,7 @@ function(t) {
                                     })
                                 },
                                 done: function(t, e, l) {
-                                    if (n.close(i), 200 == t.code) t.data = t.data || {},
+                                    if (n.close(i), 0 == t.code) t.data = t.data || {},
                                     o.val(t.data.src),
                                     a.val(t.data.name),
                                     s.done(t);
