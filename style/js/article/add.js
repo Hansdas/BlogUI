@@ -135,21 +135,41 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 if (textsection.length > 30)
                     textsection = textsection.substring(-1, 30);
                 loading = layer.load(2);
-                requestajax({
-                    route: 'article/addArticle',
-                    type: 'post',
-                    datatype: 'json',
-                    data: {
-                        'id':id,
-                        'articletype': articleData.type,
-                        'title': articleData.title,
-                        'content': content,
-                        'imgSrc': filePath,
-                        'textsection': textsection,
-                        'isDraft': true
+                var model={
+                    'id':id,
+                    'articletype': articleData.type,
+                    'title': articleData.title,
+                    'content': content,
+                    'imgSrc': filePath,
+                    'textsection': textsection,
+                    'isDraft': true
+                };
+                $.ajax({
+                    url:url+ 'article/addArticle',
+                    contentType:'application/json',
+                    type:'post',
+                    datatype:'json',
+                    data: JSON.stringify(model),
+                    beforeSend:function(xhr)
+                    {
+                        doBeforeSend(xhr);                                            
                     },
-                    async: true,
-                    func: onCompleteSave
+                    success:function(response)
+                    {
+                        if (response.code == 200) {
+                            layer.close(loading);
+                            layer.msg("保存成功", { icon: 6 });
+                    
+                        } else {
+                            layer.close(loading);
+                            layer.msg("保存失败", {
+                                icon: 5
+                            });
+                        }
+                    },
+                    complete:function(xhr){
+                        doComplete(xhr);
+                    }, 
                 });
                 return false;
             })
@@ -188,18 +208,6 @@ layui.use(['form', 'layer', 'layedit'], function () {
         active[type] ? active[type].call(this) : '';
     });
 });
-function onCompleteSave(response) {
-    if (response.code == 200) {
-        layer.close(loading);
-        layer.msg("保存成功", { icon: 6 });
-
-    } else {
-        layer.close(loading);
-        layer.msg("保存失败", {
-            icon: 5
-        });
-    }
-}
 function onCompletePublish(response) {
     if (response.code == 200) {
         window.location.href = '../home/index';

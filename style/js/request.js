@@ -16,7 +16,7 @@ function requestajax(args) {
         datatype: options.datatype,
         async: options.async,
         beforeSend: function (xhr) {
-            var token=localStorage.getItem('token');
+             var token=localStorage.getItem('token');
              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         },
         success: function (response) {          
@@ -47,4 +47,14 @@ function requestajax(args) {
         },
     });
     return result;
+}
+function doBeforeSend(xhr)
+{
+    var token=localStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token);  
+}
+function doComplete(xhr)
+{
+    var token=localStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token);  
 }
