@@ -198,7 +198,7 @@ form input[type=checkbox] {
 .leacots-content .review-version .form .layui-form-item{clear: both;}
 .leacots-content .item-box{background: transparent;}
 .leacots-content .review-version .form{margin: 70px 0;}
-.leacots-content .review-version .form textarea{border-color: #402760;}
+/* .leacots-content .review-version .form textarea{border-color: #402760;} */
 .leacots-content .review-version .form .layui-input-block{margin-left: 0;}
 .leacots-content .review-version .banner-img{float: none;  width: 100%;}
 .leacots-content .review-version .volume{color: #3f2469;}
@@ -321,4 +321,23 @@ form input[type=checkbox] {
 @media screen and (max-width: 320px){
   .whisper-content .cont .item img{width: 100%;}
 }
+}
+
+.review-b textarea:hover {
+    border-color:rgb(95, 184, 120) !important
+}
+
+.review-b .review textarea {
+    width: 100%;
+    height: 90px;
+    border-radius: 3px;
+    /* border: 1px solid rgb(95, 184, 120) */
+}
+
+.review-b .padding {
+    padding: 5px;
+}
+
+.review-b button {
+    float: right;
 }

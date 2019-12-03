@@ -68,97 +68,61 @@
             </div>
             <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
             <div class="comment">
-                <div class="form">
-                    <form class="layui-form" action="">
+                <form class="layui-form" action="">
+                    <div class="form">
                         <div class="layui-form-item layui-form-text">
                             <div class="layui-input-block">
-                                <textarea name="desc" placeholder="既然来了，就说几句" class="layui-textarea"></textarea>
+                                <div class="b" style="border-radius:3px">
+                                    <textarea name="desc" lay-verify="required" placeholder="既然来了，就说几句。。。"
+                                        class="layui-textarea"></textarea>
+                                </div>
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block" style="text-align: right;">
-                                <button class="layui-btn definite">留言</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="volume">
-                    全部留言
-                </div>
-                <div class="list-cont">
-
-                    <div class="cont">
-                        <div class="img">
-                            <img alt="">
-                        </div>
-                        <div class="text">
-                            <div style="width: 1175px;padding-left:12px">
-                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
-                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                                <p style="line-height: 23px;float: right;" class="reply">
-                                    <input type="hidden" name="username" value="吳亦凡">
-                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
-                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
-                                </p>
-                            </div>
-                        </div>
-                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
-                        <div class="img">
-                            <img alt="">
-                        </div>
-                        <div class="text">
-                            <div style="width: 1175px;padding-left:12px">
-                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
-                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                                <p style="line-height: 23px;color: #808080;float: right;" class="reply">
-                                        <input type="hidden" name="username" value="吳亦凡1">
-                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
-                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
-                                </p>
-                            </div>
-                        </div>
-                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
-                        <div class="img">
-                            <img alt="">
-                        </div>
-                        <div class="text">
-                            <div style="width: 1175px;padding-left:12px">
-                                <p class="tit"> <a class="name" style="color: #ff7f21" href="javascript:;">吳亦凡</a>
-                                    <span style="font-size: 13px;padding-left:10px">2018-06-06 19:35</span></p>
-                                <p class="ct">敢问大师，师从何方？上古高人呐逐一地看完你的作品后，我的心久久
-                                    不能平静！这世间怎么可能还有如此精辟的作品？我不敢相信自己的眼睛。自从改革开放以后，我就以为再也不会有任何作品能打动我，没想到今天看到这个如此精妙绝伦的作品好厉害！
-                                </p>
-                                <p style="line-height: 23px;color: #808080;float: right;" class="reply">
-                                        <input type="hidden" name="username" value="吳亦凡2">
-                                    <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
-                                            style="font-size: 13px !important;color: #808080 !important">回复</i></a>
-                                </p>
-                            </div>
-                        </div>
-                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
                     </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="text-align: right;">
+                            <button class="layui-btn definite" lay-submit="" lay-filter="review">留言</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="volume">
+                全部留言
+            </div>
+            <div class="list-cont">
+
+                <div class="cont" id="comment-item">
+                    <script type="text/html" id="buildComment">
+                        {{# layui.each(d.list,function(index,item){}}
+                        <div class="text">
+                                <div style="width: 1175px;padding-left:12px">
+                                    <p class="tit">
+                                         <a class="name" style="color: #ff7f21" href="javascript:;">{{item.postUsername}}</a>
+                                        <span style="font-size: 13px;padding-left:10px">{{item.postDate}}</span>
+                                    </p>
+                                    <p class="ct">
+                                        {{item.content}}
+                                    </p>
+                                    <p style="line-height: 23px;float: right;" class="reply">
+                                        <input type="hidden" name="username" value="">
+                                        <input type="hidden" name="guid" value="{{item.guid}}">
+                                        <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
+                                                style="font-size: 13px !important;color: #808080 !important">回复</i></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
+                        {{# });}}
+                        </script>
                 </div>
+                <div id="page" style="text-align: center;"></div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="/style/layui/layui.js"></script>
 <script src="/style/js/util.js?v=201908281635"></script>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/js/request.js"></script>
 <script src="/style/js/article/detail.js"></script>
-<script>
-    $(function () {
-        $('.reply').bind('click', function () {
-           var username=$(this).children('input[type=hidden]').val();
-            $('.layui-textarea').focus();
-            $('.layui-textarea').val('@ '+username+'：');
-        })
-    })
-</script>

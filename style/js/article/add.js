@@ -1,7 +1,7 @@
 var loading, form,layedit,textcontent;
 layui.use(['form', 'layer', 'layedit'], function () {
     var  $ = layui.jquery, layer = layui.layer;
-    var filePath = "";
+    var filePaths = [];
     form = layui.form;
     layedit = layui.layedit;
     var id = getSearchString('id');
@@ -34,7 +34,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             },
             done: function (res) {
                 if (res.code == 0) {
-                    filePath = filePath + res.data.src + ",";
+                    filePaths.push(res.data.src);
                 }
             }
         },
@@ -136,17 +136,17 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     textsection = textsection.substring(-1, 30);
                 loading = layer.load(2);
                 var model={
-                    'id':id,
-                    'articletype': articleData.type,
-                    'title': articleData.title,
-                    'content': content,
-                    'imgSrc': filePath,
-                    'textsection': textsection,
-                    'isDraft': true
+                    'Id':parseInt(id),
+                    'ArticleType': articleData.type,
+                    'Title': articleData.title,
+                    'Content': content,
+                    'TextSection': textsection,
+                    'IsDraft': 'true',
+                    'FilePaths':filePaths
                 };
                 $.ajax({
                     url:url+ 'article/addArticle',
-                    contentType:'application/json',
+                    contentType:'application/json; charset=utf-8',
                     type:'post',
                     datatype:'json',
                     data: JSON.stringify(model),
@@ -169,7 +169,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     },
                     complete:function(xhr){
                         doComplete(xhr);
-                    }, 
+                    },                     
                 });
                 return false;
             })
