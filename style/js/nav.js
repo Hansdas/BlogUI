@@ -1,18 +1,4 @@
-$(function () {
-	requestajax({
-		route: 'auth/isLogin',
-		type: 'post',
-		datatype: 'json',
-		async: true,
-		func: load,
-	});
-	requestajax({
-		route: 'user/getphoto',
-		type: 'get',
-		datatype: 'json',
-		async: true,
-		func: bindPhoto,
-	});
+function initLoad() {
 	$("#user").hide();
 	$("#nologin").hide();
 	//导航栏点击变色
@@ -26,7 +12,7 @@ $(function () {
 			$("#console").attr("src", "../whisper/index");
 		}
 		if (thisItem.innerText == "文章") {
-		     $("#console").attr("src", "../article/index");
+			$("#console").attr("src", "../article/index");
 		}
 		$(this).addClass("active");
 	});
@@ -40,10 +26,6 @@ $(function () {
 		})(that);
 	});
 	showPage();
-});
-function bindPhoto(response)
-{
-	$("#photo").attr('src',response);	
 }
 function setIframeHeight(iframe) {
 	if (iframe) {
@@ -70,20 +52,3 @@ function showPage() {
 
 	});
 };
-
-function load(response) {
-	if (response != undefined) {
-		if (response != '200') {
-			$("#nologin").show();	
-			$("#user").hide();
-		} else {
-			$("#nologin").hide();	
-			$("#user").show();			
-		}
-	}
-	else
-	{
-		$("#nologin").show();	
-			$("#user").hide();	
-	}
-}

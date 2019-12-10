@@ -146,12 +146,6 @@
 .box-left p {
     width: 802px
 }
-@media (min-width:1500px) {
- 
-    .search {
-        margin-left: 442px
-    }
-}
 @media (min-width: 1519px) {
     .search {
         margin-left: 387px
@@ -159,6 +153,12 @@
     .bor {
         margin-left: 133px;
         width: 1143px
+    }
+}
+@media (min-width:1583px) {
+ 
+    .search {
+        margin-left: 442px
     }
 }
 #LAY_layedit_1 {

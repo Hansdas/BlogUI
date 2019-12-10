@@ -341,3 +341,43 @@ form input[type=checkbox] {
 .review-b button {
     float: right;
 }
+.tab-margain-top{
+    margin-top: 22px;
+}
+.tab-margain-top .reply{
+    border-bottom: 1px dotted #d6d6d6;
+    width: 867px;
+}
+.tab-margain-top .reply .r{
+    color: #999;
+}
+.tab-margain-top .reply .reply-content{
+    font-size: 12px;
+    line-height: 20px;
+}
+.tab-margain-top .reply .reply-from{
+    border:1px solid #dcdcdc;
+    line-height: 18px;
+    background: #f8f8f8;
+    padding: 7px 12px;
+    font-size: 6px;
+    margin-top: 8px;
+}
+.tab-margain-top .reply .reply-date{
+    color: #999;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    font-size: 10px;
+}
+.tab-margain-top .reply .reply-date{
+    color: #999;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    font-size: 10px;
+}
+.tab-margain-top .reply .reply-name{
+    color: #009688
+}
+.tab-margain-top .reply  .content-url:hover {
+    color:#f37d25 !important
+}

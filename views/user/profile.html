@@ -31,7 +31,7 @@
                     <a href="javascript:;">我的主页</a>
                 </li>
                 <li class="layui-nav-item" onclick="setTab(3)">
-                    <a href="javascript:;">我的博客</a>
+                    <a href="javascript:;">我的发布</a>
                 </li>
                 <li class="layui-nav-item" onclick="setTab(4)">
                     <a href="javascript:;">我的消息</a>
@@ -172,7 +172,7 @@
                 </div>
             </div>
             <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_3" style="display: none;">
-                <div class="tiezi" style="margin-top: 22px;">
+                <div class="tab-margain-top">
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="width:886px">
                         <ul class="layui-tab-title">
                             <li class="layui-this">文章</li>
@@ -183,15 +183,15 @@
                                 <div class="layui-form" style="width: 900px;">
                                     <input type="text" autocomplete="off" placeholder="标题查询"
                                         style="width: 200px !important;float: left" class="layui-input">
-                                        <div class="layui-inline">
-                                                <label class="layui-form-label">是否草稿</label>
-                                                <div class="layui-input-block" style="width: 61px;">
-                                                  <select name="isDraft">
-                                                    <option value="0">否</option>
-                                                    <option value="1" selected>是</option>
-                                                  </select>
-                                                </div>
-                                              </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">是否草稿</label>
+                                        <div class="layui-input-block" style="width: 61px;">
+                                            <select name="isDraft">
+                                                <option value="0">否</option>
+                                                <option value="1" selected>是</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <button class="layui-btn" style="float: right;margin-right: 52px;"
                                         lay-filter="LAY-user-front-search">
                                         <i class="layui-icon layui-icon-search "></i>
@@ -211,9 +211,36 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_3" style="display: none;">
-            </div>
             <div class="layui-tab layui-tab-brief" lay-filter="" id="tab_4" style="display: none;">
+                <div class="tab-margain-top">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="width:886px">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">回复我的</li>
+                            <li>系统通知</li>
+                        </ul>
+                        <div class="layui-tab-content" style="height: 100px;">
+                            <div class="layui-tab-item layui-show">
+                                <div class="reply">
+                                    <div>
+                                        <a href=""  class="reply-name">张三</a> <span class="r">回复：</span>
+                                        <span class="reply-content">                                            
+                                            <a class="content-url" href="">引用区域的文字引用区域的文字引用区域</a>
+                                        </span>
+                                    </div>
+                                    <div class="reply-from">
+                                            <a href="" class="reply-name">王五</a> <span class="r">回复：</span>
+                                            <a class="content-url" href="">引用区域的文字</a>
+                                    </div>
+
+                                    <div class="reply-date">
+                                        2019-12-09 14:22
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">内容2</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="/style/js/jquery.js"></script>
