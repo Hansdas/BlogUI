@@ -42,7 +42,7 @@
                         <dl class="layui-nav-child">
                             <dd><a href="../user/profile">个人资料</a></dd>
                             <dd><a href="../user/save" target="_blank">安全管理</a></dd>
-                            <dd><a href="../login/login">退了</a></dd>
+                            <dd><button class="layui-btn layui-btn-primary" onclick="loginOut()" style="color: #555 !important" >退出</button></dd>
                         </dl>
                     </li>
                 </div>
@@ -70,6 +70,7 @@
     <script src="/style/js/request.js"></script>
     <script src="/style/js/nav.js"></script>
     <script src="/style/js/signalr.js"></script>
+    <script src="/style/js/login.js"></script>
     <script>
         layui.use(['element', 'layer'], function () {
             var element = layui.element;

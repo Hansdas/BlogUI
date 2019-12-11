@@ -3,44 +3,62 @@
 
 <head>
     <meta name="viewport" content="width = device-width" />
-    <link href="~/layui/css/layui.css" rel="stylesheet" />
-    <link href="~/css/main.css?v=27" rel="stylesheet" />
+    <link href="/style/layui/css/layui.css" rel="stylesheet" />
+    <link href="/style/css/login.css?v=201908062128" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="login" style="margin-top:50px">
-        <form method="post" class="layui-form" style="margin-left:200px" >
-            <ul>
-                <li>
-                    <input type="text" name="account" lay-verify="required|nochinsese" placeholder="账号" class="layui-input">
-                </li>
-                <li>
-                    <input type="text" name="username" lay-verify="required|namelength"  placeholder="昵称" class="layui-input">
-                </li>
-                <li>
-                    <input type="password" name="password" lay-verify="required|passwordlength"  placeholder="密码" class="layui-input">
-                </li>
-                 <li>
-                    <input type="password" name="confirmpassword" lay-verify="required|confirmpassword"  placeholder="确认密码" class="layui-input">
-                </li>
-            </ul>
-            <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="Register">注册</button>
-        </form>
+    <div class="cb-login">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>注册账号</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" class="layui-form" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" name="useraccount" autocomplete="off" lay-verify="required|nochinsese"
+                            placeholder="账号" class="layui-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="username" autocomplete="off" lay-verify="required|namelength"
+                            placeholder="昵称" class="layui-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" autocomplete="off" lay-verify="required|passwordlength"
+                            placeholder="密码" class="layui-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirmpassword" autocomplete="off"
+                            lay-verify="required|confirmpassword" placeholder="确认密码" class="layui-input">
+                    </div>
+                    <button class="btn btn-primary btn-block" lay-submit="" lay-filter="Register">注册</button>
+                    <hr>
+                </form>
+                <div class="checkbox" style="height: 42px">
+                    <span class="text-muted">其他登录方式</span>
+                    <span class="pull-right other-login">
+                        <a href="/index/other/qq_login.html"><img src="/style/images/other_qq.png"
+                                class="img-circle"></a>
+                        <a href="javascript:;"><img src="/style/images/other_wx.png" class="img-circle"></a>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="~/js/jquery.js"></script>
-    <script src="~/layui/layui.js"></script>
+    <script src="/style/js/jquery.js"></script>
+    <script src="/style/layui/layui.js"></script>
     <script>
         layui.use(["form"], function () {
             var form = layui.form;
             var layer = layui.layer;
+            $('input[type=text]').val();
             form.verify({
-                nochinsese:[ /^[a-zA-Z0-9]{5,10}$/,"只账号能输入长度为5到10的纯英文和数字组合"],
-                namelength:[ /^[\S]{1,20}$/,"昵称不能多余20个字符"],
-                passwordlength:[/^[\S]{1,10}$/,"密码不能多余10个字符"],
-                confirmpassword:function(value)
-                {
-                    var password=$("input[name='password']").val();
-                    if(password!=value)
-                    {
+                nochinsese: [/^[a-zA-Z0-9]{5,10}$/, "只账号能输入长度为5到10的纯英文和数字组合"],
+                namelength: [/^[\S]{1,20}$/, "昵称不能多余20个字符"],
+                passwordlength: [/^[\S]{1,10}$/, "密码不能多余10个字符"],
+                confirmpassword: function (value) {
+                    var password = $("input[name='password']").val();
+                    if (password != value) {
                         return "两次输入密码不一致";
                     }
                 }
@@ -52,7 +70,7 @@
                     url: "/Login/Logon",
                     type: "post",
                     data: {
-                        "account":RegisterData.account,
+                        "account": RegisterData.account,
                         "username": RegisterData.username,
                         "password": RegisterData.password
                     },
@@ -60,15 +78,18 @@
                         if (response.message == "OK") {
                             window.location.href = "../Home/Index";
 
-                        }
-                        else {
+                        } else {
                             layer.close(index)
-                            layer.msg(response.message, { icon: 4 });
+                            layer.msg(response.message, {
+                                icon: 4
+                            });
                         }
                     },
                     error: function (response) {
                         layer.close(index)
-                        layer.msg("响应服务器失败", { icon: 7 });
+                        layer.msg("响应服务器失败", {
+                            icon: 7
+                        });
                     }
                 });
                 return false;
@@ -76,4 +97,5 @@
         })
     </script>
 </body>
+
 </html>

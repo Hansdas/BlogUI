@@ -1,32 +1,45 @@
-﻿var loading;
+﻿
 layui.use(["form"], function () {
 	var form = layui.form;
 	var layer = layui.layer;
 	form.on("submit(login)", function (data) {
-		loading = layer.load(2)
+		var loading = layer.load(2)
 		var loginData = data.field;
-		var response = requestajax({
-			route: 'login/login',
+		$.ajax({
+			url: url + 'login/login',
 			type: 'post',
-			datatype: 'json',
+			dataType: 'json',
 			data: {
 				"Account": loginData.Account,
 				"Password": loginData.Password
 			},
-			async: true,
-			func:login
+			success: function (response) {
+				if (response.code == "200") {
+					localStorage.setItem("token", response.data);
+					window.location.href = "../home/index";
+			
+				}
+				else {
+					layer.close(loading)
+					layer.msg(response.message, { icon: 5 });
+				}
+			},
 		});
 		return false;
 	})
 })
-function login(response) {
-	if (response.code == "200") {
-		localStorage.setItem("token", response.data);
-		window.location.href = "../home/index";
 
-	}
-	else {
-		layer.close(loading)
-		layer.msg(response.message, { icon: 5 });
-	}
+function loginOut()
+{
+	var token=localStorage.getItem('token');
+	$.ajax({
+		url: url + 'login/loginout',
+		type: 'post',
+		data:{
+			'token':token
+		},
+		dataType: 'json',
+	});
+	localStorage.removeItem('token');
+	window.location.href = '../login/login';
 }
