@@ -20,6 +20,37 @@ function setTab(cursor) {
                 laydate.render({
                     elem: '#birthdate'
                 });
+            $.ajax({
+                'url': url + 'user/userinfo',
+                type: 'get',
+                datatype: 'json',
+                beforeSend: function (xhr) {
+                    doBeforeSend(xhr);
+                },
+                success: function (response) {
+                    if (response.code == "0") {
+                        layer.close(loading);
+                        form.val("userinfo", {
+                            "account": response.data.account,
+                            "username": response.data.username,
+                            "sex": response.data.sex,
+                            "birthdate": response.data.birthDate,
+                            "phone": response.data.phone,
+                            "email": response.data.email,
+                            "sign": response.data.sign
+                        });
+                    }
+                },
+                error: function () {
+                    layer.close(loading);
+                    layer.msg('响应服务器失败', {
+                        icon: 7
+                    });
+                },
+                complete: function (xhr) {
+                    doComplete(xhr);
+                },
+            });
             form.verify({
                 phone: function (value) {
                     if (value.length > 0) {
@@ -109,31 +140,31 @@ function setTab(cursor) {
         layui.use('table', function () {
             var table = layui.table;
             table.render({
-                id:'aTable'
-                ,elem: '#articleTable'
+                id: 'aTable'
+                , elem: '#articleTable'
                 , url: url + "article/selectArticle"
                 , toolbar: false
                 , width: 870
                 , title: '用户数据表'
                 , loading: true
                 , headers: { 'Authorization': localStorage.getItem('token') }
-                ,limit:10
+                , limit: 10
                 , cols: [[
                     { type: 'checkbox' }
                     , { field: 'id', title: 'ID', hide: true, unresize: true }
                     , { field: 'title', title: '标题' }
-                    , { field: 'articleType', title: '专栏',align:'center',width:100 }
+                    , { field: 'articleType', title: '专栏', align: 'center', width: 100 }
                     , { field: 'author', title: '作者' }
                     , { field: 'createTime', title: '提交日期', sort: true }
-                    , { align: 'center', toolbar: '#bar',title:'操作' }
+                    , { align: 'center', toolbar: '#bar', title: '操作' }
                 ]]
                 , page: true
-                ,parseData: function(res){ 
+                , parseData: function (res) {
                     return {
-                      "code": res.code, 
-                      "msg": res.message,
-                      "count": res.total, 
-                      "data": res.data
+                        "code": res.code,
+                        "msg": res.message,
+                        "count": res.total,
+                        "data": res.data
                     };
                 }
             });
@@ -145,52 +176,31 @@ function setTab(cursor) {
                     layer.confirm('确定删除？', function (index) {
                         loading = layer.load(2);
                         requestajax({
-                            route: 'article/delete/'+data.id,
+                            route: 'article/delete/' + data.id,
                             type: 'delete',
                             datatype: 'json',
-                            async: false                          
+                            async: false
                         });
                         layer.close(index);
-                        var route=url + "article/selectArticle";
-                        table.reload('aTable',{
+                        var route = url + "article/selectArticle";
+                        table.reload('aTable', {
                             page: {
-                                curr: 1 
-                              }
+                                curr: 1
+                            }
                         });
                         layer.close(loading);
                     });
                 } else if (obj.event === 'edit') {
-                    window.open('../article/addarticle?id='+data.id) 
+                    window.open('../article/addarticle?id=' + data.id)
                 }
-                else
-                {
-                  window.open('../article/detail?id='+data.id) 
+                else {
+                    window.open('../article/detail?id=' + data.id)
                 }
             });
         });
     }
 }
-function completeBindUser(response) {
-    if (response != undefined) {
-        if (response.code == "200") {
-            layer.close(loading);
-            form.val("userinfo", {
-                "account": response.data.account,
-                "username": response.data.username,
-                "sex": response.data.sex,
-                "birthdate": response.data.birthDate,
-                "phone": response.data.phone,
-                "email": response.data.email,
-                "sign": response.data.sign
-            });
-        }
-    } else {
-        layer.close(loading);
-        layer.msg('响应服务器失败', {
-            icon: 7
-        });
-    }
-}
+
 
 function completeResponse(response) {
     if (response.code == "200") {
@@ -202,7 +212,7 @@ function completeResponse(response) {
         layer.msg(response.message, { icon: 5 });
     }
 }
-function  completeDelete(params) {
+function completeDelete(params) {
     if (response.code == "200") {
         localStorage.setItem("token", response.data);
         layer.close(loading);

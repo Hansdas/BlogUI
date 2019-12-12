@@ -47,13 +47,13 @@
     </div>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
+    <script src="/style/js/request.js"></script>
     <script>
         layui.use(["form"], function () {
             var form = layui.form;
             var layer = layui.layer;
-            $('input[type=text]').val();
             form.verify({
-                nochinsese: [/^[a-zA-Z0-9]{5,10}$/, "只账号能输入长度为5到10的纯英文和数字组合"],
+                nochinsese: [/^[a-zA-Z0-9]{5,20}$/, "只账号能输入长度为5到10的纯英文和数字组合"],
                 namelength: [/^[\S]{1,20}$/, "昵称不能多余20个字符"],
                 passwordlength: [/^[\S]{1,10}$/, "密码不能多余10个字符"],
                 confirmpassword: function (value) {
@@ -65,17 +65,24 @@
             });
             form.on("submit(Register)", function (data) {
                 var RegisterData = data.field;
-                var index = layer.load(2)
+                var index = layer.load(2);
+                var userModel = {
+                    'Account': RegisterData.useraccount,
+                    'Username': RegisterData.username,
+                    'Password': RegisterData.password
+                };
                 $.ajax({
-                    url: "/Login/Logon",
+                    url: url + "Login/Logon",
                     type: "post",
-                    data: {
-                        "account": RegisterData.account,
-                        "username": RegisterData.username,
-                        "password": RegisterData.password
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(userModel),
+                    datatype: 'json',
+                    beforeSend: function (xhr) {
+                        doBeforeSend(xhr);
                     },
                     success: function (response) {
-                        if (response.message == "OK") {
+                        if (response.code == "0") {
+                            localStorage.setItem("token", response.data);
                             window.location.href = "../Home/Index";
 
                         } else {
