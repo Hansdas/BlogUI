@@ -1,16 +1,20 @@
 
 $(function () {
-    setTab(1);
+    var tab = getSearchString('tab');    
+    setTab(tab);
 });
 var form, loading
 function setTab(cursor) {
     for (var i = 1; i < 5; i++) {
+        var nav = document.getElementById("nav_" + i);
         var con = document.getElementById("tab_" + i);
         if (i == cursor) {
             con.style.display = "block";
+            nav.className='layui-nav-item layui-this'
         }
         else {
             con.style.display = "none";
+            nav.className='layui-nav-item'
         }
     }
     if (cursor == 1) {
@@ -107,13 +111,6 @@ function setTab(cursor) {
                     func: completeResponse
                 });
                 return false;
-            });
-            requestajax({
-                route: 'user/userinfo',
-                type: 'get',
-                datatype: 'json',
-                async: true,
-                func: completeBindUser
             });
             upload.render({
                 elem: '#upload'

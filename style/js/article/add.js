@@ -7,7 +7,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
     var id = getSearchString('id');
     bindselect();
     if (id == undefined) {
-        checklogin(layer);
+        checklogin();
     }
     else {
         loading = layer.load(2);
@@ -132,15 +132,15 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 var articleData = data.field;
                 var content = layedit.getContent(textcontent);
                 var textsection = layedit.getText(textcontent);
-                if (textsection.length > 30)
-                    textsection = textsection.substring(-1, 30);
+                if (textsection.length > 200)
+                    textsection = textsection.substring(-1, 200);
                 loading = layer.load(2);
                 var model={
                     'Id':parseInt(id),
                     'ArticleType': articleData.type,
                     'Title': articleData.title,
                     'Content': content,
-                    'TextSection': textsection,
+                    'TextSection': textsection+'...',
                     'IsDraft': 'true',
                     'FilePaths':filePaths
                 };
@@ -218,24 +218,14 @@ function onCompletePublish(response) {
         });
     }
 }
-function checklogin(layer) {
-    var response = requestajax({
-        route: 'auth/isLogin',
-        type: 'post',
-        datatype: 'json',
-        async: false
-    });
-    if (response != undefined) {
-        if (response != '200') {
+function checklogin() {
+    var token=localStorage.getItem('token'); 
+    if (token !='') {
             layer.msg('你还未登录', {
                 time: 1500,
             }, function () {
                 window.location.href = '../login/login'
             });
-        }
-    }
-    else {
-        window.location.href = '../login/login'
     }
 };
 function bindselect() {

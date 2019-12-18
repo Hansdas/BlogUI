@@ -8,7 +8,7 @@ layui.config({
     var commentScript = document.getElementById('buildComment').innerHTML;
     menu.init();
     var id = getSearchString('id');
-    var type = getSearchString('t');
+    var type = getSearchString('t');   
     loadarticle(id, commentScript);
     loadupnext(id, type);
     layer.close(loading);
@@ -113,6 +113,10 @@ function loadarticle(id, commentScript) {
                 if (response.data.isDraft == '是') {
                     $(".comment").hide();
                 }
+                var c = getSearchString('c');
+                if (c=='c') {
+                   $('#desc').focus(); 
+                } 
             }
             else {
                 layer.msg('响应服务器失败', { icon: 7 });

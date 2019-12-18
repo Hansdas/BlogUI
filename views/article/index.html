@@ -11,16 +11,73 @@
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
     <link href="/style/css/spin.css" rel="stylesheet" />
     <style>
-        .layui-layer-loading{
+        .layui-layer-loading {
             top: 233px !important;
             left: 500.5px !important;
         }
-        #layui-layer2{
+
+        #layui-layer2 {
             top: 233px !important;
             left: 500.5px !important;
         }
-        .title-type{
+
+        .title-type {
             font-size: 14px !important
+        }
+
+        .item-f {
+            line-height: 150%;
+        }
+
+        .author {
+            float: left;
+            font-size: 10px;
+        }
+
+        .author a {
+            color: #009688 !important;
+        }
+
+        .author a:hover {
+            color: #f37d25 !important
+        }
+
+        .date {
+            float: left;
+            color: #999;
+            font-size: 10px;
+            margin-left: 10px;
+        }
+
+        .item-f .comment {
+            float: left;
+            color: #999 !important;
+            margin-left: 10px;
+            font-size: 10px;
+            line-height: 159%;
+        }
+        .item-f .praise {
+            float: left;
+            color: #999 !important;
+            margin-left: 10px;
+            font-size: 10px;
+            line-height: 170%;
+        }
+        .item-f .read {
+            float: left;
+            color: #999 !important;
+            margin-left: 10px;
+            font-size: 10px;
+            line-height: 179%;
+        }
+        .item-f .read .span {
+            font-size: 12px !important;
+        }
+        .item-f .comment .layui-icon {
+            font-size: 14px !important;
+        }
+        .item-f .praise span {
+            font-size: 12px;
         }
     </style>
 </head>
@@ -38,14 +95,11 @@
                 <input type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="输入完后按回车" />
                 <i class="layui-icon layui-icon-search"></i>
             </div>
-            <a href="../article/addarticle" target="_blank" class="layui-btn"
+            <a href="../article/addarticle.html" target="_blank" class="layui-btn"
                 style="color:white !important;font-size:14px !important; float: right;margin-right: 144px">写一写</a>
         </div>
         <hr class="bor" />
         <div class="list-item box-left" style="margin-left: 19px">
-                <div id="loading" >
-                        <table>...</table>
-                    </div>
             <div id="article-item-id">
                 <script type="text/html" id="article-item">
                     {{# layui.each(d.list,function(index,item){}}
@@ -54,9 +108,25 @@
                             <div class="layui-row">
                                 <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                                     <div class="item-cont item-title">
-                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a><br/> <button class="layui-btn layui-btn-danger new-icon">new</button><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
-
+                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
                                         <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
+                                        <div class="item-f">
+                                            <div class="author"><a target="_blank" href="">爱吃猫的鱼</a></div>
+                                            <div class="date">2019-12-12 12:12</div> 
+                                            <div class="comment">
+                                                <a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}&c=c">
+                                                    <i class="layui-icon layui-icon-reply-fill"
+                                                    style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
+                                            </div> 
+                                            <div class="read">
+                                                <i class="layui-icon layui-icon-read"
+                                                style="font-size: 12px !important;line-height:1px"><span>阅读(12)</span></i>                                                  
+                                            </div> 
+                                            <div class="praise">
+                                                <i class="layui-icon layui-icon-praise"
+                                                style="font-size: 13px !important;"><span>点赞(12)</span></i>                                                 
+                                            </div> 
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -144,33 +214,6 @@
 </div>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
-<script src="/style/js/spin.js"></script>
-<script src="/style/js/request.js"></script>
-<script src="/style/js/index.js"></script>
+<script src="/style/js/request.js?v=20112171144"></script>
+<script src="/style/js/article/index.js"></script>
 <script src="/style/js/util.js"></script>
-<script>
-    var loading;
-    var articletype = '';
-    $(function(){
-         loading = new SpinLoading('loading');     
-    });
-layui.config({
-    base: '/style/js/'
-}).use(['element', 'laypage', 'form', 'jquery', 'menu', 'laytpl'], function () {
-    element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, form = layui.form;
-    inittab();
-    menu.init();
-    var total =loadtotal(articletype);
-    var article = document.getElementById('article-item').innerHTML;
-    laypage.render({
-        elem: 'page'
-        , count: total
-        , jump: function (obj) {
-            var pageSize = obj.limit;
-            var pageIndex = obj.curr;
-            loadarticle(pageIndex, pageSize, article, articletype);
-        },
-    });
-    loading.close();
-})
-</script>

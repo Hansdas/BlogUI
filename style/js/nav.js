@@ -3,16 +3,15 @@ function initLoad() {
 	$("#nologin").hide();
 	//导航栏点击变色
 	$(".nav a").click(function () {
-		//var index = layer.load(2)
 		$(".nav a").each(function () {
 			$(this).removeClass("active");
 		});
 		var thisItem = $(this)[0];
 		if (thisItem.innerText == "微语") {
-			$("#console").attr("src", "../whisper/index");
+			$("#console").attr("src", "../whisper/index.html");
 		}
 		if (thisItem.innerText == "文章") {
-			$("#console").attr("src", "../article/index");
+			$("#console").attr("src", "../article/index.html");
 		}
 		$(this).addClass("active");
 	});
@@ -44,7 +43,7 @@ function showPage() {
 	$("#console").attr("src", "../" + page + "/Index");
 	$(".nav a").each(function (index) {
 		var thisItem = $(this)[0];
-		if (thisItem.innerText == "微语") {
+		if (thisItem.innerText == "文章"&&page=='article') {
 			$(this).addClass("active");
 		} else {
 			$(this).removeClass("active");

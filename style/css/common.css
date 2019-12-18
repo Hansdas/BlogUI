@@ -140,11 +140,16 @@
 .box-left h3 {
     text-align: center !important;
     margin-right: 26% !important;
-    margin-right: 162px
+    margin-right: 162px;
+    font-weight: bold;
+}
+.box-left  a:hover {
+    color:#f37d25
 }
 
 .box-left p {
-    width: 802px
+    width: 802px;
+    color: #333;
 }
 @media (min-width: 1519px) {
     .search {
@@ -205,7 +210,7 @@
     display: none !important;
 }
 
-.main {
+.pro-main {
     width: 1170px;
     background-color: white;
     margin-left: 182px;

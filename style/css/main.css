@@ -96,8 +96,7 @@ form input[type=checkbox] {
 .content .cont .list-item .item .img img{width: 100%;}
 .content .cont .list-item .item .item-cont{padding-left: 122px;}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(../img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
-.content .cont .list-item .item .item-cont h3{font-size: 24px; margin:20px 0;}
-.content .cont .list-item .item .item-cont h3 .new-icon{width: 36px; height: 18px; line-height: 18px; text-align: center; padding:0; margin: -3px 0 0 10px;}
+.content .cont .list-item .item .item-cont h3 .new-icon{font-size: 14px;font-weight:blod;width: 36px; height: 18px; line-height: 18px; text-align: center; padding:0; margin: -3px 0 0 10px;}
 .content .cont .list-item .item .item-cont h5{font-size: 12px; color: #ff7f21; margin-bottom: 32px;}
 .content .cont .list-item .item .item-cont p{line-height: 37px;
    display: -webkit-box;
@@ -106,6 +105,7 @@ form input[type=checkbox] {
   overflow: hidden;
   /* autoprefixer: off */
   -webkit-box-orient: vertical;
+  color: #333;
   /* autoprefixer: on */
 }
 .details-content .article-cont .title .author {
@@ -380,4 +380,88 @@ form input[type=checkbox] {
 }
 .tab-margain-top .reply  .content-url:hover {
     color:#f37d25 !important
+}
+
+.layui-nav-child {
+    color: white !important
+}
+
+.layui-nav-child a {
+    color: #333 !important
+}
+
+.main {
+    color: #666;
+    margin-top: 50px;
+}
+
+/* 定义keyframe动画，命名为blink */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    50.01% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 添加兼容性前缀 */
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 定义blink类*/
+.blink {
+    color: #dd4814;
+    animation: blink 1s linear infinite;
+    /* 其它浏览器兼容性前缀 */
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    -ms-animation: blink 1s linear infinite;
+    -o-animation: blink 1s linear infinite;
 }
