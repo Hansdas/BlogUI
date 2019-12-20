@@ -347,6 +347,7 @@ form input[type=checkbox] {
 .tab-margain-top .reply{
     border-bottom: 1px dotted #d6d6d6;
     width: 867px;
+    margin-bottom: 20px;
 }
 .tab-margain-top .reply .r{
     color: #999;
@@ -464,4 +465,72 @@ form input[type=checkbox] {
     -moz-animation: blink 1s linear infinite;
     -ms-animation: blink 1s linear infinite;
     -o-animation: blink 1s linear infinite;
+}
+.layui-layer-loading {
+    top: 233px !important;
+    left: 500.5px !important;
+}
+
+#layui-layer2 {
+    top: 233px !important;
+    left: 500.5px !important;
+}
+
+.title-type {
+    font-size: 14px !important
+}
+
+.item-f {
+    line-height: 150%;
+}
+
+.item-f .author {
+    float: left;
+    font-size: 10px;
+}
+
+.item-f .author a {
+    color: #009688 !important;
+}
+
+.item-f .author a:hover {
+    color: #f37d25 !important
+}
+
+.item-f .date {
+    float: left;
+    color: #999;
+    font-size: 10px;
+    margin-left: 10px;
+}
+
+.item-f .comment {
+    float: left;
+    color: #999 !important;
+    margin-left: 10px;
+    font-size: 10px;
+    line-height: 159%;
+}
+.item-f .praise {
+    float: left;
+    color: #999 !important;
+    margin-left: 10px;
+    font-size: 10px;
+    line-height: 170%;
+}
+.item-f .read {
+    float: left;
+    color: #999 !important;
+    margin-left: 10px;
+    font-size: 10px;
+    line-height: 179%;
+}
+.item-f .read .span {
+    font-size: 12px !important;
+}
+.item-f .comment .layui-icon {
+    font-size: 14px !important;
+}
+.item-f .praise span {
+    font-size: 12px;
 }

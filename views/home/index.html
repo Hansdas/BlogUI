@@ -10,10 +10,13 @@
     <link href="/style/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
     <link href="/style/css/common.css" rel="stylesheet" />
 </head>
+
 <body>
     <div class="fly-header layui-bg-black">
         <div class="layui-header">
-            <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
+            <a href="../home/index?pagepath=article">
+                <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
+            </a>
             <div class="header-menu">
                 <div class="nav">
                     <a href="javaScript:;" class="active">文章</a>
@@ -23,9 +26,9 @@
             </div>
 
             <ul id="top" class="layui-nav layui-layout-right nav-right">
-                <div id="nologin" style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px"><a
+                <div id="nologin" style="opacity: 0.5;font-size:15px;padding:18px;margin-right:-5px;display: none"><a
                         href="../login/login.html"><i class="layui-icon layui-icon-username"></i>还未登录</a></div>
-                <div id="user">
+                <div id="user" style="display: none;">
                     <li class="layui-nav-item"><a href="../user/profile.html?tab=4"> 我的消息<span
                                 class="layui-badge"></span></a></li>
                     <li class="layui-nav-item" lay-unselect="">
@@ -90,7 +93,12 @@
                     else {
                         $("#nologin").hide();
                         $("#user").show();
-                        $("#photo").attr('src', response.data.headPhoto);
+                        if (response.data.headPhoto == "") {
+                            $("#photo").attr('src', '/style/images/weixi.jpg');
+                        }
+                        else {
+                            $("#photo").attr('src', response.data.headPhoto);
+                        }
                         connection.start().then(function () {
                             connection.invoke('SetConnectionMaps', response.data.account);
                         })

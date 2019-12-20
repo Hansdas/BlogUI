@@ -220,29 +220,38 @@ function onCompletePublish(response) {
 }
 function checklogin() {
     var token=localStorage.getItem('token'); 
-    if (token !='') {
+    if (token =='') {
             layer.msg('你还未登录', {
                 time: 1500,
             }, function () {
-                window.location.href = '../login/login'
+                window.location.href = '../login/login.html'
             });
     }
 };
 function bindselect() {
-    var response = requestajax({
-        route: 'upload/initPage',
-        type: 'get',
-        datatype: 'json',
-        async: false
+    $.ajax({
+        url:url+ 'upload/initPage',
+        type:'get',
+        datatype:'json',
+        beforeSend:function(xhr)
+        {
+            doBeforeSend(xhr);                                            
+        },
+        success:function(response)
+        {
+            if (response.code == 0) {
+                $('#selecttype').empty();
+                $('#selecttype').append('<option>...</option>');
+                for (var item in response.data) {
+                    $('#selecttype').append('<option value=' + item + '>' + response.data[item] + '</option>');
+                }
+                layui.form.render("select");
+            }
+        },
+        complete:function(xhr){
+            doComplete(xhr);
+        },                     
     });
-    if (response != undefined) {
-        $('#selecttype').empty();
-        $('#selecttype').append('<option>...</option>');
-        for (var item in response.data) {
-            $('#selecttype').append('<option value=' + item + '>' + response.data[item] + '</option>');
-        }
-    };
-    layui.form.render("select");
 };
 function onCompeteBindEdit(response) {
     if (response.code == 200) {

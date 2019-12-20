@@ -10,76 +10,6 @@
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
     <link href="/style/css/spin.css" rel="stylesheet" />
-    <style>
-        .layui-layer-loading {
-            top: 233px !important;
-            left: 500.5px !important;
-        }
-
-        #layui-layer2 {
-            top: 233px !important;
-            left: 500.5px !important;
-        }
-
-        .title-type {
-            font-size: 14px !important
-        }
-
-        .item-f {
-            line-height: 150%;
-        }
-
-        .author {
-            float: left;
-            font-size: 10px;
-        }
-
-        .author a {
-            color: #009688 !important;
-        }
-
-        .author a:hover {
-            color: #f37d25 !important
-        }
-
-        .date {
-            float: left;
-            color: #999;
-            font-size: 10px;
-            margin-left: 10px;
-        }
-
-        .item-f .comment {
-            float: left;
-            color: #999 !important;
-            margin-left: 10px;
-            font-size: 10px;
-            line-height: 159%;
-        }
-        .item-f .praise {
-            float: left;
-            color: #999 !important;
-            margin-left: 10px;
-            font-size: 10px;
-            line-height: 170%;
-        }
-        .item-f .read {
-            float: left;
-            color: #999 !important;
-            margin-left: 10px;
-            font-size: 10px;
-            line-height: 179%;
-        }
-        .item-f .read .span {
-            font-size: 12px !important;
-        }
-        .item-f .comment .layui-icon {
-            font-size: 14px !important;
-        }
-        .item-f .praise span {
-            font-size: 12px;
-        }
-    </style>
 </head>
 <div class="content">
     <div class="cont h1370">
@@ -100,42 +30,7 @@
         </div>
         <hr class="bor" />
         <div class="list-item box-left" style="margin-left: 19px">
-            <div id="article-item-id">
-                <script type="text/html" id="article-item">
-                    {{# layui.each(d.list,function(index,item){}}
-                    <div class="item">
-                        <div class="layui-fluid">
-                            <div class="layui-row">
-                                <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                                    <div class="item-cont item-title">
-                                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a><button class="layui-btn new-icon w62">{{item.articleType}}</button></h3>
-                                        <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
-                                        <div class="item-f">
-                                            <div class="author"><a target="_blank" href="">爱吃猫的鱼</a></div>
-                                            <div class="date">2019-12-12 12:12</div> 
-                                            <div class="comment">
-                                                <a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}&c=c">
-                                                    <i class="layui-icon layui-icon-reply-fill"
-                                                    style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
-                                            </div> 
-                                            <div class="read">
-                                                <i class="layui-icon layui-icon-read"
-                                                style="font-size: 12px !important;line-height:1px"><span>阅读(12)</span></i>                                                  
-                                            </div> 
-                                            <div class="praise">
-                                                <i class="layui-icon layui-icon-praise"
-                                                style="font-size: 13px !important;"><span>点赞(12)</span></i>                                                 
-                                            </div> 
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="bor item-bottom" />
-                    {{# }); }}
-                </script>
-            </div>
+            <div id="article-item-id"></div><!--输出的视图-->>
             <div id="page" style="text-align: center;"></div>
         </div>
         <div class="box-right" style="margin-right: 56px">
@@ -212,8 +107,44 @@
         </div>
     </div>
 </div>
+  <!--渲染的模板-->
+<script type="text/html" id="article-item">
+    {{# layui.each(d.list,function(index,item){}}
+    <div class="item">
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                    <div class="item-cont item-title">
+                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
+                            <button class="layui-btn new-icon w62" style="background-color:#01AAED !important" >{{item.articleType}}</button></h3>
+                        <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
+                        <div class="item-f">
+                            <div class="author"><a target="_blank" href="">爱吃猫的鱼</a></div>
+                            <div class="date">2019-12-12 12:12</div> 
+                            <div class="comment">
+                                <a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}&c=c">
+                                    <i class="layui-icon layui-icon-reply-fill"
+                                    style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
+                            </div> 
+                            <div class="read">
+                                <i class="layui-icon layui-icon-read"
+                                style="font-size: 12px !important;line-height:1px"><span>阅读(12)</span></i>                                                  
+                            </div> 
+                            <div class="praise">
+                                <i class="layui-icon layui-icon-praise"
+                                style="font-size: 13px !important;"><span>点赞(12)</span></i>                                                 
+                            </div> 
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="bor item-bottom" />
+    {{# }); }}
+</script>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
 <script src="/style/js/request.js?v=20112171144"></script>
-<script src="/style/js/article/index.js"></script>
+<script src="/style/js/article/index.js?v=201912191457"></script>
 <script src="/style/js/util.js"></script>

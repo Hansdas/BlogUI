@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<div class="fly-header layui-bg-black" style="position: fixed;top: 0;">
+<!-- <div class="fly-header layui-bg-black" style="position: fixed;top: 0;">
     <div class="layui-header">
         <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
         <div class="header-menu">
@@ -45,6 +45,10 @@
             </div>
         </div>
     </div>
+</div> -->
+<div style="position: fixed;top: 0;width: 100%;">
+    <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
+        noresize="noresize" src="../master/top"></iframe>
 </div>
 <div class="content whisper-content leacots-content details-content">
     <div style="width: 1198px;margin-left: 195px;margin-top: 40px;">
@@ -73,7 +77,7 @@
                         <div class="layui-form-item layui-form-text">
                             <div class="layui-input-block">
                                 <div class="b" style="border-radius:3px">
-                                    <textarea  id="desc" lay-verify="required" placeholder="既然来了，就说几句。。。"
+                                    <textarea name="desc" id="desc" lay-verify="required" placeholder="既然来了，就说几句。。。"
                                         class="layui-textarea"></textarea>
                                 </div>
                             </div>

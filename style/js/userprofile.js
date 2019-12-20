@@ -1,6 +1,6 @@
 
 $(function () {
-    var tab = getSearchString('tab');    
+    var tab = getSearchString('tab');
     setTab(tab);
 });
 var form, loading
@@ -10,11 +10,11 @@ function setTab(cursor) {
         var con = document.getElementById("tab_" + i);
         if (i == cursor) {
             con.style.display = "block";
-            nav.className='layui-nav-item layui-this'
+            nav.className = 'layui-nav-item layui-this'
         }
         else {
             con.style.display = "none";
-            nav.className='layui-nav-item'
+            nav.className = 'layui-nav-item'
         }
     }
     if (cursor == 1) {
@@ -133,13 +133,14 @@ function setTab(cursor) {
             });
         })
     }
-    if (cursor == 3) {
+    else if (cursor == 3) {
         layui.use('table', function () {
             var table = layui.table;
             table.render({
                 id: 'aTable'
+                , method:'post'
                 , elem: '#articleTable'
-                , url: url + "article/selectArticle"
+                , url: url + "user/selectArticle"
                 , toolbar: false
                 , width: 870
                 , title: '用户数据表'
@@ -172,14 +173,25 @@ function setTab(cursor) {
                 if (obj.event === 'del') {
                     layer.confirm('确定删除？', function (index) {
                         loading = layer.load(2);
-                        requestajax({
-                            route: 'article/delete/' + data.id,
+                        $.ajax({
+                            url: url + 'article/delete/' + data.id,
                             type: 'delete',
                             datatype: 'json',
-                            async: false
-                        });
-                        layer.close(index);
-                        var route = url + "article/selectArticle";
+                            beforeSend: function (xhr) {
+                                doBeforeSend(xhr);
+                            },
+                            success: function (response) {
+                            },
+                            complete: function (xhr) {
+                                doComplete(xhr);
+                                layer.close(index);
+                            },
+                            error: function () {
+                                layer.msg('响应服务器失败', {
+                                    icon: 7
+                                });
+                            }
+                        })
                         table.reload('aTable', {
                             page: {
                                 curr: 1
@@ -193,6 +205,79 @@ function setTab(cursor) {
                 else {
                     window.open('../article/detail?id=' + data.id)
                 }
+            });
+            var $ = layui.$, active = {
+                reload: function () {
+                    table.reload('aTable', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        ,method:'post'
+                        , where: {
+                            title: $('#title').val(),
+                            isDraft:$('#isdraft').val()
+                        }
+                    });
+                }
+            };
+            $('#table-search .layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+    }
+    else if (cursor == 4) {
+        layui.use(['laypage', 'element', 'jquery', 'laytpl', 'layer'], function () {
+            var laypage = layui.laypage, laytpl = layui.laytpl, layer = layui.layer, element = layui.element;;
+            loading = layer.load(2);
+            var scriptHtml = document.getElementById('buildScript').innerHTML;
+            laypage.render({
+                elem: 'page'
+                , limit: 10
+                , jump: function (obj) {
+                    var loading = layer.load(2);
+                    var pageSize = obj.limit;
+                    var pageIndex = obj.curr;
+                    $.ajax({
+                        url: url + 'user/getTidings',
+                        type: 'get',
+                        datatype: 'json',
+                        data: {
+                            'pageIndex': pageIndex,
+                            'pageSize': pageSize,
+                        },
+                        beforeSend: function (xhr) {
+                            doBeforeSend(xhr);
+                        },
+                        success: function (response) {
+                            if (response.code == '0') {
+                                var data = {
+                                    'list': response.data
+                                };
+                                var itemHtml = document.getElementById('tidings-item');
+                                laytpl(scriptHtml).render(data, function (html) {
+                                    itemHtml.innerHTML = html;
+                                })
+                            }
+                            else {
+                                layer.msg('响应服务器失败', {
+                                    icon: 7
+                                });
+                            }
+                            layer.close(loading);
+
+                        },
+                        complete: function (xhr) {
+                            doComplete(xhr);
+                        },
+                        error: function () {
+                            layer.msg('响应服务器失败', {
+                                icon: 7
+                            });
+                            layer.close(loading);
+                        }
+                    })
+                },
             });
         });
     }
@@ -219,4 +304,45 @@ function completeDelete(params) {
         layer.close(loading)
         layer.msg(response.message, { icon: 5 });
     }
+}
+function selectArticle() {
+    $.ajax({
+        url: url + 'user/getTidings',
+        type: 'post',
+        datatype: 'json',
+        data: {
+            'titleContain': $('#title-search').val(),
+            'isDraft': $('#isdraft-search').val(),
+        },
+        beforeSend: function (xhr) {
+            doBeforeSend(xhr);
+        },
+        success: function (response) {
+            if (response.code == '0') {
+                var data = {
+                    'list': response.data
+                };
+                var itemHtml = document.getElementById('tidings-item');
+                laytpl(scriptHtml).render(data, function (html) {
+                    itemHtml.innerHTML = html;
+                })
+            }
+            else {
+                layer.msg('响应服务器失败', {
+                    icon: 7
+                });
+            }
+            layer.close(loading);
+
+        },
+        complete: function (xhr) {
+            doComplete(xhr);
+        },
+        error: function () {
+            layer.msg('响应服务器失败', {
+                icon: 7
+            });
+            layer.close(loading);
+        }
+    })
 }

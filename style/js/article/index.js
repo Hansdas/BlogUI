@@ -55,6 +55,13 @@ function loadarticle(pageIndex,pageSize,listHtml,articletype,loading) {
         complete: function (xhr) {
             doComplete(xhr);
         },
+        error:function()
+        {
+            layer.msg('响应服务器失败', {
+                icon: 7
+            }); 
+            layer.close(loading);    
+        }
     })
 }
 function inittab() {

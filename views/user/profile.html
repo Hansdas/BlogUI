@@ -180,31 +180,30 @@
                         </ul>
                         <div class="layui-tab-content" style="height: 100px;">
                             <div class="layui-tab-item layui-show">
-                                <div class="layui-form" style="width: 900px;">
-                                    <input type="text" autocomplete="off" placeholder="标题查询"
+                                <div class="layui-form" id="table-search" style="width: 900px;">
+                                    <input type="text" id="title" placeholder="标题查询"
                                         style="width: 200px !important;float: left" class="layui-input">
                                     <div class="layui-inline">
                                         <label class="layui-form-label">是否草稿</label>
                                         <div class="layui-input-block" style="width: 61px;">
-                                            <select name="isDraft">
-                                                <option value="0">否</option>
-                                                <option value="1" selected>是</option>
+                                            <select name="isDraft" id="isdraft">
+                                                <option value="false" selected>否</option>
+                                                <option value="true">是</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <button class="layui-btn" style="float: right;margin-right: 52px;"
-                                        lay-filter="LAY-user-front-search">
+                                    <button class="layui-btn" style="float: right;margin-right: 31px;" 
+                                        data-type="reload">
                                         <i class="layui-icon layui-icon-search "></i>
-                                </div>
-                                <div style="float: left;">
                                     </button>
-                                    <table class="layui-hide" id="articleTable" lay-filter="article"></table>
-                                    <script type="text/html" id="bar">
+                                </div>
+                                <table class="layui-hide" id="articleTable" lay-filter="article"></table>
+                                <script type="text/html" id="bar">
                                         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                                         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                                       </script>
-                                </div>
+
                             </div>
                             <div class="layui-tab-item">内容2</div>
                         </div>
@@ -220,27 +219,9 @@
                         </ul>
                         <div class="layui-tab-content" style="height: 100px;">
                             <div class="layui-tab-item layui-show">
-                                <script type="text/html" id="buildReply">
-                                    {{# layui.each(d.list,function(index,item){}}
-                                    <div class="reply">
-                                        <div>
-                                            <a href=""  class="reply-name">{{item.postUsername}}</a> <span class="r">回复：</span>
-                                            <span class="reply-content">                                            
-                                                <a class="content-url" href="">{{item.postContent}}</a>
-                                            </span>
-                                        </div>
-                                        <div class="reply-from">
-                                                <a href="" class="reply-name">{{item.Username}}</a> <span class="r">回复：</span>
-                                                <a class="content-url" href="">{{item.content}}</a>
-                                        </div>
-    
-                                        <div class="reply-date">
-                                            {{item.postData}}
-                                        </div>
-                                    </div>
-                                        <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
-                                    {{# });}}
-                                    </script>
+                                <div id="tidings-item"></div>
+                                <!--输出的视图-->
+                                <div id="page" style="text-align: center;"></div>
                             </div>
                             <div class="layui-tab-item">内容2</div>
                         </div>
@@ -248,6 +229,28 @@
                 </div>
             </div>
         </div>
+        <!--渲染的模板-->
+        <script type="text/html" id="buildScript">
+            {{# layui.each(d.list,function(index,item){}}
+            <div class="reply">
+                <div>
+                    <a href=""  class="reply-name">{{item.postUsername}}</a> <span class="r">回复：</span>
+                    <span class="reply-content">                                            
+                        <a class="content-url" target="_blank" href="{{item.url}}">{{item.postContent}}</a>
+                    </span>
+                </div>
+                <div class="reply-from">
+                        <a href="" class="reply-name">{{item.reviceUsername}}</a> <span class="r">：</span>
+                        <a class="content-url" target="_blank" href="{{item.url}}">{{item.content}}</a>
+                </div>
+
+                <div class="reply-date">
+                    {{item.postDate}}
+                </div>
+            </div>
+                <!-- <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" /> -->
+            {{# });}}
+        </script>
         <script src="/style/js/jquery.js"></script>
         <script src="/style/layui/layui.js"></script>
         <script src="/style/js/request.js"></script>
