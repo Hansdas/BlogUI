@@ -16,7 +16,7 @@ layui.use(["form"], function () {
 			success: function (response) {
 				if (response.code == "200") {
 					localStorage.setItem("token", response.data);
-					window.location.href = "../home/index";
+					window.location.href = "../home/index.html";
 			
 				}
 				else {
@@ -41,5 +41,5 @@ function loginOut()
 		dataType: 'json',
 	});
 	localStorage.removeItem('token');
-	window.location.href = '../login/login';
+	window.location.href = '../login/login.html';
 }

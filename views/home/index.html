@@ -14,7 +14,7 @@
 <body>
     <div class="fly-header layui-bg-black">
         <div class="layui-header">
-            <a href="../home/index?pagepath=article">
+            <a href="../home/index.html?pagepath=article">
                 <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
             </a>
             <div class="header-menu">
@@ -71,8 +71,8 @@
         layui.use(['element', 'layer'], function () {
             var element = layui.element;
             element.render('nav');
-            initLoad();
-            var connection = new signalR.HubConnectionBuilder().withUrl('http://127.0.0.1:5000/chatHub').build();
+            initLoad();         
+            var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
             connection.on('InvokeMessage', (reviceMessage) => {
                 var v = reviceMessage;
                 $('.layui-badge').html(reviceMessage.data);

@@ -147,17 +147,13 @@
     color:#f37d25
 }
 
-.box-left p {
-    width: 802px;
-    color: #333;
-}
 @media (min-width: 1519px) {
     .search {
         margin-left: 387px
     }
     .bor {
         margin-left: 133px;
-        width: 1143px
+        width: 1206px
     }
 }
 @media (min-width:1583px) {
@@ -214,21 +210,23 @@
     width: 1170px;
     background-color: white;
     margin-left: 182px;
-    height: 600px;
+    height: 800px;
 }
 
-.left {
+.pro-main .left {
 
     width: 20%;
     height: 500px;
     float: left;
     padding: 22px 0px 0px 23px;
+    position: fixed;
 }
 
-.right {
+.pro-main .right {
     width: 78%;
     height: 500px;
     float: right;
+    z-index: 999;
 }
 
 .user-profile {

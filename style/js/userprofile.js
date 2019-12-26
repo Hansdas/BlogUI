@@ -200,10 +200,10 @@ function setTab(cursor) {
                         layer.close(loading);
                     });
                 } else if (obj.event === 'edit') {
-                    window.open('../article/addarticle?id=' + data.id)
+                    window.open('../article/addarticle.html?id=' + data.id)
                 }
                 else {
-                    window.open('../article/detail?id=' + data.id)
+                    window.open('../article/detail.html?id=' + data.id)
                 }
             });
             var $ = layui.$, active = {
@@ -233,7 +233,7 @@ function setTab(cursor) {
             var scriptHtml = document.getElementById('buildScript').innerHTML;
             laypage.render({
                 elem: 'page'
-                , limit: 10
+                , limit: 5
                 , jump: function (obj) {
                     var loading = layer.load(2);
                     var pageSize = obj.limit;

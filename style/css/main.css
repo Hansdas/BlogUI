@@ -92,20 +92,21 @@ form input[type=checkbox] {
 .content .cont .title .layui-breadcrumb span{position: relative; top: -1px; margin:0 16px;}
 .content .cont .title a.active,.content .cont .title a:hover{color: #ff7f21!important;}
 .content .cont .list-item .layui-fluid{padding:0;}
-.content .cont .list-item .item{ overflow: hidden;}
+.content .cont .list-item .item-bottom {
+    width: 853px !important;
+    margin-left: 115px !important
+}
 .content .cont .list-item .item .img img{width: 100%;}
 .content .cont .list-item .item .item-cont{padding-left: 122px;}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(../img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
 .content .cont .list-item .item .item-cont h3 .new-icon{font-size: 14px;font-weight:blod;width: 36px; height: 18px; line-height: 18px; text-align: center; padding:0; margin: -3px 0 0 10px;}
 .content .cont .list-item .item .item-cont h5{font-size: 12px; color: #ff7f21; margin-bottom: 32px;}
-.content .cont .list-item .item .item-cont p{line-height: 37px;
-   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  /* autoprefixer: off */
-  -webkit-box-orient: vertical;
-  color: #333;
+.content .cont .list-item .item .item-cont p{
+    font-size: 12px;
+    line-height: 20.8px;
+  color: #333 !important;
+  margin: 10px 0 10px 0;
+  width: 853px;
   /* autoprefixer: on */
 }
 .details-content .article-cont .title .author {
@@ -210,7 +211,7 @@ form input[type=checkbox] {
 
 /*details*/
 .details-content .article-cont img{float: none;}
-.details-content .article-cont .title{text-align: center; margin-bottom: 0;}
+.details-content .article-cont .title{text-align: center; margin-bottom: 20px;}
 .details-content .article-cont .title h3{font-size: 30px; margin-bottom: 7px;}
 .details-content .article-cont .title p{padding:0;}
 .details-content .article-cont .title p.cont-info{text-indent: 0;}
@@ -466,16 +467,23 @@ form input[type=checkbox] {
     -ms-animation: blink 1s linear infinite;
     -o-animation: blink 1s linear infinite;
 }
-.layui-layer-loading {
-    top: 233px !important;
-    left: 500.5px !important;
-}
 
-#layui-layer2 {
-    top: 233px !important;
-    left: 500.5px !important;
+/* #layui-layer1{
+    top: 180.5px !important;
+    left: 775.5px !important;
 }
-
+#layui-layer2{
+    top: 180.5px !important;
+    left: 775.5px !important;
+}
+.marginTop #layui-layer2{
+    top: 180.5px !important;
+    left: 535.5px !important;
+}
+.marginTop .demo-class{
+    top: 0px !important;
+    left: 0px !important;
+} */
 .title-type {
     font-size: 14px !important
 }
@@ -533,4 +541,10 @@ form input[type=checkbox] {
 }
 .item-f .praise span {
     font-size: 12px;
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }

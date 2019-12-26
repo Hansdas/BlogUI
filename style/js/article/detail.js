@@ -1,9 +1,9 @@
-var allCommentList = null;
+var allCommentList = null,loading;
 layui.config({
     base: '/style/js/'
 }).use(['element', 'jquery', 'layer', 'menu', 'laytpl', 'form', 'laypage'], function () {
     element = layui.element, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, layer = layui.layer, laypage = layui.laypage;
-    var loading = layer.load(2);
+    loading = layer.load(2,{offset: 'auto'});
     var form = form = layui.form;
     var commentScript = document.getElementById('buildComment').innerHTML;
     menu.init();
@@ -11,7 +11,6 @@ layui.config({
     var type = getSearchString('t');   
     loadarticle(id, commentScript);
     loadupnext(id, type);
-    layer.close(loading);
     form.on('submit(review)', function (data) {
         loading = layer.load(2);
         var commentModel = {
@@ -37,7 +36,7 @@ layui.config({
                     $('.volume').html('全部评论（' + newCommentList.length + '）');
                     $('textarea').val('');
                     setPageList(newCommentList, commentScript);
-                    var connection = new signalR.HubConnectionBuilder().withUrl('http://127.0.0.1:5000/chatHub').build();
+                    var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
                     connection.start().then(function () {
                         var apiRoute=url+'Singalr/admin';
                         var token=localStorage.getItem('token');
@@ -117,6 +116,7 @@ function loadarticle(id, commentScript) {
                 if (c=='c') {
                    $('#desc').focus(); 
                 } 
+                layer.close(loading);
             }
             else {
                 layer.msg('响应服务器失败', { icon: 7 });

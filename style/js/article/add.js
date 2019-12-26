@@ -10,14 +10,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
         checklogin();
     }
     else {
-        loading = layer.load(2);
-        requestajax({
-            route: 'article/detail/' + id,
-            type: 'get',
-            datatype: 'json',
-            async: true,
-            func: onCompeteBindEdit
-        });
+        bindArticle(id);
     }
     layedit.set({
         uploadImage: {
@@ -116,7 +109,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             layer.open({
                 type: 0,
                 title: false, //不显示标题栏                   
-                skin: 'demo-class',
+                offset: 'auto',
                 closeBtn: false,
                 area: ['1200px', '700px'],
                 shade: 0.8,
@@ -132,8 +125,8 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 var articleData = data.field;
                 var content = layedit.getContent(textcontent);
                 var textsection = layedit.getText(textcontent);
-                if (textsection.length > 200)
-                    textsection = textsection.substring(-1, 200);
+                if (textsection.length > 170)
+                    textsection = textsection.substring(-1, 170);
                 loading = layer.load(2);
                 var model={
                     'Id':parseInt(id),
@@ -142,6 +135,53 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     'Content': content,
                     'TextSection': textsection+'...',
                     'IsDraft': 'true',
+                    'FilePaths':filePaths
+                };
+                $.ajax({
+                    url:url+ 'article/addArticle',
+                    contentType:'application/json; charset=utf-8',
+                    type:'post',
+                    datatype:'json',
+                    data: JSON.stringify(model),
+                    beforeSend:function(xhr)
+                    {
+                        doBeforeSend(xhr);                                            
+                    },
+                    success:function(response)
+                    {
+                        if (response.code == 170) {
+                            layer.close(loading);
+                            layer.msg("保存成功", { icon: 6 });
+                    
+                        } else {
+                            layer.close(loading);
+                            layer.msg("保存失败", {
+                                icon: 5
+                            });
+                        }
+                    },
+                    complete:function(xhr){
+                        doComplete(xhr);
+                    },                     
+                });
+                return false;
+            })
+        },
+        publish: function () {
+            form.on('submit(publish)', function (data) {
+                var articleData = data.field;
+                var content = layedit.getContent(textcontent);
+                var textsection = layedit.getText(textcontent);
+                if (textsection.length > 200)
+                    textsection = textsection.substring(-1, 170);
+                loading = layer.load(2);
+                var model={
+                    'Id':parseInt(id),
+                    'ArticleType': articleData.type,
+                    'Title': articleData.title,
+                    'Content': content,
+                    'TextSection': textsection+'...',
+                    'IsDraft': 'false',
                     'FilePaths':filePaths
                 };
                 $.ajax({
@@ -173,33 +213,6 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 });
                 return false;
             })
-        },
-        publish: function () {
-            form.on('submit(publish)', function (data) {
-                var articleData = data.field;
-                var content = layedit.getContent(textcontent);
-                var textsection = layedit.getText(textcontent);
-                if (textsection.length > 30)
-                    textsection = textsection.substring(-1, 30);
-                loading = layer.load(2);
-                requestajax({
-                    route: 'article/addArticle',
-                    type: 'post',
-                    datatype: 'json',
-                    data: {
-                        'id':id,
-                        'articletype': articleData.type,
-                        'title': articleData.title,
-                        'content': content,
-                        'imgSrc': filePath,
-                        'textsection': textsection,
-                        'isDraft': false
-                    },
-                    async: true,
-                    func: onCompletePublish
-                });
-                return false;
-            })
         }
     };
 
@@ -228,6 +241,33 @@ function checklogin() {
             });
     }
 };
+function bindArticle(id){
+    loading = layer.load(2,{offset: 'auto'});
+    $.ajax({
+        url:url+ 'article/detail/' + id,
+        type:'get',
+        datatype:'json',
+        beforeSend:function(xhr)
+        {
+            doBeforeSend(xhr);                                            
+        },
+        success:function(response)
+        {
+            if (response.code == 0) {
+                form.val("articleInfo", {
+                    "type": response.data.articleType,
+                    "title": response.data.title,
+                    "content": response.data.content
+                });
+                layedit.setContent(textcontent, response.data.content);
+                layer.close(loading);
+            }
+        },
+        complete:function(xhr){
+            doComplete(xhr);
+        },                     
+    }); 
+}
 function bindselect() {
     $.ajax({
         url:url+ 'upload/initPage',
@@ -253,14 +293,3 @@ function bindselect() {
         },                     
     });
 };
-function onCompeteBindEdit(response) {
-    if (response.code == 200) {
-        form.val("articleInfo", {
-            "type": response.data.articleType,
-            "title": response.data.title,
-            "content": response.data.content
-        });
-        layedit.setContent(textcontent, response.data.content);
-        layer.close(loading);
-    }
-}

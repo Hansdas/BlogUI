@@ -15,24 +15,25 @@ function initLoad() {
 		}
 		$(this).addClass("active");
 	});
-	//iframe自适应内容高度
+	setIframeHeight();
+	showPage();
+}
+//iframe自适应内容高度
+function setIframeHeight() {
 	$("#console").each(function (index) {
 		var that = $(this);
 		(function () {
 			setInterval(function () {
-				setIframeHeight(that[0]);
+				//setIframeHeight(that[0]);
+				if (that[0]) {
+					var iframeWin = that[0].contentWindow || that[0].contentDocument.parentWindow;
+					if (iframeWin.document.body) {
+						that[0].height = iframeWin.document.body.scrollHeight;
+					}
+				}
 			}, 300);
 		})(that);
 	});
-	showPage();
-}
-function setIframeHeight(iframe) {
-	if (iframe) {
-		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-		if (iframeWin.document.body) {
-			iframe.height = iframeWin.document.body.scrollHeight;
-		}
-	}
 };
 
 function showPage() {
@@ -40,7 +41,7 @@ function showPage() {
 	if (urlParamater == "")
 		return;
 	var page = getSearchString("pagepath", urlParamater);
-	$("#console").attr("src", "../" + page + "/Index");
+	$("#console").attr("src", "../" + page + "/index.html");
 	$(".nav a").each(function (index) {
 		var thisItem = $(this)[0];
 		if (thisItem.innerText == "文章"&&page=='article') {

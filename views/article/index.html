@@ -9,7 +9,12 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
-    <link href="/style/css/spin.css" rel="stylesheet" />
+    <style>
+        .layui-layer-loading {
+            top: 233px !important;
+            left: 500.5px !important;
+        }
+    </style>
 </head>
 <div class="content">
     <div class="cont h1370">
@@ -30,7 +35,8 @@
         </div>
         <hr class="bor" />
         <div class="list-item box-left" style="margin-left: 19px">
-            <div id="article-item-id"></div><!--输出的视图-->>
+            <div id="article-item-id"></div>
+            <!--输出的视图-->
             <div id="page" style="text-align: center;"></div>
         </div>
         <div class="box-right" style="margin-right: 56px">
@@ -107,7 +113,7 @@
         </div>
     </div>
 </div>
-  <!--渲染的模板-->
+<!--渲染的模板-->
 <script type="text/html" id="article-item">
     {{# layui.each(d.list,function(index,item){}}
     <div class="item">
@@ -115,12 +121,12 @@
             <div class="layui-row">
                 <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                     <div class="item-cont item-title">
-                        <h3><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
+                        <h3><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
                             <button class="layui-btn new-icon w62" style="background-color:#01AAED !important" >{{item.articleType}}</button></h3>
-                        <p><a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
+                        <p><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
                         <div class="item-f">
                             <div class="author"><a target="_blank" href="">爱吃猫的鱼</a></div>
-                            <div class="date">2019-12-12 12:12</div> 
+                            <div class="date">{{item.createTime}}</div> 
                             <div class="comment">
                                 <a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}&c=c">
                                     <i class="layui-icon layui-icon-reply-fill"

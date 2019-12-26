@@ -1,4 +1,6 @@
-var url='http://127.0.0.1:5000/api/';
+
+var httpAddress='http://127.0.0.1:5000/';
+var url=httpAddress+'api/';
 function doBeforeSend(xhr)
 {
     var token=localStorage.getItem('token');
