@@ -58,7 +58,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
         //附件： filepath --附件路径
         ,
         calldel: {
-            url: '/Upload/DeleteFile',
+            url: url + 'upload/uploadImage',
             datatype: 'json',
             async: 'true',
         }
@@ -149,7 +149,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     },
                     success:function(response)
                     {
-                        if (response.code == 170) {
+                        if (response.code == 0) {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     
@@ -196,7 +196,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     },
                     success:function(response)
                     {
-                        if (response.code == 200) {
+                        if (response.code == 0) {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     

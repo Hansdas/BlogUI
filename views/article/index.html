@@ -35,8 +35,8 @@
         </div>
         <hr class="bor" />
         <div class="list-item box-left" style="margin-left: 19px">
-            <div id="article-item-id"></div>
             <!--输出的视图-->
+            <div id="article-item-id"></div>
             <div id="page" style="text-align: center;"></div>
         </div>
         <div class="box-right" style="margin-right: 56px">
@@ -125,10 +125,10 @@
                             <button class="layui-btn new-icon w62" style="background-color:#01AAED !important" >{{item.articleType}}</button></h3>
                         <p><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
                         <div class="item-f">
-                            <div class="author"><a target="_blank" href="">爱吃猫的鱼</a></div>
+                            <div class="author"><a target="_blank" href="">{{item.author}}</a></div>
                             <div class="date">{{item.createTime}}</div> 
                             <div class="comment">
-                                <a target="_blank" href="../article/detail?id={{item.id}}&t={{item.articleType}}&c=c">
+                                <a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}&c=c">
                                     <i class="layui-icon layui-icon-reply-fill"
                                     style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
                             </div> 
