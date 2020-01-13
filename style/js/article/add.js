@@ -58,7 +58,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
         //附件： filepath --附件路径
         ,
         calldel: {
-            url: url + 'upload/uploadImage',
+            url: url + 'upload/deletfile',
             datatype: 'json',
             async: 'true',
         }
