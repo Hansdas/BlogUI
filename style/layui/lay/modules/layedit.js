@@ -619,12 +619,27 @@ function(t) {
                 if ("<hr>" == c.innerHTML && "BODY" == c.tagName && (d.selectNode(c.childNodes[0]), d.deleteContents()), c.hasChildNodes() && "BODY" != c.tagName) {
                     var f = o.calldel;
                     s.execCommand("formatBlock", !1, "<p>");
-                    "" != f.url && ("IMG" != d.commonAncestorContainer.childNodes[d.startOffset - 1].tagName || i.post(f.url, {
-                        imgpath: d.commonAncestorContainer.childNodes[d.startOffset - 1].src
-                    },
-                    function(t) {
-                        f.done(t)
-                    }))
+                    if ("" != f.url&&"IMG" == d.commonAncestorContainer.childNodes[d.startOffset - 1].tagName) {
+                        $.ajax({
+                            url:f.url,
+                            type:'post',
+                            datatype:'json',
+                            data: {
+                                imgpath: d.commonAncestorContainer.childNodes[d.startOffset - 1].src
+                            },
+                            headers:f.headers
+                            // beforeSend:function(xhr)
+                            // {
+                            //     xhr.setRequestHeader('Authorization', 'Bearer ' + token);                                            
+                            // },                    
+                        }); 
+                    }
+                    // "" != f.url && ("IMG" != d.commonAncestorContainer.childNodes[d.startOffset - 1].tagName || i.post(f.url, {
+                    //     imgpath: d.commonAncestorContainer.childNodes[d.startOffset - 1].src
+                    // },
+                    // function(t) {
+                    //     f.done(t)
+                    // }))
                 }
             }
             if (46 === e) {

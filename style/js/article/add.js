@@ -58,7 +58,8 @@ layui.use(['form', 'layer', 'layedit'], function () {
         //附件： filepath --附件路径
         ,
         calldel: {
-            url: url + 'upload/deletfile',
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+            url: url + 'upload/deletefile',
             datatype: 'json',
             async: 'true',
         }
