@@ -11,6 +11,11 @@ layui.config({
     var type = getSearchString('t');   
     loadarticle(id, commentScript);
     loadupnext(id, type);
+    var token=localStorage.getItem('token'); 
+    if (token==''||token==null) {
+        $('.layui-input-block button').attr('disabled',true);  
+        $('.layui-input-block button').text('未登录');
+    }
     form.on('submit(review)', function (data) {
         loading = layer.load(2);
         var commentModel = {

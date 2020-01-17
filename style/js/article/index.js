@@ -67,6 +67,7 @@ function loadarticle(pageIndex,pageSize,listHtml,articletype,loading) {
 function inittab() {
     var articleDom = document.getElementById('article-item').innerHTML;
     $('.title-type a').click(function () {
+        var loading = layer.load(2);
         $('.title-type a').each(function () {
             $(this).removeClass('active');
         });
@@ -74,15 +75,15 @@ function inittab() {
         $(this).addClass('active');
         if (thisItem.innerText == '散文礼记') {
             articletype = '1';
-        } else if (thisItem.innerText == '编程世界') {
-            articletype = '2';
         } else if (thisItem.innerText == '旅游杂记') {
+            articletype = '2';
+        } else if (thisItem.innerText == '编程世界') {
             articletype = '3';
         } else if (thisItem.innerText == '游戏人生') {
             articletype = '4';
         } else {
             articletype = '';
         }
-        loadarticle(1, 10, articleDom, articletype);
+        loadarticle(1, 10, articleDom, articletype,loading);
     });
 }

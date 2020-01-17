@@ -43,6 +43,7 @@ function setTab(cursor) {
                             "email": response.data.email,
                             "sign": response.data.sign
                         });
+                        $("#touxiang").attr("src", response.data.headPhoto);
                     }
                 },
                 error: function () {
@@ -79,21 +80,42 @@ function setTab(cursor) {
             form.on('submit(editUser)', function (data) {
                 loading = layer.load(2);
                 var userData = data.field;
-                requestajax({
-                    route: 'user/updateuser',
-                    type: 'post',
-                    data: {
-                        'account': userData.account,
-                        'username': userData.username,
-                        'sex': userData.sex,
-                        'birthdate': userData.birthdate,
-                        'phone': userData.phone,
-                        'email': userData.email,
-                        'sign': userData.sign
+                var userModel={
+                    'account': userData.account,
+                    'username': userData.username,
+                    'sex': userData.sex,
+                    'birthdate': userData.birthdate,
+                    'phone': userData.phone,
+                    'email': userData.email,
+                    'sign': userData.sign
+                }
+                $.ajax({
+                    url:url+'user/updateuser',
+                    type:'post',
+                    contentType:'application/json; charset=utf-8',
+                    datatype:'json',
+                    data: JSON.stringify(userModel),
+                    beforeSend:function(xhr)
+                    {
+                        doBeforeSend(xhr);                                            
                     },
-                    datatype: 'json',
-                    async: true,
-                    func: completeResponse
+                    success:function(response)
+                    {
+                        if (response.code=='0') {
+                            localStorage.setItem("token",response.data );
+                            layer.close(loading);
+                            layer.msg("修改成功", { icon: 6 }); 
+                        }
+                        else
+                        {
+                            layer.close(loading);
+                            layer.msg(response.message, { icon: 5 });
+                        }
+                    },
+                    complete:function(xhr){
+                        doComplete(xhr);
+                    }, 
+
                 });
                 return false;
             });
@@ -284,16 +306,6 @@ function setTab(cursor) {
 }
 
 
-function completeResponse(response) {
-    if (response.code == "200") {
-        layer.close(loading);
-        layer.msg("修改成功", { icon: 6 });
-    }
-    else {
-        layer.close(loading)
-        layer.msg(response.message, { icon: 5 });
-    }
-}
 function completeDelete(params) {
     if (response.code == "200") {
         localStorage.setItem("token", response.data);

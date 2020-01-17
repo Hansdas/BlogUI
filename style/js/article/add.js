@@ -7,6 +7,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
     var id = getSearchString('id');
     bindselect();
     if (id == undefined) {
+        id=0;
         checklogin();
     }
     else {
@@ -234,7 +235,7 @@ function onCompletePublish(response) {
 }
 function checklogin() {
     var token=localStorage.getItem('token'); 
-    if (token =='') {
+    if (token ==null) {
             layer.msg('你还未登录', {
                 time: 1500,
             }, function () {
