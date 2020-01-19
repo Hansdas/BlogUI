@@ -1,7 +1,7 @@
 ﻿body {
     /*background-image: url(../img/logo_bg.jpg);*/
     /*background-image: url(../img/login.jpg);*/
-    background-image: url('../images/timg201908.jpg');
+    /* background-image: url('../images/timg201908.jpg'); */
     line-height: 30px;
     position: fixed;
     top: 0;
@@ -33,7 +33,7 @@
     border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    background-color: #ffffffd4;
+    background-color: white;
     min-height: 330px
 }
 

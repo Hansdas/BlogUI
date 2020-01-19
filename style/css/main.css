@@ -96,6 +96,7 @@ form input[type=checkbox] {
     width: 853px !important;
     margin-left: 115px !important
 }
+
 .content .cont .list-item .item .img img{width: 100%;}
 .content .cont .list-item .item .item-cont{padding-left: 122px;}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(../img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
@@ -108,6 +109,9 @@ form input[type=checkbox] {
   margin: 10px 0 10px 0;
   width: 853px;
   /* autoprefixer: on */
+}
+.content .cont .list-item .item .praise i:hover{
+    cursor:pointer
 }
 .details-content .article-cont .title .author {
     margin-right: 26px;

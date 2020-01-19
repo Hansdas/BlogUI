@@ -134,11 +134,12 @@
                             </div> 
                             <div class="read">
                                 <i class="layui-icon layui-icon-read"
-                                style="font-size: 12px !important;line-height:1px"><span>阅读(12)</span></i>                                                  
+                                style="font-size: 12px !important;line-height:1px"><span>阅读({{item.browserCount}})</span></i>                                                  
                             </div> 
                             <div class="praise">
                                 <i class="layui-icon layui-icon-praise"
-                                style="font-size: 13px !important;"><span>点赞(12)</span></i>                                                 
+                                style="font-size: 13px !important;" onclick="praise(this.id)" id="{{item.id}}">
+                                <span>点赞({{item.praiseCount}})</span></i>                                                 
                             </div> 
                          </div>
                     </div>
