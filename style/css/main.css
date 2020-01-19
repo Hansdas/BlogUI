@@ -93,10 +93,11 @@ form input[type=checkbox] {
 .content .cont .title a.active,.content .cont .title a:hover{color: #ff7f21!important;}
 .content .cont .list-item .layui-fluid{padding:0;}
 .content .cont .list-item .item-bottom {
-    width: 853px !important;
     margin-left: 115px !important
 }
-
+.box-right .li-item li a:hover{
+    color:  #ff7f21 !important 
+}
 .content .cont .list-item .item .img img{width: 100%;}
 .content .cont .list-item .item .item-cont{padding-left: 122px;}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(../img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
@@ -107,7 +108,6 @@ form input[type=checkbox] {
     line-height: 20.8px;
   color: #333 !important;
   margin: 10px 0 10px 0;
-  width: 853px;
   /* autoprefixer: on */
 }
 .content .cont .list-item .item .praise i:hover{

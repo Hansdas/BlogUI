@@ -4,8 +4,8 @@ layui.config({
 }).use(['element', 'laypage', 'jquery', 'laytpl', 'layer'], function () {
     element = layui.element, laypage = layui.laypage, $ = layui.$, laytpl = layui.laytpl, layer = layui.layer;
     var articletype;
+    initHot();  
     inittab();
-    var listHtml = document.getElementById('article-item').innerHTML;
     laypage.render({
         elem: 'page'
         , limit: 10
@@ -13,6 +13,7 @@ layui.config({
             var loading = layer.load(2);
             var pageSize = obj.limit;
             var pageIndex = obj.curr;
+            var listHtml = document.getElementById('article-item').innerHTML;
             loadarticle(pageIndex, pageSize, listHtml, articletype, loading);
         },
     });
@@ -170,9 +171,51 @@ function inittab() {
             articletype = '3';
         } else if (thisItem.innerText == '游戏人生') {
             articletype = '4';
-        } else {
+        } else if (thisItem.innerText == '趣味杂记') {
+            articletype = '5';
+        }else {
             articletype = '';
         }
         loadarticle(1, 10, articleDom, articletype, loading);
     });
+}
+/**
+ * 热门推荐
+ */
+function initHot(hotScript)
+{
+    $.ajax({
+        url: url + 'article/hotArticle',
+        type: 'get',
+        datatype: 'json',
+        beforeSend: function (xhr) {
+            doBeforeSend(xhr);
+        },
+        success: function (response) {
+            if (response.code == '0') {
+                var data = {
+                    'list': response.data
+                };
+                var hotScript = document.getElementById('hot-item-script').innerHTML;
+                var liHtmlDom = document.getElementById('hot-li-item');
+                laytpl(hotScript).render(data, function (html) {
+                    liHtmlDom.innerHTML = html;
+                })
+            }
+            else {
+                layer.msg('响应服务器失败', {
+                    icon: 7
+                });
+            }
+
+        },
+        complete: function (xhr) {
+            doComplete(xhr);
+        },
+        error: function () {
+            layer.msg('响应服务器失败', {
+                icon: 7
+            });
+        }
+    }) 
 }

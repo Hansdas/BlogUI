@@ -25,6 +25,7 @@
                 <a href="javascript:;">编程世界</a>
                 <a href="javascript:;">旅游杂记</a>
                 <a href="javascript:;">游戏人生</a>
+                <a href="javascript:;">趣味杂记</a>
             </span>
             <!-- <div class="layui-input-inline search">
                 <input type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="输入完后按回车" />
@@ -44,13 +45,8 @@
                 <div class="box-title">
                     <h3>热门推荐</h3>
                 </div>
-                <ul class="li-item">
-                    <li> <a href="">正是个好文章</a></li>
-                    <li> <a href="">hijklmn</a></li>
-                    <li> <a href="">opq</a></li>
-                    <li> <a href="">正是个好文章</a></li>
-                    <li> <a href="">正是个好文章</a></li>
-                    <li> <a href="">1</a></li>
+                 <!--输出的视图-->
+                <ul class="li-item" id="hot-li-item">
                 </ul>
             </div>
 
@@ -114,12 +110,17 @@
     </div>
 </div>
 <!--渲染的模板-->
+<script type="text/html" id="hot-item-script">
+    {{# layui.each(d.list,function(index,item){}}
+    <li> <a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a></li>
+    {{# }); }}
+</script>
 <script type="text/html" id="article-item">
     {{# layui.each(d.list,function(index,item){}}
     <div class="item">
         <div class="layui-fluid">
             <div class="layui-row">
-                <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="">
                     <div class="item-cont item-title">
                         <h3><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
                             <button class="layui-btn new-icon w62" style="background-color:#01AAED !important" >{{item.articleType}}</button></h3>
