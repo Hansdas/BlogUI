@@ -46,10 +46,6 @@ function praise(id) {
                     var praiseCount = parseInt(text.replace(regex, '')) + 1;
                     $('#' + id).parent().find('span')[0].innerText = '点赞(' + praiseCount + ')';
                 }
-                else if(message.message=='not login')
-                {
-                    layer.msg("请先登录", { icon: 7 ,offset: ['200PX', '450PX'] }); 
-                }
                 else {
                     layer.open({
                         title: '提示'
