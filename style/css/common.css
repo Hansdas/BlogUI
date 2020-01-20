@@ -1,10 +1,10 @@
 ﻿/*文章*/
-.h1370
+/* .h1370
 {
     height:1000px;
     margin-left:50px;
     margin-right:50px
-}
+} */
 
 .h1370 .title i{
     position:absolute;
@@ -15,20 +15,8 @@
     color: white !important;
     font-size: 14px !important
 }
-
-.box-left .item h3 {
-    margin-left: 75px !important
-}
 .w62{
     width:62px !important
-}
-.box-right {
-    float:right;
-}
-.box {  
-    width: 327px;
-    margin-right: 84px;
-    border-radius: 2px
 }
 .h251 {
     height: 251px;
@@ -49,7 +37,7 @@
         color: white
     }
 .item-bottom {
-    width: 803px !important;
+    /* width: 803px !important; */
     margin-left: 115px !important
 }
 .h251 .li-item li {
@@ -117,31 +105,14 @@
 /*
 *-------------------------------------------------
 */
-.box-left {
-    float: left;
-    width: 900px
-}
 
 .h1370 .title {
     margin-left: 11.33%
 }
 
-.title-type {
-    margin-left: -29px
-}
 
 .search {
     margin-left: 442px
-}
-
-.box-left h3 {
-    text-align: center !important;
-    margin-right: 26% !important;
-    margin-right: 162px;
-    font-weight: bold;
-}
-.box-left  a:hover {
-    color:#f37d25
 }
 
 @media (min-width: 1519px) {
@@ -150,7 +121,7 @@
     }
     .bor {
         margin-left: 133px;
-        width: 1206px
+        width: 1289px
     }
 }
 @media (min-width:1583px) {

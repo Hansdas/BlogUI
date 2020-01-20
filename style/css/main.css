@@ -87,6 +87,16 @@ form input[type=checkbox] {
 .content .cont .title {
     margin-bottom: 60px;
 }
+.h1370
+{
+    width: 1413px;
+    height:1000px;
+    margin-left:50px;
+    margin-right:50px
+}
+.title-type {
+    margin-left: 136px
+}
 .content .cont .title a{font-size: 15px; color: #000!important;}
 .content .cont form{padding: 0 0 0 0;}
 .content .cont .title .layui-breadcrumb span{position: relative; top: -1px; margin:0 16px;}
@@ -109,6 +119,38 @@ form input[type=checkbox] {
   color: #333 !important;
   margin: 10px 0 10px 0;
   /* autoprefixer: on */
+}
+.content .cont  .box-left{
+    width: 69%;
+    display: inline-block;
+    overflow: hidden
+}
+.content .cont .list-item .box-left h3{
+    text-align: center !important;
+    margin-right: 26% !important;
+    margin-right: 162px;
+    font-weight: bold;
+}
+.content .cont .list-item .box-left a:hover{
+    color:#f37d25
+}
+ .box-left .item h3 {
+    margin-left: 75px !important
+}
+ .box-left  h3 {
+    text-align: center !important;
+    margin-right: 26% !important;
+    margin-right: 162px;
+    font-weight: bold;
+}
+.content .cont  .box-right{
+    float:right;
+    width: 28%;
+}
+.content .cont  .box-right .box{
+    width: 284px;
+    margin-right: 84px;
+    border-radius: 2px
 }
 .content .cont .list-item .item .praise i:hover{
     cursor:pointer
