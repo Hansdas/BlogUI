@@ -222,29 +222,14 @@ form input[type=checkbox] {
     }
 .whisper-content .item-box{background: #f9f9f9; margin-bottom: 20px;}
 .whisper-content .cont{max-width: 1100px; margin:0 auto;}
-.whisper-content .cont .item-box .item{padding:50px 46px 20px 54px;}
-.whisper-content .cont .whisper-list .whisper-title{height: 20px; line-height: 20px; margin-bottom: 20px;}
-.whisper-content .cont .whisper-list .whisper-title i{position: relative; top: 1px; margin-right: 5px;}
-.whisper-content .cont .whisper-list .whisper-title span{color: #ff7f21;}
-.whisper-content .cont .whisper-list .whisper-title span.hour{margin-right: 20px;}
-.whisper-content .cont .whisper-list .whisper-title span.author { margin-right: 20px;}
-.whisper-content .whisper-list .text-cont{line-height: 24px; margin-bottom: 28px;}
-.whisper-content .whisper-list .op-list{margin-top: 30px; overflow: hidden;}
-.whisper-content .whisper-list .op-list .like{ -webkit-user-select: none;
--moz-user-focus: none;
--moz-user-select: none;}
-.whisper-content .whisper-list .op-list .like.active{color: #ff7f21;}
-.whisper-content .whisper-list .op-list p{float: left; cursor: pointer; color: #999999;}
-.whisper-content .whisper-list .op-list p.off{float: right; -webkit-user-select: none;
--moz-user-focus: none;
--moz-user-select: none;}
-.whisper-content .whisper-list .op-list p.off span{margin-right: 5px;}
-.whisper-content .whisper-list .op-list p.like{margin-right: 50px;}
-.whisper-content .whisper-list .img-box{overflow: hidden;}
-.whisper-content .whisper-list .img-box img{float: left; margin: 0px 18px 18px 0;}
-.whisper-content .whisper-list .img-box img:last-child{margin-right: 0;}
-/*end-whisper*/
-
+.whisper-content .write button{
+    float: right;
+    margin-top: 4px;
+    margin-right: 6px;    
+} 
+.whisper-content .time{
+    margin-top: 70px; 
+} 
 
 
 

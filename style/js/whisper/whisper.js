@@ -1,93 +1,121 @@
-﻿var loading, laytpl, form, menu;
-$(function () {
-	loading = new SpinLoading('loading');
-});
+﻿var loading, laytpl, form;
 layui.config({
 	base: '/style/js/'
-}).use(['element', 'laypage', 'form', 'menu', 'laytpl', 'layedit'], function () {
-	var element = layui.element, laypage = layui.laypage, layedit = layui.layedit;
-	laytpl = layui.laytpl;
+}).use(['flow', 'form', 'laytpl', 'layedit'], function () {
+	var layedit = layui.layedit, flow = layui.flow;
 	form = layui.form;
-	menu = layui.menu;
-    element.init();
-	var whisper = document.getElementById("whisper-item").innerHTML;
-	var total = loadtotal();
 	var textcontent = layedit.build('L_content', {
-		height: 70 //设置编辑器高度\
-		, tool: ['face', 'link', 'unlink']
+		height: 140 //设置编辑器高度\
+		, tool: [
+			, 'underline' //下划线
+			, 'del' //删除线			
+			, '|' //分割线			
+			, 'left' //左对齐
+			, 'center' //居中对齐
+			, 'right' //右对齐
+			, 'link' //超链接
+			, 'unlink' //清除链接
+			, 'face' //表情
+		]
 	});
 	form.verify({
-        content:function () {
-            var content=layedit.getContent(textcontent);
-            if (content=="") {
-                return '请填写内容';
-            }
-        }
-    });
+		content: function () {
+			var content = layedit.getContent(textcontent);
+			if (content == "") {
+				return '请填写内容';
+			}
+		}
+	});
 	form.on('submit(save)', function (data) {
-		var response = requestajax({
-			route: 'whisper/publish',
+		$.ajax({
+			url: url + 'whisper/publish',
 			type: 'post',
+			datatype: 'json',
 			data: {
 				'content': layedit.getContent(textcontent)
 			},
-			datatype: 'json',
-			async: false,
+			beforeSend: function (xhr) {
+				doBeforeSend(xhr);
+			},
+			success: function (response) {
+				if (response.code == "0") {
+					layer.msg("保存成功", { icon: 6 });
+				}
+				else {
+					layer.msg("响应服务器失败", { icon: 7 });
+				}
+			},
+			complete: function (xhr) {
+				doComplete(xhr);
+			},
 		});
-		if (response.code == 200) {
-			loadWhisper(1, 10, whisper);		
-		} 
-		else {
-			layer.msg(response.message, { icon: 7,time:6000000 });
-		}
 		return false;
 	});
-	laypage.render({		
-		elem: 'page'
-		, count: total
-		, layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
-		, jump: function (obj) {
-			var pageSize = obj.limit;
-			var pageIndex = obj.curr;
-			loadWhisper(pageIndex, pageSize, whisper);
+	flow.load({
+		elem: '#time-axis' //流加载容器。
+		,end:'没有更多了' 
+		,isAuto:true
+		, done: function (page, next) { //执行下一页的回调
+			var lis = [];
+			$.ajax({
+				url: url + 'whisper/loadWhisper/' + page,
+				type: 'get',
+				datatype: 'json',
+				beforeSend: function (xhr) {
+					doBeforeSend(xhr);
+				},
+				success: function (res) {
+					layui.each(res.data.lis, function(index, item){
+						lis.push('<li class="layui-timeline-item">');
+						lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
+						lis.push('<div class="layui-timeline-content layui-text">');
+						lis.push('<h3 class="layui-timeline-title">'+item.date+'</h3>');
+						lis.push('<p>');
+						lis.push('<li>'+ item.content +'</li>');
+						lis.push('</p>');
+						lis.push('</div>');
+						lis.push('</li>');
+					  }); 
+					  next(lis.join(''), page < res.data.count);
+				},
+				complete: function (xhr) {
+					doComplete(xhr);
+				},
 
+			});
 		}
 	});
-	loading.close();
 })
-function loadtotal() {
-	var total = 0;
-	var total = requestajax({
-		route: "whisper/loadTotal",
-		type: 'get',
-		datatype: 'text'
-	});
-	return total;
-}
 function loadWhisper(pageIndex, pageSize, whisper) {
-	var response = requestajax({
-		route: 'whisper/loadWhisper',
+	$.ajax({
+		url: url + 'whisper/loadWhisper',
 		type: 'get',
 		datatype: 'json',
 		data: {
 			'pageIndex': pageIndex,
 			'pageSize': pageSize,
-		}
+		},
+		beforeSend: function (xhr) {
+			doBeforeSend(xhr);
+		},
+		success: function (response) {
+			if (response.code == "0") {
+				var data = { "list": response.data };
+				whisperview = document.getElementById("whisper-list-id");
+				laytpl(whisper).render(data, function (html) {
+					whisperview.innerHTML = html;
+				});
+				form.render();
+				menu.init();
+				menu.off();
+				menu.submit();
+			}
+			else {
+				layer.msg("响应服务器失败", { icon: 7 });
+			}
+		},
+		complete: function (xhr) {
+			doComplete(xhr);
+		},
 	});
-	if (response != undefined) {
-		if (response.code=="200") {
-			var data = { "list": response.data };
-			whisperview = document.getElementById("whisper-list-id");
-			laytpl(whisper).render(data, function (html) {
-				whisperview.innerHTML = html;
-			});
-			form.render();
-			menu.init();
-			menu.off();
-			menu.submit();	
-		}
-
-	} else {
-		layer.msg("响应服务器失败", { icon: 7 });
-	}
 }
