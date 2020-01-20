@@ -131,7 +131,7 @@ form input[type=checkbox] {
     margin-right: 162px;
     font-weight: bold;
 }
-.content .cont .list-item .box-left a:hover{
+ .box-left a:hover{
     color:#f37d25
 }
  .box-left .item h3 {
@@ -158,6 +158,16 @@ form input[type=checkbox] {
 .details-content .article-cont .title .author {
     margin-right: 26px;
     color:  #ff7f21 !important 
+}
+.h251 .li-item li {
+    border: 1px solid #ddd;
+    height: 36px;
+    display: block;
+    padding-left: 15px;
+    line-height: 34px;
+    margin-bottom: -1px;
+    border-radius: 2px;
+    font-size: 13px
 }
 .content .review-version{padding:20px; border-top: 1px dashed #dddddd;}
 .content .review-version img{float: left;}
