@@ -228,8 +228,22 @@ form input[type=checkbox] {
     margin-right: 6px;    
 } 
 .whisper-content .time{
-    margin-top: 70px; 
+    margin-top: 70px;
+    background: #f9f9f9;
+    width: 600px;
+    padding: 12px; 
 } 
+.whisper-content .layui-timeline  .layui-timeline-title{
+    color: #ff7f21;
+    font-size: initial
+}
+.whisper-content .layui-timeline .layui-timeline-item p{
+    font-size: 12px;
+}
+.whisper-content .layui-timeline .layui-timeline-item p img{
+    height: 17px;
+    width: 17px;
+}
 
 
 

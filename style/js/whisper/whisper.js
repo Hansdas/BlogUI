@@ -54,13 +54,17 @@ layui.config({
 	flow.load({
 		elem: '#time-axis' //流加载容器。
 		,end:'没有更多了' 
-		,isAuto:true
+		,isAuto:false
 		, done: function (page, next) { //执行下一页的回调
 			var lis = [];
 			$.ajax({
-				url: url + 'whisper/loadWhisper/' + page,
+				url: url + 'whisper/loadWhisper',
 				type: 'get',
 				datatype: 'json',
+				data: {
+					'pageIndex': page,
+					'pageSize': 3,
+				},
 				beforeSend: function (xhr) {
 					doBeforeSend(xhr);
 				},
@@ -71,12 +75,12 @@ layui.config({
 						lis.push('<div class="layui-timeline-content layui-text">');
 						lis.push('<h3 class="layui-timeline-title">'+item.date+'</h3>');
 						lis.push('<p>');
-						lis.push('<li>'+ item.content +'</li>');
+						lis.push(item.content);
 						lis.push('</p>');
 						lis.push('</div>');
 						lis.push('</li>');
-					  }); 
-					  next(lis.join(''), page < res.data.count);
+					  });
+					  next(lis.join(''), (page*3) < res.data.count);
 				},
 				complete: function (xhr) {
 					doComplete(xhr);
