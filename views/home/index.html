@@ -49,15 +49,15 @@
     <iframe id="console" frameborder=0 width="100%" height="100%" scrolling=no marginwidth='0' marginheight='0'
         noresize="noresize" src="square.html"></iframe>
     <div class="footer-wrap">
-        <div class="footer w1000">
+        <div class="footer w1000">          
             <div class="footer-info footer-info-author">
-                作者：Mr.Han
+                 作者：Mr.Han
             </div>
             <div class="footer-info">
                 邮箱:<span class="email">2704027639@qq.com</span>
             </div>
-            <div class="footer-info footer-info-qrcode">
-                微信公众号：<img src="/style/images/weixi.jpg" />
+            <div style="text-align: center;">
+                Copyright © Mr.Han <a href="http://beian.miit.gov.cn" target="_blank">鄂ICP备20001892号-1</a>
             </div>
         </div>
     </div>
@@ -70,6 +70,7 @@
     <script src="/style/js/login.js"></script>
     <script>
         layui.use(['element', 'layer'], function () {
+            var date=new Date();
             var element = layui.element;
             element.render('nav');
             initLoad();         
