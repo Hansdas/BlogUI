@@ -12,3 +12,7 @@
 	}
 	return obj[key];
 }
+function initLoading(htmlId,top){
+	var loading="<div style='margin-top:"+top+"px' class='loading'><span></span><span></span><span></span><span></span><span></span></div>"
+	$('#'+htmlId).append(loading)	
+}

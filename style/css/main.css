@@ -246,9 +246,153 @@ form input[type=checkbox] {
 }
 
 
+.square .cont{
+    display:inline-flex
+}
 
-
-
+.square .left{
+    margin-left: 130px
+}
+.square .cont .left .news-top{
+    background: #f9f9f9;
+    width:849px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 2px
+}
+.square .cont .left .news-top .news-box{
+    background:white;
+    height: 182px;
+    padding: 10px;
+    border-radius: 2px
+}
+.square .cont .left .news-top .news-box .tip{
+    color: #00a67c;
+    font-size: 17px; 
+    border-bottom: 1px solid;
+    font-weight:600; 
+    padding-bottom: 10px;
+}
+.square .cont .left .news-top .news-box ul{
+    color: #00a67c;
+    margin-top: 7px
+}
+.square .cont .left .news-top .news-box ul li{
+    clear: both;
+    margin-bottom: 10px;
+    height: 20px;
+}
+.square .cont .left .news-top .news-box ul li .num{
+    position: relative;
+    display: inline-block;
+    padding: 4px 6px 3px;
+    line-height: 14px;
+    color: #fff;
+    vertical-align: baseline;
+    white-space: nowrap;
+    background-color: #fd8c84;
+    float: left;
+}
+.square .cont .left .news-top .news-box ul li p{
+    float:left;
+    margin-left:10px
+}
+.square .cont .left .news-top .news-box ul li .news-right{
+    float:right;
+}
+.square .cont .left .articles{
+    background: #f9f9f9;
+    width:849px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 2px
+}
+.square .cont .left .articles .tip{
+    color: #00a67c;
+    font-size: 17px; 
+    border-bottom: 1px solid;
+    font-weight:600; 
+    padding-bottom: 10px;
+}
+.square .cont .left .articles .box{
+    background:white;
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 2px
+}
+.square .cont .left .articles .box button{
+    background-color:#01AAED !important;
+    height: 21px;
+    line-height: 2px;
+    margin-bottom:6px;
+    font-size:13px !important;
+    padding:0 0 0 0 !important;
+}
+.square .cont .left .articles .box a{
+    color: #00a67c;
+    font-weight:400;
+    font-size:20px
+}
+.square .cont .left .articles .box p{
+    color: #777;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-style: normal;
+    font-size: 13px; 
+}
+.square .cont .left .articles .box .float-right{
+    float:right;
+    line-height:35px
+}
+.square .cont .left .articles .box .float-right .layui-icon-username{
+    font-size: 13px; 
+    color: #009688;
+}
+.square .cont .left .articles .box .float-right .layui-icon-date{
+    font-size: 13px;
+     color: #777
+}
+.square .right{
+    margin-left: 34px;
+    margin-top: 9px;
+}
+.square .right #LAY_layedit_1{
+    height: 71px !important;
+} 
+.square .right .layui-layedit{
+} 
+/* .square .right .layui-layedit-iframe :hover{
+   border: 1px solid #32aa66 !important
+}  */
+.square .right .write .tip{
+    color: #00a67c;
+    font-size: 14px;
+    font-weight: 600;
+    height: 31px;
+    line-height: 30px;
+    padding-left: 7px;
+    border-bottom: 1px solid #00a67c;
+    margin-bottom: 7px;
+ } 
+.square .right .write button{
+    background: #00a67c !important;
+    width :100%
+ } 
+ .square .right .write .author{
+    float: left;
+    font-size: 16px;
+    color: #00a67c;
+}
+.square .right .write .write-item{
+    margin: 15px 0 36px 0;
+}
+.square .right .write .date{
+    font-size: 12px;
+    float: right;
+    margin-top: 8px;
+    color: #9b9b9b;
+}
 /*leacots*/
 .leacots-content .review-version{padding:0; border-top: 0;}
 .leacots-content .review-version .form .layui-form-item{clear: both;}

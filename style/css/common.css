@@ -5,7 +5,13 @@
     margin-left:50px;
     margin-right:50px
 } */
-
+body{
+    background:url("../images/background.jpg") no-repeat;
+    background-size:100% 100%;
+}
+ a:hover {
+    color: #f37d25 !important;
+}
 .h1370 .title i{
     position:absolute;
     top:8px;
@@ -205,4 +211,8 @@
 
 .layui-nav-bar {
     margin-top: 10px
+}
+.white-background{
+    background: white;
+
 }
