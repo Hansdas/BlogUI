@@ -10,8 +10,11 @@ function initLoad() {
 		if (thisItem.innerText == "微语") {
 			$("#console").attr("src", "../whisper/index.html");
 		}
-		if (thisItem.innerText == "文章") {
+		else if (thisItem.innerText == "文章") {
 			$("#console").attr("src", "../article/index.html");
+		}
+		else if (thisItem.innerText == "广场") {
+			$("#console").attr("src", "../home/square.html");
 		}
 		$(this).addClass("active");
 	});

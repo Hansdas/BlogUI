@@ -10,8 +10,40 @@
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201909031058" rel="stylesheet" />
     <link href="/style/css/loading.css" rel="stylesheet" />
+    <style>
+        .layui-flow-more a cite {
+            padding: 0px 10px;
+            background-color: #009688;
+            color: white;
+            height: 27px;
+            width: 50px;
+        }
+
+        .layui-flow-more a {
+            line-height: 30px;
+        }
+
+        .layui-flow-more {
+            font-size: 10px;
+        }
+
+        .layui-layer-msg {
+            top: 167px !important;
+            left: 1108px !important;
+        }
+
+        .layui-layer-loading {
+            top: 180px !important;
+            left: 1170px !important;
+        }
+
+        .layui-layedit-iframe body {
+            font-size: 12px;
+            padding: 4px;
+        }
+    </style>
 </head>
-<div class="content square" style="padding:73px 0 160px 0 !important">
+<div class="content square">
     <div class="cont">
         <div class="left">
             <div class="news-top">
@@ -62,51 +94,27 @@
                 </div>
             </div>
             <div class="articles">
-                <div class="tip">最新文章</div>
+                <div class="tip">最新文章分类</div>
                 <div id="article-item"></div>
             </div>
         </div>
-        <div class="right">
+        <div class="block-right">
             <div class="write white-background" style="width: 323px">
-                <div style="padding:10px">
-                    <div class="tip">发表心情</div>
+                <div class="layui-form" style="padding:10px">
+                    <div class="tip">发表心情
+                        <a href="" class="more" title="更多">
+                            <i class="layui-icon layui-icon-next">
+                            </i>
+                        </a>
+                    </div>
                     <textarea id="L_content" lay-verify="content" class="layui-textarea"></textarea>
-                    <button class="layui-btn" title="发表"><i class="layui-icon layui-icon-release"></i></button>
-                    <div id="mood" style="min-height:67px"></div>
-                    <!-- <div class="write-item">
-                        <div style="display: inline-flex">
-                            <a class="author" href="">admin</a>
-                            <p style="font-size:13px">：大雨，就要开始不停的下。 我的心，我的心， 已经完全的失去方向，带我到没有爱情的地方。</p>
-                        </div>
-                        <p class="date">2020-5-11 21:27 <a href="" style="color: #9b9b9b !important">评论(0)</a></p>
+                    <button class="layui-btn" title="发表" data-type="addWhisper"><i
+                            class="layui-icon layui-icon-release"></i></button>
+                    <div id="whisper-item" style="min-height:67px">
                     </div>
-                    <hr>
-                    <div class="write-item">
-                        <a class="author" href="">admin</a>
-                        <p style="font-size:13px">：每次下雨打雷我都不敢开窗户，深怕被雷劈死</p>
-                        <p class="date">2020-5-11 21:27 <a href="" style="color: #9b9b9b !important">评论(0)</a></p>
+                    <div class="layui-flow-more">
+                        <a href="javascript:;" onclick="loadMore()"><cite>加载更多</cite></a>
                     </div>
-                    <hr>
-                    <div class="write-item">
-                        <a class="author" href="">admin</a>
-                        <p style="font-size:13px">：怕 火🔥 做饭咋办啊！！！！！！</p>
-                        <p class="date">2020-5-11 21:27 <a href="" style="color: #9b9b9b !important">评论(0)</a></p>
-                    </div>
-                    <hr>
-                    <div class="write-item">
-                        <div style="display: inline-flex">
-                            <a class="author" href="">admin</a>
-                            <p style="font-size:13px">：关于一孕傻三年，我推理一下原因：孕了会生孩子，生孩子得喂奶，喂奶胸就会大，胸大自然无脑。</p>
-                        </div>
-                        <p class="date">2020-5-11 21:27 <a href="" style="color: #9b9b9b !important">评论(0)</a></p>
-                    </div>
-                    <hr>
-                    <div class="write-item">
-                        <a class="author" href="">admin</a>
-                        <p style="font-size:13px">: 换个头像看看！！！</p>
-                        <p class="date">2020-5-11 21:27 <a href="" style="color: #9b9b9b !important">评论(0)</a></p>
-                    </div>
-                    <hr> -->
                 </div>
             </div>
             <div style="margin-top:14px">
@@ -152,8 +160,21 @@
     </div>
     {{# }); }}
 </script>
+<script type="text/html" id="new-whisper">
+    {{#layui.each(d.list,function(index,item){}}
+    <div class="write-item">
+        <div style="display: inline-flex">
+            <a class="author" href="">{{item.accountName}}</a>
+            <p style="font-size:13px">：{{item.content}}</p>
+        </div>
+            <p class="date">{{item.createDate}}<a href="" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>
+    </div>
+    <hr>
+    {{# }); }}
+</script>
 <script src="/style/js/jquery.js"></script>
 <script src="/style/layui/layui.js?v=123"></script>
 <script src="/style/js/request.js?v=20112171144"></script>
 <script src="/style/js/util.js"></script>
+<script src="/style/js/signalr.js"></script>
 <script src="/style/js/square.js"></script>

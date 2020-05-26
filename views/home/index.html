@@ -16,7 +16,7 @@
     <div class="fly-header layui-bg-black" style="padding:  0 0 0 97px;">
         <div class="layui-header" style="width: 85%;">
             <a href="../home/index.html?pagepath=article">
-                <img style="margin: -20px 0 0 0px" src="/style/images/logo1.png">
+                <img style="margin: -14px 0 0 0px" src="/style/images/logo1.png">
             </a>
             <div class="header-menu">
                 <div class="nav">
@@ -75,7 +75,7 @@
             element.render('nav');
             initLoad();         
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
-            connection.on('InvokeMessage', (reviceMessage) => {
+            connection.on('InvokeSomeConnectionMessage', (reviceMessage) => {
                 var v = reviceMessage;
                 $('.layui-badge').html(reviceMessage.data);
                 $('.layui-badge').addClass('blink');

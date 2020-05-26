@@ -18,39 +18,52 @@
 </head>
 <div class="content">
     <div class="cont">
-        <div class="title">
+        <!-- <div class="title">
             <span class="layui-breadcrumb title-type" lay-separator="|">
                 <a href="javaScript:;" class="active">全部</a>
                 <a href="javascript:;">散文礼记</a>
                 <a href="javascript:;">编程世界</a>
                 <a href="javascript:;">旅游杂记</a>
-                <a href="javascript:;">游戏人生</a>
-                <a href="javascript:;">趣味杂记</a>
+                <a href="javascript:;">娱乐竞技</a>
+                <a href="javascript:;">趣味人生</a>
             </span>
-            <!-- <div class="layui-input-inline search">
-                <input type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="输入完后按回车" />
-                <i class="layui-icon layui-icon-search"></i>
-            </div> -->
+
+          
             <a href="../article/addarticle.html" target="_blank" class="layui-btn"
                 style="color:white !important;font-size:14px !important; float: right;margin-right: 161px" title="写一写"><i class="layui-icon">&#xe642;</i></a>
+        </div> -->
+        <div class="block-left">
+            <div class="block" style="min-height: 760px !important">
+                <div class="white-block">
+                <div class="layui-tab layui-tab-brief" lay-filter="tab-article">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="">全部</li>
+                        <li lay-id="散文礼记">散文礼记</li>
+                        <li lay-id="编程世界">编程世界</li>
+                        <li lay-id="旅游杂记">旅游杂记</li>
+                        <li lay-id="娱乐竞技">娱乐竞技</li>
+                        <li lay-id="趣味人生">趣味人生</li>
+                    </ul>
+                </div>
+                <div class="list-item box-left">
+                        <!--输出的视图-->
+                        <div id="article-item-id"></div>
+                        <div id="page" style="text-align: center;"></div>
+                </div>
+            </div>
+            </div>
         </div>
-        <hr class="bor" />
-        <div class="list-item box-left" style="margin-left: 12px">
-            <!--输出的视图-->
-            <div id="article-item-id"></div>
-            <div id="page" style="text-align: center;"></div>
-        </div>
-        <div class="box-right">
+        <div class="block-right">
             <div class="box h251">
                 <div class="box-title">
                     <h3>热门推荐</h3>
                 </div>
-                 <!--输出的视图-->
+                <!--输出的视图-->
                 <ul class="li-item" id="hot-li-item">
                 </ul>
             </div>
 
-            <div class="box hot">
+            <div class="box h251" style="margin-top: 13px">
                 <div class="box-title">
                     <h3>热门推荐</h3>
                 </div>
@@ -79,10 +92,11 @@
                 </div>
             </div>
 
-            <div class="box h155">
+            <div class="box h251">
                 <div class="box-title">
                     <h3>推荐网址</h3>
                 </div>
+                <div class="box-href">
                 <a href="https://www.cnblogs.com/" target="_blank">
                     <span class="label color2">博客园</span>
                 </a>
@@ -105,6 +119,7 @@
                     <span class="label color1">5173</span>
                 </a>
             </div>
+            </div>
 
         </div>
     </div>
@@ -122,27 +137,32 @@
             <div class="layui-row">
                 <div class="">
                     <div class="item-cont item-title">
-                        <h3><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
-                            <button class="layui-btn new-icon w62" style="background-color:#01AAED !important" >{{item.articleType}}</button></h3>
-                        <p><a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a></p>
+                        <h3><a target="_blank"
+                                href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
+                            <button class="layui-btn new-icon w62"
+                                style="background-color:#01AAED !important">{{item.articleType}}</button></h3>
+                        <p><a target="_blank"
+                                href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.textSection}}</a>
+                        </p>
                         <div class="item-f">
                             <div class="author"><a target="_blank" href="">{{item.author}}</a></div>
-                            <div class="date">{{item.createTime}}</div> 
+                            <div class="date">{{item.createTime}}</div>
                             <div class="comment">
-                                <a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}&c=c">
+                                <a target="_blank"
+                                    href="../article/detail.html?id={{item.id}}&t={{item.articleType}}&c=c">
                                     <i class="layui-icon layui-icon-reply-fill"
-                                    style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
-                            </div> 
+                                        style="font-size: 12px !important;color: #999 !important">评论({{item.commentCount}})</i></a>
+                            </div>
                             <div class="read">
                                 <i class="layui-icon layui-icon-read"
-                                style="font-size: 12px !important;line-height:1px"><span>阅读({{item.browserCount}})</span></i>                                                  
-                            </div> 
+                                    style="font-size: 12px !important;line-height:1px"><span>阅读({{item.browserCount}})</span></i>
+                            </div>
                             <div class="praise">
-                                <i class="layui-icon layui-icon-praise"
-                                style="font-size: 13px !important;" onclick="praise(this.id)" id="{{item.id}}">
-                                <span>点赞({{item.praiseCount}})</span></i>                                                 
-                            </div> 
-                         </div>
+                                <i class="layui-icon layui-icon-praise" style="font-size: 13px !important;"
+                                    onclick="praise(this.id)" id="{{item.id}}">
+                                    <span>点赞({{item.praiseCount}})</span></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,3 +176,5 @@
 <script src="/style/js/request.js?v=20112171144"></script>
 <script src="/style/js/article/index.js?v=201912191457"></script>
 <script src="/style/js/util.js"></script>
+<script>
+</script>

@@ -109,7 +109,11 @@ form input[type=checkbox] {
     color:  #ff7f21 !important 
 }
 .content .cont .list-item .item .img img{width: 100%;}
-.content .cont .list-item .item .item-cont{padding-left: 122px;}
+.content .cont .block .white-block{
+    background: white;
+    padding:10px;
+    min-height:760px
+}
 .content .cont .list-item .item .item-cont .go-icon{width: 33px; height: 11px; background: url(../img/jiantou.png) center center no-repeat; display: block; padding:10px 0; margin-top: 16px;}
 .content .cont .list-item .item .item-cont h3 .new-icon{font-size: 14px;font-weight:blod;width: 36px; height: 18px; line-height: 18px; text-align: center; padding:0; margin: -3px 0 0 10px;}
 .content .cont .list-item .item .item-cont h5{font-size: 12px; color: #ff7f21; margin-bottom: 32px;}
@@ -121,7 +125,7 @@ form input[type=checkbox] {
   /* autoprefixer: on */
 }
 .content .cont  .box-left{
-    width: 69%;
+    width: 100%;
     display: inline-block;
     overflow: hidden
 }
@@ -134,13 +138,7 @@ form input[type=checkbox] {
  .box-left a:hover{
     color:#f37d25
 }
- .box-left .item h3 {
-    margin-left: 75px !important
-}
  .box-left  h3 {
-    text-align: center !important;
-    margin-right: 26% !important;
-    margin-right: 162px;
     font-weight: bold;
 }
 .content .cont  .box-right{
@@ -150,7 +148,7 @@ form input[type=checkbox] {
 .content .cont  .box-right .box{
     width: 284px;
     margin-right: 84px;
-    border-radius: 2px
+    border-radius: 2px;
 }
 .content .cont .list-item .item .praise i:hover{
     cursor:pointer
@@ -159,8 +157,42 @@ form input[type=checkbox] {
     margin-right: 26px;
     color:  #ff7f21 !important 
 }
-.h251 .li-item li {
+.content .cont  .block-right .h251{
+    min-height: 221px;
+    width: 299px;
+    background: white;
+    padding: 8px;
+}
+.content .cont  .block-right .h251 .box-title{
+    height: 30px;
+    border-radius: 2px;
     border: 1px solid #ddd;
+}
+.content .cont  .block-right .h251 .box-title h3{
+    margin-left: 14px;
+    line-height: 31px;
+    color: #00a67c;
+    font-size: 15px;
+    font-weight: 600;
+}
+.content .cont  .block-right .h251 span{
+    margin-bottom: 3px;
+    padding: 4px 6px 4px 6px;
+    cursor: pointer;
+}
+.content .cont  .block-right .h251 .box-href{
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 3px;
+    padding: 4px 6px 4px 6px;
+    cursor: pointer;
+    min-height: 137px
+}
+.h251 .li-item li {
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     height: 36px;
     display: block;
     padding-left: 15px;
@@ -246,7 +278,7 @@ form input[type=checkbox] {
 }
 
 
-.square .cont{
+ .cont{
     display:inline-flex
 }
 
@@ -305,7 +337,8 @@ form input[type=checkbox] {
     width:849px;
     margin-top: 10px;
     padding: 10px;
-    border-radius: 2px
+    border-radius: 2px;
+    min-height: 400px
 }
 .square .cont .left .articles .tip{
     color: #00a67c;
@@ -353,19 +386,11 @@ form input[type=checkbox] {
     font-size: 13px;
      color: #777
 }
-.square .right{
-    margin-left: 34px;
-    margin-top: 9px;
-}
-.square .right #LAY_layedit_1{
+.square .block-right #LAY_layedit_1{
     height: 71px !important;
 } 
-.square .right .layui-layedit{
-} 
-/* .square .right .layui-layedit-iframe :hover{
-   border: 1px solid #32aa66 !important
-}  */
-.square .right .write .tip{
+
+.square .block-right .write .tip{
     color: #00a67c;
     font-size: 14px;
     font-weight: 600;
@@ -375,22 +400,22 @@ form input[type=checkbox] {
     border-bottom: 1px solid #00a67c;
     margin-bottom: 7px;
  } 
-.square .right .write button{
+.square .block-right .write button{
     background: #00a67c !important;
     width :100%
  } 
- .square .right .write .author{
+ .square .block-right .write .author{
     float: left;
-    font-size: 16px;
+    font-size: 13px;
     color: #00a67c;
 }
-.square .right .write .write-item{
-    margin: 15px 0 36px 0;
+.square .block-right .write .write-item{
+    margin: 15px 0 16px 0;
 }
-.square .right .write .date{
+.square .block-right .write .date{
     font-size: 12px;
     float: right;
-    margin-top: 8px;
+    margin-top: 15px;
     color: #9b9b9b;
 }
 /*leacots*/

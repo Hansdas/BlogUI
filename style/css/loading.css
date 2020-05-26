@@ -10,7 +10,7 @@
     border-radius: 4px;
     background: lightgreen;
     -webkit-animation: load 1s ease infinite;
-    margin-left: 1px;
+    margin-left: 4px;
 }
 @-webkit-keyframes load{
     0%,100%{

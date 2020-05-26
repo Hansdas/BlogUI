@@ -6,6 +6,11 @@ layui.config({
     var articletype;
     initHot();  
     inittab();
+    element.on('tab(tab-article)', function(){
+        var articleDom = document.getElementById('article-item').innerHTML;
+        var loading = layer.load(2);
+        loadarticle(1, 10, articleDom, this.getAttribute('lay-id'), loading);
+      });
     laypage.render({
         elem: 'page'
         , limit: 10
@@ -155,9 +160,9 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
     })
 }
 function inittab() {
-    var articleDom = document.getElementById('article-item').innerHTML;
+   
     $('.title-type a').click(function () {
-        var loading = layer.load(2);
+     
         $('.title-type a').each(function () {
             $(this).removeClass('active');
         });
@@ -169,14 +174,14 @@ function inittab() {
             articletype = '2';
         } else if (thisItem.innerText == '编程世界') {
             articletype = '3';
-        } else if (thisItem.innerText == '游戏人生') {
+        } else if (thisItem.innerText == '娱乐竞技') {
             articletype = '4';
-        } else if (thisItem.innerText == '趣味杂记') {
+        } else if (thisItem.innerText == '趣味人生') {
             articletype = '5';
         }else {
             articletype = '';
         }
-        loadarticle(1, 10, articleDom, articletype, loading);
+       
     });
 }
 /**
