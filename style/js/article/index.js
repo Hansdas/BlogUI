@@ -3,17 +3,33 @@ layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'jquery', 'laytpl', 'layer'], function () {
     element = layui.element, laypage = layui.laypage, $ = layui.$, laytpl = layui.laytpl, layer = layui.layer;
-    var articletype;
+    var articletype='';
     initHot();  
-    inittab();
     element.on('tab(tab-article)', function(){
         var articleDom = document.getElementById('article-item').innerHTML;
         var loading = layer.load(2);
-        loadarticle(1, 10, articleDom, this.getAttribute('lay-id'), loading);
+        //loadarticle(1, 10, articleDom, this.getAttribute('lay-id'), loading);
+        articletype=this.getAttribute('lay-id');
+        laypage.render({
+            elem: 'page'
+            ,limit: 10
+            ,count: 100
+            , jump: function (obj) {
+                var loading = layer.load(2);
+                var pageSize = obj.limit;
+                var pageIndex = obj.curr;
+                var listHtml = document.getElementById('article-item').innerHTML;
+                loadarticle(pageIndex, pageSize, articleDom, articletype, loading);
+            },
+        });
       });
+    var total= loadTotal(articletype);
     laypage.render({
         elem: 'page'
-        , limit: 10
+        ,limit: 10
+        ,count: total
+        ,first: '首页'
+        ,last: '尾页'
         , jump: function (obj) {
             var loading = layer.load(2);
             var pageSize = obj.limit;
@@ -145,8 +161,8 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
                     icon: 7
                 });
             }
+            $('#toTop').focus(); 
             layer.close(loading);
-
         },
         complete: function (xhr) {
             doComplete(xhr);
@@ -159,30 +175,27 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
         }
     })
 }
-function inittab() {
-   
-    $('.title-type a').click(function () {
-     
-        $('.title-type a').each(function () {
-            $(this).removeClass('active');
-        });
-        var thisItem = $(this)[0];
-        $(this).addClass('active');
-        if (thisItem.innerText == '散文礼记') {
-            articletype = '1';
-        } else if (thisItem.innerText == '旅游杂记') {
-            articletype = '2';
-        } else if (thisItem.innerText == '编程世界') {
-            articletype = '3';
-        } else if (thisItem.innerText == '娱乐竞技') {
-            articletype = '4';
-        } else if (thisItem.innerText == '趣味人生') {
-            articletype = '5';
-        }else {
-            articletype = '';
-        }
-       
-    });
+function loadTotal(articletype) {
+    var total=0;
+    $.ajax({
+        url: url + 'article/total/'+articletype,
+        type: 'get',
+        datatype: 'json',
+        data:{
+            'articleType':articletype
+        },
+        async:false,
+        beforeSend: function (xhr) {
+            doBeforeSend(xhr);
+        },
+        success: function (response) {
+            total= response
+        },
+        complete: function (xhr) {
+            doComplete(xhr);
+        },
+    })
+    return total;
 }
 /**
  * 热门推荐

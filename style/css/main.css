@@ -168,6 +168,10 @@ form input[type=checkbox] {
     border-radius: 2px;
     border: 1px solid #ddd;
 }
+.content .cont  .block-right #toTop{
+    background-color: transparent;
+    border: none;
+}
 .content .cont  .block-right .h251 .box-title h3{
     margin-left: 14px;
     line-height: 31px;

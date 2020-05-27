@@ -14,6 +14,9 @@
             top: 233px !important;
             left: 500.5px !important;
         }
+        #toTop:focus{
+           color: transparent;
+        }
     </style>
 </head>
 <div class="content">
@@ -32,10 +35,11 @@
             <a href="../article/addarticle.html" target="_blank" class="layui-btn"
                 style="color:white !important;font-size:14px !important; float: right;margin-right: 161px" title="写一写"><i class="layui-icon">&#xe642;</i></a>
         </div> -->
+        
         <div class="block-left">
             <div class="block" style="min-height: 760px !important">
                 <div class="white-block">
-                <div class="layui-tab layui-tab-brief" lay-filter="tab-article">
+                <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
                     <ul class="layui-tab-title">
                         <li class="layui-this" lay-id="">全部</li>
                         <li lay-id="散文礼记">散文礼记</li>
@@ -56,7 +60,7 @@
         <div class="block-right">
             <div class="box h251">
                 <div class="box-title">
-                    <h3>热门推荐</h3>
+                    <h3>热门推荐<input type="text" id="toTop"></h3>
                 </div>
                 <!--输出的视图-->
                 <ul class="li-item" id="hot-li-item">
