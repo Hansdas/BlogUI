@@ -11,7 +11,7 @@ function initLoad() {
 			$("#console").attr("src", "../whisper/index.html?v=1");
 		}
 		else if (thisItem.innerText == "文章") {
-			$("#console").attr("src", "../article/index.html");
+			$("#console").attr("src", "../article/index.html?v=1");
 		}
 		else if (thisItem.innerText == "广场") {
 			$("#console").attr("src", "../home/square.html");
