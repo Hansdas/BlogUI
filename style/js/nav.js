@@ -8,7 +8,7 @@ function initLoad() {
 		});
 		var thisItem = $(this)[0];
 		if (thisItem.innerText == "微语") {
-			$("#console").attr("src", "../whisper/index.html");
+			$("#console").attr("src", "../whisper/index.html?v=1");
 		}
 		else if (thisItem.innerText == "文章") {
 			$("#console").attr("src", "../article/index.html");
