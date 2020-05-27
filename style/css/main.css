@@ -102,9 +102,6 @@ form input[type=checkbox] {
 .content .cont .title .layui-breadcrumb span{position: relative; top: -1px; margin:0 16px;}
 .content .cont .title a.active,.content .cont .title a:hover{color: #ff7f21!important;}
 .content .cont .list-item .layui-fluid{padding:0;}
-.content .cont .list-item .item-bottom {
-    margin-left: 115px !important
-}
 .box-right .li-item li a:hover{
     color:  #ff7f21 !important 
 }
@@ -134,6 +131,42 @@ form input[type=checkbox] {
     margin-right: 26% !important;
     margin-right: 162px;
     font-weight: bold;
+}
+.content .cont .block-left .white-block .op span{
+    display: flex;
+    margin-left: 27%
+}
+.content .cont .block-left .white-block .op span a{
+    color: white !important;
+    font-size: 12px !important;
+    width: 39px;
+    height: 29px !important;
+    padding: 0 0 0 9px !important;
+    line-height: 31px;
+    margin-left: 16px;
+}
+.content .cont .block-left .white-block .op .layui-input {
+    width: 200px !important;
+    height: 29px !important;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.content .cont .block-left .white-block .op i {
+    display: flex
+}
+.content .cont .block-left .white-block .op .search {
+    color: white !important;
+    font-size: 12px !important;
+    width: 39px;
+    height: 29px !important;
+    line-height: 31px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding: 0 0 0 9px !important;
 }
  .box-left a:hover{
     color:#f37d25
@@ -179,11 +212,7 @@ form input[type=checkbox] {
     font-size: 15px;
     font-weight: 600;
 }
-.content .cont  .block-right .h251 span{
-    margin-bottom: 3px;
-    padding: 4px 6px 4px 6px;
-    cursor: pointer;
-}
+
 .content .cont  .block-right .h251 .box-href{
     border-bottom: 1px solid #ddd;
     border-left: 1px solid #ddd;
@@ -192,6 +221,11 @@ form input[type=checkbox] {
     padding: 4px 6px 4px 6px;
     cursor: pointer;
     min-height: 137px
+}
+.content .cont  .block-right .h251 .box-href span{
+    margin-bottom: 3px;
+    padding: 4px 6px 4px 6px;
+    cursor: pointer;
 }
 .h251 .li-item li {
     border-bottom: 1px solid #ddd;

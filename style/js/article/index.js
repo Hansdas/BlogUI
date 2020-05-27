@@ -1,43 +1,15 @@
-
+var articletype='';
 layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'jquery', 'laytpl', 'layer'], function () {
     element = layui.element, laypage = layui.laypage, $ = layui.$, laytpl = layui.laytpl, layer = layui.layer;
-    var articletype='';
-    initHot();  
+    var total=0;
+    initHot(); 
     element.on('tab(tab-article)', function(){
-        var articleDom = document.getElementById('article-item').innerHTML;
-        var loading = layer.load(2);
-        //loadarticle(1, 10, articleDom, this.getAttribute('lay-id'), loading);
         articletype=this.getAttribute('lay-id');
-        laypage.render({
-            elem: 'page'
-            ,limit: 10
-            ,count: 100
-            , jump: function (obj) {
-                var loading = layer.load(2);
-                var pageSize = obj.limit;
-                var pageIndex = obj.curr;
-                var listHtml = document.getElementById('article-item').innerHTML;
-                loadarticle(pageIndex, pageSize, articleDom, articletype, loading);
-            },
-        });
+        loadarticle(1, 10,true); 
       });
-    var total= loadTotal(articletype);
-    laypage.render({
-        elem: 'page'
-        ,limit: 10
-        ,count: total
-        ,first: '首页'
-        ,last: '尾页'
-        , jump: function (obj) {
-            var loading = layer.load(2);
-            var pageSize = obj.limit;
-            var pageIndex = obj.curr;
-            var listHtml = document.getElementById('article-item').innerHTML;
-            loadarticle(pageIndex, pageSize, listHtml, articletype, loading);
-        },
-    });
+    loadarticle(1, 10,true); 
 })
 function praise(id) {
     var loading = layer.load(2);
@@ -130,19 +102,20 @@ function praise(id) {
         }
     });
 }
-/**
- * 加载
- */
-function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
+function loadarticle(pageIndex, pageSize,initPage) {
+    initLoading("pageLoading", 50);
+    var conditionModel={
+        'pageIndex': pageIndex,
+        'pageSize': pageSize,
+        'articleType': articletype,
+        'fullText':$('#fullText').val()
+    }
     $.ajax({
-        url: url + 'article/loadarticle',
-        type: 'get',
+        url: url + 'article/page',
+        type: 'post',
         datatype: 'json',
-        data: {
-            'pageIndex': pageIndex,
-            'pageSize': pageSize,
-            'articletype': articletype
-        },
+        contentType:'application/json; charset=utf-8',
+        data: JSON.stringify(conditionModel),
         beforeSend: function (xhr) {
             doBeforeSend(xhr);
         },
@@ -151,10 +124,28 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
                 var data = {
                     'list': response.data
                 };
-                articleview = document.getElementById('article-item-id');
-                laytpl(listHtml).render(data, function (html) {
-                    articleview.innerHTML = html;
-                })
+                var script = document.getElementById('article-item-script').innerHTML;
+                var itemhtml = document.getElementById('article-item-id');
+                laytpl(script).render(data, function (html) {
+                    itemhtml.innerHTML = html;
+                });
+                if(initPage){
+                    laypage.render({
+                        elem: 'page'
+                        ,limit: 10
+                        ,count: response.total
+                        ,first: '首页'
+                        ,last: '尾页'
+                        , jump: function (obj,first) {
+                            if(!first){
+                                var pageSize = obj.limit;
+                                var pageIndex = obj.curr;
+                                loadarticle(pageIndex, pageSize,false);
+                              }
+                        },
+                    });
+                }
+
             }
             else {
                 layer.msg('响应服务器失败', {
@@ -162,7 +153,7 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
                 });
             }
             $('#toTop').focus(); 
-            layer.close(loading);
+            closeLoading("pageLoading");
         },
         complete: function (xhr) {
             doComplete(xhr);
@@ -171,37 +162,15 @@ function loadarticle(pageIndex, pageSize, listHtml, articletype, loading) {
             layer.msg('响应服务器失败', {
                 icon: 7
             });
-            layer.close(loading);
         }
     })
-}
-function loadTotal(articletype) {
-    var total=0;
-    $.ajax({
-        url: url + 'article/total/'+articletype,
-        type: 'get',
-        datatype: 'json',
-        data:{
-            'articleType':articletype
-        },
-        async:false,
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
-        success: function (response) {
-            total= response
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-    })
-    return total;
 }
 /**
  * 热门推荐
  */
 function initHot(hotScript)
 {
+    initLoading("hot-li-item", 50);
     $.ajax({
         url: url + 'article/hotArticle',
         type: 'get',
@@ -225,7 +194,7 @@ function initHot(hotScript)
                     icon: 7
                 });
             }
-
+            closeLoading("hot-li-item");
         },
         complete: function (xhr) {
             doComplete(xhr);
@@ -236,4 +205,7 @@ function initHot(hotScript)
             });
         }
     }) 
+}
+function search(){
+    loadarticle(1, 10,true);
 }

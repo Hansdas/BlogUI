@@ -9,52 +9,58 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=202005271028" rel="stylesheet" />
     <link href="/style/css/common.css?v=202005271028" rel="stylesheet" />
+    <link href="/style/css/loading.css" rel="stylesheet" />
     <style>
         .layui-layer-loading {
             top: 233px !important;
             left: 500.5px !important;
         }
-        #toTop:focus{
-           color: transparent;
+
+        #toTop:focus {
+            color: transparent;
         }
+        .loading{
+            height: 57px;
+        }
+        input::placeholder {
+        font-size: 12px;
+        font-family: Arial;
+        letter-spacing: 5px;
+        color: #ddd !important;
+        text-align: center; 
+    }
     </style>
 </head>
 <div class="content">
     <div class="cont">
-        <!-- <div class="title">
-            <span class="layui-breadcrumb title-type" lay-separator="|">
-                <a href="javaScript:;" class="active">全部</a>
-                <a href="javascript:;">散文礼记</a>
-                <a href="javascript:;">编程世界</a>
-                <a href="javascript:;">旅游杂记</a>
-                <a href="javascript:;">娱乐竞技</a>
-                <a href="javascript:;">趣味人生</a>
-            </span>
-
-          
-            <a href="../article/addarticle.html" target="_blank" class="layui-btn"
-                style="color:white !important;font-size:14px !important; float: right;margin-right: 161px" title="写一写"><i class="layui-icon">&#xe642;</i></a>
-        </div> -->
-        
         <div class="block-left">
             <div class="block" style="min-height: 760px !important">
                 <div class="white-block">
-                <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
-                    <ul class="layui-tab-title">
-                        <li class="layui-this" lay-id="">全部</li>
-                        <li lay-id="散文礼记">散文礼记</li>
-                        <li lay-id="编程世界">编程世界</li>
-                        <li lay-id="旅游杂记">旅游杂记</li>
-                        <li lay-id="娱乐竞技">娱乐竞技</li>
-                        <li lay-id="趣味人生">趣味人生</li>
-                    </ul>
-                </div>
-                <div class="list-item box-left">
+                    <div class="op">
+                        <span><input class="layui-input" id="fullText" placeholder="至少输入两个字符"  type="text">
+                                <button class="layui-btn search" title="搜索" onclick="search()"><i
+                                    class="layui-icon">&#xe615;</i></button>
+                            <a href="../article/addarticle.html" target="_blank" class="layui-btn" title="写一写"><i
+                                    class="layui-icon">&#xe642;</i></a>
+                        </span>
+                    </div>
+                    <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" lay-id="">全部</li>
+                            <li lay-id="散文礼记">散文礼记</li>
+                            <li lay-id="编程世界">编程世界</li>
+                            <li lay-id="旅游杂记">旅游杂记</li>
+                            <li lay-id="娱乐竞技">娱乐竞技</li>
+                            <li lay-id="趣味人生">趣味人生</li>
+                        </ul>
+                    </div>
+                    <div class="list-item box-left">
+                        <div id="pageLoading"></div>
                         <!--输出的视图-->
                         <div id="article-item-id"></div>
                         <div id="page" style="text-align: center;"></div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         <div class="block-right">
@@ -101,28 +107,28 @@
                     <h3>推荐网址</h3>
                 </div>
                 <div class="box-href">
-                <a href="https://www.cnblogs.com/" target="_blank">
-                    <span class="label color2">博客园</span>
-                </a>
-                <a href="https://www.layui.com/" target="_blank">
-                    <span class="label color3">layui</span>
-                </a>
-                <a href="https://www.oschina.net/" target="_blank">
-                    <span class="label color4">开源中国</span>
-                </a>
-                <a href="https://github.com/Hansdas/surging" target="_blank">
-                    <span class="label color1">微服务之surging</span>
-                </a>
-                <a href="https://www.gamersky.com/" target="_blank">
-                    <span class="label color3">游民星空</span>
-                </a>
-                <a href="https://www.runoob.com/" target="_blank">
-                    <span class="label color2">菜鸟教程</span>
-                </a>
-                <a href="http://www.5173.com/?recommenduserid=US15061749098191-04F6" target="_blank">
-                    <span class="label color1">5173</span>
-                </a>
-            </div>
+                    <a href="https://www.cnblogs.com/" target="_blank">
+                        <span class="label color2">博客园</span>
+                    </a>
+                    <a href="https://www.layui.com/" target="_blank">
+                        <span class="label color3">layui</span>
+                    </a>
+                    <a href="https://www.oschina.net/" target="_blank">
+                        <span class="label color4">开源中国</span>
+                    </a>
+                    <a href="https://github.com/Hansdas/surging" target="_blank">
+                        <span class="label color1">微服务之surging</span>
+                    </a>
+                    <a href="https://www.gamersky.com/" target="_blank">
+                        <span class="label color3">游民星空</span>
+                    </a>
+                    <a href="https://www.runoob.com/" target="_blank">
+                        <span class="label color2">菜鸟教程</span>
+                    </a>
+                    <a href="http://www.5173.com/?recommenduserid=US15061749098191-04F6" target="_blank">
+                        <span class="label color1">5173</span>
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -134,7 +140,7 @@
     <li> <a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a></li>
     {{# }); }}
 </script>
-<script type="text/html" id="article-item">
+<script type="text/html" id="article-item-script">
     {{# layui.each(d.list,function(index,item){}}
     <div class="item">
         <div class="layui-fluid">

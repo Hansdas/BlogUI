@@ -20,17 +20,16 @@ layui.config({
     deptObjs[0].style.background = "white";
     initLoading("news-ul", 50);
     initLoading("article-item", 30);
-    //initLoading("whisper-item",30);
     loadarticle();
     loadWhisper(0, 5);
     var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
-    connection.on('InvokeMessage', (reviceMessage) => {
+    connection.on('InvokeMessage',function(reviceMessage){
         var data = {
             'list': reviceMessage.data
         };
         bindWhisper(data);
         $('.layui-flow-more').html('<a href="javascript:;" onclick="loadMore()"><cite>加载更多</cite></a>');
-    });
+    } );
     connection.start();
     $('.layui-btn').on('click', function () {
         var type = $(this).data('type');

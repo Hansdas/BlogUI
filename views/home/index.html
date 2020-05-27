@@ -75,9 +75,8 @@
             element.render('nav');
             initLoad();         
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
-            connection.on('InvokeSomeConnectionMessage', (reviceMessage) => {
-                var v = reviceMessage;
-                $('.layui-badge').html(reviceMessage.data);
+            connection.on('InvokeSomeConnectionMessage',function(message){
+                $('.layui-badge').html(message.data);
                 $('.layui-badge').addClass('blink');
             });
             $.ajax({
