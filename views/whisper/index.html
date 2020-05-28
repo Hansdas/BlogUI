@@ -6,14 +6,10 @@
     <title>微语</title>
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=20192225" rel="stylesheet" />
+    <link href="/style/css/common.css?v=202005271028" rel="stylesheet" />
     <style>
-        .write {
-            margin-top: 59px;
-            padding-bottom: 18px;
-        }
-
-        .layui-layer-msg {
-            top: 200px !important;
+        .layui-laydate-main{
+            width: 297px !important;
         }
     </style>
 </head>
@@ -21,17 +17,19 @@
 <body>
     <div class="content whisper-content">
         <div class="cont">
-            <div class="write">
-                <form class="layui-form">
-                    <div style="width: 600px;">
-                        <textarea id="L_content" lay-verify="content" class="layui-textarea"></textarea>
-                        <button class="layui-btn" lay-submit="" title="保存" lay-filter="save"><i
-                                class="layui-icon">&#xe605;</i></button>
+            <div class="block-left">
+                <div class="block" style="min-height: 760px !important">
+                    <div class="white-block">
+                        <div class="tip">时间轴</div>
                     </div>
-                </form>
+                </div>
             </div>
-            <div class="time">
-                <ul class="layui-timeline" id="time-axis">
+            <div class="block-right">
+                <div class="box h251">
+                    <div class="calendar">
+                    <div id="calendar"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,17 +37,4 @@
     <script src="/style/layui/layui.js?v=123"></script>
     <script src="/style//js/request.js"></script>
     <script src="/style/js/whisper/whisper.js"></script>
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                document.onkeydown = function () {
-                    var oEvent = window.event;
-                    if (oEvent.keyCode == 48 && oEvent
-                        .altKey) { //这里只能用alt，shift，ctrl等去组合其他键event.altKey、event.ctrlKey、event.shiftKey 属性
-                        console.log("你按下了alt+0");
-                    }
-                }
-            }
-        );
-    </script>
 </body>
