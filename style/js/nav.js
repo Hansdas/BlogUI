@@ -8,13 +8,13 @@ function initLoad() {
 		});
 		var thisItem = $(this)[0];
 		if (thisItem.innerText == "微语") {
-			$("#console").attr("src", "../whisper/index.html?v=1");
+			$("#console").attr("src", "../whisper/index.html?v=2");
 		}
 		else if (thisItem.innerText == "文章") {
 			$("#console").attr("src", "../article/index.html?v=1");
 		}
 		else if (thisItem.innerText == "广场") {
-			$("#console").attr("src", "../home/square.html");
+			$("#console").attr("src", "../home/square.html?v=2");
 		}
 		else if (thisItem.innerText == "关于") {
 			$("#console").attr("src", "../home/about.html");
