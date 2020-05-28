@@ -3971,7 +3971,6 @@ body .layui-table-tips .layui-layer-content {
     width: 1px;
     height: 100%
 }
-
 .layui-timeline-item:last-child:before {
     display: none
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <meta name="referrer" content="never">
+    <title>微语</title>
+    <link href="/style/layui/css/layui.css" rel="stylesheet" />
+    <link href="/style/css/main.css?v=20192225" rel="stylesheet" />
+    <link href="/style/css/common.css?v=202005271028" rel="stylesheet" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="content about-content">
+        <div class="cont">
+            <div class="block-left">
+                <div class="block" style="min-height: 760px !important;width: 1171px !important">
+                    <div class="layui-collapse" lay-filter="test">
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">关于本站</h2>
+                            <div class="layui-colla-content">
+                                <div class="bg">
+                                    <div class="bg-li">
+                                        <p class="p-title">名称：</p>
+                                        <p class="p-content">天天博客</p>
+                                    </div>
+                                    <div class="bg-li">
+                                        <p class="p-title">网址：</p>
+                                        <p class="p-content">网址：http://www.tiantianboke.com/</p>
+                                    </div>
+                                    <div class="bg-li">
+                                        <p class="p-title">描述：</p>
+                                        <p class="p-content">随风而起，随静而起，随心随写</p>
+                                    </div>
+                                    <div class="bg-li">
+                                        <p class="p-title">背景：</p>
+                                        <p class="p-content">一只后端程序猿搭建的博客网站。每天5:30下班回家，无所事事，于是便倚着学习的姿势，凭着网（复）上（制）的前端知识，
+                                            &nbsp 加上自己的后端语言，一步一步搭建了这个网站，遇到困难，解决困难，一点一点完成，算是受益匪浅吧！。</p>
+                                    </div>
+                                    <div class="bg-li">
+                                        <p class="p-title">技术：</p>
+                                        <p class="p-content">
+                                            随着微服务的火热，DDD(领域驱动设计模式)思想风起云涌，冲击着整个软件生态系统。为了学习，于是便用DDD搭建了之个项目。
+                                            这个项目由.net core3.1作为后端，layui作为前端，使用轻量级ORM:dapper进行DB处理，搭建的前后端分离项目。其中，mysql用来存储数据，redis用来缓存数据，<a
+                                                style="color:#FF5722"
+                                                href="https://docs.microsoft.com/zh-cn/aspnet/core/signalr/introduction?view=aspnetcore-3.1"
+                                                target="_blank">SignalR</a>进行实时网络通信，系统主要有这三点支撑运行。服务器采用腾讯云的学生机centos服务器。</p>
+                                    </div>
+                                    <div class="bg-li">
+                                            <p class="p-title">GitHub：</p>
+                                            <p class="p-content">
+                                                BlogApi:<a style="color:#FF5722" href="https://github.com/Hansdas/BlogH.git" target="_blank">https://github.com/Hansdas/BlogH.git</a>&nbsp;&nbsp;
+                                                BlogUI:<a style="color:#FF5722" href="https://github.com/Hansdas/BlogUI.git" target="_blank">https://github.com/Hansdas/BlogUI.git</a>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">关于作者</h2>
+                            <div class="layui-colla-content">
+                                <p>因为不适合。如果希望开发长期的项目或者制作产品类网站，那么就需要实现特定的设计，为了在维护项目中可以方便地按设计师要求快速修改样式，肯定会逐步编写出各种业务组件、工具类，相当于为项目自行开发一套框架。——来自知乎@Kayo
+                                </p>
+                            </div>
+                        </div>
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">留言</h2>
+                            <div class="layui-colla-content">
+                                <p>在前端技术快速变革的今天，layui 仍然坚持语义化的组织模式，甚至于模块理念都是采用类AMD组织形式，并非是有意与时代背道而驰。layui
+                                    认为以jQuery为核心的开发方式还没有到完全消亡的时候，而早期市面上基于jQuery的UI都普通做得差强人意，所以需要有一个新的UI去重新为这一领域注入活力，并采用一些更科学的架构方式。
+                                    <br><br>
+                                    因此准确地说，layui 更多是面向那些追求开发简单的前端工程师们，以及所有层次的服务端程序员。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/style/js/jquery.js"></script>
+    <script src="/style/layui/layui.js?v=123"></script>
+    <script>
+        layui.use(['element', 'layer'], function () {
+            var element = layui.element;
+            var layer = layui.layer;
+
+            //监听折叠
+            element.on('collapse(test)', function (data) {
+                layer.msg('展开状态：' + data.show);
+            });
+        });
+    </script>
+</body>

@@ -16,6 +16,9 @@ function initLoad() {
 		else if (thisItem.innerText == "广场") {
 			$("#console").attr("src", "../home/square.html");
 		}
+		else if (thisItem.innerText == "关于") {
+			$("#console").attr("src", "../home/about.html");
+		}
 		$(this).addClass("active");
 	});
 	setIframeHeight();

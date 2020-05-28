@@ -4,7 +4,7 @@ layui.config({
 }).use(['flow', 'form', 'laytpl', 'layedit','laydate'], function () {
 	var layedit = layui.layedit, flow = layui.flow,laydate = layui.laydate;;
 	form = layui.form;
-     var ins1=laydate.render({
+    var ins1=laydate.render({
 		elem: '#calendar'
 		,position: 'static'
 		  ,btns: ['now']
@@ -17,7 +17,7 @@ layui.config({
 		, done: function (page, next) { //执行下一页的回调
 			var lis = [];
 			$.ajax({
-				url: url + 'whisper/loadWhisper',
+				url: url + 'whisper/page',
 				type: 'get',
 				datatype: 'json',
 				data: {
@@ -28,18 +28,23 @@ layui.config({
 					doBeforeSend(xhr);
 				},
 				success: function (res) {
-					layui.each(res.data.lis, function(index, item){
+					layui.each(res.data, function(index, item){
 						lis.push('<li class="layui-timeline-item">');
 						lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
 						lis.push('<div class="layui-timeline-content layui-text">');
-						lis.push('<h3 class="layui-timeline-title">'+item.date+'</h3>');
+						lis.push('<h3 class="layui-timeline-title">'+item.createDate+'</h3>');
+						lis.push('<div class="section">');
 						lis.push('<p>');
 						lis.push(item.content);
 						lis.push('</p>');
+						lis.push('<div class="author">');
+						lis.push('<a target="_blank" href=""><i class="layui-icon layui-icon-username"></i>'+item.accountName+'</a>');
+						lis.push('</div>');
+						lis.push('</div>');
 						lis.push('</div>');
 						lis.push('</li>');
 					  });
-					  next(lis.join(''), (page*3) < res.data.count);
+					next(lis.join(''), (page*3) < res.total);
 				},
 				complete: function (xhr) {
 					doComplete(xhr);

@@ -307,9 +307,30 @@ form input[type=checkbox] {
     width: 600px;
     padding: 12px; 
 } 
+.whisper-content .white-block .section{
+    background: antiquewhite;
+    width: 98%;
+    padding: 4px 1px 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+} 
+.whisper-content .white-block .section .author a{
+    padding-right: 4px
+}
+.whisper-content .white-block .section .author a{
+    float: right;
+    font-size: 12px;
+} 
+.whisper-content .white-block .section .author a .layui-icon{
+    font-size: 12px !important;
+} 
 .whisper-content .layui-timeline  .layui-timeline-title{
     color: #ff7f21;
-    font-size: initial
+    font-size: 13px;
+    font-family: fantasy;
+}
+.whisper-content .layui-timeline-item {
+    padding-bottom: 11px !important;
 }
 .whisper-content .layui-timeline .layui-timeline-item p{
     font-size: 12px;
@@ -454,11 +475,40 @@ form input[type=checkbox] {
 .square .block-right .write .write-item{
     margin: 15px 0 16px 0;
 }
+.square .block-right .write .write-item p img{
+    height: 14px;
+}
 .square .block-right .write .date{
     font-size: 12px;
     float: right;
     margin-top: 15px;
     color: #9b9b9b;
+}
+.about-content .layui-collapse .layui-colla-title{
+    background: #fff
+}
+.about-content .layui-collapse .layui-show{
+    background: #fff
+}
+.about-content .layui-collapse .layui-show .bg {
+    background-color: antiquewhite;
+    padding: 20px;
+    font-size: 14px;
+    color: #8a89a5;
+    line-height: 24px;
+    border-left: 4px solid #00a67c;
+}
+.about-content .layui-collapse .layui-show  .bg .bg-li{
+    display:inline-block;
+    color: chocolate;
+    width: 100%;
+}
+.about-content .layui-collapse .layui-show  .bg  .bg-li .p-title{
+    font-weight: bold;
+    float: left;
+}
+.about-content .layui-collapse .layui-show  .bg  .bg-li .p-content{
+  margin-left: 41px
 }
 /*leacots*/
 .leacots-content .review-version{padding:0; border-top: 0;}
