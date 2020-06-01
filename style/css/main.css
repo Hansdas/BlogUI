@@ -510,6 +510,63 @@ form input[type=checkbox] {
 .about-content .layui-collapse .layui-show  .bg  .bg-li .p-content{
   margin-left: 41px
 }
+.about-content .layui-collapse .layui-show  .author-info {
+ display: inline-flex;
+ background-color: antiquewhite;
+ height: 699px;
+  }
+.about-content .layui-collapse .layui-show  .author-info  .left .layui-elem-field{
+    width: 333px;
+    height: 316px;
+    border-color:antiquewhite ;
+  }
+  .about-content .layui-collapse .layui-show  .author-info  .left .layui-elem-field legend{
+    margin-left: 111px !important
+  }
+  .about-content .layui-collapse .layui-show  .author-info  .left img{
+    height: 85px;
+    border-radius: 53px;
+    box-shadow: rgba(0,0,0,0.15) 0 0 8px;
+    background: #FBFBFB;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    padding: 5px;
+  }
+  .about-content .layui-collapse .layui-show  .author-info  .left .layui-field-box .name {
+    border-bottom: 2px solid #00a67c;
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    color: chocolate;
+  }
+  .about-content .layui-collapse .layui-show  .author-info  .left .layui-field-box .au-li {
+      text-align:center;
+      line-height: 30px;
+      color: chocolate
+  }
+  .about-content .layui-collapse .layui-show  .author-info  .right {
+      padding-right: 11px
+   }
+  .about-content .layui-collapse .layui-show  .author-info  .right .li-p {
+   border-radius: 3px;
+    padding: 7px;
+    color: chocolate;
+    margin-top: 11px;
+    background: floralwhite;
+    box-shadow: 1.5px 1px 0px chocolate;
+   }
+   .about-content .layui-collapse .layui-show  .author-info  .right .right-date{
+    text-align: right;
+    border-bottom: none;
+   }
+   .about-content .layui-collapse .layui-show  .author-info  .right .ct{
+    font-size: smaller;
+    font-style: oblique;
+    color: cornflowerblue;
+    text-align: center;
+    margin-top: 10px;
+   }
 /*leacots*/
 .leacots-content .review-version{padding:0; border-top: 0;}
 .leacots-content .review-version .form .layui-form-item{clear: both;}
