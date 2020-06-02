@@ -47,12 +47,25 @@ function showPage() {
 	if (urlParamater == "")
 		return;
 	var page = getSearchString("pagepath", urlParamater);
-	$("#console").attr("src", "../" + page + "/index.html");
+	if(page=='square'||page=='about'){
+		$("#console").attr("src", "../home/"+page+".html");
+	}
+	else
+	{
+		$("#console").attr("src", "../" + page + "/index.html");
+	}
+
 	$(".nav a").each(function (index) {
 		var thisItem = $(this)[0];
 		if (thisItem.innerText == "文章"&&page=='article') {
 			$(this).addClass("active");
-		} else {
+		} else if(thisItem.innerText == "广场"&&page=='square') {
+			$(this).addClass("active");
+		}else if(thisItem.innerText == "微语"&&page=='whisper') {
+			$(this).addClass("active");
+		}else if(thisItem.innerText == "关于"&&page=='about') {
+			$(this).addClass("active");
+		}else{
 			$(this).removeClass("active");
 		}
 

@@ -9,7 +9,8 @@
     <link rel="icon" href="/style/images/resizeApi.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
-    <link href="/style/css/common.css" rel="stylesheet" />
+    <link href="/style/css/common.css?v=201908282045" rel="stylesheet" />
+    <link href="/style/css/loading.css" rel="stylesheet" />
     <style>
         #detail blockquote {
             position: inherit !important;
@@ -36,86 +37,111 @@
         }
     </style>
 </head>
+
 <body>
     <div class="fixed-top">
         <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
             noresize="noresize" src="../master/top.html"></iframe>
     </div>
-    <div class="content whisper-content leacots-content details-content">
-        <div style="margin-top: 40px;padding-left: 184px;">
-            <div class="review-version" style="width:83%">
-                <div class="form-box">
-                    <div class="article-cont" id="detail">
-                        <script type="text/html" id="buildview">
-                        <div class="title">
-                            <h3>{{d.title}}</h3>
-                            <p class="cont-info" style="font-size:13px;color: #808080 !important;border-bottom:1px solid #ddd" >
-                                作者：<a class="author" href="">{{d.author}}</a>
-                                时间：<span class="data">{{d.createtime}}</span>
-                                类别：<span class="types">{{d.articletype}}</span>
-                            </p>
+    <div class="content c-bg detail-content">
+        <div class="cont">
+            <div class="block-left block">
+                <div class="review-version white-block">
+                    <div class="form-box">
+                        <div class="article-cont" id="detail">
+                                <div id="detailLoading"></div>
+                            <script type="text/html" id="buildview">
+                                <div class="title">
+                                    <h3>{{d.title}}</h3>
+                                    <p class="cont-info" style="">
+                                        作者：<a class="author" href="">{{d.author}}</a>
+                                        时间：<span class="data">{{d.createtime}}</span>
+                                        类别：<span class="types">{{d.articletype}}</span>
+                                    </p>
+                                </div>
+                                {{d.content}}
+                            </script>
                         </div>
-                        {{d.content}}
-                    </script>
+                        <div class="btn-box">
+                        </div>
                     </div>
-                    <div class="btn-box" style="text-align:center;padding-top: 50px;">
-                    </div>
-                </div>
-                <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
-                <div class="comment">
-                    <form class="layui-form" action="">
-                        <div class="form">
-                            <div class="layui-form-item layui-form-text">
-                                <div class="layui-input-block">
-                                    <div class="b" style="border-radius:3px">
-                                        <textarea name="desc" id="desc" lay-verify="required" placeholder="既然来了，就说几句。。。"
-                                            class="layui-textarea"></textarea>
+                    <hr />
+                    <div class="comment">
+                        <form class="layui-form" action="">
+                            <div class="form">
+                                <div class="layui-form-item layui-form-text">
+                                    <div class="layui-input-block">
+                                        <div class="b" style="border-radius:3px">
+                                            <textarea id="review" name="review" lay-verify="required"
+                                                placeholder="既然来了，就说几句。。。" class="layui-textarea"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block" style="text-align: right;">
-                                <button class="layui-btn definite" id="r" lay-submit="" lay-filter="review">留言</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="volume">
-                    全部评论（）
-                </div>
-                <div class="list-cont">
-
-                    <div class="cont" id="comment-item">
-                        <script type="text/html" id="buildComment">
-                        {{# layui.each(d.list,function(index,item){}}
-                        <div class="text">
-                                <div style="width: 1175px;padding-left:12px">
-                                    <p class="tit">
-                                         <a class="name" style="color: #ff7f21" href="javascript:;">{{item.postUsername}}</a>
-                                        <span style="font-size: 13px;padding-left:10px">{{item.postDate}}</span>
-                                    </p>
-                                    <p class="ct">
-                                        {{item.content}}
-                                    </p>
-                                    <p style="line-height: 23px;float: right;" class="reply">
-                                        <input type="hidden" name="username" value="">
-                                        <input type="hidden" name="guid" value="{{item.guid}}">
-                                        <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
-                                                style="font-size: 13px !important;color: #808080 !important">回复</i></a>
-                                    </p>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block" style="text-align: center;">
+                                    <button class="layui-btn definite" id="r" lay-submit=""
+                                        lay-filter="review">留言</button>
                                 </div>
                             </div>
-                            <hr style="border:none;border-top:1px dotted #ddd;background-color: #fff" />
-                        {{# });}}
-                        </script>
+                        </form>
                     </div>
-                    <div id="page" style="text-align: center;"></div>
+                    <div class="volume">
+                        全部评论（）
+                    </div>
+                    <div class="list-cont">
+
+                        <div class="cont" id="comment-item">
+                            <script type="text/html" id="buildComment">
+                                {{# layui.each(d.list,function(index,item){}}
+                                <div class="text">
+                                    <div class="text-comment">
+                                        <p class="tit">
+                                            <a class="name" style="color: #ff7f21"
+                                                href="javascript:;">{{item.postUsername}}</a>
+                                            <span style="font-size: 13px;padding-left:10px">{{item.postDate}}</span>
+                                        </p>
+                                        <p class="p">
+                                            {{item.content}}
+                                        </p>
+                                        <p style="line-height: 23px;float: right;" class="reply">
+                                            <input type="hidden" name="username" value="">
+                                            <input type="hidden" name="guid" value="{{item.guid}}">
+                                            <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
+                                                    style="">回复</i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                {{# });}}
+                            </script>
+                        </div>
+                        <div id="page" style="text-align: center;"></div>
+                    </div>
                 </div>
+            </div>
+            <div class="block-right">
+                <div class="box h251">
+                    <fieldset class="layui-elem-field">
+                        <legend><img src="/style/images/touxiang.jpg"></legend>
+                        <div class="layui-field-box">
+                            <div class="name" id="authorName"></div>
+                                <!--输出的视图-->
+                                <ul class="a-li" id="li-article">
+                                    <div id="liLoading"></div>
+                                </ul>
+                        </div>
+                    </fieldset>
+                </div>
+
             </div>
         </div>
     </div>
-    </div>
+    <script type="text/html" id="li-article-script">
+        {{#layui.each(d.list,function(index,item){}}
+        <li><button class="layui-btn new-icon w62">{{item.createTime}}</button><a target="_blank"
+            href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a></li>
+        {{# }); }}
+    </script>
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/util.js?v=201908281635"></script>
     <script src="/style/js/jquery.js"></script>
