@@ -58,11 +58,11 @@
                                                 target="_blank">https://github.com/Hansdas/BlogUI.git</a>
                                     </div>
                                     <div class="bg-li">
-                                            <p class="p-title">联系方式：</p>
-                                            <p class="p-content">
-                                                微信：h3248996258&nbsp;&nbsp;
-                                                QQ：3248996258
-                                        </div>
+                                        <p class="p-title">联系方式：</p>
+                                        <p class="p-content">
+                                            微信：h3248996258&nbsp;&nbsp;
+                                            QQ：3248996258
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,9 @@
                                                 <div class="au-li">.net开发，熟悉java语言，略懂前端</div>
                                                 <div class="au-li">老宅男，不爱出门</div>
                                                 <div class="au-li">爱好打dota2，技术属于鱼塘里的小鱼</div>
-                                                <div class="au-li"><a style="color:#FF5722" href="https://www.douyu.com/3149221" target="_blank">业余直播间，纯属乐趣</a> </div>
+                                                <div class="au-li"><a style="color:#FF5722"
+                                                        href="https://www.douyu.com/3149221"
+                                                        target="_blank">业余直播间，纯属乐趣</a> </div>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -104,7 +106,8 @@
                                         <div class="li-p">
                                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp今年已经26岁了，时间过得好快啊，太快了，不是好事，父母也老了，自己也老了，可是仍然一事无成，可是我却喜欢这样。一个人可以选择碌碌无为好吧，但却不能因为自己的
                                             碌碌无为而怨天尤人，抱怨社会，自己走的路，绝不要后悔，反正我不后悔！不过，目前最大的愿望就是遇到一个对的人，不想让自己的父母日夜操心，白了头发，正如那首歌所唱“
-                                            就让时光慢些吧 不要再让你变老了 我愿用我一切换你岁月长留”，同时能让自己有一个避风港，不在孤寂无聊。我不羡慕秀恩爱的情侣，只羡慕能一起白头偕老的老夫老妻，共同
+                                            就让时光慢些吧 不要再让你变老了
+                                            我愿用我一切换你岁月长留”，同时能让自己有一个避风港，不在孤寂无聊。我不羡慕秀恩爱的情侣，只羡慕能一起白头偕老的老夫老妻，共同
                                             面对未来。
                                         </div>
                                         <div class="li-p">
@@ -117,7 +120,7 @@
                                             2020/06/01 21:49
                                         </div>
                                         <div class="ct">
-                                                文笔不是很好，毕竟不是文科班子，见笑~~~
+                                            文笔不是很好，毕竟不是文科班子，见笑~~~
                                         </div>
                                     </div>
                                 </div>
@@ -126,10 +129,30 @@
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">留言</h2>
                             <div class="layui-colla-content">
-                                <p>在前端技术快速变革的今天，layui 仍然坚持语义化的组织模式，甚至于模块理念都是采用类AMD组织形式，并非是有意与时代背道而驰。layui
-                                    认为以jQuery为核心的开发方式还没有到完全消亡的时候，而早期市面上基于jQuery的UI都普通做得差强人意，所以需要有一个新的UI去重新为这一领域注入活力，并采用一些更科学的架构方式。
-                                    <br><br>
-                                    因此准确地说，layui 更多是面向那些追求开发简单的前端工程师们，以及所有层次的服务端程序员。</p>
+                                <div class="layui-form leave-message">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">联系邮箱</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" style="float: left;width: 87%;" id="email"
+                                                autocomplete="off" class="layui-input">
+                                            <span class="info-span">选填</span>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">留言内容*</label>
+                                        <div class="layui-input-block">
+                                            <textarea id="content" style="width: 800px"
+                                                class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" id="leaveMessage" lay-submit>留言</button>
+                                            <span class="error-span"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -140,9 +163,23 @@
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=123"></script>
     <script>
-        layui.use(['element', 'layer'], function () {
-            var element = layui.element;
-            var layer = layui.layer;
+        layui.use(['element', 'form', 'layer'], function () {
+            var element = layui.element; layer = layui.layer;
+            $('#leaveMessage').click(function () {
+                var email = $('#email').val();
+                if (email != '') {
+                    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //邮箱正则表达式
+                    if (!reg.test(email)) {
+                        $('.error-span').html('邮箱不合规!')
+                        return;
+                    }
+                }
+                var content = $('#content').val();
+                if (content == '') {
+                    $('.error-span').html('请填写内容!')
+                    return;
+                }
+            })
         });
     </script>
 </body>

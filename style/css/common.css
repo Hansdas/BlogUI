@@ -209,3 +209,16 @@
     color: #009688;
     float: right;
 }
+.info-span{
+    float: right;
+    line-height: 34px;
+    color: blueviolet;
+    font-size: 14px;
+    font-weight: bold;
+}
+.error-span{
+    line-height: 34px;
+    color: lightcoral;
+    font-size: 14px;
+    font-weight: bold;
+}

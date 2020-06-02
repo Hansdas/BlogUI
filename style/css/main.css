@@ -567,6 +567,12 @@ form input[type=checkbox] {
     text-align: center;
     margin-top: 10px;
    }
+   .about-content .layui-collapse  .leave-message .layui-input:hover, .layui-textarea:hover{
+       border: 1px solid chocolate !important;
+   }
+   .about-content .layui-collapse  .leave-message  .layui-input:hover, .layui-textarea:hover {
+    border: 1px solid chocolate !important;
+ }
 /*leacots*/
 .leacots-content .review-version{padding:0; border-top: 0;}
 .leacots-content .review-version .form .layui-form-item{clear: both;}
