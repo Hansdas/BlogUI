@@ -80,12 +80,9 @@
                 $('.layui-badge').addClass('blink');
             });
             $.ajax({
-                url: url + 'user/userInfo',
+                url: url + 'user',
                 type: 'get',
                 dataType: 'json',
-                beforeSend: function (xhr) {
-                    doBeforeSend(xhr);
-                },
                 success: function (response) {
                     if (response.code == '1') {
                         $("#nologin").show();
@@ -105,29 +102,13 @@
                         })
                     }
                 },
-                error: function () {
-                    $("#nologin").show();
-                    $("#user").hide();
-                    layer.msg("服务器响应失败", {
-                        icon: 5
-                    });
-                },
-                complete: function (xhr) {
-                    doComplete(xhr);
-                },
             });
             $.ajax({
                 url: url + 'tidings',
                 type: 'get',
                 dataType: 'text',
-                beforeSend: function (xhr) {
-                    doBeforeSend(xhr);
-                },
                 success: function (response) {
                     $('.layui-badge').html(response);
-                },
-                complete: function (xhr) {
-                    doComplete(xhr);
                 },
             });
         });

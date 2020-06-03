@@ -13,3 +13,19 @@ function doComplete(xhr)
         localStorage.setItem("token",resfrshToken );
     } 
 }
+layui.use('layer',function(){
+    var layer=layui.layer;
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            doBeforeSend(xhr);
+        },
+        error:function(request){
+            layer.msg('响应服务器失败', {
+                icon: 7
+            });
+        },
+        complete: function (xhr) {
+            doComplete(xhr);
+        }
+    });
+})

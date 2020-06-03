@@ -93,7 +93,7 @@ function setPageList(commentList, commentScript) {
 function loadarticle(id, commentScript) {
     initLoading("detailLoading", 50);
     $.ajax({
-        url: url + 'article/detail/' + id,
+        url: url + 'article/' + id,
         type: 'get',
         datatype: 'json',
         beforeSend: function (xhr) {
@@ -175,7 +175,7 @@ function loadComment(commentList, comments) {
  */
 function loadupnext(id, type) {
     $.ajax({
-        url: url + 'article/nextup/' + id + '/' + type,
+        url: url + 'article/context/' + id + '/' + type,
         type: 'get',
         datatype: 'json',
         beforeSend: function (xhr) {

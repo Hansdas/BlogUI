@@ -6,7 +6,7 @@ layui.use(["form"], function () {
 		var loading = layer.load(2)
 		var loginData = data.field;
 		$.ajax({
-			url: url + 'login/login',
+			url: url + 'login',
 			type: 'post',
 			dataType: 'json',
 			data: {
@@ -33,7 +33,7 @@ function loginOut()
 {
 	var token=localStorage.getItem('token');
 	$.ajax({
-		url: url + 'login/loginout',
+		url: url + 'login/out',
 		type: 'post',
 		data:{
 			'token':token

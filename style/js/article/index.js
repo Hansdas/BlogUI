@@ -29,9 +29,6 @@ function praise(id) {
         url: url + 'article/praise/' + id,
         type: 'post',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 layer.close(loading);
@@ -48,12 +45,9 @@ function praise(id) {
                         ,offset: ['200PX', '450PX']
                         , yes: function () {
                             $.ajax({
-                                url: url + 'article/praiseOut/' + id,
+                                url: url + 'article/praiseout/' + id,
                                 type: 'post',
                                 datatype: 'json',
-                                beforeSend: function (xhr) {
-                                    doBeforeSend(xhr);
-                                },
                                 success: function (response) {
                                     if (response.code == '0') {
                                         layer.msg("取消点赞成功", { icon: 6,offset: ['200PX', '450PX']  });
@@ -66,14 +60,6 @@ function praise(id) {
                                         });
                                     }
                                 },
-                                complete: function (xhr) {
-                                    doComplete(xhr);
-                                },
-                                error: function () {
-                                    layer.msg('响应服务器失败', {
-                                        icon: 7
-                                    });
-                                }
 
                             });
                         }
@@ -90,15 +76,6 @@ function praise(id) {
                 });
             }
             layer.close(loading);
-
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-        error: function () {
-            layer.msg('响应服务器失败', {
-                icon: 7
-            });
         }
     });
 }
@@ -116,9 +93,6 @@ function loadarticle(pageIndex, pageSize,initPage) {
         datatype: 'json',
         contentType:'application/json; charset=utf-8',
         data: JSON.stringify(conditionModel),
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -154,14 +128,6 @@ function loadarticle(pageIndex, pageSize,initPage) {
             }
             $('#toTop').focus(); 
             closeLoading("pageLoading");
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-        error: function () {
-            layer.msg('响应服务器失败', {
-                icon: 7
-            });
         }
     })
 }
@@ -172,12 +138,9 @@ function initHot(hotScript)
 {
     initLoading("hot-li-item", 50);
     $.ajax({
-        url: url + 'article/hotArticle',
+        url: url + 'article/hot',
         type: 'get',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -195,14 +158,6 @@ function initHot(hotScript)
                 });
             }
             closeLoading("hot-li-item");
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-        error: function () {
-            layer.msg('响应服务器失败', {
-                icon: 7
-            });
         }
     }) 
 }

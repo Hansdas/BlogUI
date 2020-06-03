@@ -68,11 +68,6 @@ layui.config({
                 },
                 complete: function (xhr) {
                     doComplete(xhr);
-                },
-                error: function () {
-                    layer.msg('响应服务器失败', {
-                        icon: 7
-                    });
                 }
             })
         }
@@ -83,12 +78,9 @@ layui.config({
  */
 function loadarticle() {
     $.ajax({
-        url: url + 'article/SelectArticleByTypeMaxTime',
+        url: url + 'article/type/maxtime',
         type: 'get',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -106,14 +98,6 @@ function loadarticle() {
             }
 
         },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-        error: function () {
-            layer.msg('响应服务器失败', {
-                icon: 7
-            });
-        }
     })
 }
 
@@ -127,9 +111,6 @@ function loadWhisper(index, top) {
             'pageIndex': index,
             'top': top,
         },
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (res) {
             if (res.code == '0') {
                 var data = {
@@ -140,10 +121,7 @@ function loadWhisper(index, top) {
                     $('.layui-flow-more').html('右上角查看更多！');
                 }
             }
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
+        },       
     });
 }
 

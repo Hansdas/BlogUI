@@ -24,9 +24,6 @@ layui.config({
 					'pageIndex': page,
 					'pageSize': 3,
 				},
-				beforeSend: function (xhr) {
-					doBeforeSend(xhr);
-				},
 				success: function (res) {
 					layui.each(res.data, function(index, item){
 						lis.push('<li class="layui-timeline-item">');
@@ -45,10 +42,7 @@ layui.config({
 						lis.push('</li>');
 					  });
 					next(lis.join(''), (page*3) < res.total);
-				},
-				complete: function (xhr) {
-					doComplete(xhr);
-				},
+				}
 
 			});
 		}
@@ -56,15 +50,12 @@ layui.config({
 })
 function loadWhisper(pageIndex, pageSize, whisper) {
 	$.ajax({
-		url: url + 'whisper/loadWhisper',
+		url: url + 'whisper/page',
 		type: 'get',
 		datatype: 'json',
 		data: {
 			'pageIndex': pageIndex,
 			'pageSize': pageSize,
-		},
-		beforeSend: function (xhr) {
-			doBeforeSend(xhr);
 		},
 		success: function (response) {
 			if (response.code == "0") {
@@ -81,9 +72,6 @@ function loadWhisper(pageIndex, pageSize, whisper) {
 			else {
 				layer.msg("响应服务器失败", { icon: 7 });
 			}
-		},
-		complete: function (xhr) {
-			doComplete(xhr);
 		},
 	});
 }

@@ -25,12 +25,9 @@ function setTab(cursor) {
                     elem: '#birthdate'
                 });
             $.ajax({
-                'url': url + 'user/userinfo',
+                url: url + 'user',
                 type: 'get',
                 datatype: 'json',
-                beforeSend: function (xhr) {
-                    doBeforeSend(xhr);
-                },
                 success: function (response) {
                     if (response.code == "0") {
                         layer.close(loading);
@@ -45,16 +42,7 @@ function setTab(cursor) {
                         });
                         $("#touxiang").attr("src", response.data.headPhoto);
                     }
-                },
-                error: function () {
-                    layer.close(loading);
-                    layer.msg('响应服务器失败', {
-                        icon: 7
-                    });
-                },
-                complete: function (xhr) {
-                    doComplete(xhr);
-                },
+                }
             });
             form.verify({
                 phone: function (value) {
@@ -90,15 +78,11 @@ function setTab(cursor) {
                     'sign': userData.sign
                 }
                 $.ajax({
-                    url:url+'user/updateuser',
+                    url:url+'user',
                     type:'post',
                     contentType:'application/json; charset=utf-8',
                     datatype:'json',
                     data: JSON.stringify(userModel),
-                    beforeSend:function(xhr)
-                    {
-                        doBeforeSend(xhr);                                            
-                    },
                     success:function(response)
                     {
                         if (response.code=='0') {
@@ -111,10 +95,7 @@ function setTab(cursor) {
                             layer.close(loading);
                             layer.msg(response.message, { icon: 5 });
                         }
-                    },
-                    complete:function(xhr){
-                        doComplete(xhr);
-                    }, 
+                    }
 
                 });
                 return false;
@@ -122,7 +103,7 @@ function setTab(cursor) {
             form.on('submit(editPassword)', function (data) {
                 loading = layer.load(2)
                 var response = requestajax({
-                    route: 'user/updatepassword',
+                    route: 'user/update/password',
                     type: 'post',
                     data: {
                         'password': $("#newpassword").val(),
@@ -142,7 +123,7 @@ function setTab(cursor) {
                     height: 168,
                     isAbs: true
                 }
-                , url: url + 'user/uploadPhoto' //上传接口
+                , url: url + 'user/upload/image' //上传接口
                 , before: function () {
                     loading = layer.load(2);
                 }
@@ -162,7 +143,11 @@ function setTab(cursor) {
                 id: 'aTable'
                 , method:'post'
                 , elem: '#articleTable'
-                , url: url + "user/selectArticle"
+                , url: url + "article/page"
+                , where:{
+                        'account':'admin'
+                    }
+                ,contentType: 'application/json; charset=utf-8'
                 , toolbar: false
                 , width: 870
                 , title: '用户数据表'
@@ -196,23 +181,11 @@ function setTab(cursor) {
                     layer.confirm('确定删除？', function (index) {
                         loading = layer.load(2);
                         $.ajax({
-                            url: url + 'article/delete/' + data.id,
+                            url: url + 'article/' + data.id,
                             type: 'delete',
                             datatype: 'json',
-                            beforeSend: function (xhr) {
-                                doBeforeSend(xhr);
-                            },
                             success: function (response) {
                             },
-                            complete: function (xhr) {
-                                doComplete(xhr);
-                                layer.close(index);
-                            },
-                            error: function () {
-                                layer.msg('响应服务器失败', {
-                                    icon: 7
-                                });
-                            }
                         })
                         table.reload('aTable', {
                             page: {
@@ -235,8 +208,9 @@ function setTab(cursor) {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,method:'post'
+                        ,contentType: 'application/json; charset=utf-8'
                         , where: {
-                            title: $('#title').val(),
+                            titleContain: $('#title').val(),
                             isDraft:$('#isdraft').val()
                         }
                     });
@@ -261,7 +235,7 @@ function setTab(cursor) {
                     var pageSize = obj.limit;
                     var pageIndex = obj.curr;
                     $.ajax({
-                        url: url + 'user/getTidings',
+                        url: url + 'user/tidings',
                         type: 'get',
                         datatype: 'json',
                         data: {

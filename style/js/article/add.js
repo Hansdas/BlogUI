@@ -140,15 +140,11 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     'FilePaths':filePaths
                 };
                 $.ajax({
-                    url:url+ 'article/addArticle',
+                    url:url+ 'article/add',
                     contentType:'application/json; charset=utf-8',
                     type:'post',
                     datatype:'json',
                     data: JSON.stringify(model),
-                    beforeSend:function(xhr)
-                    {
-                        doBeforeSend(xhr);                                            
-                    },
                     success:function(response)
                     {
                         if (response.code == 0) {
@@ -161,10 +157,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                                 icon: 5
                             });
                         }
-                    },
-                    complete:function(xhr){
-                        doComplete(xhr);
-                    },                     
+                    }                  
                 });
                 return false;
             })
@@ -187,15 +180,11 @@ layui.use(['form', 'layer', 'layedit'], function () {
                     'FilePaths':filePaths
                 };
                 $.ajax({
-                    url:url+ 'article/addArticle',
+                    url:url+ 'article/add',
                     contentType:'application/json; charset=utf-8',
                     type:'post',
                     datatype:'json',
                     data: JSON.stringify(model),
-                    beforeSend:function(xhr)
-                    {
-                        doBeforeSend(xhr);                                            
-                    },
                     success:function(response)
                     {
                         if (response.code == 0) {
@@ -208,10 +197,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
                                 icon: 5
                             });
                         }
-                    },
-                    complete:function(xhr){
-                        doComplete(xhr);
-                    },                     
+                    }                    
                 });
                 return false;
             })
@@ -246,13 +232,9 @@ function checklogin() {
 function bindArticle(id){
     loading = layer.load(2,{offset: 'auto'});
     $.ajax({
-        url:url+ 'article/detail/' + id,
+        url:url+ 'article/' + id,
         type:'get',
         datatype:'json',
-        beforeSend:function(xhr)
-        {
-            doBeforeSend(xhr);                                            
-        },
         success:function(response)
         {
             if (response.code == 0) {
@@ -264,10 +246,7 @@ function bindArticle(id){
                 layedit.setContent(textcontent, response.data.content);
                 layer.close(loading);
             }
-        },
-        complete:function(xhr){
-            doComplete(xhr);
-        },                     
+        },                   
     }); 
 }
 function bindselect() {
@@ -275,10 +254,6 @@ function bindselect() {
         url:url+ 'upload/initPage',
         type:'get',
         datatype:'json',
-        beforeSend:function(xhr)
-        {
-            doBeforeSend(xhr);                                            
-        },
         success:function(response)
         {
             if (response.code == 0) {
@@ -289,9 +264,6 @@ function bindselect() {
                 }
                 layui.form.render("select");
             }
-        },
-        complete:function(xhr){
-            doComplete(xhr);
-        },                     
+        },                   
     });
 };
