@@ -21,9 +21,6 @@
     background-attachment: fixed;
     background-size:cover
 }
- a:hover {
-    color: #f37d25 !important;
-}
 .header-menu a:hover {
     color: #fff !important;
 }
@@ -170,32 +167,6 @@
     display: none !important;
 }
 
-.pro-main {
-    width: 1170px;
-    background-color: white;
-    margin-left: 182px;
-    height: 800px;
-}
-
-.pro-main .left {
-
-    width: 20%;
-    height: 500px;
-    float: left;
-    padding: 22px 0px 0px 23px;
-    position: fixed;
-}
-
-.pro-main .right {
-    width: 78%;
-    height: 500px;
-    float: right;
-    z-index: 999;
-}
-
-.user-profile {
-    padding: 0 0 0 0 !important;
-}
 
 .layui-form-item {
     width: 385px
