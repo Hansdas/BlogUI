@@ -9,12 +9,15 @@
     padding:  0 0 0 97px;
 }
 .layui-bg-black img{
-    margin: -14px 0 0 0px
+    margin: 4px 0 0 0px
 }
 #console{
     background-image: url("../images/background.jpg");
     background-attachment: fixed;
     background-size:cover
+}
+#iframe-footer{
+    height: 100px;
 }
 .c-bg{
     background-image: url("../images/background.jpg");

@@ -91,7 +91,7 @@
                     </div>
                     <div class="list-cont">
 
-                        <div class="cont" id="comment-item">
+                        <div  id="comment-item">
                             <script type="text/html" id="buildComment">
                                 {{# layui.each(d.list,function(index,item){}}
                                 <div class="text">
@@ -136,6 +136,8 @@
             </div>
         </div>
     </div>
+    <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
+    noresize="noresize" src="../master/footer.html"></iframe>
     <script type="text/html" id="li-article-script">
         {{#layui.each(d.list,function(index,item){}}
         <li><button class="layui-btn new-icon w62">{{item.createTime}}</button><a target="_blank"

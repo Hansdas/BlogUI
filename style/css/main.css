@@ -73,7 +73,12 @@ body {
 .banner .cont {
     position: relative;
 }
-
+.fly-header #top{
+    margin-right: 299px;
+}
+.fly-header #top .layui-nav-item{
+    margin-top: 0px !important
+}
 .banner .title {
     color: #fff;
     position: absolute;
@@ -431,7 +436,7 @@ form input[type=checkbox] {
     background: #ff7f21;
 }
 
-.content .review-version .list-cont .cont {
+.content .review-version .list-cont  {
     width: 100%
 }
 
@@ -439,16 +444,17 @@ form input[type=checkbox] {
     border-bottom: 0;
 }
 
-.content .review-version .list-cont .cont .text {
+.content .review-version .list-cont  .text {
     line-height: 22px;
     color: #333;
+    margin-top: 16px;
 }
 
-.content .review-version .list-cont .cont .text .tit {
+.content .review-version .list-cont  .text .tit {
     margin-bottom: 4px;
 }
 
-.content .review-version .list-cont .cont .text .data {
+.content .review-version .list-cont  .text .data {
     float: right;
 }
 
@@ -519,6 +525,7 @@ form input[type=checkbox] {
 .detail-content .list-cont .text .text-comment .tit  {
     color: #ff7f21;
     font-size: 13px;
+    font-weight: bold;
 }
 .detail-content .list-cont .text .text-comment .p  {
     color: black;
@@ -563,16 +570,11 @@ form input[type=checkbox] {
     margin-bottom: 5px
 }
 .footer-wrap {
-    height: -17px;
-    border: none;
-    border-top: 1px dotted #ddd;
-    background-color: #fff;
+    background-color: #ddd;
 }
 
 .footer {
-    padding: 16px 0 80px 0;
-    position: relative;
-    overflow: hidden;
+    padding: 16px 0 10px 0;
     font-weight: 300;
     line-height: 24px
 }

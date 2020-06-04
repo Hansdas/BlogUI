@@ -1,11 +1,10 @@
 var allCommentList = null,loading;
 layui.config({
     base: '/style/js/'
-}).use(['element', 'jquery', 'layer', 'menu', 'laytpl', 'form', 'laypage'], function () {
-    element = layui.element, $ = layui.$, menu = layui.menu, laytpl = layui.laytpl, layer = layui.layer, laypage = layui.laypage;
+}).use(['element', 'jquery', 'layer', 'laytpl', 'form', 'laypage'], function () {
+    element = layui.element, $ = layui.$,  laytpl = layui.laytpl, layer = layui.layer, laypage = layui.laypage;
     var form = form = layui.form;
     var commentScript = document.getElementById('buildComment').innerHTML;
-    menu.init();
     var id = getSearchString('id');
     var type = getSearchString('t');   
     loadarticle(id, commentScript);
