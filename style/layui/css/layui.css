@@ -8,9 +8,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400
 }
 
-.layui-edge, .layui-header, .layui-inline, .layui-main {
-    position: relative
-}
 
 .layui-elip, .layui-form-checkbox span, .layui-form-pane .layui-form-label {
     text-overflow: ellipsis;
@@ -3500,7 +3497,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
     .layui-nav * {
-        font-size: 14px;
+        font-size: 29px;
         color: white !important
     }
 
@@ -4026,8 +4023,9 @@ body .layui-table-tips .layui-layer-content {
 
 .layui-nav .layui-badge, .layui-nav .layui-badge-dot {
     position: absolute;
-    top: 50%;
-    margin: -8px 6px 0
+    top: 68%;
+    margin: -8px 6px 0;
+    right: 23px;
 }
 
 .layui-tab-title .layui-badge, .layui-tab-title .layui-badge-dot {

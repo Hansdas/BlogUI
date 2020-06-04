@@ -5,10 +5,9 @@ layui.config({
     element = layui.element, $ = layui.$,  laytpl = layui.laytpl, layer = layui.layer, laypage = layui.laypage;
     var form = form = layui.form;
     var commentScript = document.getElementById('buildComment').innerHTML;
-    var id = getSearchString('id');
-    var type = getSearchString('t');   
+    var id = getSearchString('id');  
     loadarticle(id, commentScript);
-    loadupnext(id, type);
+    loadupnext(id);
     loadAll(id);
     var token=localStorage.getItem('token'); 
     if (token==''||token==null) {
@@ -95,9 +94,6 @@ function loadarticle(id, commentScript) {
         url: url + 'article/' + id,
         type: 'get',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -105,7 +101,8 @@ function loadarticle(id, commentScript) {
                     'createtime': response.data.createTime,
                     'articletype': response.data.articleType,
                     'content': response.data.content,
-                    'author': response.data.author
+                    'author': response.data.author,
+                    'authorAccount':response.data.authorAccount
                 };
                 $('title').html(data.title);
                 $('#authorName').html(response.data.author);
@@ -129,9 +126,6 @@ function loadarticle(id, commentScript) {
             else {
                 layer.msg('响应服务器失败', { icon: 7 });
             }
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
         },
 
     });
@@ -172,32 +166,26 @@ function loadComment(commentList, comments) {
  * @param {} id 
  * @param {*} type 
  */
-function loadupnext(id, type) {
+function loadupnext(id) {
     $.ajax({
-        url: url + 'article/context/' + id + '/' + type,
+        url: url + 'article/context/' + id,
         type: 'get',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var type = getSearchString('t');
                 $('.btn-box').empty();
                 if (response.data.beforeId > 0) {
-                    $('.btn-box').append('<a href="detail?id=' + response.data.beforeId + '&t=' + type + '" target="_parent" class="layui-btn layui-btn-primary">上一篇：' + response.data.beforeTitle + '</a>')
+                    $('.btn-box').append('<a href="detail?id=' + response.data.beforeId +'" target="_parent" class="layui-btn layui-btn-primary">上一篇：' + response.data.beforeTitle + '</a>')
                     $('.btn-box').append('</br>');
                 }
                 if (response.data.nextId > 0) {
-                    $('.btn-box').append('<a href="detail?id=' + response.data.nextId + '&t=' + type + '" target="_parent" class="layui-btn layui-btn-primary">下一篇：' + response.data.nextTitle + '</a>')
+                    $('.btn-box').append('<a href="detail?id=' + response.data.nextId +'" target="_parent" class="layui-btn layui-btn-primary">下一篇：' + response.data.nextTitle + '</a>')
                 }
             }
             else {
                 layer.msg('响应服务器失败', { icon: 7 });
             }
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
         },
 
     });
@@ -208,9 +196,6 @@ function loadAll(id) {
         url: url + 'article/all/' + id ,
         type: 'get',
         datatype: 'json',
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -226,9 +211,6 @@ function loadAll(id) {
             else {
                 layer.msg('响应服务器失败', { icon: 7 });
             }
-        },
-        complete: function (xhr) {
-            doComplete(xhr);
         },
 
     });

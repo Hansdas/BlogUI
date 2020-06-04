@@ -47,11 +47,10 @@
 
 <body>
     <div class="fixed-top">
-        <iframe frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
+        <iframe frameborder=0 width="100%"  scrolling=no marginwidth='0' marginheight='0'
             noresize="noresize" src="../master/top.html"></iframe>
     </div>
-
-        <div class="content c-bg square">
+        <div class="content c-bg square a-href">
             <div class="notice">
             </div>
             <div class="cont">
@@ -112,7 +111,7 @@
                     <div class="write white-background" style="width: 323px">
                         <div class="layui-form" style="padding:10px">
                             <div class="tip">微语
-                                <a href="" class="more" title="更多">
+                                <a href="../whisper/whisper.html" target="_blank" class="more" title="更多">
                                     <i class="layui-icon layui-icon-next">
                                     </i>
                                 </a>
@@ -159,11 +158,11 @@
             <button class="layui-btn new-icon w62" style="background:#337ab7 !important">{{item.articleType}}</button>
             {{#  } }}
             </h3>
-            <a target='_blank' href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
+            <a target='_blank'  href="../article/detail.html?id={{item.id}}">{{item.title}}</a>
         </div>
         <p>{{item.textSection}}</p>
         <div class="float-right">
-            <a href="">
+            <a href="../user/user-home.html?account={{item.authorAccount}}" target='_blank'>
                 <i class="layui-icon layui-icon-username">{{item.author}}
                 </i>
             </a>
@@ -176,7 +175,7 @@
     {{#layui.each(d.list,function(index,item){}}
     <div class="write-item">
         <div>
-            <a class="author" href="">{{item.accountName}}</a>
+            <a class="author"  href="../user/user-home.html?account={{item.account}}" target='_blank'>{{item.accountName}}</a>
             <p style="font-size:13px">：{{item.content}}</p>
         </div>
             <p class="date">{{item.createDate}}<a href="" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>

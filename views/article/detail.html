@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>正在加载中...</title>
-    <link rel="icon" href="/style/images/resizeApi.png">
+    <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=201908282045" rel="stylesheet" />
     <link href="/style/css/common.css?v=201908282045" rel="stylesheet" />
@@ -43,7 +43,7 @@
         <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
             noresize="noresize" src="../master/top.html"></iframe>
     </div>
-    <div class="content c-bg detail-content">
+    <div class="content c-bg detail-content a-href">
         <div class="cont">
             <div class="block-left block">
                 <div class="review-version white-block">
@@ -54,7 +54,7 @@
                                 <div class="title">
                                     <h3>{{d.title}}</h3>
                                     <p class="cont-info" style="">
-                                        作者：<a class="author" href="">{{d.author}}</a>
+                                        作者：<a class="author" style="color:#00a67c"  href="../user/user-home.html?account={{d.authorAccount}}" target='_blank'>{{d.author}}</a>
                                         时间：<span class="data">{{d.createtime}}</span>
                                         类别：<span class="types">{{d.articletype}}</span>
                                     </p>
@@ -141,7 +141,7 @@
     <script type="text/html" id="li-article-script">
         {{#layui.each(d.list,function(index,item){}}
         <li><button class="layui-btn new-icon w62">{{item.createTime}}</button><a target="_blank"
-            href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a></li>
+            href="../article/detail.html?id={{item.id}}">{{item.title}}</a></li>
         {{# }); }}
     </script>
     <script src="/style/layui/layui.js"></script>

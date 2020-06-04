@@ -1,4 +1,4 @@
-var articletype='';
+var articletype=0;
 layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'jquery', 'laytpl', 'layer'], function () {
@@ -6,7 +6,7 @@ layui.config({
     var total=0;
     initHot(); 
     element.on('tab(tab-article)', function(){
-        articletype=this.getAttribute('lay-id');
+        articletype=parseInt(this.getAttribute('lay-id'));
         loadarticle(1, 10,true); 
       });
     loadarticle(1, 10,true); 

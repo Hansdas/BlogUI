@@ -137,75 +137,7 @@ function setTab(cursor) {
         })
     }
     else if(cursor==2){
-        layui.use(['flow','laytpl'],function(){
-            var  flow = layui.flow,laytpl = layui.laytpl;;
-            initLoading("user-info", 20);
-            initLoading("article-file", 20);
-            $.ajax({
-                url:url+'user',
-                type:'get',
-                datatype:'json',
-                success:function(res){
-                    var script = document.getElementById('user-info-script').innerHTML;
-                    var userInfoHtml = document.getElementById('user-info');
-                    laytpl(script).render(res.data, function (html) {
-                        userInfoHtml.innerHTML = html;
-                    });
-                }
-            });
-            $.ajax({
-                url:url+'article/file',
-                type:'post',
-                datatype:'json',
-                data: {
-                    "Account": ''
-                },
-                success:function(res){
-                    var data = {
-                        'list': res.data
-                    };
-                    var script = document.getElementById('article-file-script').innerHTML;
-                    var fileHtml = document.getElementById('article-file');
-                    laytpl(script).render(data, function (html) {
-                        fileHtml.innerHTML = html;
-                    });
-                }
-            });
-            flow.load({
-                elem: '#time-axis' //流加载容器。
-                ,end:'没有更多了' 
-                ,isAuto:false
-                , done: function (page, next) { //执行下一页的回调
-                    var lis = [];
-                    $.ajax({
-                        url: url + 'whisper/page',
-                        type: 'get',
-                        datatype: 'json',
-                        data: {
-                            'pageIndex': page,
-                            'pageSize': 3,
-                        },
-                        success: function (res) {
-                            layui.each(res.data, function(index, item){
-                                lis.push('<li class="layui-timeline-item">');
-                                lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
-                                lis.push('<div class="layui-timeline-content layui-text">');
-                                lis.push('<h3 class="layui-timeline-title">'+item.createDate+'</h3>');
-                                lis.push('<div class="section">');
-                                lis.push('<p>');
-                                lis.push(item.content);
-                                lis.push('</p>');
-                                lis.push('</div>');
-                                lis.push('</div>');
-                                lis.push('</li>');
-                              });
-                            next(lis.join(''), (page*3) < res.total);
-                        }
-        
-                    });
-                }
-            });
-        })
+        loadUser();
     }
     else if (cursor == 3) {
         layui.use('table', function () {
@@ -371,9 +303,6 @@ function selectArticle() {
             'titleContain': $('#title-search').val(),
             'isDraft': $('#isdraft-search').val(),
         },
-        beforeSend: function (xhr) {
-            doBeforeSend(xhr);
-        },
         success: function (response) {
             if (response.code == '0') {
                 var data = {
@@ -392,14 +321,76 @@ function selectArticle() {
             layer.close(loading);
 
         },
-        complete: function (xhr) {
-            doComplete(xhr);
-        },
-        error: function () {
-            layer.msg('响应服务器失败', {
-                icon: 7
-            });
-            layer.close(loading);
-        }
+    })
+}
+function loadUser(){
+    layui.use(['flow','laytpl'],function(){
+        var  flow = layui.flow,laytpl = layui.laytpl;;
+        initLoading("user-info", 20);
+        initLoading("article-file", 20);
+        $.ajax({
+            url:url+'user',
+            type:'get',
+            datatype:'json',
+            success:function(res){
+                var script = document.getElementById('user-info-script').innerHTML;
+                var userInfoHtml = document.getElementById('user-info');
+                laytpl(script).render(res.data, function (html) {
+                    userInfoHtml.innerHTML = html;
+                });
+            }
+        });
+        $.ajax({
+            url:url+'article/file',
+            type:'post',
+            datatype:'json',
+            data: {
+                "Account": ''
+            },
+            success:function(res){
+                var data = {
+                    'list': res.data
+                };
+                var script = document.getElementById('article-file-script').innerHTML;
+                var fileHtml = document.getElementById('article-file');
+                laytpl(script).render(data, function (html) {
+                    fileHtml.innerHTML = html;
+                });
+            }
+        });
+        flow.load({
+            elem: '#time-axis' //流加载容器。
+            ,end:'没有更多了' 
+            ,isAuto:false
+            , done: function (page, next) { //执行下一页的回调
+                var lis = [];
+                $.ajax({
+                    url: url + 'whisper/page',
+                    type: 'get',
+                    datatype: 'json',
+                    data: {
+                        'pageIndex': page,
+                        'pageSize': 3,
+                    },
+                    success: function (res) {
+                        layui.each(res.data, function(index, item){
+                            lis.push('<li class="layui-timeline-item">');
+                            lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
+                            lis.push('<div class="layui-timeline-content layui-text">');
+                            lis.push('<h3 class="layui-timeline-title">'+item.createDate+'</h3>');
+                            lis.push('<div class="section">');
+                            lis.push('<p>');
+                            lis.push(item.content);
+                            lis.push('</p>');
+                            lis.push('</div>');
+                            lis.push('</div>');
+                            lis.push('</li>');
+                          });
+                        next(lis.join(''), (page*3) < res.total);
+                    }
+    
+                });
+            }
+        });
     })
 }

@@ -79,6 +79,32 @@ body {
 .fly-header #top .layui-nav-item{
     margin-top: 0px !important
 }
+.fly-header #top ul{
+    margin-top: 13px;
+    display: inline-flex;
+}
+.fly-header #top ul li{
+   margin-right: 19px
+}
+.fly-header #top ul .notice {
+    color: red !important;
+    font-size: 12px;
+    top: 21px;
+    position: absolute;
+    left: 7px;
+    font-weight: bolder;
+}
+.fly-header #top ul img {
+    height: 40px;
+    border-radius: 53px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 0 8px;
+    background: #FBFBFB;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    width: 40px;
+    position: absolute;
+    top: 0px;
+}
 .banner .title {
     color: #fff;
     position: absolute;
@@ -199,7 +225,6 @@ form input[type=checkbox] {
 
 .content .cont .title a {
     font-size: 15px;
-    color: #000 !important;
 }
 
 .content .cont form {
@@ -408,7 +433,6 @@ form input[type=checkbox] {
 
 .content .review-version {
     padding: 20px;
-    border-top: 1px dashed #dddddd;
 }
 
 .content .review-version img {
@@ -480,7 +504,6 @@ form input[type=checkbox] {
 
 .detail-content .white-block .form-box .title a {
     font-size: 12px;
-    color: #00a67c !important;
 }
 
 .detail-content .white-block .form-box .title .types {
@@ -987,10 +1010,10 @@ form input[type=checkbox] {
     border: 1px solid chocolate !important;
 }
 .pro-main {
-    width: 1170px;
-    margin-left: 182px;
+    width: 1192px;
+    margin-left: 132px;
     min-height: 800px;
-    padding-top: 79px;
+    padding-top: 91px;
     display: inline-flex;
     background: white;
     padding-left: 15px;
@@ -1588,4 +1611,103 @@ form input[type=checkbox] {
     top: 0;
     width: 100%;
     z-index: 1;
+}
+.fixed-top  iframe{
+    height: 78px;
+}
+
+.user-home .home .layui-elem-field  {
+    margin-top: 50px
+}
+.user-home .home .layui-elem-field  {
+    margin-bottom: 0px !important
+}
+.user-home .home .layui-elem-field  legend {
+    margin-left: 41% !important
+}
+.user-home .home .layui-elem-field img {
+    height: 85px;
+    border-radius: 53px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 0 8px;
+    background: #FBFBFB;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    padding: 5px;
+}
+.user-home .home .layui-elem-field .name{
+    border-bottom: 2px solid #00a67c;
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    color: chocolate;
+}
+.user-home .home .bi-t{
+    height: 39px;
+    border-left: 1px solid #e9e9e9;
+    border-right: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    background: #F2F2F2;
+    line-height: 40px;
+    padding-left: 9px;
+    color: #00a67c;
+    font-weight: bold;
+    font-size: 15px
+}
+.user-home .home .bg {
+    padding: 20px;
+    font-size: 14px;
+    color: #8a89a5;
+    line-height: 24px;
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+.user-home .home  .bg .bg-li {
+    display: inline-block;
+    width: 100%;
+}
+
+.user-home .home  .bg .bg-li .p-title {
+    font-weight: bold;
+    float: left;
+    color: #000
+}
+
+.user-home .home .bg .bg-li .p-content {
+    margin-left: 41px;
+    color: #333
+}
+.user-home .home  .bg #article-file {
+    display:inline-flex;
+    margin-left: 68px
+}
+.user-home .home  .bg #article-file li {
+    float: left;
+    width: auto;
+    line-height: 74px;
+    height: 74px;
+    margin-right: 19px;
+    background: aqua;
+    padding-left: 12px;
+    border: 1px solid #dfaaaa;
+    border-radius: 3px;
+}
+.user-home .home  .bg a {
+    color: white;
+}
+.user-home .layui-timeline .layui-timeline-title {
+    color: #ff7f21;
+    font-size: 13px;
+    font-family: fantasy;
+}
+.user-home .layui-timeline .section {
+    background: antiquewhite;
+    width: 98%;
+    padding: 4px 1px 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+.user-home .layui-timeline .layui-timeline-item p {
+    font-size: 12px;
 }

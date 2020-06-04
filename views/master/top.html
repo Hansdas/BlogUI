@@ -16,6 +16,7 @@
         .layui-nav-child a {
             color: #333 !important
         }
+
     </style>
 </head>
 
@@ -33,24 +34,38 @@
                     <a href="../home/about.html" target="_top">关于</a>
                 </div>
             </div>
-            <ul id="top" class="layui-nav layui-layout-right">
-                <div id="nologin" style="padding:18px;display: none;"><a
-                        href="../login/login.html" target="_top"><i class="layui-icon layui-icon-username"></i>登录</a></div>
-                <div id="user" style="display: none">
-                    <li class="layui-nav-item"><a href="../user/profile.html?tab=4"> 我的消息<span
-                                class="layui-badge"></span></a></li>
-                    <li class="layui-nav-item" lay-unselect="">
-                        <a href="javascript:;"><img id="photo" class="layui-nav-img"></a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="../user/profile.html?tab=1">个人资料</a></dd>
-                            <dd><button class="layui-btn layui-btn-primary" onclick="loginOut()"
-                                    style="color: #555 !important">退出</button></dd>
-                        </dl>
-                    </li>
+            <div id="top" class="layui-nav layui-layout-right">
+                <div id="nologin" style="padding:18px;display: none;">
+                    <a href="../login/login.html" target="_top"><i class="layui-icon layui-icon-username"></i>登录</a>
                 </div>
+                <div id="user" class="layui-form" style="display: none">
+                    <ul>
+                        <li title="消息">
+                            <a href="../user/profile.html?tab=4" target="_top">
+                                <i class="layui-icon layui-icon-notice">
+                                </i> 
+                                <span class="notice"></span>
+                            </a>
+                        </li> 
+                        <li title="个人资料">
+                            <a href="../user/profile.html?tab=4" target="_top">
+                                <i class="layui-icon layui-icon-home">
+                                </i> 
+                            </a>
+                        </li>       
+                        <li title="退出登录">
+                            <a href="../user/profile.html?tab=4" target="_top">
+                                <i class="layui-icon layui-icon-right">
+                                </i> 
+                            </a>
+                        </li>  
+                        <li>
+                            <img id="photo">
+                        </li>                            
+                    </ul>
+                </div>
+            </div>
         </div>
-        </ul>
-    </div>
     </div>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
@@ -58,12 +73,12 @@
     <script src="/style/js/util.js"></script>
     <script src="/style/js/signalr.js"></script>
     <script>
-        layui.use(['element', 'layer'], function () {
-            var date=new Date();
+        layui.use(['element','form', 'layer'], function () {
+            var date = new Date();
             var element = layui.element;
-            element.render('nav');       
-            var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
-            connection.on('InvokeSomeConnectionMessage',function(message){
+            element.render('nav');
+            var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
+            connection.on('InvokeSomeConnectionMessage', function (message) {
                 $('.layui-badge').html(message.data);
                 $('.layui-badge').addClass('blink');
             });
@@ -75,16 +90,15 @@
                     if (response.code == '1') {
                         $("#nologin").show();
                         $("#user").hide();
-                    }
-                    else {
+                    } else {
                         $("#nologin").hide();
                         $("#user").show();
                         if (response.data.headPhoto == "") {
                             $("#photo").attr('src', '/style/images/weixi.jpg');
-                        }
-                        else {
+                        } else {
                             $("#photo").attr('src', response.data.headPhoto);
                         }
+                        
                         connection.start().then(function () {
                             connection.invoke('SetConnectionMaps', response.data.account);
                         })
@@ -96,7 +110,7 @@
                 type: 'get',
                 dataType: 'text',
                 success: function (response) {
-                    $('.layui-badge').html(response);
+                    $('.notice').html(response);
                 },
             });
         });
