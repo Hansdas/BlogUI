@@ -11,11 +11,11 @@
 .layui-bg-black img{
     margin: 7px 0px 0 -42px;
 }
-#console{
+/* #console{
     background-image: url("../images/background.jpg");
     background-attachment: fixed;
     background-size:cover
-}
+} */
 #iframe-footer{
     height: 100px;
 }
@@ -132,9 +132,6 @@
         margin-left: 442px
     } */
 }
-#LAY_layedit_1 {
-    height: 400px !important
-}
 
 .layui-form-checkbox[lay-skin=primary] span {
     color: black;
@@ -163,9 +160,6 @@
 .add-chechbox {
     margin-left: -10px;
     margin-bottom: 12px
-}
-.layui-container {
-    width: 1406px !important
 }
 
 .layui-layedit-tool .layui-colorpicker-xs {

@@ -341,12 +341,9 @@ function loadUser(){
             }
         });
         $.ajax({
-            url:url+'article/file',
-            type:'post',
+            url:url+'user/article/archive',
+            type:'get',
             datatype:'json',
-            data: {
-                "Account": ''
-            },
             success:function(res){
                 var data = {
                     'list': res.data

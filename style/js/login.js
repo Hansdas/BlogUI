@@ -29,7 +29,7 @@ layui.use(["form"], function () {
 	})
 })
 
-function loginOut()
+function loginout()
 {
 	var token=localStorage.getItem('token');
 	$.ajax({

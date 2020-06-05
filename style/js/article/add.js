@@ -32,32 +32,32 @@ layui.use(['form', 'layer', 'layedit'], function () {
                 }
             }
         },
-        uploadVideo: {
-            url: '',
-            accept: 'video',
-            acceptMime: 'video/*',
-            exts: 'mp4|flv|avi|rm|rmvb',
-            size: 1024 * 10 * 2,
-            done: function (data) {
-                console.log(data);
-            }
-        },
-        uploadFiles: {
-            url: '',
-            accept: 'file',
-            acceptMime: 'file/*',
-            size: '20480',
-            autoInsert: true, //自动插入编辑器设置
-            done: function (data) {
-                console.log(data);
-            }
-        }
+        // uploadVideo: {
+        //     url: '',
+        //     accept: 'video',
+        //     acceptMime: 'video/*',
+        //     exts: 'mp4|flv|avi|rm|rmvb',
+        //     size: 1024 * 10 * 2,
+        //     done: function (data) {
+        //         console.log(data);
+        //     }
+        // },
+        // uploadFiles: {
+        //     url: '',
+        //     accept: 'file',
+        //     acceptMime: 'file/*',
+        //     size: '20480',
+        //     autoInsert: true, //自动插入编辑器设置
+        //     done: function (data) {
+        //         console.log(data);
+        //     }
+        // }
         //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
         //传递参数：
         //图片： imgpath --图片路径
         //视频： filepath --视频路径 imgpath --封面路径
         //附件： filepath --附件路径
-        ,
+        //,
         calldel: {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
             url: url + 'upload/deletefile',
@@ -88,7 +88,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
             class: 'layui-code' //默认样式
         },
         tool: [
-            'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'removeformat', 'fontFomatt', 'fontfamily', 'fontSize', 'fontBackColor', 'colorpicker', 'face', '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', 'video', 'attachment', '|', 'table', 'fullScreen'
+            'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'removeformat', 'fontFomatt', 'fontfamily', 'fontSize', 'fontBackColor', 'colorpicker', 'face', '|', 'left', 'center', 'right', '|', 'link', 'unlink', 'image_alt', '|', 'table', 'fullScreen'
         ],
         height: '500px'
     });

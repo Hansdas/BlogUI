@@ -33,16 +33,16 @@
         <div class="left">
             <ul class="layui-nav layui-nav-tree layui-inline" style="height: 506px;background-color: #393D49;">
                 <li class="layui-nav-item" id="nav_1" onclick="setTab(1)">
-                    <a href="javascript:;" style="font-size: 17px">个人中心</a>
+                    <a href="javascript:;" style="font-size: 14px">个人中心</a>
                 </li>
                 <li class="layui-nav-item" id="nav_2" onclick="setTab(2)">
-                    <a href="javascript:;" style="font-size: 17px">我的主页</a>
+                    <a href="javascript:;" style="font-size: 14px">我的主页</a>
                 </li>
                 <li class="layui-nav-item" id="nav_3" onclick="setTab(3)">
-                    <a href="javascript:;" style="font-size: 17px">我的发布</a>
+                    <a href="javascript:;" style="font-size: 14px">我的发布</a>
                 </li>
                 <li class="layui-nav-item" id="nav_4" onclick="setTab(4)">
-                    <a href="javascript:;" style="font-size: 17px">我的消息</a>
+                    <a href="javascript:;" style="font-size: 14px">我的消息</a>
                 </li>
             </ul>
         </div>
@@ -277,23 +277,23 @@
             {{# layui.each(d.list,function(index,item){}}
             {{#  if(item.articleType==1){ }}
             <li style="background-color: #01AAED"><a
-                    href="../article/archive.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
             </li>
             {{# } else if(item.articleType==2){ }}
             <li style="background-color: #f8c555"><a
-                    href="../article/archive.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
             </li>
             {{# } else if(item.articleType==3){ }}
             <li style="background-color: #FF5722"><a
-                    href="../article/archive.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
             </li>
             {{# } else if(item.articleType==4){ }}
             <li style="background-color: #cc99cd"><a
-                    href="../article/archive.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
             </li>
             {{# } else { }}
             <li style="background-color: #337ab7"><a
-                    href="../article/archive.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
             </li>
             {{#  } }}
             {{# });}}

@@ -89,7 +89,7 @@ body {
 .fly-header #top ul .notice {
     color: red !important;
     font-size: 12px;
-    top: 21px;
+    top: 23px;
     position: absolute;
     left: 7px;
     font-weight: bolder;
@@ -1616,8 +1616,10 @@ form input[type=checkbox] {
     height: 78px;
 }
 
-.user-home .home .layui-elem-field  {
-    margin-top: 50px
+.user-home .home .user .layui-elem-field  {
+    margin-top: 50px;
+    width: 1187px;
+    margin-left: 0px;
 }
 .user-home .home .layui-elem-field  {
     margin-bottom: 0px !important

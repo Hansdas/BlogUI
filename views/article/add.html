@@ -4,17 +4,12 @@
 <head>
     <meta name="viewport" content="width = device-width" />
     <title>写一写</title>
-    <link rel="icon" href="/style/images/resizeApi.png">
+    <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css?201908072009" rel="stylesheet" />
     <link href="/style/css/main.css?v=201922262" rel="stylesheet" />
     <link href="/style/css/layout.css?v=201908072011" rel="stylesheet" />
     <link href="/style/css/common.css?v=201908072040" rel="stylesheet" />
-    <link href="/style/css/global.css?v=1" rel="stylesheet" />
     <style>
-        .layui-container {
-            width: 1406px !important
-        }
-
         .layui-layedit-tool .layui-colorpicker-xs {
             border: 0;
         }
@@ -22,24 +17,22 @@
         .layui-layedit-tool .layui-colorpicker-trigger-span i {
             display: none !important;
         }
+        .layui-form-pane{
+            padding-left: 24px;
+          padding-right: 24px;
+        }
+        #LAY_layedit_1 {
+    height: 449px !important
+}
     </style>
 </head>
 
-<body class="marginTop">
-    <div class="fly-header layui-bg-black">
-        <div class="layui-header">
-            <img style="margin: -20px 0 0 155px" src="/style/images/logo.png">
-            <div class="header-menu">
-                <div class="nav">
-                    <a href="../home/index?pagepath=article">文章</a>
-                    <a href="javascript:;">微语</a>
-                    <a href="about.html">关于</a>
-                </div>
-            </div>
-        </div>
+<body>
+    <div class="fixed-top">
+        <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
+            noresize="noresize" src="../master/top.html"></iframe>
     </div>
-    <div class="layui-container fly-marginTop" style="padding-top: 33px;">
-        <div class="fly-panel" pad20 style="padding-top: 5px;">
+        <div class="content" style="padding-top: 59px !important;">
             <div class="layui-form layui-form-pane">
                 <div class="layui-tab layui-tab-brief" lay-filter="user">
                     <ul class="layui-tab-title">
@@ -47,7 +40,6 @@
                         <li> <button type="button" class="layui-btn-primary layui-btn" data-method="notice"
                                 data-type="content">预览</button></li>
                     </ul>
-
                     <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                         <div class="layui-tab-item layui-show">
                             <form action="" class="layui-form" lay-filter="articleInfo">
@@ -79,9 +71,9 @@
                                     <input type="checkbox" name="" title="有人评论时邮箱通知我" lay-skin="primary" checked>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn" lay-filter="save" data-type="save"
+                                    <button class="layui-btn layui-btn-sm" lay-filter="save" data-type="save"
                                         lay-submit>存为草稿</button>
-                                    <button class="layui-btn" lay-filter="publish" data-type="publish"
+                                    <button class="layui-btn layui-btn-sm" lay-filter="publish" data-type="publish"
                                         lay-submit>立即发布</button>
                                 </div>
                             </form>
@@ -90,7 +82,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
     noresize="noresize" src="../master/footer.html"></iframe>
     <script src="/style/js/jquery.js"></script>
