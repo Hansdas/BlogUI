@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <title>加载中...</title>
+    <link rel="icon" href="/style/images/title.png">
+    <link href="/style/layui/css/layui.css?201908072009" rel="stylesheet" />
+    <link href="/style/css/main.css?v=201922262" rel="stylesheet" />
+    <link href="/style/css/common.css?v=201908072040" rel="stylesheet" />
+    <link href="/style/css/loading.css" rel="stylesheet" />
+    <style>
+        .layui-table-tool-self {
+            display: none;
+        }
+
+        .layui-tab-brief {}
+
+        .pro-main .home .bg a :hover {
+            color: #fff !important;
+        }
+
+        .block-right {
+            margin-top: 0 !important;
+            background: white;
+            width: 886px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed-top">
+        <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
+            noresize="noresize" src="../master/top.html"></iframe>
+    </div>
+    <div class="user-home c-bg content a-href">
+        <div class="cont">
+            <div class="block-left" style="min-height: 760px !important;width: 257px;background: white;">
+                <div class="home">
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <fieldset class="layui-elem-field">
+                                <legend style="margin-left: 28% !important"><img src="/style/images/touxiang.jpg">
+                                </legend>
+                                <ul class="archive" id="article-file">
+                                    <li><a href="">散文礼记（8）</a></li>
+                                    <li><a href="">韶华追忆（1）</a></li>
+                                    <li><a href="">编程世界（0）</a></li>
+                                    <li><a href="">娱乐竞技（4）</a></li>
+                                    <li><a href="">趣味百态（2）</a></li>
+                                </ul>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-right">
+                <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="0">散文礼记</li>
+                    </ul>
+                </div>
+                <div class="list-item box-left">
+                    <div id="pageLoading"></div>
+                    <!--输出的视图-->
+                    <div id="article-item-id"></div>
+                    <div id="page" style="text-align: center;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
+        noresize="noresize" src="../master/footer.html"></iframe>
+    <!--渲染的模板-->
+    <script type="text/html" id="user-info-script">
+            <div class="bg-li">
+                <p class="p-title">昵称：</p>
+                <p class="p-content">{{d.username}}</p>
+            </div>
+            <div class="bg-li">
+                <p class="p-title">出生：</p>
+                <p class="p-content">{{d.birthDate}}</p>
+            </div>
+            <div class="bg-li">
+                <p class="p-title">性别：</p>
+                <p class="p-content">
+                    {{#  if(d.sex=='男'){ }}
+                    <i class="layui-icon layui-icon-male" style=" color: #1E9FFF;"></i>
+                    {{#  } else{ }}
+                    <i class="layui-icon layui-icon-female" style=" color: #1E9FFF;"></i>
+                    {{#  } }}
+                </p>
+            </div>
+            <div class="bg-li">
+                <p class="p-title">邮箱：</p>
+                <p class="p-content">{{d.email}}</p>
+            </div>
+            <div class="bg-li">
+                <p class="p-title">签名：</p>
+                <p class="p-content">{{d.sign}}</p>
+            </div>
+        </script>
+    <script type="text/html" id="article-file-script">
+            {{# layui.each(d.list,function(index,item){}}
+            {{#  if(item.articleType==1){ }}
+            <li style="background-color: #01AAED"><a
+                    href="../article/detail.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+            </li>
+            {{# } else if(item.articleType==2){ }}
+            <li style="background-color: #f8c555"><a
+                    href="../article/detail.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+            </li>
+            {{# } else if(item.articleType==3){ }}
+            <li style="background-color: #FF5722"><a
+                    href="../article/detail.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+            </li>
+            {{# } else if(item.articleType==4){ }}
+            <li style="background-color: #cc99cd"><a
+                    href="../article/detail.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+            </li>
+            {{# } else { }}
+            <li style="background-color: #337ab7"><a
+                    href="../article/detail.html?type={{item.articleType}}&from=home">{{item.articleTypeName}}（{{item.total}}）</a>
+            </li>
+            {{#  } }}
+            {{# });}}
+        </script>
+    <script src="/style/js/jquery.js"></script>
+    <script src="/style/layui/layui.js"></script>
+    <script src="/style/js/request.js"></script>
+    <script src="/style/js/util.js"></script>
+    <script>
+        layui.use(['flow', 'laytpl'], function () {
+            var flow = layui.flow, laytpl = layui.laytpl;;
+            var account = getSearchString('account');
+            $.ajax({
+                url: url + 'user/' + account,
+                type: 'get',
+                datatype: 'json',
+                success: function (res) {
+                    var script = document.getElementById('user-info-script').innerHTML;
+                    var userInfoHtml = document.getElementById('user-info');
+                    laytpl(script).render(res.data, function (html) {
+                        userInfoHtml.innerHTML = html;
+                    });
+                    $('title').html(res.data.username + '的主页');
+                }
+            });
+            $.ajax({
+                url: url + 'article/file',
+                type: 'post',
+                datatype: 'json',
+                data: {
+                    "Account": account
+                },
+                success: function (res) {
+                    var data = {
+                        'list': res.data
+                    };
+                    var script = document.getElementById('article-file-script').innerHTML;
+                    var fileHtml = document.getElementById('article-file');
+                    laytpl(script).render(data, function (html) {
+                        fileHtml.innerHTML = html;
+                    });
+                }
+            });
+            flow.load({
+                elem: '#time-axis' //流加载容器。
+                , end: '没有更多了'
+                , isAuto: false
+                , done: function (page, next) { //执行下一页的回调
+                    var lis = [];
+                    $.ajax({
+                        url: url + 'whisper/page',
+                        type: 'get',
+                        datatype: 'json',
+                        data: {
+                            'pageIndex': page,
+                            'pageSize': 3,
+                        },
+                        success: function (res) {
+                            layui.each(res.data, function (index, item) {
+                                lis.push('<li class="layui-timeline-item">');
+                                lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
+                                lis.push('<div class="layui-timeline-content layui-text">');
+                                lis.push('<h3 class="layui-timeline-title">' + item.createDate + '</h3>');
+                                lis.push('<div class="section">');
+                                lis.push('<p>');
+                                lis.push(item.content);
+                                lis.push('</p>');
+                                lis.push('</div>');
+                                lis.push('</div>');
+                                lis.push('</li>');
+                            });
+                            next(lis.join(''), (page * 3) < res.total);
+                        }
+
+                    });
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

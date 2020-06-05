@@ -213,3 +213,13 @@
     font-size: 14px;
     font-weight: bold;
 }
+.archive {
+    line-height: 27px;
+    margin-left: 18px;
+}
+
+.archive li{
+    list-style: inside;
+    font-size: 13px;
+    font-weight: 600;
+}

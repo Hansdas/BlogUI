@@ -35,6 +35,17 @@
             font-weight: bold;
             margin: 20px 0 10px;
         }
+
+        ul {
+            line-height: 27px;
+            margin-left: 18px;
+        }
+
+        li {
+            list-style: inside;
+            font-size: 13px;
+            font-weight: 600;
+        }
     </style>
 </head>
 
@@ -91,7 +102,7 @@
                     </div>
                     <div class="list-cont">
 
-                        <div  id="comment-item">
+                        <div id="comment-item">
                             <script type="text/html" id="buildComment">
                                 {{# layui.each(d.list,function(index,item){}}
                                 <div class="text">
@@ -125,10 +136,17 @@
                         <legend><img src="/style/images/touxiang.jpg"></legend>
                         <div class="layui-field-box">
                             <div class="name" id="authorName"></div>
-                                <!--输出的视图-->
-                                <ul class="a-li" id="li-article">
-                                    <div id="liLoading"></div>
-                                </ul>
+                            <ul class="archive" id="article-file">
+                                <li><a href="../article/archive.html" target="_blank">散文礼记（8）</a></li>
+                                <li><a href="../article/archive.html" target="_blank">韶华追忆（1）</a></li>
+                                <li><a href="../article/archive.html" target="_blank">编程世界（0）</a></li>
+                                <li><a href="../article/archive.html" target="_blank">娱乐竞技（4）</a></li>
+                                <li><a href="../article/archive.html" target="_blank">趣味百态（2）</a></li>
+                            </ul>
+                            <!--输出的视图-->
+                            <ul class="a-li" id="li-article">
+                                <div id="liLoading"></div>
+                            </ul>
                         </div>
                     </fieldset>
                 </div>
@@ -137,7 +155,7 @@
         </div>
     </div>
     <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
-    noresize="noresize" src="../master/footer.html"></iframe>
+        noresize="noresize" src="../master/footer.html"></iframe>
     <script type="text/html" id="li-article-script">
         {{#layui.each(d.list,function(index,item){}}
         <li><button class="layui-btn new-icon w62">{{item.createTime}}</button><a target="_blank"
