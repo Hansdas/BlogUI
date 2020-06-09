@@ -18,8 +18,8 @@ layui.config({
     deptObjs[0].style.fontSize = "12px";
     deptObjs[0].style.padding = "4px";
     deptObjs[0].style.background = "white";
-    initLoading("news-ul", 50);
-    initLoading("article-item", 30);
+    initLoading("news-ul",0, 374);
+    initLoading("article-item",0, 374);
     loadarticle();
     loadWhisper(0, 5);
     var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
@@ -102,7 +102,7 @@ function loadarticle() {
 }
 
 function loadWhisper(index, top) {
-    initLoading("whisper-item", 30);
+    initLoading("whisper-item", 0,89);
     $.ajax({
         url: url + 'whisper/square',
         type: 'get',
@@ -134,5 +134,19 @@ function bindWhisper(data) {
     var listHtml = document.getElementById('whisper-item');
     laytpl(script).render(data, function (html) {
         listHtml.innerHTML = html;
+    });
+}
+function review(id){
+    layer.open({
+        title: '留言',
+        type: 2,
+        area: ['700px', '500px'],
+        content: '../whisper/review.html?id='+id,
+        success: function (layero, index) {
+            var body = layer.getChildFrame('body', index);
+            //var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+            body.find('#articleId').val(id)
+            body.find('#postReviceUser').val(guid)
+        }
     });
 }

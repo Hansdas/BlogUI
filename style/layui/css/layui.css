@@ -789,7 +789,8 @@ a {
 
 .layui-header {
     z-index: 1000;
-    height: 66px
+    height: 66px;
+    display: flex
 }
 
     .layui-header a:hover {
@@ -1719,9 +1720,10 @@ a {
 }
 
 .layui-bg-black {
-    background-color: #796c79 !important;
-    position:fixed;
-    width: 100%
+    background-color: #4a4a4a !important;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 2px 6px 0 #531325;
 }
 
 

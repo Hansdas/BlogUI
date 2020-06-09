@@ -35,9 +35,9 @@ function setIframeHeight(iframeId) {
 		})(that);
 	});
 };
-function initLoading(htmlId,top){
-	var loading="<div style='margin-top:"+top+"px' class='loading'><span></span><span></span><span></span><span></span><span></span></div>"
-	$('#'+htmlId).append(loading)	
+function initLoading(htmlId,top,left){
+	var loading='<img class="loading" style="height: 72px;width: 123px;margin-top:'+top+'px;margin-left: '+left+'px;" src="/style/images/laoding.jpg" >'
+$('#'+htmlId).append(loading)	
 }
 function closeLoading(htmlId){
 	$('#'+htmlId+' .loading').hide()	

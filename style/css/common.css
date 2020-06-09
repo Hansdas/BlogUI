@@ -20,9 +20,10 @@
     height: 100px;
 }
 .c-bg{
-    background-image: url("../images/background.jpg");
+    /* background-image: url("../images/background.jpg");
     background-attachment: fixed;
-    background-size:cover
+    background-size:cover */
+    background: #fffbf0
 }
 .header-menu a:hover {
     color: #fff !important;

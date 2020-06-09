@@ -45,21 +45,18 @@
     </style>
 </head>
 
-<body>
-    <div class="fixed-top">
-        <iframe frameborder=0 width="100%"  scrolling=no marginwidth='0' marginheight='0'
-            noresize="noresize" src="../master/top.html"></iframe>
-    </div>
-        <div class="content c-bg square a-href">
-            <div class="notice">
-            </div>
-            <div class="cont">
-                <div class="left">
-                    <div class="news-top">
-                        <div class="news-box">
-                            <div class="tip">最新新闻</div>
-                            <ul id="news-ul">
-                                <!-- <li>
+<div class="fixed-top">
+    <iframe frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
+        src="../master/top.html"></iframe>
+</div>
+<div class="content c-bg square a-href">
+    <div class="cont">
+        <div class="left">
+            <div class="news-top">
+                <div class="news-box">
+                    <div class="tip">最新新闻</div>
+                    <ul id="news-ul">
+                        <!-- <li>
                             <span class="num">1</span>
                             <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
                             <div class="news-right">
@@ -99,66 +96,66 @@
                                 </a>
                             </div>
                         </li> -->
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="articles">
-                        <div class="tip">最新文章分类</div>
-                        <div id="article-item"></div>
-                    </div>
+                    </ul>
                 </div>
-                <div class="block-right">
-                    <div class="write white-background" style="width: 323px">
-                        <div class="layui-form" style="padding:10px">
-                            <div class="tip">微语
-                                <a href="../whisper/whisper.html" target="_blank" class="more" title="更多">
-                                    <i class="layui-icon layui-icon-next">
-                                    </i>
-                                </a>
-                            </div>
-                            <textarea id="L_content" lay-verify="content" class="layui-textarea"></textarea>
-                            <button class="layui-btn" title="发表" data-type="addWhisper"><i
-                                    class="layui-icon layui-icon-release"></i></button>
-                            <div id="whisper-item" style="min-height:67px">
-                            </div>
-                            <div class="layui-flow-more">
-                                <a href="javascript:;" onclick="loadMore()"><cite>加载更多</cite></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top:14px">
-                        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=1054&cps_key=e6d8f70d8241076117ae9d4a891fe3ab&from=console"
-                            target="_blank">
-                            <img src="/style/images/tengxunyun.jpg" style="width: 324px">
+            </div>
+            <div class="articles">
+                <div class="tip">最新文章分类</div>
+                <div id="article-item"></div>
+            </div>
+        </div>
+        <div class="block-right">
+            <div class="write white-background" style="width: 323px">
+                <div class="layui-form" style="padding:10px">
+                    <div class="tip">微语
+                        <a href="../whisper/whisper.html" target="_blank" class="more" title="更多">
+                            <i class="layui-icon layui-icon-next">
+                            </i>
                         </a>
+                    </div>
+                    <textarea id="L_content" lay-verify="content" class="layui-textarea"></textarea>
+                    <button class="layui-btn" title="发表" data-type="addWhisper"><i
+                            class="layui-icon layui-icon-release"></i></button>
+                    <div id="whisper-item" style="min-height:67px">
+                    </div>
+                    <div class="layui-flow-more">
+                        <a href="javascript:;" onclick="loadMore()"><cite>加载更多</cite></a>
                     </div>
                 </div>
             </div>
+            <div style="margin-top:14px">
+                <a href="https://cloud.tencent.com/act/cps/redirect?redirect=1054&cps_key=e6d8f70d8241076117ae9d4a891fe3ab&from=console"
+                    target="_blank">
+                    <img src="/style/images/tengxunyun.jpg" style="width: 324px">
+                </a>
+            </div>
         </div>
-        <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
-        noresize="noresize" src="../master/footer.html"></iframe>
-    <!--渲染的模板-->
-    <script type="text/html" id="new-article">
+    </div>
+</div>
+<iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
+    src="../master/footer.html"></iframe>
+<!--渲染的模板-->
+<script type="text/html" id="new-article">
     {{#layui.each(d.list,function(index,item){}}
     <div class="box">
         <div>
             {{#  if(item.articleType=='散文礼记'){ }}
             <button class="layui-btn new-icon w62">{{item.articleType}}</button>
             {{#  } }}
-            {{#  if(item.articleType=='旅游杂记'){ }}
+            {{#  if(item.articleType=='韶华追忆'){ }}
             <button class="layui-btn new-icon w62" style="background:#FF5722 !important">{{item.articleType}}</button>
             {{#  } }}
             {{#  if(item.articleType=='编程世界'){ }}
             <button class="layui-btn new-icon w62" style="background:#f8c555 !important">{{item.articleType}}</button>
             {{#  } }}
-            {{#  if(item.articleType=='游戏人生'){ }}
+            {{#  if(item.articleType=='娱乐竞技'){ }}
             <button class="layui-btn new-icon w62" style="background:#cc99cd !important">{{item.articleType}}</button>
             {{#  } }}
-            {{#  if(item.articleType=='趣味杂记'){ }}
+            {{#  if(item.articleType=='趣味百态'){ }}
             <button class="layui-btn new-icon w62" style="background:#337ab7 !important">{{item.articleType}}</button>
             {{#  } }}
             </h3>
-            <a target='_blank'  href="../article/detail.html?id={{item.id}}">{{item.title}}</a>
+            <a target='_blank' href="../article/detail.html?id={{item.id}}">{{item.title}}</a>
         </div>
         <p>{{item.textSection}}</p>
         <div class="float-right">
@@ -171,22 +168,25 @@
     </div>
     {{# }); }}
 </script>
-    <script type="text/html" id="new-whisper">
+<script type="text/html" id="new-whisper">
     {{#layui.each(d.list,function(index,item){}}
     <div class="write-item">
         <div>
-            <a class="author"  href="../user/user-home.html?account={{item.account}}" target='_blank'>{{item.accountName}}</a>
+            <a class="author" href="../user/user-home.html?account={{item.account}}"
+                target='_blank'>{{item.accountName}}</a>
             <p style="font-size:13px">：{{item.content}}</p>
         </div>
-            <p class="date">{{item.createDate}}<a href="" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>
+        <p class="date">{{item.createDate}}
+            <a href="javascript:;" onclick="review({{item.id}})" style="color: #9b9b9b !important;margin-left:10px">留言({{item.commentCount}})
+            </a>
+        </p>
     </div>
     <hr>
     {{# }); }}
 </script>
-    <script src="/style/js/jquery.js"></script>
-    <script src="/style/layui/layui.js?v=202005271028"></script>
-    <script src="/style/js/request.js?v=202005271028"></script>
-    <script src="/style/js/util.js??v=202005282241"></script>
-    <script src="/style/js/signalr.js"></script>
-    <script src="/style/js/square.js?v=202005282241"></script>
-</body>
+<script src="/style/js/jquery.js"></script>
+<script src="/style/layui/layui.js?v=202005271028"></script>
+<script src="/style/js/request.js?v=202005271028"></script>
+<script src="/style/js/util.js??v=202005282241"></script>
+<script src="/style/js/signalr.js"></script>
+<script src="/style/js/square.js?v=202005282241"></script>

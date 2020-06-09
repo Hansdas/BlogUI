@@ -16,7 +16,7 @@ layui.use(["form"], function () {
 			success: function (response) {
 				if (response.code == "0") {
 					localStorage.setItem("token", response.data);
-					window.location.href = "../home/index.html";
+					window.location.href = "../home/square.html";
 			
 				}
 				else {
