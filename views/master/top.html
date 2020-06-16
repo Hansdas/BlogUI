@@ -28,18 +28,18 @@
             </a>
             <div class="header-menu">
                 <div class="nav">
-                    <a href="../home/square.html" class="active" target="_top">首页广场</a>
-                    <a href="../article/article.html" target="_top">文章随笔</a>
-                    <a href="../whisper/whisper.html" target="_top">时间微语</a>
-                    <a href="../home/about.html" target="_top">关于</a>
+                    <a href="../home/square.html" id="square" target="_top">首页广场</a>
+                    <a href="../article/article.html" id="article" target="_top">文章随笔</a>
+                    <a href="../whisper/whisper.html" id="whisper" target="_top">时间微语</a>
+                    <a href="../home/about.html" id="about" target="_top">关于</a>
                 </div>
             </div>
             <div id="top" class="layui-nav layui-layout-right">
-                <div id="nologin" style="margin-top: 11px;display: none;">
+                <div id="nologin" style="margin-top: 16px;display: none;">
                     <a href="../login/login.html" style="font-size: 14px" target="_top">
                         <i class="layui-icon layui-icon-username" style="font-size: 14px"></i>登录</a>
                 </div>
-                <div id="user" class="layui-form" style="display: none">
+                <div id="user" class="layui-form" style="display: none;margin-right:10px">
                     <ul>
                         <li title="消息">
                             <a href="../user/profile.html?tab=4" target="_top">
@@ -48,7 +48,7 @@
                                 <span class="notice"></span>
                             </a>
                         </li> 
-                        <li title="个人资料">
+                        <li title="个人资料" style="margin-left: 12px;">
                             <a href="../user/profile.html?tab=1" target="_top">
                                 <i class="layui-icon layui-icon-home">
                                 </i> 
@@ -76,11 +76,23 @@
     <script src="/style/js/login.js"></script>
     <script>
         layui.use(['element','form', 'layer'], function () {
-            var date = new Date();
+            var i = getSearchString('i');  
+            if(i==0){
+                $("#square").addClass('active');
+            }
+            else if(i==1){
+                $("#article").addClass('active');             
+            }
+            else if(i==2){
+                $("#whisper").addClass('active');
+            }
+             if(i==3){
+                $("#about").addClass('active');
+            }
             var element = layui.element;
             element.render('nav');
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
-            connection.on('InvokeSomeConnectionMessage', function (message) {
+            connection.on('SendClientMessage', function (message) {
                 $('.layui-badge').html(message.data);
                 $('.layui-badge').addClass('blink');
             });

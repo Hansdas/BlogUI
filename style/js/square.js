@@ -23,7 +23,7 @@ layui.config({
     loadarticle();
     loadWhisper(0, 5);
     var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
-    connection.on('InvokeMessage',function(reviceMessage){
+    connection.on('SendAllClientsMessage',function(reviceMessage){
         var data = {
             'list': reviceMessage.data
         };
@@ -53,9 +53,6 @@ layui.config({
                 data: {
                     'content': layedit.getContent(whisperContent)
                 },
-                beforeSend: function (xhr) {
-                    doBeforeSend(xhr);
-                },
                 success: function (response) {
                     if (response.code == '401') {
                         layer.msg('你还未登录', {
@@ -66,9 +63,6 @@ layui.config({
                     }
                     layer.close(loading);
                 },
-                complete: function (xhr) {
-                    doComplete(xhr);
-                }
             })
         }
     }
@@ -136,17 +130,11 @@ function bindWhisper(data) {
         listHtml.innerHTML = html;
     });
 }
-function review(id){
+function review(id,account){
     layer.open({
         title: '留言',
         type: 2,
         area: ['700px', '500px'],
-        content: '../whisper/review.html?id='+id,
-        success: function (layero, index) {
-            var body = layer.getChildFrame('body', index);
-            //var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-            body.find('#articleId').val(id)
-            body.find('#postReviceUser').val(guid)
-        }
+        content: '../whisper/review.html?id='+id+'&revicer='+account,
     });
 }

@@ -9,7 +9,7 @@
     padding:  0 0 0 97px;
 }
 .layui-bg-black img{
-    margin: 7px 0px 0 -42px;
+    margin: 7px 0px 0 -92px;
 }
 /* #console{
     background-image: url("../images/background.jpg");
@@ -24,6 +24,12 @@
     background-attachment: fixed;
     background-size:cover */
     background: #fffbf0
+}
+.notclick{
+    pointer-events: none;
+  }
+.review-c a{
+    color: #9b9b9b !important
 }
 .header-menu a:hover {
     color: #fff !important;
@@ -46,11 +52,12 @@
     min-height: 400px;
 }
 .block-left{
-    margin-left: 132px
+    width: 75%
 }
 .block-right{
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 10px;
+    width: 24%
 }
 .h1370 .title i{
     position:absolute;

@@ -41,5 +41,5 @@ function loginout()
 		dataType: 'json',
 	});
 	localStorage.removeItem('token');
-	window.location.href = '../login/login.html';
+	window.open('../login/login.html','_top')
 }
