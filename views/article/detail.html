@@ -46,6 +46,12 @@
             font-size: 13px;
             font-weight: 600;
         }
+        #comment:focus{
+            border: 1px solid #009688 !important;
+        }
+        #comment:hover{
+            border: 1px solid #009688 !important;
+        }
     </style>
 </head>
 
@@ -78,24 +84,20 @@
                     </div>
                     <hr />
                     <div class="comment">
-                        <form class="layui-form" action="">
                             <div class="form">
                                 <div class="layui-form-item layui-form-text">
                                     <div class="layui-input-block">
                                         <div class="b" style="border-radius:3px">
-                                            <textarea id="review" name="review" lay-verify="required"
-                                                placeholder="既然来了，就说几句。。。" class="layui-textarea"></textarea>
+                                            <textarea id="comment"  placeholder="既然来了，就说几句。。。" class="layui-textarea"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block" style="text-align: center;">
-                                    <button class="layui-btn definite" id="r" lay-submit=""
-                                        lay-filter="review">留言</button>
+                                    <button class="layui-btn" onclick="review()">留言</button>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <div class="volume">
                         全部评论（）
@@ -116,10 +118,9 @@
                                             {{item.content}}
                                         </p>
                                         <p style="line-height: 23px;float: right;" class="reply">
-                                            <input type="hidden" name="username" value="">
-                                            <input type="hidden" name="guid" value="{{item.guid}}">
-                                            <a href="javascript:;"><i class="layui-icon layui-icon-reply-fill"
-                                                    style="">回复</i></a>
+                                            <a href="javascript:;" onclick="reviewTo('{{item.postUser}}','{{item.postUsername}}','{{item.guid}}')">
+                                                <i class="layui-icon layui-icon-reply-fill">回复</i>
+                                            </a>
                                         </p>
                                     </div>
                                 </div>

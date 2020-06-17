@@ -29,15 +29,10 @@
         <div class="text">
             <div class="text-comment">
                 <p class="tit">
-                    <span style="font-size: 11px;padding-left:3px">{{item.postDate}}</span>
-                    <a style="font-size: 11px" class="name" target="_blank" href="../user/user-home.html?account={{item.postUser}}">{{item.postUsername}}：</a>
-                    {{#  if(item.commentType=='3'){ }}
-                    <span style="font-size: 11px;">@{{item.revicerName}}</span>
-                    {{#  } }}
+                    <span style="font-size: 11px;padding-left:3px;color:#666">{{item.postDate}}</span>
+                    <a style="font-size: 11px" class="name" target="_blank" href="../user/user-home.html?account={{item.postUser}}">{{item.postUsername}}</a>
                     <a style="float:right" class="name" href="javascript:;" onclick="reviewTo('{{item.postUser}}','{{item.postUsername}}','{{item.guid}}')"><i class="layui-icon layui-icon-reply-fill"
                         style="font-size: 11px;color: #999">回复</i></a></a>
-
-
                 </p>
                 <p class="p">
                     {{item.content}}

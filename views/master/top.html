@@ -93,8 +93,8 @@
             element.render('nav');
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
             connection.on('SendClientMessage', function (message) {
-                $('.layui-badge').html(message.data);
-                $('.layui-badge').addClass('blink');
+                $('.notice').html(message.data);
+                $('.notice').addClass('blink');
             });
             $.ajax({
                 url: url + 'user',

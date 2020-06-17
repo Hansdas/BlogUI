@@ -16,6 +16,7 @@ function doComplete(xhr)
 layui.use('layer',function(){
     var layer=layui.layer;
     $.ajaxSetup({
+        cache:false,
         beforeSend: function (xhr) {
             doBeforeSend(xhr);
         },

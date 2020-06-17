@@ -65,7 +65,10 @@ function review() {
 		},
 		success: function (response) {
 			if(response.code==0){
-			layer.close(loading);
+				layer.close(loading);
+				layer.msg('留言审核中', {
+					icon: 6
+				});
 			}
 		}
 	})

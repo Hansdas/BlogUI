@@ -375,9 +375,10 @@ form input[type=checkbox] {
 
 .content .cont .block-right .h251 {
     min-height: 221px;
-    width: 299px;
     background: white;
     padding: 8px;
+    border-radius: 3px;
+    box-shadow: 8px 14px 38px #e2e2e2, 1px 3px 8px #e2e2e2;
 }
 
 .content .cont .block-right .h251 .box-title {
@@ -922,7 +923,10 @@ form input[type=checkbox] {
     padding-top: 4px;
     padding-bottom: 4px;
 }
-
+.review-content .text-comment {
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .review-content .text .tit {
     margin-bottom: 0;
     padding-right: 24px
@@ -930,7 +934,8 @@ form input[type=checkbox] {
 .review-content .text .tit {
     margin-bottom: 0;
     padding-right: 24px;
-    padding-left: 6px
+    padding-left: 6px;
+    border-bottom: 1px dotted #009688;
 }
 
 .review-content .text .ct {

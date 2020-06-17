@@ -14,57 +14,6 @@ layui.config({
         $('.layui-input-block button').attr('disabled',true);  
         $('.layui-input-block button').text('未登录');
     }
-    form.on('submit(review)', function (data) {
-        loading = layer.load(2);
-        var commentModel = {
-            'Content': data.field.review,
-        }
-        $.ajax({
-            url: url + 'article/review/' + id,
-            contentType: 'application/json; charset=utf-8',
-            type: 'post',
-            datatype: 'json',
-            data: JSON.stringify(commentModel),
-            beforeSend: function (xhr) {
-                doBeforeSend(xhr);
-            },
-            success: function (response) {
-                if (response.code == 0) {
-                    var commentModel = response.data;
-                    var newCommentList = new Array(allCommentList.length + 1);
-                    newCommentList[0] = commentModel;
-                    for (var i = 0; i < allCommentList.length; i++) {
-                        newCommentList[i + 1] = allCommentList[i]
-                    };
-                    $('.volume').html('全部评论（' + newCommentList.length + '）');
-                    $('textarea').val('');
-                    setPageList(newCommentList, commentScript);
-                    var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress+'chatHub').build();
-                    connection.start().then(function () {
-                        var apiRoute=url+'Singalr/admin';
-                        var token=localStorage.getItem('token');
-                        fetch(apiRoute,{
-                            method:'get',
-                            headers:{
-                                'Authorization':'Bearer ' + token                               
-                            }
-                        })
-                        event.preventDefault();
-                    })
-                    layer.close(loading);
-                } else {
-                    layer.close(loading);
-                    layer.msg("评论失败", {
-                        icon: 5
-                    });
-                }
-            },
-            complete: function (xhr) {
-                doComplete(xhr);
-            },
-        })
-        return false;
-    });
 });
 /**
  * 初始化分页
@@ -143,22 +92,6 @@ function loadComment(commentList, comments) {
         commentsView.innerHTML = html;
     });
     $(".comment").show();
-    $('.reply').bind('click', function () {
-        var username = $(this).parent('div').children('.tit').children('a').eq(0).text();
-        var guid = $(this).children('input').eq(1).val();
-        layer.open({
-            title: '@ ' + username,
-            type: 2,
-            area: ['800px', '210px'],
-            content: '../review/review.html',
-            success: function (layero, index) {
-                var body = layer.getChildFrame('body', index);
-                //var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-                body.find('#articleId').val(id)
-                body.find('#postReviceUser').val(guid)
-            }
-        });
-    });
 };
 
 /**
@@ -215,3 +148,53 @@ function loadAll(id) {
 
     });
 };
+var revicer,replyId,commentType;
+function review() {
+    var comment=$('#comment').val();
+    if(comment==''){
+        layer.msg("内容为空", {
+            icon: 5
+        });
+        return false;
+    }
+	var id = getSearchString('id');
+	if(revicer==undefined){
+	 revicer = getSearchString('revicer');
+	}
+	if(replyId==undefined){
+	   replyId = getSearchString('replyId');
+	}
+	if(commentType==undefined){
+		commentType=1;
+	}
+    var loading = layer.load(2);
+	$.ajax({
+		url: url + 'article/comment/add',
+		type: 'post',
+		datatype: 'json',
+		data: {
+			'content': $('#comment').val(),
+			'articleId': id,
+			'revicer': revicer,
+			'replyId': replyId,
+			'commentType': commentType
+		},
+		success: function (response) {
+			if(response.code==0){
+				layer.close(loading);
+				layer.msg('留言审核中', {
+					icon: 6
+				});
+			}
+		}
+	})
+}
+
+function reviewTo(toUser, toName, commentId) {
+	var id = getSearchString('id');
+	$("#comment").val("@" + toName + "：");
+	$("#comment").focus();
+	revicer=toUser;
+	replyId=commentId;
+	commentType=3;
+}
