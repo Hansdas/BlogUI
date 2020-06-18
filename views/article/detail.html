@@ -46,10 +46,12 @@
             font-size: 13px;
             font-weight: 600;
         }
-        #comment:focus{
+
+        #comment:focus {
             border: 1px solid #009688 !important;
         }
-        #comment:hover{
+
+        #comment:hover {
             border: 1px solid #009688 !important;
         }
     </style>
@@ -71,12 +73,14 @@
                                 <div class="title">
                                     <h3>{{d.title}}</h3>
                                     <p class="cont-info" style="">
-                                        作者：<a class="author" style="color:#00a67c"  href="../user/user-home.html?account={{d.authorAccount}}" target='_blank'>{{d.author}}</a>
+                                        作者：<a class="author" style="color:#00a67c"
+                                            href="../user/user-home.html?account={{d.authorAccount}}"
+                                            target='_blank'>{{d.author}}</a>
                                         时间：<span class="data">{{d.createtime}}</span>
                                         类别：<span class="types">{{d.articletype}}</span>
                                     </p>
                                 </div>
-                                {{d.content}}
+                                <div style="display: inline-grid;">{{d.content}}</div>
                             </script>
                         </div>
                         <div class="btn-box">
@@ -84,20 +88,21 @@
                     </div>
                     <hr />
                     <div class="comment">
-                            <div class="form">
-                                <div class="layui-form-item layui-form-text">
-                                    <div class="layui-input-block">
-                                        <div class="b" style="border-radius:3px">
-                                            <textarea id="comment"  placeholder="既然来了，就说几句。。。" class="layui-textarea"></textarea>
-                                        </div>
+                        <div class="form">
+                            <div class="layui-form-item layui-form-text">
+                                <div class="layui-input-block">
+                                    <div class="b" style="border-radius:3px">
+                                        <textarea id="comment" placeholder="既然来了，就说几句。。。"
+                                            class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-form-item">
-                                <div class="layui-input-block" style="text-align: center;">
-                                    <button class="layui-btn" onclick="review()">留言</button>
-                                </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="text-align: center;">
+                                <button class="layui-btn" onclick="review()">留言</button>
                             </div>
+                        </div>
                     </div>
                     <div class="volume">
                         全部评论（）
@@ -118,7 +123,8 @@
                                             {{item.content}}
                                         </p>
                                         <p style="line-height: 23px;float: right;" class="reply">
-                                            <a href="javascript:;" onclick="reviewTo('{{item.postUser}}','{{item.postUsername}}','{{item.guid}}')">
+                                            <a href="javascript:;"
+                                                onclick="reviewTo('{{item.postUser}}','{{item.postUsername}}','{{item.guid}}')">
                                                 <i class="layui-icon layui-icon-reply-fill">回复</i>
                                             </a>
                                         </p>
@@ -160,7 +166,7 @@
     <script type="text/html" id="li-article-script">
         {{#layui.each(d.list,function(index,item){}}
         <li><button class="layui-btn new-icon w62">{{item.createTime}}</button><a target="_blank"
-            href="../article/detail.html?id={{item.id}}">{{item.title}}</a></li>
+                href="../article/detail.html?id={{item.id}}">{{item.title}}</a></li>
         {{# }); }}
     </script>
     <script src="/style/layui/layui.js"></script>

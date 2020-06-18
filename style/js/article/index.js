@@ -80,7 +80,7 @@ function praise(id) {
     });
 }
 function loadarticle(pageIndex, pageSize,initPage) {
-    initLoading("pageLoading", 50);
+    initLoading("pageLoading", 50,350);
     var conditionModel={
         'pageIndex': pageIndex,
         'pageSize': pageSize,
@@ -136,7 +136,7 @@ function loadarticle(pageIndex, pageSize,initPage) {
  */
 function initHot(hotScript)
 {
-    initLoading("hot-li-item", 50);
+    initLoading("hot-li-item", 50,80);
     $.ajax({
         url: url + 'article/hot',
         type: 'get',

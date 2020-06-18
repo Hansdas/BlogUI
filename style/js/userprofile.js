@@ -198,7 +198,7 @@ function setTab(cursor) {
                         layer.close(loading);
                     });
                 } else if (obj.event === 'edit') {
-                    window.open('../article/addarticle.html?id=' + data.id)
+                    window.open('../article/add.html?id=' + data.id,"_blank")
                 }
                 else {
                     window.open('../article/detail.html?id=' + data.id)

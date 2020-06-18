@@ -4,6 +4,7 @@
     <meta name="viewport" content="width = device-width" />
     <meta name="referrer" content="never">
     <title>微语</title>
+    <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=20192225" rel="stylesheet" />
     <link href="/style/css/common.css?v=202005271028" rel="stylesheet" />
@@ -35,7 +36,7 @@
                                     </div>
                                     <div class="bg-li">
                                         <p class="p-title">描述：</p>
-                                        <p class="p-content">一个写博客，记录心情的站点。目前处于建设阶段，将会完善和新增更丰富的功能。</p>
+                                        <p class="p-content">一个写博客，记录时间的站点。目前处于建设阶段，将会完善和新增更丰富的功能。</p>
                                     </div>
                                     <div class="bg-li">
                                         <p class="p-title">背景：</p>
@@ -79,7 +80,7 @@
                                             <legend><img src="/style/images/touxiang.jpg"></legend>
                                             <div class="layui-field-box">
                                                 <div class="name">愿被世界温柔以待</div>
-                                                <div class="au-li">一枚单身程序员</div>
+                                                <div class="au-li">一枚程序员</div>
                                                 <div class="au-li">94/05/21，男，湖北天门</div>
                                                 <div class="au-li">.net开发，熟悉java语言，略懂前端</div>
                                                 <div class="au-li">老宅男，不爱出门</div>
@@ -168,23 +169,51 @@
         noresize="noresize" src="../master/footer.html"></iframe>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=123"></script>
+    <script src="/style/js/request.js?v=202005271028"></script>
+    <script src="/style/js/util.js??v=202005282241"></script>
     <script>
         layui.use(['element', 'form', 'layer'], function () {
-            var element = layui.element; layer = layui.layer;
+            var element = layui.element;
+            layer = layui.layer;
             $('#leaveMessage').click(function () {
                 var email = $('#email').val();
                 if (email != '') {
-                    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //邮箱正则表达式
+                    var reg = new RegExp(
+                        "^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"
+                    ); //邮箱正则表达式
                     if (!reg.test(email)) {
                         $('.error-span').html('邮箱不合规!')
                         return;
                     }
                 }
                 var content = $('#content').val();
-                if (content == '') {
-                    $('.error-span').html('请填写内容!')
+                if (content == "") {
+                    $('.error-span').html('留言内容为空!')
                     return;
                 }
+                var model = {
+                    Content: content,
+                    ContractEmail: email
+                };
+                $('.error-span').html('请填写内容!')
+                $.ajax({
+                    url: url + 'leavemessage/add',
+                    type: 'post',
+                    datatype: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(model),
+                    success: function (res) {
+                        if (res.code == "0") {
+                            layer.msg("留言成功", {
+                                icon: 6
+                            });
+                        } else {
+                            layer.msg(res.message, {
+                                icon: 6
+                            });
+                        }
+                    }
+                });
             })
         });
     </script>

@@ -251,7 +251,7 @@ function bindArticle(id){
 }
 function bindselect() {
     $.ajax({
-        url:url+ 'upload/initPage',
+        url:url+ 'article/types',
         type:'get',
         datatype:'json',
         success:function(response)
@@ -259,8 +259,8 @@ function bindselect() {
             if (response.code == 0) {
                 $('#selecttype').empty();
                 $('#selecttype').append('<option>...</option>');
-                for (var item in response.data) {
-                    $('#selecttype').append('<option value=' + item + '>' + response.data[item] + '</option>');
+                for(var i=0;i<response.data.length;i++){
+                    $('#selecttype').append('<option value=' + response.data[i].key + '>' + response.data[i].value+ '</option>');
                 }
                 layui.form.render("select");
             }
