@@ -156,6 +156,9 @@
                                 <a href="https://www.usuuu.com/" target="_blank">
                                     <span class="label color2">悠悠吧</span>
                                 </a>
+                                <a href="https://blog.igeekfan.cn/" target="_blank">
+                                    <span class="label color3">天上有木月</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -211,7 +214,7 @@
             <a class="author"  href="../user/user-home.html?account={{item.account}}" target='_blank'>{{item.accountName}}</a>
             <p style="font-size:13px">：{{item.content}}</p>
         </div>
-            <p class="date">{{item.createDate}}<a href="" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>
+            <p class="date">{{item.createDate}}<a href="javascript:;"  onclick="review('{{item.id}}','{{item.account}}')" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>
     </div>
     <hr>
     {{# }); }}
