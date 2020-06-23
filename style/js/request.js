@@ -4,7 +4,9 @@ var url=httpAddress+'api/';
 function doBeforeSend(xhr)
 {
     var token=localStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token);  
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token); 
+    xhr.setRequestHeader('requestIp',ip);  
+    xhr.setRequestHeader('requestAddress', regionCode); 
 }
 function doComplete(xhr)
 {
