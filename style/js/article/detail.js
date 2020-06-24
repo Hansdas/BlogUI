@@ -110,11 +110,11 @@ function loadupnext(id) {
                 var type = getSearchString('t');
                 $('.btn-box').empty();
                 if (response.data.beforeId > 0) {
-                    $('.btn-box').append('<a href="detail?id=' + response.data.beforeId +'" target="_parent" class="layui-btn layui-btn-primary">上一篇：' + response.data.beforeTitle + '</a>')
+                    $('.btn-box').append('<a href="detail.html?id=' + response.data.beforeId +'" target="_parent" class="layui-btn layui-btn-primary">上一篇：' + response.data.beforeTitle + '</a>')
                     $('.btn-box').append('</br>');
                 }
                 if (response.data.nextId > 0) {
-                    $('.btn-box').append('<a href="detail?id=' + response.data.nextId +'" target="_parent" class="layui-btn layui-btn-primary">下一篇：' + response.data.nextTitle + '</a>')
+                    $('.btn-box').append('<a href="detail.html?id=' + response.data.nextId +'" target="_parent" class="layui-btn layui-btn-primary">下一篇：' + response.data.nextTitle + '</a>')
                 }
             }
             else {
