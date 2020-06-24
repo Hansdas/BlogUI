@@ -39,19 +39,18 @@ function checkLogin() {
 		$(".layui-btn-sm").addClass("notclick"); //设为不可点击
 	}
 }
-var revicer,replyId,commentType;
 function review() {
+    var comment=$('#comment').val();
+    if(comment==''){
+        layer.msg("内容为空", {
+            icon: 5,
+            offset: ['280px', '540px']
+        });
+        return false;
+    }
 	var id = getSearchString('id');
-	if(revicer==undefined){
-	 revicer = getSearchString('revicer');
-	}
-	if(replyId==undefined){
-	   replyId = getSearchString('replyId');
-	}
-	if(commentType==undefined){
-		commentType=2;
-	}
-	var loading = layer.load(2);
+	var revicer=getSearchString('revicer');
+    var loading = layer.load(2);
 	$.ajax({
 		url: url + 'whisper/comment/add',
 		type: 'post',
@@ -60,8 +59,8 @@ function review() {
 			'content': $('#comment').val(),
 			'whisperId': id,
 			'revicer': revicer,
-			'replyId': replyId,
-			'commentType': commentType
+			'replyId': '',
+			'commentType': 2
 		},
 		success: function (response) {
 			if(response.code==0){
@@ -73,12 +72,40 @@ function review() {
 		}
 	})
 }
-
-function reviewTo(toUser, toName, commentId) {
-	var id = getSearchString('id');
-	$("#comment").val("@" + toName + "：");
-	$("#comment").focus();
-	revicer=toUser;
-	replyId=commentId;
-	commentType=3;
+function reviewTo(toUser, commentId,index) {
+    var content=$('#txt_'+index+'_'+toUser).val();
+    if(content==''){
+        layer.msg("内容为空", {
+            icon: 5,
+        });
+        return false;
+    }
+    var id = getSearchString('id');
+    var loading = layer.load(2);
+    $.ajax({
+		url: url + 'whisper/comment/add',
+		type: 'post',
+		datatype: 'json',
+		data: {
+			'content': content,
+			'whisperId': id,
+			'revicer': toUser,
+			'replyId': commentId,
+			'commentType': 3
+		},
+		success: function (response) {
+			if(response.code==0){
+				layer.close(loading);
+				layer.msg('留言审核中', {
+					icon: 6
+				});
+			}
+		}
+	})
+}
+function openDv(index,toUser) {
+    $('#'+index+'_'+toUser).show();
+}
+function cancle(index,toUser) {
+    $('#'+index+'_'+toUser).hide();
 }

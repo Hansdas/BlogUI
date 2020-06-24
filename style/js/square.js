@@ -134,7 +134,7 @@ function review(id,account){
     layer.open({
         title: '留言',
         type: 2,
-        area: ['700px', '500px'],
+        area: ['1000px', '500px'],
         content: '../whisper/review.html?id='+id+'&revicer='+account,
     });
 }

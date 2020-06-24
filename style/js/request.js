@@ -5,8 +5,8 @@ function doBeforeSend(xhr)
 {
     var token=localStorage.getItem('token');
     xhr.setRequestHeader('Authorization', 'Bearer ' + token); 
-    xhr.setRequestHeader('requestIp',ip);  
-    xhr.setRequestHeader('requestAddress', regionCode); 
+    xhr.setRequestHeader('requestIp',returnCitySN["cip"]);  
+    xhr.setRequestHeader('requestAddress',returnCitySN["cid"]); 
 }
 function doComplete(xhr)
 {

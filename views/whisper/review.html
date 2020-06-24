@@ -3,10 +3,11 @@
     <link href="/style/css/main.css?v=201922262" rel="stylesheet" />
     <link href="/style/css/common.css" rel="stylesheet" />
     <style>
-        #comment:focus{
+        #comment:focus {
             border: 1px solid #009688 !important;
         }
-        #comment:hover{
+
+        #comment:hover {
             border: 1px solid #009688 !important;
         }
     </style>
@@ -31,22 +32,27 @@
                 <p class="tit">
                     <span style="font-size: 11px;padding-left:3px;color:#666">{{item.postDate}}</span>
                     <a style="font-size: 11px" class="name" target="_blank" href="../user/user-home.html?account={{item.postUser}}">{{item.postUsername}}</a>
-                    <a style="float:right" class="name" href="javascript:;" onclick="reviewTo('{{item.postUser}}','{{item.postUsername}}','{{item.guid}}')"><i class="layui-icon layui-icon-reply-fill"
+                    <a style="float:right" class="name" href="javascript:;" onclick="openDv('{{index}}','{{item.postUser}}')"><i class="layui-icon layui-icon-reply-fill"
                         style="font-size: 11px;color: #999">回复</i></a></a>
                 </p>
+                {{#  if(item.commentType=='3'){ }}
+                <p class="p using">@{{item.revicerName}}：{{item.usingContent}}</p>
+                {{#  } }}
                 <p class="p">
                     {{item.content}}
                 </p>
+                <div id="{{index}}_{{item.postUser}}" class="div-reply" style="display:none">
+                    <textarea id="txt_{{index}}_{{item.postUser}}" class="layui-textarea"></textarea>
+                    <div style="text-align:center">
+                    <button onclick="reviewTo('{{item.postUser}}','{{item.guid}}','{{index}}')" type="button" class="layui-btn layui-btn-xs" style="background-color:#d0844d !important">回复</button>
+                    <button onclick="cancle('{{index}}','{{item.postUser}}')" type="button" class="layui-btn layui-btn-xs" style="background-color:#d0844d !important">取消</button>
+                    </div>
+                </div>
             </div>
         </div>
         {{# }); }}
     </script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script type="text/javascript">
-      var resultCode =returnCitySN;
-       var ip = returnCitySN["cip"];
-       var regionCode = returnCitySN["cid"]
-    </script>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/request.js?v=202005271028"></script>

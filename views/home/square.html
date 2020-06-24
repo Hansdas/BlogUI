@@ -214,17 +214,12 @@
             <a class="author"  href="../user/user-home.html?account={{item.account}}" target='_blank'>{{item.accountName}}</a>
             <p style="font-size:13px">：{{item.content}}</p>
         </div>
-            <p class="date">{{item.createDate}}<a href="javascript:;"  onclick="review('{{item.id}}','{{item.account}}')" style="color: #9b9b9b !important">评论({{item.commentCount}})</a></p>
+            <p class="date">{{item.createDate}}<a href="javascript:;"  onclick="review('{{item.id}}','{{item.account}}')" style="color: #9b9b9b !important">留言({{item.commentCount}})</a></p>
     </div>
     <hr>
     {{# }); }}
 </script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script type="text/javascript">
-      var resultCode =returnCitySN;
-       var ip = returnCitySN["cip"];
-       var regionCode = returnCitySN["cid"]
-    </script>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/util.js??v=202005282241"></script>

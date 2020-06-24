@@ -38,7 +38,7 @@ function setPageList(commentList, commentScript) {
  * @param {} id 
  */
 function loadarticle(id, commentScript) {
-    initLoading("detailLoading", 50);
+    initLoading("detailLoading", 50,450);
     $.ajax({
         url: url + 'article/' + id,
         type: 'get',
@@ -53,6 +53,7 @@ function loadarticle(id, commentScript) {
                     'author': response.data.author,
                     'authorAccount':response.data.authorAccount
                 };
+                revicer=response.data.authorAccount;
                 $('title').html(data.title);
                 $('#authorName').html(response.data.author);
                 var article = document.getElementById('buildview').innerHTML;
@@ -148,26 +149,18 @@ function loadAll(id) {
 
     });
 };
-var revicer,replyId,commentType;
+var revicer
 function review() {
     var comment=$('#comment').val();
     if(comment==''){
         layer.msg("内容为空", {
-            icon: 5
+            icon: 5,
+            offset: ['280px', '540px']
         });
         return false;
     }
 	var id = getSearchString('id');
-	if(revicer==undefined){
-	 revicer = getSearchString('revicer');
-	}
-	if(replyId==undefined){
-	   replyId = getSearchString('replyId');
-	}
-	if(commentType==undefined){
-		commentType=1;
-	}
-    var loading = layer.load(2);
+    var loading = layer.load(2,{ offset: ['280px', '600px']});
 	$.ajax({
 		url: url + 'article/comment/add',
 		type: 'post',
@@ -176,25 +169,56 @@ function review() {
 			'content': $('#comment').val(),
 			'articleId': id,
 			'revicer': revicer,
-			'replyId': replyId,
-			'commentType': commentType
+			'replyId': "",
+			'commentType': 1
 		},
 		success: function (response) {
 			if(response.code==0){
 				layer.close(loading);
 				layer.msg('留言审核中', {
+                    offset: ['280px', '540px'],
 					icon: 6
 				});
 			}
 		}
 	})
 }
-
-function reviewTo(toUser, toName, commentId) {
-	var id = getSearchString('id');
-	$("#comment").val("@" + toName + "：");
-	$("#comment").focus();
-	revicer=toUser;
-	replyId=commentId;
-	commentType=3;
+function reviewTo(toUser, commentId,index) {
+    var content=$('#txt_'+index+'_'+toUser).val();
+    if(content==''){
+        layer.msg("内容为空", {
+            icon: 5,
+            offset: ['280px', '540px']
+        });
+        return false;
+    }
+    var id = getSearchString('id');
+    var loading = layer.load(2,{ offset: ['280px', '600px']});
+    $.ajax({
+		url: url + 'article/comment/add',
+		type: 'post',
+		datatype: 'json',
+		data: {
+			'content': content,
+			'articleId': id,
+			'revicer': toUser,
+			'replyId': commentId,
+			'commentType': 3
+		},
+		success: function (response) {
+			if(response.code==0){
+				layer.close(loading);
+				layer.msg('留言审核中', {
+                    offset: ['280px', '540px'],
+					icon: 6
+				});
+			}
+		}
+	})
+}
+function openDv(index,toUser) {
+    $('#'+index+'_'+toUser).show();
+}
+function cancle(index,toUser) {
+    $('#'+index+'_'+toUser).hide();
 }
