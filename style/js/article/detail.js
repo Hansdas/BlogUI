@@ -217,6 +217,14 @@ function reviewTo(toUser, commentId,index) {
 	})
 }
 function openDv(index,toUser) {
+     var token=localStorage.getItem('token'); 
+    if (token==''||token==null) {
+        layer.msg('未登录', {
+            offset: ['280px', '540px'],
+            icon: 5
+        });
+        return;
+    }
     $('#'+index+'_'+toUser).show();
 }
 function cancle(index,toUser) {
