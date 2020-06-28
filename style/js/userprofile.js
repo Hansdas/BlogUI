@@ -123,7 +123,7 @@ function setTab(cursor) {
                     height: 168,
                     isAbs: true
                 }
-                , url: url + 'user/upload/image' //上传接口
+                , url: url + 'user/update/photo' //上传接口
                 , before: function () {
                     loading = layer.load(2);
                 }
@@ -140,89 +140,18 @@ function setTab(cursor) {
         loadUser();
     }
     else if (cursor == 3) {
-        layui.use('table', function () {
-            var table = layui.table;
-            table.render({
-                id: 'aTable'
-                , method:'post'
-                , elem: '#articleTable'
-                , url: url + "article/page"
-                , where:{
-                        'account':'admin'
-                    }
-                ,contentType: 'application/json; charset=utf-8'
-                , toolbar: false
-                , width: 870
-                , title: '用户数据表'
-                , loading: true
-                , headers: { 'Authorization': localStorage.getItem('token') }
-                , limit: 10
-                , cols: [[
-                    { type: 'checkbox' }
-                    , { field: 'id', title: 'ID', hide: true, unresize: true }
-                    , { field: 'title', title: '标题' }
-                    , { field: 'articleType', title: '专栏', align: 'center', width: 100 }
-                    , { field: 'author', title: '作者' }
-                    , { field: 'createTime', title: '提交日期', sort: true }
-                    , { align: 'center', toolbar: '#bar', title: '操作' }
-                ]]
-                , page: true
-                , parseData: function (res) {
-                    return {
-                        "code": res.code,
-                        "msg": res.message,
-                        "count": res.total,
-                        "data": res.data
-                    };
+        layui.use(['table','element'], function () {
+            table = layui.table,element = layui.element;
+            loadArticle();
+            element.on('tab(tab_3)', function(data){
+                if(data.index==0){
+                    loadArticle();
                 }
-            });
+                else{
+                    loadWhisper();
+                }
+              });
 
-            //监听行工具事件
-            table.on('tool(article)', function (obj) {
-                var data = obj.data;
-                if (obj.event === 'del') {
-                    layer.confirm('确定删除？', function (index) {
-                        loading = layer.load(2);
-                        $.ajax({
-                            url: url + 'article/' + data.id,
-                            type: 'delete',
-                            datatype: 'json',
-                            success: function (response) {
-                            },
-                        })
-                        table.reload('aTable', {
-                            page: {
-                                curr: 1
-                            }
-                        });
-                        layer.close(loading);
-                    });
-                } else if (obj.event === 'edit') {
-                    window.open('../article/add.html?id=' + data.id,"_blank")
-                }
-                else {
-                    window.open('../article/detail.html?id=' + data.id)
-                }
-            });
-            var $ = layui.$, active = {
-                reload: function () {
-                    table.reload('aTable', {
-                        page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                        ,method:'post'
-                        ,contentType: 'application/json; charset=utf-8'
-                        , where: {
-                            titleContain: $('#title').val(),
-                            isDraft:$('#isdraft').val()
-                        }
-                    });
-                }
-            };
-            $('#table-search .layui-btn').on('click', function () {
-                var type = $(this).data('type');
-                active[type] ? active[type].call(this) : '';
-            });
         });
     }
     else if (cursor == 4) {
@@ -245,9 +174,6 @@ function setTab(cursor) {
                             'pageIndex': pageIndex,
                             'pageSize': pageSize,
                         },
-                        beforeSend: function (xhr) {
-                            doBeforeSend(xhr);
-                        },
                         success: function (response) {
                             if (response.code == '0') {
                                 var data = {
@@ -266,32 +192,10 @@ function setTab(cursor) {
                             layer.close(loading);
 
                         },
-                        complete: function (xhr) {
-                            doComplete(xhr);
-                        },
-                        error: function () {
-                            layer.msg('响应服务器失败', {
-                                icon: 7
-                            });
-                            layer.close(loading);
-                        }
                     })
                 },
             });
         });
-    }
-}
-
-
-function completeDelete(params) {
-    if (response.code == "200") {
-        localStorage.setItem("token", response.data);
-        layer.close(loading);
-        layer.msg("修改成功", { icon: 6 });
-    }
-    else {
-        layer.close(loading)
-        layer.msg(response.message, { icon: 5 });
     }
 }
 function selectArticle() {
@@ -356,19 +260,21 @@ function loadUser(){
             }
         });
         flow.load({
-            elem: '#time-axis' //流加载容器。
+            elem: '#time-axis' 
             ,end:'没有更多了' 
             ,isAuto:false
-            , done: function (page, next) { //执行下一页的回调
+            , done: function (page, next) { 
                 var lis = [];
                 $.ajax({
                     url: url + 'whisper/page',
-                    type: 'get',
+                    type: 'post',
                     datatype: 'json',
-                    data: {
+                    contentType:'application/json; charset=utf-8',
+                    data: JSON.stringify({
                         'pageIndex': page,
                         'pageSize': 3,
-                    },
+                        'LoginUser':true
+                    }),
                     success: function (res) {
                         layui.each(res.data, function(index, item){
                             lis.push('<li class="layui-timeline-item">');
@@ -390,4 +296,149 @@ function loadUser(){
             }
         });
     })
+}
+function loadArticle(){
+    table.render({
+        id: 'aTable'
+        , method:'post'
+        , elem: '#articleTable'
+        , url: url + "article/page"
+        , where:{
+                'loginUser':'true'
+            }
+        ,contentType: 'application/json; charset=utf-8'
+        , toolbar: false
+        , width: 870
+        , title: ''
+        , loading: true
+        , headers: { 'Authorization': localStorage.getItem('token') }
+        , limit: 10
+        , cols: [[
+            { type: 'checkbox' }
+            , { field: 'id', title: 'ID', hide: true, unresize: true }
+            , { field: 'title', title: '标题' }
+            , { field: 'articleType', title: '专栏', align: 'center', width: 100 }
+            , { field: 'author', title: '作者' }
+            , { field: 'createTime', title: '提交日期', sort: true }
+            , { align: 'center', toolbar: '#bar1', title: '操作' }
+        ]]
+        , page: true
+        , parseData: function (res) {
+            return {
+                "code": res.code,
+                "msg": res.message,
+                "count": res.total,
+                "data": res.data
+            };
+        }
+    });
+
+    //监听行工具事件
+    table.on('tool(article)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'del') {
+            layer.confirm('确定删除？', function (index) {
+                loading = layer.load(2);
+                layer.close(index);
+                $.ajax({
+                    url: url + 'article/' + data.id,
+                    type: 'delete',
+                    datatype: 'json',
+                    success: function () {
+                        table.reload('aTable', {
+                            page: {
+                                curr: 1
+                            }
+                        });
+                        layer.close(loading);
+                    },
+                })
+            });
+        } else if (obj.event === 'edit') {
+            window.open('../article/add.html?id=' + data.id,"_blank")
+        }
+        else {
+            window.open('../article/detail.html?id=' + data.id)
+        }
+    });
+    var $ = layui.$, active = {
+        reload: function () {
+            table.reload('aTable', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                ,method:'post'
+                ,contentType: 'application/json; charset=utf-8'
+                , where: {
+                    titleContain: $('#title').val(),
+                    isDraft:$('#isdraft').val()
+                }
+            });
+        }
+    };
+    $('#table-search .layui-btn').on('click', function () {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+}
+function loadWhisper(){
+    table.render({
+        id: 'aWhisper'
+        , method:'post'
+        , elem: '#whisperTable'
+        , url: url + "whisper/page"
+        , where:{
+                'loginUser':true
+            }
+        ,contentType: 'application/json; charset=utf-8'
+        , toolbar: false
+        , width: 870
+        , title: '我的微语'
+        , loading: true
+        , headers: { 'Authorization': localStorage.getItem('token') }
+        , limit: 10
+        , cols: [[
+            { type: 'checkbox' }
+            , { field: 'id', title: 'ID', hide: true, unresize: true }
+            , { field: 'content', title: '标题' }
+            , { field: 'accountName', title: '作者' }
+            , { field: 'createDate', title: '提交日期', sort: true }
+            , { align: 'center', toolbar: '#bar2', title: '操作' }
+        ]]
+        , page: true
+        , parseData: function (res) {
+            return {
+                "code": res.code,
+                "msg": res.message,
+                "count": res.total,
+                "data": res.data
+            };
+        }
+    });
+
+    //监听行工具事件
+    table.on('tool(whisper)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'del') {
+            layer.confirm('确定删除？', function (index) {
+                loading = layer.load(2);
+                layer.close(index);
+                $.ajax({
+                    url: url + 'whisper/' + data.id,
+                    type: 'delete',
+                    datatype: 'json',
+                    success:function(){
+                        table.reload('aWhisper', {
+                            page: {
+                                curr: 1
+                            }
+                            ,method:'post'
+                            ,contentType: 'application/json; charset=utf-8'    
+                        });
+                        layer.close(loading);
+                    }
+                })
+            });
+        }
+    });
 }

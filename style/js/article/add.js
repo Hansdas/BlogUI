@@ -16,7 +16,7 @@ layui.use(['form', 'layer', 'layedit'], function () {
     layedit.set({
         uploadImage: {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-            url: url + 'upload/uploadImage',
+            url: url + 'upload/image',
             accept: 'image',
             acceptMime: 'image/*',
             exts: 'jpg|png|gif|bmp|jpeg',
