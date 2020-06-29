@@ -304,7 +304,7 @@ function loadArticle(){
         , elem: '#articleTable'
         , url: url + "article/page"
         , where:{
-                'loginUser':'true'
+                'loginUser':true
             }
         ,contentType: 'application/json; charset=utf-8'
         , toolbar: false
