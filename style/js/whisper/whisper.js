@@ -10,21 +10,44 @@ layui.config({
 		  ,btns: ['now']
 		  ,calendar: true
 	  });
+	var id = getSearchString('id');
+	var read = getSearchString('read');
+	if(read==1){
+		$.ajax({
+			url: url + 'whisper/page',
+			type: 'post',
+			datatype: 'json',
+			contentType:'application/json; charset=utf-8',
+			data:condition,
+		});		
+	}
 	flow.load({
 		elem: '#time-axis' //流加载容器。
 		,end:'没有更多了' 
 		,isAuto:false
 		, done: function (page, next) { //执行下一页的回调
 			var lis = [];
+			var condition;
+			if(id==undefined){
+				condition= JSON.stringify({
+					'pageIndex': page,
+					'pageSize': 3,
+				});
+			} 
+			else
+			{
+				condition= JSON.stringify({
+					'pageIndex': page,
+					'pageSize': 3,
+					'id':parseInt(id)
+				});	
+			} 
 			$.ajax({
 				url: url + 'whisper/page',
 				type: 'post',
 				datatype: 'json',
 				contentType:'application/json; charset=utf-8',
-				data: JSON.stringify({
-					'pageIndex': page,
-					'pageSize': 3,
-				}),
+				data:condition,
 				success: function (res) {
 					layui.each(res.data, function(index, item){
 						var arr = [item.id,item.account]				

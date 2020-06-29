@@ -442,3 +442,11 @@ function loadWhisper(){
         }
     });
 }
+function doneTidings(id){
+    alert(id);
+    $.ajax({
+        url: url + 'tidings/'+id,
+        type: 'post',
+        datatype: 'json',
+    });  
+}

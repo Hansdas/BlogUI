@@ -94,8 +94,12 @@
             element.render('nav');
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
             connection.on('SendClientMessage', function (message) {
-                $('.notice').html(message.data);
-                $('.notice').addClass('blink');
+                var oldNum=parseInt($('.notice').html());
+                var newNum=parseInt(message.data);
+                $('.notice').html(newNum);
+                if(oldNum<newNum){
+                    $('.notice').addClass('blink');
+                }              
             });
             $.ajax({
                 url: url + 'user',
