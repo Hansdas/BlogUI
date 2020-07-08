@@ -35,10 +35,25 @@ function setIframeHeight(iframeId) {
 		})(that);
 	});
 };
-function initLoading(htmlId,top,left){
-	var loading='<img class="loading" style="height: 72px;width: 123px;margin-top:'+top+'px;margin-left: '+left+'px;" src="/style/images/laoding.jpg" >'
-$('#'+htmlId).append(loading)	
+
+function initLoading(htmlId, top, left) {
+	var loading = '<img class="loading" style="height: 72px;width: 123px;margin-top:' + top + 'px;margin-left: ' + left + 'px;" src="/style/images/laoding.jpg" >'
+	$('#' + htmlId).append(loading)
 }
-function closeLoading(htmlId){
-	$('#'+htmlId+' .loading').hide()	
+
+function closeLoading(htmlId) {
+	$('#' + htmlId + ' .loading').hide()
+}
+
+function getArticleTypeName(type) {
+	if (type == 1)
+		return '散文礼记'
+	else if (type == 2)
+		return "韶华追忆"
+	else if (type == 3)
+		return "编程世界"
+	else if (type == 4)
+		return "娱乐竞技"
+	else if (type == 5)
+		return "趣味百态"
 }

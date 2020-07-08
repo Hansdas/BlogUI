@@ -219,16 +219,16 @@
                         <table class="layui-hide" id="articleTable" lay-filter="article">
                         </table>
                         <script type="text/html" id="bar1">
-                                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                            </script>
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                        </script>
                     </div>
                     <div class="layui-tab-item">
                         <table class="layui-hide" id="whisperTable" lay-filter="whisper">
                         </table>
                         <script type="text/html" id="bar2">
-                             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                         </script>
                     </div>
                 </div>
@@ -255,84 +255,87 @@
         noresize="noresize" src="../master/footer.html"></iframe>
     <!--渲染的模板-->
     <script type="text/html" id="user-info-script">
-            <div class="bg-li">
-                <p class="p-title">昵称：</p>
-                <p class="p-content">{{d.username}}</p>
-            </div>
-            <div class="bg-li">
-                <p class="p-title">出生：</p>
-                <p class="p-content">{{d.birthDate}}</p>
-            </div>
-            <div class="bg-li">
-                <p class="p-title">性别：</p>
-                <p class="p-content">
-                    {{#  if(d.sex=='男'){ }}
-                    <i class="layui-icon layui-icon-male" style=" color: #1E9FFF;"></i>
-                    {{#  } else{ }}
-                    <i class="layui-icon layui-icon-female" style=" color: #1E9FFF;"></i>
-                    {{#  } }}
-                </p>
-            </div>
-            <div class="bg-li">
-                <p class="p-title">邮箱：</p>
-                <p class="p-content">{{d.email}}</p>
-            </div>
-            <div class="bg-li">
-                <p class="p-title">签名：</p>
-                <p class="p-content">{{d.sign}}</p>
-            </div>
-        </script>
+        <div class="bg-li">
+            <p class="p-title">昵称：</p>
+            <p class="p-content">{{d.username}}</p>
+        </div>
+        <div class="bg-li">
+            <p class="p-title">出生：</p>
+            <p class="p-content">{{d.birthDate}}</p>
+        </div>
+        <div class="bg-li">
+            <p class="p-title">性别：</p>
+            <p class="p-content">
+                {{#  if(d.sex=='男'){ }}
+                <i class="layui-icon layui-icon-male" style=" color: #1E9FFF;"></i>
+                {{#  } else{ }}
+                <i class="layui-icon layui-icon-female" style=" color: #1E9FFF;"></i>
+                {{#  } }}
+            </p>
+        </div>
+        <div class="bg-li">
+            <p class="p-title">邮箱：</p>
+            <p class="p-content">{{d.email}}</p>
+        </div>
+        <div class="bg-li">
+            <p class="p-title">签名：</p>
+            <p class="p-content">{{d.sign}}</p>
+        </div>
+    </script>
     <script type="text/html" id="article-file-script">
-            {{# layui.each(d.list,function(index,item){}}
-            {{#  if(item.articleType==1){ }}
-            <li style="background-color: #01AAED"><a
-                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
-            </li>
-            {{# } else if(item.articleType==2){ }}
-            <li style="background-color: #f8c555"><a
-                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
-            </li>
-            {{# } else if(item.articleType==3){ }}
-            <li style="background-color: #FF5722"><a
-                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
-            </li>
-            {{# } else if(item.articleType==4){ }}
-            <li style="background-color: #cc99cd"><a
-                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
-            </li>
-            {{# } else { }}
-            <li style="background-color: #337ab7"><a
-                    href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
-            </li>
-            {{#  } }}
-            {{# });}}
-        </script>
+        {{# layui.each(d.list,function(index,item){}}
+        {{#  if(item.articleType==1){ }}
+        <li style="background-color: #01AAED"><a
+                href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
+        </li>
+        {{# } else if(item.articleType==2){ }}
+        <li style="background-color: #f8c555"><a
+                href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
+        </li>
+        {{# } else if(item.articleType==3){ }}
+        <li style="background-color: #FF5722"><a
+                href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
+        </li>
+        {{# } else if(item.articleType==4){ }}
+        <li style="background-color: #cc99cd"><a
+                href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
+        </li>
+        {{# } else { }}
+        <li style="background-color: #337ab7"><a
+                href="../article/archive.html?type={{item.articleType}}&account={{item.account}}">{{item.articleTypeName}}（{{item.total}}）</a>
+        </li>
+        {{#  } }}
+        {{# });}}
+    </script>
     <script type="text/html" id="buildScript">
-            {{# layui.each(d.list,function(index,item){}}
-            <div class="reply">
-                <div>
-                    <a target="_blank" href="../user/user-home.html?account={{item.postUserAccount}}" class="reply-name">{{item.postUsername}}</a> <span class="r">回复：</span>
-                    <span class="reply-content">
-                        <a class="content-url" onclick="doneTidings({{item.id}})" target="_blank" href="{{item.url}}">{{item.postContent}}</a>
-                    </span>
-                </div>
-                <div class="reply-from">
-                    <a target="_blank" href="../user/user-home.html?account={{item.reviceUserAccount}}" class="reply-name">{{item.reviceUsername}}</a> <span class="r">：</span>
-                    <a class="content-url" onclick="doneTidings({{item.id}})" target="_blank" href="{{item.url}}">{{item.content}}</a>
-                </div>
-
-                <div class="reply-date">
-                    {{item.postDate}}
-                </div>
+        {{# layui.each(d.list,function(index,item){}}
+        <div class="reply">
+            <div>
+                <a target="_blank" href="../user/user-home.html?account={{item.postUserAccount}}"
+                    class="reply-name">{{item.postUsername}}</a> <span class="r">回复：</span>
+                <span class="reply-content">
+                    <a class="content-url" onclick="doneTidings({{item.id}})" target="_blank"
+                        href="{{item.url}}">{{item.postContent}}</a>
+                </span>
             </div>
-            {{# });}}
-        </script>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+            <div class="reply-from">
+                <a target="_blank" href="../user/user-home.html?account={{item.reviceUserAccount}}"
+                    class="reply-name">{{item.reviceUsername}}</a> <span class="r">：</span>
+                <a class="content-url" onclick="doneTidings({{item.id}})" target="_blank"
+                    href="{{item.url}}">{{item.content}}</a>
+            </div>
+
+            <div class="reply-date">
+                {{item.postDate}}
+            </div>
+        </div>
+        {{# });}}
+    </script>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/request.js"></script>
     <script src="/style/js/util.js"></script>
     <script src="/style/js/userprofile.js?v=202006291351"></script>
-</body></body>
+</body>
 
 </html>

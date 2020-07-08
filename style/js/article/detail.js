@@ -1,4 +1,5 @@
 var allCommentList = null,loading;
+var revicer;
 layui.config({
     base: '/style/js/'
 }).use(['element', 'jquery', 'layer', 'laytpl', 'form', 'laypage'], function () {
@@ -15,6 +16,23 @@ layui.config({
         $('.layui-input-block button').text('未登录');
     }
 });
+function loadArchive(account){
+    $.ajax({
+        url: url + 'article/archive/'+account,
+        type: 'get',
+        datatype: 'json',
+        success: function (res) {
+            var data = {
+                'list': res.data
+            };
+            var script = document.getElementById('li-article-file-script').innerHTML;
+            var fileHtml = document.getElementById('article-file');
+            laytpl(script).render(data, function (html) {
+                fileHtml.innerHTML = html;
+            });
+        }
+    });
+}
 /**
  * 初始化分页
  * @param {*} commentList 
@@ -54,6 +72,7 @@ function loadarticle(id, commentScript) {
                     'authorAccount':response.data.authorAccount
                 };
                 revicer=response.data.authorAccount;
+                loadArchive(revicer);
                 $('title').html(data.title);
                 $('#authorName').html(response.data.author);
                 var article = document.getElementById('buildview').innerHTML;
@@ -149,7 +168,6 @@ function loadAll(id) {
 
     });
 };
-var revicer
 function review() {
     var comment=$('#comment').val();
     if(comment==''){

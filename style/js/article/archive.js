@@ -4,6 +4,7 @@ layui.use(['flow', 'laytpl', 'laypage'], function () {
     laypage = layui.laypage;
     var account = getSearchString('account');
     var articleType = getSearchString('type');
+    loadUser(account);
     $.ajax({
         url: url + 'article/archive/'+account,
         type: 'get',
@@ -20,7 +21,19 @@ layui.use(['flow', 'laytpl', 'laypage'], function () {
         }
     });
     changeType(articleType);
+    var typeName=getArticleTypeName(articleType)
+    $('#tip-type-name').html(typeName);
 })
+function loadUser(account){
+    $.ajax({
+        url: url + 'user/'+account,
+        type: 'get',
+        datatype: 'json',
+        success: function (res) {
+            $('title').html(res.data.username+'的博客集');
+        }
+    });
+}
 function changeType(type){
     articleType=type;
     loadarticle(1, 10,type,true); 

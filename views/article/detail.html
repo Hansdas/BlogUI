@@ -154,11 +154,6 @@
                         <div class="layui-field-box">
                             <div class="name" id="authorName"></div>
                             <ul class="archive" id="article-file">
-                                <li><a href="../article/archive.html" target="_blank">散文礼记（8）</a></li>
-                                <li><a href="../article/archive.html" target="_blank">韶华追忆（1）</a></li>
-                                <li><a href="../article/archive.html" target="_blank">编程世界（0）</a></li>
-                                <li><a href="../article/archive.html" target="_blank">娱乐竞技（4）</a></li>
-                                <li><a href="../article/archive.html" target="_blank">趣味百态（2）</a></li>
                             </ul>
                             <!--输出的视图-->
                             <ul class="a-li" id="li-article">
@@ -179,13 +174,17 @@
                 href="../article/detail.html?id={{item.id}}">{{item.title}}</a></li>
         {{# }); }}
     </script>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type="text/html" id="li-article-file-script">
+        {{#layui.each(d.list,function(index,item){}}
+        <li><a href="../article/archive.html?account={{item.account}}&type={{item.articleType}}" target="_blank">{{item.articleTypeName}}（{{item.total}}）</a></li>
+        {{# }); }}
+    </script>
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/util.js?v=201908281635"></script>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/js/signalr.js"></script>
     <script src="/style/js/request.js?v=20112171144"></script>
-    <script src="/style/js/article/detail.js?202006241728"></script>
+    <script src="/style/js/article/detail.js?202007082026"></script>
 </body>
 
 </html>
