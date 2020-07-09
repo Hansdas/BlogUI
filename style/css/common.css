@@ -11,6 +11,19 @@
 .layui-bg-black img{
     margin: 7px 0px 0 -92px;
 }
+#LAY_layuipro pre{
+    position: inherit !important;
+    position: relative;
+    margin: 10px 0;
+    padding: 15px;
+    line-height: 20px;
+    border: 1px solid #ddd;
+    border-left-width: 6px;
+    background-color: #F2F2F2;
+    color: #333;
+    font-family: Courier New;
+    font-size: 12px;
+}
 /* #console{
     background-image: url("../images/background.jpg");
     background-attachment: fixed;
