@@ -18,10 +18,11 @@ layui.config({
     deptObjs[0].style.fontSize = "12px";
     deptObjs[0].style.padding = "4px";
     deptObjs[0].style.background = "white";
-    initLoading("news-ul",0, 374);
+    initLoading("news-ul",0, 200);
     initLoading("article-item",0, 374);
     loadarticle();
     loadWhisper(0, 5);
+    loadReadRank();
     var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
     connection.on('SendAllClientsMessage',function(reviceMessage){
         var data = {
@@ -137,4 +138,24 @@ function review(id,account){
         area: ['1000px', '500px'],
         content: '../whisper/review.html?id='+id+'&revicer='+account,
     });
+}
+function loadReadRank(){
+    initLoading("read-li-item", 0,89);
+    $.ajax({
+        url: url + 'article/read/rank/5',
+        type: 'get',
+        datatype: 'json',
+        success: function (response) {
+            if (response.code == '0') {
+                var data = {
+                    'list': response.data
+                };
+                var hotScript = document.getElementById('read-item-script').innerHTML;
+                var liHtmlDom = document.getElementById('read-li-item');
+                laytpl(hotScript).render(data, function (html) {
+                    liHtmlDom.innerHTML = html;
+                })
+            }
+        },       
+    });  
 }

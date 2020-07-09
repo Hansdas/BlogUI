@@ -8,7 +8,7 @@
     <title>广场</title>
     <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
-    <link href="/style/css/main.css?v=202005282241" rel="stylesheet" />
+    <link href="/style/css/main.css?v=202007091710" rel="stylesheet" />
     <link href="/style/css/common.css?v=202005282248" rel="stylesheet" />
     <link href="/style/css/loading.css" rel="stylesheet" />
     <style>
@@ -48,16 +48,17 @@
 <body>
     <div class="fixed-top">
         <iframe frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
-            src="../master/top.html"></iframe>
+            src="../master/top.html?i=0"></iframe>
     </div>
     <div class="content c-bg square a-href">
         <div class="notice">
         </div>
         <div class="cont">
             <div class="left">
+                <div style="display:flex">
                 <div class="news-top">
                     <div class="news-box">
-                        <div class="tip">最新新闻</div>
+                        <div class="tip">关注生活</div>
                         <ul id="news-ul">
                             <!-- <li>
                             <span class="num">1</span>
@@ -102,8 +103,16 @@
                         </ul>
                     </div>
                 </div>
+                <div class="news-top" style="margin-left: 10px;">
+                    <div class="news-box">
+                        <div class="tip">happy一下</div>
+                        <ul id="news-ul">                    
+                        </ul>
+                    </div>
+                </div>
+            </div>
                 <div class="articles">
-                    <div class="tip">最新文章分类</div>
+                    <div class="tip">最新分类</div>
                     <div id="article-item"></div>
                 </div>
             </div>
@@ -126,7 +135,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="write white-background" style="width: 323px;margin-top: 10px;">
+                <div class="write white-background" style="width: 323px;margin-top: 15px">
+                    <div class="box h251">
+                        <div class="box-title">
+                            <h3>阅读排行</h3>
+                        </div>
+                        <!--输出的视图-->
+                        <ul class="li-item" id="read-li-item">
+                        </ul>
+                    </div>
+                </div>
+                <div class="write white-background" style="width: 323px;margin-top: 15px;">
                     <div class="box h251">
                         <div class="box-title">
                             <h3>推荐网址</h3>
@@ -171,6 +190,12 @@
     <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
         noresize="noresize" src="../master/footer.html"></iframe>
     <!--渲染的模板-->
+    <script type="text/html" id="read-item-script">
+        {{# layui.each(d.list,function(index,item){}}
+        <li> <a target="_blank" href="../article/detail.html?id={{item.id}}">{{item.title}}</a>
+        </li>
+        {{# }); }}
+    </script>
     <script type="text/html" id="new-article">
     {{#layui.each(d.list,function(index,item){}}
     <div class="box">
@@ -220,6 +245,6 @@
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/util.js??v=202005282241"></script>
     <script src="/style/js/signalr.js"></script>
-    <script src="/style/js/square.js?v=202005282241"></script>
+    <script src="/style/js/square.js?v=202007091646"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
 </body>
