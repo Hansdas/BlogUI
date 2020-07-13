@@ -1,15 +1,3 @@
-/**
- 
- @Name: layuiSimpleBlog - 极简博客模板
- @Author: xuzhiwen
- @Copyright: layui.com
- 
- */
-
-
-/*end-menu-btn*/
-
-
 
 body {
     font: 14px 宋体 Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
@@ -754,7 +742,7 @@ form input[type=checkbox] {
      border-radius: 3px;
      border: 1px solid #e9e9e9;
      box-shadow: 6px 0px 38px #e2e2e2;
-     width: 57%;
+     width: 99%;
 }
 
 .square .cont .left .news-top .news-box {
@@ -1057,16 +1045,6 @@ form input[type=checkbox] {
     color: cornflowerblue;
     text-align: center;
     margin-top: 10px;
-}
-
-.about-content .layui-collapse .leave-message .layui-input:hover,
-.layui-textarea:hover {
-    border: 1px solid chocolate !important;
-}
-
-.about-content .layui-collapse .leave-message .layui-input:hover,
-.layui-textarea:hover {
-    border: 1px solid chocolate !important;
 }
 .pro-main {
     width: 1192px;
@@ -1771,4 +1749,46 @@ form input[type=checkbox] {
 }
 .user-home .layui-timeline .layui-timeline-item p {
     font-size: 12px;
+}
+
+.video .tip{
+    border-bottom: 2px solid #00a67c;
+}
+.video .tip i{
+    color: #00a67c;
+    line-height: 46px;
+    font-size: 17px;
+    font-weight: 600;
+    padding-bottom: 10px
+}
+.video a video{
+    height: 200px;
+    border: 2px solid #888484;
+    border-radius: 6px;
+}
+.video span{
+    padding: 4px 6px 4px 6px;
+}
+.video .v-bg{
+    min-height: 760px !important;
+    width: 1385px !important;
+    background-color: white;
+    border: 1px solid #e9e9e9;
+    box-shadow: 8px 14px 38px #e2e2e2, 1px 3px 8px #e2e2e2;
+} 
+.video .legend{
+    color: #00a67c;
+    font-size: 14px;
+    font-weight: 600;
+    height: 31px;
+    line-height: 30px;
+    padding-left: 7px;
+    margin-bottom: 7px;
+}
+.video table tr{
+    line-height: 40px;
+}
+.video table tr td .lbl{
+    color: #333;
+    font-weight: bold;
 }

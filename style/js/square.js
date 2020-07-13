@@ -1,13 +1,20 @@
 layui.config({
     base: '/style/js/'
-}).use(['element', 'jquery', 'laytpl', 'layer', 'layedit', 'flow', 'form'], function () {
+}).use(['element', 'jquery', 'laytpl', 'layer', 'layedit', 'flow', 'form','carousel'], function () {
     element = layui.element,
         $ = layui.$,
         laytpl = layui.laytpl,
         layer = layui.layer,
         layedit = layui.layedit,
         flow = layui.flow,
+        carousel = layui.carousel
         form = layui.form;
+        carousel.render({
+            elem: '#test1'
+            ,height:'236px'
+            ,width:'99%'
+            ,arrow: 'always'
+          });
     var whisperContent = layedit.build('L_content', {
         height: 50, //设置编辑器高度\
         tool: [, 'link' //超链接

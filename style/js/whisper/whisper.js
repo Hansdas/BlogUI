@@ -49,8 +49,7 @@ layui.config({
 				contentType:'application/json; charset=utf-8',
 				data:condition,
 				success: function (res) {
-					layui.each(res.data, function(index, item){
-						var arr = [item.id,item.account]				
+					layui.each(res.data, function(index, item){				
 						lis.push('<li class="layui-timeline-item">');
 						lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
 						lis.push('<div class="layui-timeline-content layui-text">');

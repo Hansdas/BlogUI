@@ -27,8 +27,9 @@ CKEDITOR.editorConfig = function( config ) {
 
     //设置文件、图片、Flash上传处理地址
     //config.filebrowserBrowseUrl = "";     启用浏览服务器
-    config.filebrowserImageBrowseUrl ="http://127.0.0.1:5000/api/upload/image";
-    config.filebrowserImageUploadUrl ="http://127.0.0.1:5000/api/upload/image";
+    
+    config.filebrowserImageBrowseUrl ="http://127.0.0.1:5000/api/upload/image"; 
+    config.filebrowserImageUploadUrl ="http://127.0.0.1:5000/api/upload/image"; 
     config.language = 'zh-cn';
 
     /*去掉图片预览框的文字*/

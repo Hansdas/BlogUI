@@ -42,6 +42,15 @@
             font-size: 12px;
             padding: 4px;
         }
+        .tip{
+            font-size: 15px !important;
+        }
+        video:hover{
+            transform: scale(1.1);
+        }
+        .layui-carousel-ind{
+            background: white;
+        }
     </style>
 </head>
 
@@ -54,65 +63,43 @@
         <div class="notice">
         </div>
         <div class="cont">
-            <div class="left">
-                <div style="display:flex">
-                <div class="news-top">
-                    <div class="news-box">
-                        <div class="tip">关注生活</div>
-                        <ul id="news-ul">
-                            <!-- <li>
-                            <span class="num">1</span>
-                            <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
-                            <div class="news-right">
-                                <a href=""> 【腾讯新闻网】 2020-5-8
-                                </a>
+            <div class="left" style="display: flex;">
+                <div>
+                    <div class="news-top">
+                        <div class="news-box">
+                            <div class="tip">日常头条</div>
+                            <ul id="news-ul">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="news-top">
+                        <div class="news-box" style="height:266px">
+                            <div class="tip" style="border-bottom: none;">视频</div>
+                            <div>
+                                <div class="layui-carousel" id="test1" lay-filter="test1">
+                                    <div carousel-item="">
+                                      <div>
+                                        <a href="../video/play.html" target="_blank">
+                                            <video style="height: 200px;"
+                                                src="/style/images/《dota2》cg动画合集-ti4宣传片 it’s like a game of chess[超清版](2).mp4">
+                                            </video>
+                                        </a>
+                                      </div>
+                                      <div>
+                                        <a href="../video/play.html" target="_blank">
+                                            <video style="height: 200px;"
+                                                src="/style/images/《dota2》cg动画合集-ti4宣传片 it’s like a game of chess[超清版](2).mp4">
+                                            </video>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div> 
                             </div>
-                        </li>
-                        <li>
-                            <span class="num">1</span>
-                            <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
-                            <div class="news-right">
-                                <a href=""> 【腾讯新闻网】 2020-5-8
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="num">1</span>
-                            <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
-                            <div class="news-right">
-                                <a href=""> 【腾讯新闻网】 2020-5-8
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="num">1</span>
-                            <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
-                            <div class="news-right">
-                                <a href=""> 【腾讯新闻网】 2020-5-8
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="num">1</span>
-                            <p>苹果向新冠病毒检测试剂盒供应商 COPAN 捐资 1000 万美元</p>
-                            <div class="news-right">
-                                <a href=""> 【腾讯新闻网】 2020-5-8
-                                </a>
-                            </div>
-                        </li> -->
-                        </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="news-top" style="margin-left: 10px;">
-                    <div class="news-box">
-                        <div class="tip">happy一下</div>
-                        <ul id="news-ul">                    
-                        </ul>
-                    </div>
-                </div>
-            </div>
-                <div class="articles">
-                    <div class="tip">最新分类</div>
+                <div class="articles" style="width: 71%;float:right;margin-left: 8px;">
+                    <div class="tip">文章</div>
                     <div id="article-item"></div>
                 </div>
             </div>
@@ -245,6 +232,6 @@
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/util.js??v=202005282241"></script>
     <script src="/style/js/signalr.js"></script>
-    <script src="/style/js/square.js?v=202007091646"></script>
+    <script src="/style/js/square.js?v=202007131456"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
 </body>

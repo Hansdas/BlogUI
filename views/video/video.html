@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>视频</title>
+    <link rel="icon" href="/style/images/title.png">
+    <link href="/style/layui/css/layui.css" rel="stylesheet" />
+    <link href="/style/css/main.css?v=202005282241" rel="stylesheet" />
+    <link href="/style/css/common.css?v=202005282241" rel="stylesheet" />
+    <link href="/style/css/loading.css" rel="stylesheet" />
+    <style>
+        video:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<div class="fixed-top">
+    <iframe frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
+        src="../master/top.html?i=4"></iframe>
+</div>
+<div class="content c-bg video">
+    <div class="cont">
+        <div class="block-left">
+            <div class="block" style="min-height: 760px !important">
+                <div class="white-block">
+                    <div class="list-item box-left">
+                        <div class="tip">
+                            <i class="layui-icon layui-icon-video">视频</i>
+                        </div>
+                        <div id="pageLoading"></div>
+                        <!--输出的视图-->
+                        <div id="video-li"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-right">
+            <div class="box h251">
+                <div class="tip">分享</div>
+                <div>
+                    <div>描述：</div>
+                    <div>
+                        <textarea id="description" lay-verify="required" placeholder="请输入"
+                            class="layui-textarea"></textarea>
+                    </div>
+                    <div>标签：</div>
+                    <div>
+                        <input id="lable" class="layui-input" id="fullText" placeholder="多个标签以中文符号“；”分开" type="text">
+                    </div>
+                    <div>
+                        <button style="    background: #00a67c !important;
+                        width: 100%;margin-top:5px" type="button" class="layui-btn" id="uploadVideo"><i
+                                class="layui-icon"></i>上传视频</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
+    src="../master/footer.html"></iframe>
+<!--渲染的模板-->
+<script src="/style/js/jquery.js"></script>
+<script src="/style/layui/layui.js?v=202005271028"></script>
+<script src="/style/js/request.js?v=202007082057"></script>
+<script src="/style/js/util.js?v=202005282241"></script>
+<script>
+    layui.use(['upload', 'jquery', 'layer', 'element', 'flow'], function () {
+        $ = layui.$,
+            layer = layui.layer,
+            element = layui.element,
+            upload = layui.upload;
+        flow = layui.flow;
+        loadVideo();
+        upload.render({
+            elem: '#uploadVideo'
+            , url: 'http://127.0.0.1:5001/api/upload/video'
+            , accept: 'video' //视频,
+            , data: {
+                'description': function () {
+                    return $('#description').val();
+                },
+                'lable': function () {
+                    return $('#lable').val()
+                }
+            }
+            , before: function (res) {
+                layer.load(2);
+            }
+            , done: function (res) {
+                if (res.code == '1') {
+                    layer.msg(res.msg);
+                }
+                else {
+                    var model = {
+                        'description': $('#description').val(),
+                        'lable': $('#lable').val(),
+                        'url': res.savepath,
+                        'size': res.length
+                    };
+                    $.ajax({
+                        url: url + 'video/add',
+                        type: 'post',
+                        datatype: 'json',
+                        data: JSON.stringify(model),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+                            layer.msg('上传成功');
+                            layer.closeAll('loading')
+                        },
+                    })
+                }
+            }
+            , error: function (res) {
+                layer.msg('上传失败');
+                layer.closeAll('loading')
+            }
+        });
+    })
+    function loadVideo() {
+        flow.load({
+            elem: '#video-li' //流加载容器
+            , isAuto: false
+            , isLazyimg: true
+            , done: function (page, next) { //加载下一页
+                var lis = [];
+                var condition= JSON.stringify({
+					'pageIndex': page,
+					'pageSize': 10,
+                });
+                $.ajax({
+				url: url + 'video/page',
+				type: 'post',
+				datatype: 'json',
+				contentType:'application/json; charset=utf-8',
+				data:condition,
+				success: function (res) {
+					layui.each(res.data, function(index, item){				
+						lis.push('<div class="item-cont item-title" style="padding-top: 10px;">');
+						lis.push('<div style="display: flex;">');
+						lis.push('<div>');
+						lis.push('<a href="../video/play.html?id='+item.id+'" target="_blank">');
+						lis.push('<video src="'+item.url+'"></video>');
+						lis.push('</a>')
+						lis.push('</div>');
+						lis.push('<div style="margin-left: 10px;">');
+						lis.push('<div><span class="label color2">'+item.description+'</span></div>');
+                        lis.push('<div>');
+                            for(var i=0;i<item.lables.length;i++){
+                                lis.push('<span class="label color2">#'+item.lables[i]+'</span>');
+                            }
+						lis.push('</div>');
+                        lis.push('</div>');
+                        lis.push('</div>');
+                        lis.push('</div>');
+                        lis.push('<hr class="layui-bg-gray">');
+					  });
+					next(lis.join(''), (page*10) < res.total);
+				}
+
+			});
+            }
+        });
+    }
+</script>
