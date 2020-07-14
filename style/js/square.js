@@ -9,12 +9,6 @@ layui.config({
         flow = layui.flow,
         carousel = layui.carousel
         form = layui.form;
-        carousel.render({
-            elem: '#test1'
-            ,height:'236px'
-            ,width:'99%'
-            ,arrow: 'always'
-          });
     var whisperContent = layedit.build('L_content', {
         height: 50, //设置编辑器高度\
         tool: [, 'link' //超链接
@@ -96,6 +90,12 @@ function loadVideo(){
             laytpl(script).render(data, function (html) {
                 listHtml.innerHTML = html;
             })
+            carousel.render({
+                elem: '#video'
+                ,height:'236px'
+                ,width:'99%'
+                ,arrow: 'always'
+              });
         }
 
     });
