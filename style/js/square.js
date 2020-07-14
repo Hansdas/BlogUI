@@ -25,11 +25,12 @@ layui.config({
     deptObjs[0].style.fontSize = "12px";
     deptObjs[0].style.padding = "4px";
     deptObjs[0].style.background = "white";
-    initLoading("news-ul",0, 200);
-    initLoading("article-item",0, 374);
+    initLoading("news-ul",0, 59);
+    initLoading("article-item",0, 354);
     loadarticle();
     loadWhisper(0, 5);
     loadReadRank();
+    loadVideo();
     var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
     connection.on('SendAllClientsMessage',function(reviceMessage){
         var data = {
@@ -75,6 +76,30 @@ layui.config({
         }
     }
 })
+function loadVideo(){
+    var condition= JSON.stringify({
+        'pageIndex': 1,
+        'pageSize': 3,
+    });
+    $.ajax({
+        url: url + 'video/page',
+        type: 'post',
+        datatype: 'json',
+        contentType:'application/json; charset=utf-8',
+        data:condition,
+        success: function (res) {
+            var data = {
+                'list': res.data
+            };
+            var script = document.getElementById('video-script').innerHTML;
+            var listHtml = document.getElementById('video-view');
+            laytpl(script).render(data, function (html) {
+                listHtml.innerHTML = html;
+            })
+        }
+
+    });
+}
 /**
  * 加载文章
  */

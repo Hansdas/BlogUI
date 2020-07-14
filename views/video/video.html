@@ -52,8 +52,7 @@
                         <input id="lable" class="layui-input" id="fullText" placeholder="多个标签以中文符号“；”分开" type="text">
                     </div>
                     <div>
-                        <button style="    background: #00a67c !important;
-                        width: 100%;margin-top:5px" type="button" class="layui-btn" id="uploadVideo"><i
+                        <button style="background: #00a67c !important;width: 100%;margin-top:5px" type="button" class="layui-btn" id="uploadVideo"><i
                                 class="layui-icon"></i>上传视频</button>
                     </div>
                 </div>
@@ -75,6 +74,11 @@
             element = layui.element,
             upload = layui.upload;
         flow = layui.flow;
+        var token = localStorage.getItem('token');
+        if (token == '' || token == null) {
+            $('#uploadVideo').attr('disabled', true);
+            $('#uploadVideo').text('未登录');
+        }
         loadVideo();
         upload.render({
             elem: '#uploadVideo'
@@ -128,41 +132,41 @@
             , isLazyimg: true
             , done: function (page, next) { //加载下一页
                 var lis = [];
-                var condition= JSON.stringify({
-					'pageIndex': page,
-					'pageSize': 10,
+                var condition = JSON.stringify({
+                    'pageIndex': page,
+                    'pageSize': 10,
                 });
                 $.ajax({
-				url: url + 'video/page',
-				type: 'post',
-				datatype: 'json',
-				contentType:'application/json; charset=utf-8',
-				data:condition,
-				success: function (res) {
-					layui.each(res.data, function(index, item){				
-						lis.push('<div class="item-cont item-title" style="padding-top: 10px;">');
-						lis.push('<div style="display: flex;">');
-						lis.push('<div>');
-						lis.push('<a href="../video/play.html?id='+item.id+'" target="_blank">');
-						lis.push('<video src="'+item.url+'"></video>');
-						lis.push('</a>')
-						lis.push('</div>');
-						lis.push('<div style="margin-left: 10px;">');
-						lis.push('<div><span class="label color2">'+item.description+'</span></div>');
-                        lis.push('<div>');
-                            for(var i=0;i<item.lables.length;i++){
-                                lis.push('<span class="label color2">#'+item.lables[i]+'</span>');
+                    url: url + 'video/page',
+                    type: 'post',
+                    datatype: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: condition,
+                    success: function (res) {
+                        layui.each(res.data, function (index, item) {
+                            lis.push('<div class="item-cont item-title" style="padding-top: 10px;">');
+                            lis.push('<div style="display: flex;">');
+                            lis.push('<div>');
+                            lis.push('<a href="../video/play.html?id=' + item.id + '" target="_blank">');
+                            lis.push('<video src="' + item.url + '"></video>');
+                            lis.push('</a>')
+                            lis.push('</div>');
+                            lis.push('<div style="margin-left: 10px;">');
+                            lis.push('<div><span class="label color2">' + item.description + '</span></div>');
+                            lis.push('<div>');
+                            for (var i = 0; i < item.lables.length; i++) {
+                                lis.push('<span class="label color2">#' + item.lables[i] + '</span>');
                             }
-						lis.push('</div>');
-                        lis.push('</div>');
-                        lis.push('</div>');
-                        lis.push('</div>');
-                        lis.push('<hr class="layui-bg-gray">');
-					  });
-					next(lis.join(''), (page*10) < res.total);
-				}
+                            lis.push('</div>');
+                            lis.push('</div>');
+                            lis.push('</div>');
+                            lis.push('</div>');
+                            lis.push('<hr class="layui-bg-gray">');
+                        });
+                        next(lis.join(''), (page * 10) < res.total);
+                    }
 
-			});
+                });
             }
         });
     }

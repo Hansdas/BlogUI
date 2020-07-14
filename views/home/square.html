@@ -8,7 +8,7 @@
     <title>广场</title>
     <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
-    <link href="/style/css/main.css?v=202007091710" rel="stylesheet" />
+    <link href="/style/css/main.css?v=202007141019" rel="stylesheet" />
     <link href="/style/css/common.css?v=202005282248" rel="stylesheet" />
     <link href="/style/css/loading.css" rel="stylesheet" />
     <style>
@@ -42,13 +42,16 @@
             font-size: 12px;
             padding: 4px;
         }
-        .tip{
+
+        .tip {
             font-size: 15px !important;
         }
-        video:hover{
+
+        video:hover {
             transform: scale(1.1);
         }
-        .layui-carousel-ind{
+
+        .layui-carousel-ind {
             background: white;
         }
     </style>
@@ -67,7 +70,7 @@
                 <div>
                     <div class="news-top">
                         <div class="news-box">
-                            <div class="tip">日常头条</div>
+                            <div class="tip">热点</div>
                             <ul id="news-ul">
                             </ul>
                         </div>
@@ -76,24 +79,10 @@
                         <div class="news-box" style="height:266px">
                             <div class="tip" style="border-bottom: none;">视频</div>
                             <div>
-                                <div class="layui-carousel" id="test1" lay-filter="test1">
-                                    <div carousel-item="">
-                                      <div>
-                                        <a href="../video/play.html" target="_blank">
-                                            <video style="height: 200px;"
-                                                src="/style/images/《dota2》cg动画合集-ti4宣传片 it’s like a game of chess[超清版](2).mp4">
-                                            </video>
-                                        </a>
-                                      </div>
-                                      <div>
-                                        <a href="../video/play.html" target="_blank">
-                                            <video style="height: 200px;"
-                                                src="/style/images/《dota2》cg动画合集-ti4宣传片 it’s like a game of chess[超清版](2).mp4">
-                                            </video>
-                                        </a>
-                                      </div>
+                                <div class="layui-carousel" id="video">
+                                    <div carousel-item="" id="video-view">
                                     </div>
-                                  </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -216,7 +205,7 @@
     </div>
     {{# }); }}
 </script>
-    <script type="text/html" id="new-whisper">
+<script type="text/html" id="new-whisper">
     {{#layui.each(d.list,function(index,item){}}
     <div class="write-item">
         <div>
@@ -228,10 +217,19 @@
     <hr>
     {{# }); }}
 </script>
+<script type="text/html" id="video-script">
+    {{#layui.each(d.list,function(index,item){}}
+    <div>
+        <a href="../video/play.html?id={{item.id}}" target="_blank">
+            <video style="height: 200px;" src="{{item.url}}"></video>
+        </a>
+    </div>
+    {{# }); }}
+</script>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/util.js??v=202005282241"></script>
     <script src="/style/js/signalr.js"></script>
-    <script src="/style/js/square.js?v=202007131456"></script>
+    <script src="/style/js/square.js?v=202007141019"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
 </body>
