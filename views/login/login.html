@@ -6,7 +6,7 @@
     <title>登录</title>
     <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
-    <link href="/style/css/login.css?v=202005271028" rel="stylesheet" />
+    <link href="/style/css/login.css?v=202007170931" rel="stylesheet" />
 </head>
 <body>
     <div class="cb-login">
@@ -33,13 +33,12 @@
                     <hr>
                     <img src="/style/images/login-tip.png">
                 </form>
-                <!-- <div class="checkbox">
+                <div style="height: 45px;">
                     <span class="text-muted">其他登录方式</span>
-                    <span class="pull-right other-login">
-                        <a href="/index/other/qq_login.html"><img src="/style/images/other_qq.png" class="img-circle"></a>
-                        <a href="javascript:;"><img src="/style/images/other_wx.png" class="img-circle"></a>
+                    <span class="other-login">
+                        <a href="javascript:;" onclick="qqLogin()"><img src="/style/images/other_qq.png" class="img-circle"></a>
                     </span>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -48,5 +47,12 @@
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
     <script src="/style/js/login.js?v=202005271028"></script>
+    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc.js"></script>
+    <script>
+        function qqLogin(){
+            var A=window.open("/views/login/qqlogin.html","TencentLogin",
+    "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+        }
+    </script>
 </body>
 </html>
