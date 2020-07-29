@@ -58,10 +58,6 @@
 </head>
 
 <body>
-    <div class="fixed-top">
-        <iframe frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
-            src="../master/top.html?i=0"></iframe>
-    </div>
     <div class="content c-bg square a-href">
         <div class="notice">
         </div>
@@ -96,7 +92,7 @@
                 <div class="write white-background" style="width: 323px">
                     <div class="layui-form" style="padding:10px">
                         <div class="tip">微语
-                            <a href="../whisper/whisper.html" target="_blank" class="more" title="更多">
+                            <a href="../home/index.html?i=2" class="more" title="更多">
                                 <i class="layui-icon layui-icon-next">
                                 </i>
                             </a>
@@ -172,8 +168,6 @@
             </div>
         </div>
     </div>
-    <iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0'
-        noresize="noresize" src="../master/footer.html"></iframe>
     <!--渲染的模板-->
     <script type="text/html" id="read-item-script">
         {{# layui.each(d.list,function(index,item){}}
@@ -214,7 +208,7 @@
     </div>
     {{# }); }}
 </script>
-<script type="text/html" id="new-whisper">
+    <script type="text/html" id="new-whisper">
     {{#layui.each(d.list,function(index,item){}}
     <div class="write-item">
         <div>
@@ -226,7 +220,7 @@
     <hr>
     {{# }); }}
 </script>
-<script type="text/html" id="video-script">
+    <script type="text/html" id="video-script">
     {{#layui.each(d.list,function(index,item){}}
     <div>
         <a href="../video/play.html?id={{item.id}}" target="_blank">

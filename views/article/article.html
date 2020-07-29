@@ -35,93 +35,59 @@
     </style>
 </head>
 
-<div class="fixed-top">
-    <iframe frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
-        src="../master/top.html?i=1"></iframe>
-</div>
-<div class="content c-bg">
-    <div class="cont">
-        <div class="block-left">
-            <div class="block" style="min-height: 760px !important">
-                <div class="white-block">
-                    <div class="op">
-                        <span><input class="layui-input" id="fullText" placeholder="至少输入两个字符" type="text">
-                            <button class="layui-btn search" title="搜索" onclick="search()"><i
-                                    class="layui-icon">&#xe615;</i></button>
-                            <a href="../article/add.html" target="_blank" class="layui-btn" title="写一写"><i
-                                    class="layui-icon">&#xe642;</i></a>
-                        </span>
-                    </div>
-                    <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
-                        <ul class="layui-tab-title">
-                            <li class="layui-this" lay-id="0">全部</li>
-                            <li lay-id="1">散文礼记</li>
-                            <li lay-id="2">韶华追忆</li>
-                            <li lay-id="3">编程世界</li>
-                            <li lay-id="4">娱乐竞技</li>
-                            <li lay-id="5">趣味百态</li>
-                        </ul>
-                    </div>
-                    <div class="list-item box-left">
-                        <div id="pageLoading"></div>
-                        <!--输出的视图-->
-                        <div id="article-item-id"></div>
-                        <div id="page" style="text-align: center;"></div>
+<body>
+    <div class="content c-bg">
+        <div class="cont">
+            <div class="block-left">
+                <div class="block" style="min-height: 760px !important">
+                    <div class="white-block">
+                        <div class="op">
+                            <span><input class="layui-input" id="fullText" placeholder="至少输入两个字符" type="text">
+                                <button class="layui-btn search" title="搜索" onclick="search()"><i
+                                        class="layui-icon">&#xe615;</i></button>
+                                <a href="../article/add.html" target="_blank" class="layui-btn" title="写一写"><i
+                                        class="layui-icon">&#xe642;</i></a>
+                            </span>
+                        </div>
+                        <div class="layui-tab layui-tab-brief" id="tab" lay-filter="tab-article">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this" lay-id="0">全部</li>
+                                <li lay-id="1">散文礼记</li>
+                                <li lay-id="2">韶华追忆</li>
+                                <li lay-id="3">编程世界</li>
+                                <li lay-id="4">娱乐竞技</li>
+                                <li lay-id="5">趣味百态</li>
+                            </ul>
+                        </div>
+                        <div class="list-item box-left">
+                            <div id="pageLoading"></div>
+                            <!--输出的视图-->
+                            <div id="article-item-id"></div>
+                            <div id="page" style="text-align: center;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="block-right">
-            <div class="box h251">
-                <div class="box-title">
-                    <h3>热门推荐<input type="text" id="toTop"></h3>
-                </div>
-                <!--输出的视图-->
-                <ul class="li-item" id="hot-li-item">
-                </ul>
-            </div>
-            <div class="box h251" style="margin-top:10px">
-                <div class="box-title">
-                    <h3>推荐网址</h3>
-                </div>
-                <div class="box-href">
-                    <a href="https://www.cnblogs.com/" target="_blank">
-                        <span class="label color2">博客园</span>
-                    </a>
-                    <a href="https://www.layui.com/" target="_blank">
-                        <span class="label color3">layui</span>
-                    </a>
-                    <a href="https://www.oschina.net/" target="_blank">
-                        <span class="label color4">开源中国</span>
-                    </a>
-                    <a href="https://github.com/Hansdas/surging" target="_blank">
-                        <span class="label color1">微服务之surging</span>
-                    </a>
-                    <a href="https://www.gamersky.com/" target="_blank">
-                        <span class="label color3">游民星空</span>
-                    </a>
-                    <a href="https://www.runoob.com/" target="_blank">
-                        <span class="label color2">菜鸟教程</span>
-                    </a>
-                    <a href="http://www.5173.com/?recommenduserid=US15061749098191-04F6" target="_blank">
-                        <span class="label color1">5173</span>
-                    </a>
+            <div class="block-right">
+                <div class="box h251">
+                    <div class="box-title">
+                        <h3>热门推荐<input type="text" id="toTop"></h3>
+                    </div>
+                    <!--输出的视图-->
+                    <ul class="li-item" id="hot-li-item">
+                    </ul>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-<iframe id="iframe-footer" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
-    src="../master/footer.html"></iframe>
-<!--渲染的模板-->
-<script type="text/html" id="hot-item-script">
+    <!--渲染的模板-->
+    <script type="text/html" id="hot-item-script">
     {{# layui.each(d.list,function(index,item){}}
     <li> <a target="_blank" href="../article/detail.html?id={{item.id}}&t={{item.articleType}}">{{item.title}}</a>
     </li>
     {{# }); }}
 </script>
-<script type="text/html" id="article-item-script">
+    <script type="text/html" id="article-item-script">
     {{# layui.each(d.list,function(index,item){}}
     <div class="item">
         <div class="layui-fluid">
@@ -163,8 +129,9 @@
     <hr class="bor item-bottom" />
     {{# }); }}
 </script>
-<script src="/style/js/jquery.js"></script>
-<script src="/style/layui/layui.js?v=202005271028"></script>
-<script src="/style/js/request.js?v=202007082057"></script>
-<script src="/style/js/article/index.js?v=202005282241"></script>
-<script src="/style/js/util.js?v=202005282241"></script>
+    <script src="/style/js/jquery.js"></script>
+    <script src="/style/layui/layui.js?v=202005271028"></script>
+    <script src="/style/js/request.js?v=202007082057"></script>
+    <script src="/style/js/article/index.js?v=202005282241"></script>
+    <script src="/style/js/util.js?v=202005282241"></script>
+</body>

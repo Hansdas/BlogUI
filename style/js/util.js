@@ -20,7 +20,7 @@ function getSearchString(key) {
  * iframe自适应高度
  */
 function setIframeHeight(iframeId) {
-	$("#iframeId").each(function (index) {
+	$('#'+iframeId).each(function (index) {
 		var that = $(this);
 		(function () {
 			setInterval(function () {

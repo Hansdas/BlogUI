@@ -27,13 +27,14 @@
 </head>
 
 <body>
-    <div class="fixed-top">
-        <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
-            noresize="noresize" src="../master/top.html"></iframe>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-header" style="height: 43px;">
+            <i class="layui-icon layui-icon-release" style="font-size: 30px;margin-top: 6px;"></i>
+        </div>
     </div>
-        <div class="content" style="padding-top: 59px !important;">
+        <div class="content" style="padding-top: 59px !important;position: relative;z-index: -1;">
             <div class="layui-form layui-form-pane">
-                <div class="layui-tab layui-tab-brief" lay-filter="user">
+                <div class="layui-tab layui-tab-brief">
                     <ul class="layui-tab-title">
                         <li class="layui-this">发表文章</li>
                         <li> <button type="button" class="layui-btn-primary layui-btn" data-method="notice"
@@ -88,9 +89,6 @@
     <script src="/style/ckeditor/ckeditor.js"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
     <script src="/style/js/article/add.js?v=202007091045"></script>
-    <script>
-       
-    </script>
 </body>
 
 </html>
