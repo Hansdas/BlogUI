@@ -68,7 +68,7 @@ layui.use(['form', 'layer'], function () {
                     data: JSON.stringify(model),
                     success:function(response)
                     {
-                        if (response.code == 0) {
+                        if (response.code == 200) {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     
@@ -108,7 +108,7 @@ layui.use(['form', 'layer'], function () {
                     data: JSON.stringify(model),
                     success:function(response)
                     {
-                        if (response.code == 0) {
+                        if (response.code ==200) {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     
@@ -130,16 +130,6 @@ layui.use(['form', 'layer'], function () {
         active[type] ? active[type].call(this) : '';
     });
 });
-function onCompletePublish(response) {
-    if (response.code == 200) {
-        window.location.href = '../home/index';
-    } else {
-        layer.close(loading);
-        layer.msg("保存失败", {
-            icon: 5
-        });
-    }
-}
 function checklogin() {
     var token=localStorage.getItem('token'); 
     if (token ==null) {
@@ -158,7 +148,7 @@ function bindArticle(id){
         datatype:'json',
         success:function(response)
         {
-            if (response.code == 0) {
+            if (response.code ==200) {
                 form.val("articleInfo", {
                     "type": response.data.articleType,
                     "title": response.data.title,
@@ -178,7 +168,7 @@ function bindselect() {
         datatype:'json',
         success:function(response)
         {
-            if (response.code == 0) {
+            if (response.code == 200) {
                 $('#selecttype').empty();
                 $('#selecttype').append('<option>...</option>');
                 for(var i=0;i<response.data.length;i++){

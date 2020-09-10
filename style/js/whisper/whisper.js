@@ -49,7 +49,7 @@ layui.config({
 				contentType:'application/json; charset=utf-8',
 				data:condition,
 				success: function (res) {
-					layui.each(res.data, function(index, item){				
+					layui.each(res.data.list, function(index, item){				
 						lis.push('<li class="layui-timeline-item">');
 						lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
 						lis.push('<div class="layui-timeline-content layui-text">');
@@ -67,7 +67,7 @@ layui.config({
 						lis.push('</div>');
 						lis.push('</li>');
 					  });
-					next(lis.join(''), (page*3) < res.total);
+					next(lis.join(''), (page*3) < res.data.total);
 				}
 
 			});
@@ -85,16 +85,16 @@ function loadWhisper(pageIndex, pageSize, whisper) {
 			'pageSize': 3,
 		}),
 		success: function (response) {
-			if (response.code == "0") {
+			if (response.code == "200") {
 				var data = { "list": response.data };
 				whisperview = document.getElementById("whisper-list-id");
 				laytpl(whisper).render(data, function (html) {
 					whisperview.innerHTML = html;
 				});
-				form.render();
-				menu.init();
-				menu.off();
-				menu.submit();
+				// form.render();
+				// menu.init();
+				// menu.off();
+				// menu.submit();
 			}
 			else {
 				layer.msg("响应服务器失败", { icon: 7 });

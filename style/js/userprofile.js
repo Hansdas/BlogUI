@@ -18,8 +18,9 @@ function setTab(cursor) {
         }
     }
     if (cursor == 1) {
-        layui.use(['form', 'element', 'laydate', 'upload'], function () {
-            var laydate = layui.laydate, upload = layui.upload, table = layui.table;
+        layui.use(['form', 'element', 'laydate', 'upload','layer'], function () {
+            var laydate = layui.laydate, upload = layui.upload, table = layui.table,layer=layui.layer;
+            loading = layer.load(2);
             form = layui.form,
                 laydate.render({
                     elem: '#birthdate'
@@ -29,7 +30,7 @@ function setTab(cursor) {
                 type: 'get',
                 datatype: 'json',
                 success: function (response) {
-                    if (response.code == "0") {
+                    if (response.code == "200") {
                         layer.close(loading);
                         form.val("userinfo", {
                             "account": response.data.account,
@@ -85,7 +86,7 @@ function setTab(cursor) {
                     data: JSON.stringify(userModel),
                     success:function(response)
                     {
-                        if (response.code=='0') {
+                        if (response.code=='200') {
                             localStorage.setItem("token",response.data );
                             layer.close(loading);
                             layer.msg("修改成功", { icon: 6 }); 
@@ -175,7 +176,7 @@ function setTab(cursor) {
                             'pageSize': pageSize,
                         },
                         success: function (response) {
-                            if (response.code == '0') {
+                            if (response.code == '200') {
                                 var data = {
                                     'list': response.data
                                 };
@@ -230,8 +231,8 @@ function selectArticle() {
 function loadUser(){
     layui.use(['flow','laytpl'],function(){
         var  flow = layui.flow,laytpl = layui.laytpl;;
-        initLoading("user-info", 20);
-        initLoading("article-file", 20);
+        initLoading("user-info",0,380);
+        initLoading("article-file", 0,310);
         $.ajax({
             url:url+'user',
             type:'get',
@@ -276,7 +277,7 @@ function loadUser(){
                         'LoginUser':true
                     }),
                     success: function (res) {
-                        layui.each(res.data, function(index, item){
+                        layui.each(res.data.list, function(index, item){
                             lis.push('<li class="layui-timeline-item">');
                             lis.push('<i class="layui-icon layui-timeline-axis">&#xe63f;</i>');
                             lis.push('<div class="layui-timeline-content layui-text">');
@@ -289,7 +290,7 @@ function loadUser(){
                             lis.push('</div>');
                             lis.push('</li>');
                           });
-                        next(lis.join(''), (page*3) < res.total);
+                        next(lis.join(''), (page*3) < res.data.total);
                     }
     
                 });
@@ -327,10 +328,17 @@ function loadArticle(){
             return {
                 "code": res.code,
                 "msg": res.message,
-                "count": res.total,
-                "data": res.data
+                "total": res.data.total,
+                "data": res.data.list
             };
         }
+        ,response: {
+            statusName: 'code' //规定数据状态的字段名称，默认：code
+            ,statusCode: 200 //规定成功的状态码，默认：0
+            ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
+            ,countName: 'total' //规定数据总数的字段名称，默认：count
+            ,dataName: 'data' //规定数据列表的字段名称，默认：data
+          } 
     });
 
     //监听行工具事件
@@ -443,7 +451,6 @@ function loadWhisper(){
     });
 }
 function doneTidings(id){
-    alert(id);
     $.ajax({
         url: url + 'tidings/'+id,
         type: 'post',

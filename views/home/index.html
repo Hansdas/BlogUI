@@ -4,10 +4,13 @@
 <head>
     <meta name="viewport" content="width = device-width" />
     <title>欢迎</title>
+    <meta name="keywords" content="ttblog,博客,个人博客">
+    <meta name="description"
+        content="此项目用于个人学习，开源代码，框架没有过多引用第三方框架，易于学习。 这个项目由.net core3.1作为后端，layui作为前端，使用轻量级ORM:dapper进行DB处理">
     <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css?v=202006091947" rel="stylesheet" />
     <link href="/style/css/main.css?v=202005282241" rel="stylesheet" />
-    <link href="/style/css/common.css?v=202005282241" rel="stylesheet" />
+    <link href="/style/css/common.css?v=202009091015" rel="stylesheet" />
     <style>
         .layui-nav-child {
             color: white !important
@@ -44,32 +47,32 @@
                         <li title="消息">
                             <a href="../user/profile.html?tab=4" target="_top">
                                 <i class="layui-icon layui-icon-notice">
-                                </i> 
+                                </i>
                                 <span class="notice"></span>
                             </a>
-                        </li> 
+                        </li>
                         <li title="个人资料" style="margin-left: 12px;">
-                            <a href="../user/profile.html?tab=1" target="_top">
+                            <a href="javascript:;" onclick="redirectUrl(6)" target="_top">
                                 <i class="layui-icon layui-icon-home">
-                                </i> 
+                                </i>
                             </a>
-                        </li>       
+                        </li>
                         <li title="退出登录">
                             <a href="javascript:;" onclick="loginout()">
                                 <i class="layui-icon layui-icon-right">
-                                </i> 
+                                </i>
                             </a>
-                        </li>  
+                        </li>
                         <li>
                             <img id="photo">
-                        </li>                            
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <iframe id="content" frameborder=0 width="100%" scrolling=no marginwidth='0' marginheight='0' noresize="noresize"
-    src="../home/square.html"></iframe>
+        src="../home/square.html"></iframe>
     <div class="footer-wrap">
         <div class="footer">
             <div class="footer-info footer-info-author">
@@ -86,11 +89,11 @@
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
     <script src="/style//js/request.js?v=20112171144"></script>
-    <script src="/style/js/util.js?v=202007291541"></script>
+    <script src="/style/js/util.js?v=202009091015"></script>
     <script src="/style/js/signalr.js"></script>
     <script src="/style/js/login.js"></script>
     <script>
-        layui.use(['element','form', 'layer'], function () {
+        layui.use(['element', 'form', 'layer'], function () {
             var i = getSearchString('i');
             redirectUrl(i);
             setIframeHeight("content")
@@ -98,72 +101,77 @@
             element.render('nav');
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
             connection.on('SendClientMessage', function (message) {
-                var oldNum=parseInt($('.notice').html());
-                var newNum=parseInt(message.data);
+                var oldNum = parseInt($('.notice').html());
+                var newNum = parseInt(message.data);
                 $('.notice').html(newNum);
-                if(oldNum<newNum){
+                if (oldNum < newNum) {
                     $('.notice').addClass('blink');
-                }              
+                }
             });
             $.ajax({
                 url: url + 'user',
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    if (response.code == '1') {
-                        $("#nologin").show();
-                        $("#user").hide();
-                    } else {
+                    if (response.code == '200') {
                         $("#nologin").hide();
                         $("#user").show();
                         if (response.data.headPhoto == "") {
-                            $("#photo").attr('src', '/style/images/weixi.jpg');
+                            $("#photo").attr('src', '/style/images/touxiang.jpg');
                         } else {
                             $("#photo").attr('src', response.data.headPhoto);
-                        }                       
+                        }
                         connection.start().then(function () {
                             connection.invoke('SetConnectionMaps', response.data.account);
                         })
+                        $.ajax({
+                            url: url + 'tidings',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function (response) {
+                                $('.notice').html(response.data);
+                            },
+                        });
+                    } else {
+                        $("#nologin").show();
+                        $("#user").hide();
                     }
                 },
             });
-            $.ajax({
-                url: url + 'tidings',
-                type: 'get',
-                dataType: 'text',
-                success: function (response) {
-                    $('.notice').html(response);
-                },
-            });
         });
-        function redirectUrl(i){
-            $('.nav a').each(function(){
+        function redirectUrl(i) {
+            $('.nav a').each(function () {
                 $(this).removeClass('active')
             });
-            if(i==0){
+            if (i == 0) {
                 $("#square").addClass('active');
-                $('#content').attr('src','../home/square.html?v=2');                
+                $('#content').attr('src', '../home/square.html?v=2');
             }
-            else if(i==1){
-                $("#article").addClass('active');  
-                $('#content').attr('src','../article/article.html?v=2');
-                       
+            else if (i == 1) {
+                $("#article").addClass('active');
+                $('#content').attr('src', '../article/article.html?v=2');
+
             }
-            else if(i==2){
+            else if (i == 2) {
                 $("#whisper").addClass('active');
-                $('#content').attr('src','../whisper/whisper.html?v=2');
+                $('#content').attr('src', '../whisper/whisper.html?v=2');
             }
-            else if(i==3){
+            else if (i == 3) {
                 $("#video").addClass('active');
-                $('#content').attr('src','../video/video.html?v=2');
-            }  
-            else if(i==4){
+                $('#content').attr('src', '../video/video.html?v=2');
+            }
+            else if (i == 4) {
                 $("#about").addClass('active');
-                $('#content').attr('src','../home/about.html?v=2');
-            }  
-            else
-            {
-                $("#square").addClass('active'); 
+                $('#content').attr('src', '../home/about.html?v=2');
+            }
+            else if(i==5){
+                $('#content').attr('src', '../user/profile.html?tab=4'); 
+            }
+            else if(i==6){
+                $('#content').attr('src', '../user/profile.html?tab=1'); 
+            }
+            else {
+                $("#square").addClass('active');
             }
         }
     </script>

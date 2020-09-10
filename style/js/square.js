@@ -19,8 +19,6 @@ layui.config({
     deptObjs[0].style.fontSize = "12px";
     deptObjs[0].style.padding = "4px";
     deptObjs[0].style.background = "white";
-    initLoading("news-ul",0, 59);
-    initLoading("article-item",0, 354);
     loadarticle();
     loadWhisper(0, 5);
     loadReadRank();
@@ -57,7 +55,7 @@ layui.config({
                     'content': layedit.getContent(whisperContent)
                 },
                 success: function (response) {
-                    if (response.code == '401') {
+                    if (response.code == '403') {
                         layer.msg('你还未登录', {
                             time: 1500,
                         }, function () {
@@ -71,6 +69,7 @@ layui.config({
     }
 })
 function loadVideo(){
+    initLoading("video", 7,125);
     var condition= JSON.stringify({
         'pageIndex': 1,
         'pageSize': 3,
@@ -83,7 +82,7 @@ function loadVideo(){
         data:condition,
         success: function (res) {
             var data = {
-                'list': res.data
+                'list': res.data.list
             };
             var script = document.getElementById('video-script').innerHTML;
             var listHtml = document.getElementById('video-view');
@@ -96,6 +95,7 @@ function loadVideo(){
                 ,width:'99%'
                 ,arrow: 'always'
               });
+              closeLoading("video", 7,125);
         }
 
     });
@@ -104,12 +104,13 @@ function loadVideo(){
  * 加载文章
  */
 function loadarticle() {
+    initLoading("article-item",100, 480);
     $.ajax({
         url: url + 'article/type/maxtime',
         type: 'get',
         datatype: 'json',
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
                     'list': response.data
                 };
@@ -129,7 +130,7 @@ function loadarticle() {
 }
 
 function loadWhisper(index, top) {
-    initLoading("whisper-item", 0,89);
+    initLoading("whisper-item", 7,125);
     $.ajax({
         url: url + 'whisper/square',
         type: 'get',
@@ -139,7 +140,7 @@ function loadWhisper(index, top) {
             'top': top,
         },
         success: function (res) {
-            if (res.code == '0') {
+            if (res.code == '200') {
                 var data = {
                     'list': res.data
                 };
@@ -172,13 +173,13 @@ function review(id,account){
     });
 }
 function loadReadRank(){
-    initLoading("read-li-item", 0,89);
+    initLoading("read-li-item", 59,125);
     $.ajax({
         url: url + 'article/read/rank/5',
         type: 'get',
         datatype: 'json',
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
                     'list': response.data
                 };

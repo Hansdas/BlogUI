@@ -14,7 +14,7 @@ layui.use(["form"], function () {
 				"Password": loginData.Password
 			},
 			success: function (response) {
-				if (response.code == "0") {
+				if (response.code == "200") {
 					localStorage.setItem("token", response.data);
 					window.location.href = "../home/index.html?i=0";
 			

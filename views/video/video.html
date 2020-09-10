@@ -143,7 +143,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: condition,
                     success: function (res) {
-                        layui.each(res.data, function (index, item) {
+                        layui.each(res.data.list, function (index, item) {
                             lis.push('<div class="item-cont item-title" style="padding-top: 10px;">');
                             lis.push('<div style="display: flex;">');
                             lis.push('<div>');
@@ -163,7 +163,7 @@
                             lis.push('</div>');
                             lis.push('<hr class="layui-bg-gray">');
                         });
-                        next(lis.join(''), (page * 10) < res.total);
+                        next(lis.join(''), (page * 10) < res.data.total);
                     }
 
                 });

@@ -1,9 +1,10 @@
-var articletype=0;
+
 layui.config({
     base: '/style/js/'
 }).use(['element', 'laypage', 'jquery', 'laytpl', 'layer'], function () {
     element = layui.element, laypage = layui.laypage, $ = layui.$, laytpl = layui.laytpl, layer = layui.layer;
     var total=0;
+    articletype=0;
     initHot(); 
     element.on('tab(tab-article)', function(){
         articletype=parseInt(this.getAttribute('lay-id'));
@@ -80,7 +81,7 @@ function praise(id) {
     });
 }
 function loadarticle(pageIndex, pageSize,initPage) {
-    initLoading("pageLoading", 50,350);
+    initLoading("pageLoading", 50,450);
     var conditionModel={
         'pageIndex': pageIndex,
         'pageSize': pageSize,
@@ -94,9 +95,9 @@ function loadarticle(pageIndex, pageSize,initPage) {
         contentType:'application/json; charset=utf-8',
         data: JSON.stringify(conditionModel),
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
-                    'list': response.data
+                    'list': response.data.list
                 };
                 var script = document.getElementById('article-item-script').innerHTML;
                 var itemhtml = document.getElementById('article-item-id');
@@ -107,7 +108,7 @@ function loadarticle(pageIndex, pageSize,initPage) {
                     laypage.render({
                         elem: 'page'
                         ,limit: 10
-                        ,count: response.total
+                        ,count: response.data.total
                         ,first: '首页'
                         ,last: '尾页'
                         , jump: function (obj,first) {
@@ -136,13 +137,13 @@ function loadarticle(pageIndex, pageSize,initPage) {
  */
 function initHot(hotScript)
 {
-    initLoading("hot-li-item", 50,80);
+    initLoading("hot-li-item", 50,145);
     $.ajax({
         url: url + 'article/hot',
         type: 'get',
         datatype: 'json',
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
                     'list': response.data
                 };

@@ -872,7 +872,7 @@ form input[type=checkbox] {
     margin-bottom: 7px;
 }
 
-.square .block-right .write button {
+.square .block-right .write .layui-btn {
     background: #00a67c !important;
     width: 100%
 }

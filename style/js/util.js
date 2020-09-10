@@ -37,12 +37,12 @@ function setIframeHeight(iframeId) {
 };
 
 function initLoading(htmlId, top, left) {
-	var loading = '<img class="loading" style="height: 72px;width: 123px;margin-top:' + top + 'px;margin-left: ' + left + 'px;" src="/style/images/laoding.jpg" >'
+	var loading='<div class="loader" style="margin-top:' + top + 'px;margin-left: ' + left + 'px;"></div>';
 	$('#' + htmlId).append(loading)
 }
 
 function closeLoading(htmlId) {
-	$('#' + htmlId + ' .loading').hide()
+	$('#' + htmlId + ' .loader').hide()
 }
 
 function getArticleTypeName(type) {

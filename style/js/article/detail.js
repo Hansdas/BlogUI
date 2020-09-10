@@ -9,7 +9,7 @@ layui.config({
     var id = getSearchString('id');  
     loadarticle(id, commentScript);
     loadupnext(id);
-    loadAll(id);
+    // loadAll(id);
     var token=localStorage.getItem('token'); 
     if (token==''||token==null) {
         $('.layui-input-block button').attr('disabled',true);  
@@ -23,8 +23,10 @@ function loadArchive(account){
         datatype: 'json',
         success: function (res) {
             var data = {
-                'list': res.data
+                'list': res.data.fileModels
             };
+            $('#authorName').html(res.data.userModel.username);
+            $("#touxiang").attr("src",res.data.userModel.headPhoto);
             var script = document.getElementById('li-article-file-script').innerHTML;
             var fileHtml = document.getElementById('article-file');
             laytpl(script).render(data, function (html) {
@@ -56,13 +58,13 @@ function setPageList(commentList, commentScript) {
  * @param {} id 
  */
 function loadarticle(id, commentScript) {
-    initLoading("detailLoading", 50,450);
+    initLoading("detailLoading", 0,476);
     $.ajax({
         url: url + 'article/' + id,
         type: 'get',
         datatype: 'json',
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
                     'title': response.data.title,
                     'createtime': response.data.createTime,
@@ -74,7 +76,6 @@ function loadarticle(id, commentScript) {
                 revicer=response.data.authorAccount;
                 loadArchive(revicer);
                 $('title').html(data.title);
-                $('#authorName').html(response.data.author);
                 var article = document.getElementById('buildview').innerHTML;
                 articleview = document.getElementById('detail');
                 laytpl(article).render(data, function (html) {
@@ -125,7 +126,7 @@ function loadupnext(id) {
         type: 'get',
         datatype: 'json',
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var type = getSearchString('t');
                 $('.btn-box').empty();
                 if (response.data.beforeId > 0) {
@@ -143,31 +144,31 @@ function loadupnext(id) {
 
     });
 };
-function loadAll(id) {
-    initLoading("liLoading", 50);
-    $.ajax({
-        url: url + 'article/all/' + id ,
-        type: 'get',
-        datatype: 'json',
-        success: function (response) {
-            if (response.code == '0') {
-                var data = {
-                    'list': response.data
-                };
-                var script = document.getElementById('li-article-script').innerHTML;
-                var itemhtml = document.getElementById('li-article');
-                laytpl(script).render(data, function (html) {
-                    itemhtml.innerHTML = html;
-                });
-                closeLoading("liLoading");
-            }
-            else {
-                layer.msg('响应服务器失败', { icon: 7 });
-            }
-        },
+// function loadAll(id) {
+//     initLoading("liLoading", 50,106);
+//     $.ajax({
+//         url: url + 'article/all/' + id ,
+//         type: 'get',
+//         datatype: 'json',
+//         success: function (response) {
+//             if (response.code == '200') {
+//                 var data = {
+//                     'list': response.data
+//                 };
+//                 var script = document.getElementById('li-article-script').innerHTML;
+//                 var itemhtml = document.getElementById('li-article');
+//                 laytpl(script).render(data, function (html) {
+//                     itemhtml.innerHTML = html;
+//                 });
+//                 closeLoading("liLoading");
+//             }
+//             else {
+//                 layer.msg('响应服务器失败', { icon: 7 });
+//             }
+//         },
 
-    });
-};
+//     });
+// };
 function review() {
     var comment=$('#comment').val();
     if(comment==''){
@@ -191,7 +192,7 @@ function review() {
 			'commentType': 1
 		},
 		success: function (response) {
-			if(response.code==0){
+			if(response.code=="200"){
 				layer.close(loading);
 				layer.msg('留言审核中', {
                     offset: ['280px', '540px'],

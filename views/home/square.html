@@ -9,51 +9,17 @@
     <link rel="icon" href="/style/images/title.png">
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/main.css?v=202007141019" rel="stylesheet" />
-    <link href="/style/css/common.css?v=202005282248" rel="stylesheet" />
-    <link href="/style/css/loading.css" rel="stylesheet" />
+    <link href="/style/css/common.css?v=202009091049" rel="stylesheet" />
     <style>
-        .layui-flow-more a cite {
-            padding: 0px 10px;
-            background-color: #009688;
-            color: white;
-            height: 27px;
-            width: 50px;
-        }
-
-        .layui-flow-more a {
-            line-height: 30px;
-        }
-
-        .layui-flow-more {
-            font-size: 10px;
-        }
-
-        .layui-layer-msg {
-            top: 167px !important;
-            left: 1108px !important;
-        }
-
-        .layui-layer-loading {
-            top: 180px !important;
-            left: 1170px !important;
-        }
-
-        .layui-layedit-iframe body {
-            font-size: 12px;
-            padding: 4px;
-        }
-
-        .tip {
-            font-size: 15px !important;
-        }
-
-        video:hover {
-            transform: scale(1.1);
-        }
-
-        .layui-carousel-ind {
-            background: white;
-        }
+        .layui-flow-more a cite { padding: 0px 10px;background-color: #009688;color: white;height: 27px; width: 50px;}
+        .layui-flow-more a { line-height: 30px;}
+        .layui-flow-more {font-size: 10px;}
+        .layui-layer-msg {top: 167px !important;left: 1108px !important;}
+        .layui-layer-loading {top: 180px !important;left: 1170px !important;}
+        .layui-layedit-iframe body {font-size: 12px;padding: 4px;}
+        .tip {font-size: 15px !important;}
+         video:hover {transform: scale(1.1);}
+        .layui-carousel-ind {background: white;}
     </style>
 </head>
 
@@ -62,29 +28,9 @@
         <div class="notice">
         </div>
         <div class="cont">
-            <div class="left" style="display: flex;">
-                <div>
-                    <div class="news-top">
-                        <div class="news-box">
-                            <div class="tip">热点</div>
-                            <ul id="news-ul">
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="news-top">
-                        <div class="news-box" style="height:266px">
-                            <div class="tip" style="border-bottom: none;">视频</div>
-                            <div>
-                                <div class="layui-carousel" id="video">
-                                    <div carousel-item="" id="video-view">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="articles" style="width: 71%;float:right;margin-left: 8px;">
-                    <div class="tip">文章</div>
+            <div class="left">
+                <div class="articles">
+                    <div class="tip">随笔</div>
                     <div id="article-item"></div>
                 </div>
             </div>
@@ -112,9 +58,19 @@
                         <div class="box-title">
                             <h3>阅读排行</h3>
                         </div>
-                        <!--输出的视图-->
                         <ul class="li-item" id="read-li-item">
                         </ul>
+                    </div>
+                </div>
+                <div class="write white-background" style="width: 323px;margin-top: 15px">
+                    <div class="box h251">
+                        <div class="box-title">
+                            <h3>视频</h3>
+                        </div>
+                        <div class="layui-carousel" id="video" style="margin-top: 5px;">
+                            <div carousel-item="" id="video-view">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="write white-background" style="width: 323px;margin-top: 15px;">
@@ -208,7 +164,7 @@
     </div>
     {{# }); }}
 </script>
-    <script type="text/html" id="new-whisper">
+ <script type="text/html" id="new-whisper">
     {{#layui.each(d.list,function(index,item){}}
     <div class="write-item">
         <div>
@@ -220,7 +176,7 @@
     <hr>
     {{# }); }}
 </script>
-    <script type="text/html" id="video-script">
+<script type="text/html" id="video-script">
     {{#layui.each(d.list,function(index,item){}}
     <div>
         <a href="../video/play.html?id={{item.id}}" target="_blank">
@@ -232,7 +188,7 @@
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=202005271028"></script>
     <script src="/style/js/util.js??v=202005282241"></script>
-    <script src="/style/js/signalr.js"></script>
+    <script src="/style/js/signalr.js" async=true></script>
     <script src="/style/js/square.js?v=202007141520"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
 </body>
