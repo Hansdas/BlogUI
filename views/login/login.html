@@ -8,6 +8,7 @@
     <link href="/style/layui/css/layui.css" rel="stylesheet" />
     <link href="/style/css/login.css?v=202007170931" rel="stylesheet" />
 </head>
+
 <body>
     <div class="cb-login">
         <div class="panel panel-default">
@@ -17,10 +18,12 @@
             <div class="panel-body">
                 <form method="post" class="layui-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="Account" lay-verify="required" autocomplete="off" placeholder="请输入账号" value="">
+                        <input type="text" class="form-control" name="Account" lay-verify="required" autocomplete="off"
+                            placeholder="请输入账号" value="">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="Password" lay-verify="required" autocomplete="off" placeholder="请输入密码" value="">
+                        <input type="password" class="form-control" name="Password" lay-verify="required"
+                            autocomplete="off" placeholder="请输入密码" value="">
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="is_remember_pass" lay-ignore> 记住密码</label>
@@ -36,7 +39,8 @@
                 <div style="height: 45px;">
                     <span class="text-muted">其他登录方式</span>
                     <span class="other-login">
-                        <a href="javascript:;" onclick="qqLogin()"><img src="/style/images/other_qq.png" class="img-circle"></a>
+                        <a href="javascript:;" onclick="qqLogin()"><img src="/style/images/other_qq.png"
+                                class="img-circle"></a>
                     </span>
                 </div>
             </div>
@@ -47,5 +51,12 @@
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
     <script src="/style/js/login.js?v=202009091138"></script>
+    <script>
+        function qqLogin() {
+            var url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101895784&redirect_uri=http%3a%2f%2fwww.ttblog.site%2fhome%2findex.html&state=blog';
+            top.location.href = url;
+        }
+    </script>
 </body>
+
 </html>

@@ -94,6 +94,7 @@
     <script src="/style/js/login.js"></script>
     <script>
         layui.use(['element', 'form', 'layer'], function () {
+            qqLogin();
             var i = getSearchString('i');
             redirectUrl(i);
             setIframeHeight("content")
@@ -164,15 +165,15 @@
                 $("#about").addClass('active');
                 $('#content').attr('src', '../home/about.html?v=2');
             }
-            else if(i==5){
-                $('#content').attr('src', '../user/profile.html?tab=4'); 
+            else if (i == 5) {
+                $('#content').attr('src', '../user/profile.html?tab=4');
             }
-            else if(i==6){
-                $('#content').attr('src', '../user/profile.html?tab=1'); 
+            else if (i == 6) {
+                $('#content').attr('src', '../user/profile.html?tab=1');
             }
-            else if(i==7){//个人主页
+            else if (i == 7) {//个人主页
                 var account = getSearchString('account');
-                $('#content').attr('src', '../user/user-home.html?account='+account); 
+                $('#content').attr('src', '../user/user-home.html?account=' + account);
             }
             else {
                 $("#square").addClass('active');
