@@ -170,6 +170,10 @@
             else if(i==6){
                 $('#content').attr('src', '../user/profile.html?tab=1'); 
             }
+            else if(i==7){//个人主页
+                var account = getSearchString('account');
+                $('#content').attr('src', '../user/user-home.html?account='+account); 
+            }
             else {
                 $("#square").addClass('active');
             }

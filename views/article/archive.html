@@ -8,22 +8,24 @@
     <link href="/style/layui/css/layui.css?201908072009" rel="stylesheet" />
     <link href="/style/css/main.css?v=201922262" rel="stylesheet" />
     <link href="/style/css/common.css?v=201908072040" rel="stylesheet" />
-    <link href="/style/css/loading.css" rel="stylesheet" />
     <style>
-        .block-right {
-            margin-top: 0 !important;
-            background: white;
-            width: 886px;
-            padding-right: 20px;
-            padding-left: 16px;
-        }
+        .block-right { margin-top: 0 !important;background: white; width: 886px; padding-right: 20px; padding-left: 16px;}
+        .left-a{opacity: 1 !important;margin: 0 0 !important;margin-left: 35px !important;}
+        .content {padding: 51px 0 60px 0 !important;}
     </style>
 </head>
-
 <body>
-    <div class="fixed-top">
-        <iframe id="console" frameborder=0 width="100%" height="66px" scrolling=no marginwidth='0' marginheight='0'
-            noresize="noresize" src="../master/top.html"></iframe>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-header" style="height: 43px;">
+            <div class="header-menu" style="font-size: 14px;margin-top:12px;">
+                <div class="nav">
+                    <a href="../home/index.html?i=0" class="left-a"  id="square" target="_top">首页广场</a>
+                    <a href="../home/index.html?i=1" class="left-a" id="article" target="_top">文章随笔</a>
+                    <a href="../home/index.html?i=2" class="left-a" id="whisper" target="_top">时间微语</a>
+                    <a href="../home/index.html?i=3" class="left-a" id="video" target="_top">视频分享</a>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="user-home c-bg content a-href">
         <div class="cont">
@@ -32,7 +34,7 @@
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
                             <fieldset class="layui-elem-field">
-                                <legend style="margin-left: 28% !important"><img src="/style/images/touxiang.jpg">
+                                <legend style="margin-left: 28% !important"><img id="touxiang">
                                 </legend>
                                 <ul class="archive" id="article-file">
                                 </ul>
@@ -112,7 +114,7 @@
     <script src="/style/layui/layui.js"></script>
     <script src="/style/js/request.js"></script>
     <script src="/style/js/util.js?v=202007082041"></script>
-    <script src="/style/js/article/archive.js?v=202007082041"></script>
+    <script src="/style/js/article/archive.js?v=202009101005"></script>
 </body>
 
 </html>

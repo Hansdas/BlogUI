@@ -4,42 +4,33 @@ layui.use(['flow', 'laytpl', 'laypage'], function () {
     laypage = layui.laypage;
     var account = getSearchString('account');
     var articleType = getSearchString('type');
-    loadUser(account);
     $.ajax({
         url: url + 'article/archive/'+account,
         type: 'get',
         datatype: 'json',
         success: function (res) {
             var data = {
-                'list': res.data
+                'list': res.data.fileModels
             };
             var script = document.getElementById('article-file-script').innerHTML;
             var fileHtml = document.getElementById('article-file');
             laytpl(script).render(data, function (html) {
                 fileHtml.innerHTML = html;
             });
+            $('title').html(res.data.userModel.username+'的博客集');
+            $("#touxiang").attr("src",res.data.userModel.headPhoto);
         }
     });
     changeType(articleType);
     var typeName=getArticleTypeName(articleType)
     $('#tip-type-name').html(typeName);
 })
-function loadUser(account){
-    $.ajax({
-        url: url + 'user/'+account,
-        type: 'get',
-        datatype: 'json',
-        success: function (res) {
-            $('title').html(res.data.username+'的博客集');
-        }
-    });
-}
 function changeType(type){
     articleType=type;
     loadarticle(1, 10,type,true); 
 }
 function loadarticle(pageIndex, pageSize,type,initPage) {
-    initLoading("pageLoading", 50);
+    initLoading("pageLoading", 50,350);
     var conditionModel={
         'pageIndex': pageIndex,
         'pageSize': pageSize,
@@ -53,9 +44,9 @@ function loadarticle(pageIndex, pageSize,type,initPage) {
         contentType:'application/json; charset=utf-8',
         data: JSON.stringify(conditionModel),
         success: function (response) {
-            if (response.code == '0') {
+            if (response.code == '200') {
                 var data = {
-                    'list': response.data
+                    'list': response.data.list
                 };
                 var script = document.getElementById('article-item-script').innerHTML;
                 var itemhtml = document.getElementById('article-item-id');
@@ -66,7 +57,7 @@ function loadarticle(pageIndex, pageSize,type,initPage) {
                     laypage.render({
                         elem: 'page'
                         ,limit: 10
-                        ,count: response.total
+                        ,count: response.data.total
                         ,first: '首页'
                         ,last: '尾页'
                         , jump: function (obj,first) {
