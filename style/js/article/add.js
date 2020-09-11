@@ -72,7 +72,14 @@ layui.use(['form', 'layer'], function () {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     
-                        } else {
+                        }
+                        else if(response.code==403) {
+                            layer.close(loading);
+                            layer.msg("未登录", {
+                                icon: 5
+                            });
+                        }
+                         else {
                             layer.close(loading);
                             layer.msg("保存失败", {
                                 icon: 5
@@ -112,7 +119,14 @@ layui.use(['form', 'layer'], function () {
                             layer.close(loading);
                             layer.msg("保存成功", { icon: 6 });
                     
-                        } else {
+                        } 
+                         else if(response.code==403) {
+                            layer.close(loading);
+                            layer.msg("未登录", {
+                                icon: 5
+                            });
+                        }
+                         else {
                             layer.close(loading);
                             layer.msg("保存失败", {
                                 icon: 5
