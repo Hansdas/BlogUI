@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <title>qq认证登录中...</title>
+    <link rel="icon" href="/style/images/title.png">
+</head>
+
+<body>
+    <div>
+        qq认证登录中...
+    </div>
+    <script src="/style/js/jquery.js"></script>
+    <script src="/style/layui/layui.js"></script>
+    <script src="/style//js/request.js?v=20112171144"></script>
+    <script src="/style/js/util.js?v=202009091015"></script>
+    <script>
+        layui.use(["layer"], function () {
+            var layer = layui.layer;
+            var loading = layer.load(2,{offset: ['100px', '720px']});
+            var code = getSearchString('code');
+            if(code==undefined){
+                layer.msg('code无效', { icon: 5 });
+                return;
+            }
+            $.ajax({
+                url: url + 'qq/login/' + code,
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == "200") {
+                        localStorage.setItem("token", res.data);
+                        window.location.href = "../home/index.html";
+                    }
+                    else {
+                        layer.close(loading)
+                        layer.msg(res.message, { icon: 5 });
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -43,14 +43,3 @@ function loginout()
 	localStorage.removeItem('token');
 	window.open('../login/login.html?v=1','_top')
 }
-function qqLogin() {
-	var code = getSearchString('code');
-	$.ajax({
-		url: url + 'qq/login/' + code,
-		type: 'get',
-		dataType: 'json',
-		success: function (res) {
-			alert(res)
-		}
-	})
-}

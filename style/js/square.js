@@ -46,7 +46,7 @@ layui.config({
                 });
                 return;
             }
-            var loading = layer.load(2);
+            var loading = layer.load(2,{offset: ['110px', '1400px']});
             $.ajax({
                 url: url + 'whisper/add',
                 type: 'post',
@@ -62,7 +62,7 @@ layui.config({
                             parent.location.href = "../login/login.html";
                         });
                     }
-                    layer.close(loading);
+                    //layer.close(loading);
                 },
             })
         }
