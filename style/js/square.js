@@ -62,7 +62,7 @@ layui.config({
                             parent.location.href = "../login/login.html";
                         });
                     }
-                    //layer.close(loading);
+                    layer.close(loading);
                 },
             })
         }
