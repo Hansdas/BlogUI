@@ -132,14 +132,11 @@ function loadarticle(pageIndex, pageSize,initPage) {
         }
     })
 }
-/**
- * 热门推荐
- */
 function initHot(hotScript)
 {
     initLoading("hot-li-item", 50,145);
     $.ajax({
-        url: url + 'article/hot',
+        url: url + 'article/read/rank/5',
         type: 'get',
         datatype: 'json',
         success: function (response) {
