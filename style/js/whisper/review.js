@@ -14,7 +14,7 @@ function loadComment() {
 		type: 'get',
 		datatype: 'json',
 		success: function (response) {
-			if (response.code == "0") {
+			if (response.code == "200") {
 				var data = {
 					"list": response.data
 				};
@@ -63,7 +63,7 @@ function review() {
 			'commentType': 2
 		},
 		success: function (response) {
-			if(response.code==0){
+			if(response.code==200){
 				layer.close(loading);
 				layer.msg('留言审核中', {
 					icon: 6
@@ -94,7 +94,7 @@ function reviewTo(toUser, commentId,index) {
 			'commentType': 3
 		},
 		success: function (response) {
-			if(response.code==0){
+			if(response.code==200){
 				layer.close(loading);
 				layer.msg('留言审核中', {
 					icon: 6

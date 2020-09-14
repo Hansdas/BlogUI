@@ -9,6 +9,8 @@
     <link href="/style/css/main.css?v=20192225" rel="stylesheet" />
     <link href="/style/css/common.css?v=202005271028" rel="stylesheet" />
     <style>
+        .section{background: antiquewhite;width: 98%;padding: 4px 1px 4px 8px;border-radius: 4px;display: inline-block;}
+        .layui-flow-more a cite {background-color: #009688;color: white;}
     </style>
 </head>
 
@@ -33,7 +35,7 @@
                                     <div class="bg-li">
                                         <p class="p-title">描述：</p>
                                         <p class="p-content">一个后端程序猿在家搭建的博客网站，用来写博客，记录日常生活的站点</p>
-                                    </div>                                  
+                                    </div>
                                     <div class="bg-li">
                                         <p class="p-title">技术：</p>
                                         <p class="p-content">
@@ -144,6 +146,12 @@
                                             <span class="error-span"></span>
                                         </div>
                                     </div>
+                                    <div class="layui-form-item" style="width: 925px !important;">
+                                        <div class="layui-input-block whisper-content">
+                                            <div class="tip">留言列表</div>
+                                            <ul class="layui-timeline" style="margin-top: 11px" id="time-axis"></ul>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -156,50 +164,6 @@
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js?v=123"></script>
     <script src="/style/js/request.js?v=202007082057"></script>
-    <script src="/style/js/util.js??v=202005282241"></script>
-    <script>
-        layui.use(['element', 'form', 'layer'], function () {
-            var element = layui.element;
-            layer = layui.layer;
-            $('#leaveMessage').click(function () {
-                var email = $('#email').val();
-                if (email != '') {
-                    var reg = new RegExp(
-                        "^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"
-                    ); //邮箱正则表达式
-                    if (!reg.test(email)) {
-                        $('.error-span').html('邮箱不合规!')
-                        return;
-                    }
-                }
-                var content = $('#content').val();
-                if (content == "") {
-                    $('.error-span').html('留言内容为空!')
-                    return;
-                }
-                var model = {
-                    Content: content,
-                    ContractEmail: email
-                };
-                $.ajax({
-                    url: url + 'leavemessage/add',
-                    type: 'post',
-                    datatype: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(model),
-                    success: function (res) {
-                        if (res.code == "0") {
-                            layer.msg("留言成功", {
-                                icon: 6
-                            });
-                        } else {
-                            layer.msg(res.message, {
-                                icon: 6
-                            });
-                        }
-                    }
-                });
-            })
-        });
-    </script>
+    <script src="/style/js/util.js?v=202005282241"></script>
+    <script src="/style/js/about.js?v=202005282241"></script>
 </body>

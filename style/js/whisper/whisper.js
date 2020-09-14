@@ -1,8 +1,8 @@
 ﻿var loading, laytpl, form;
 layui.config({
 	base: '/style/js/'
-}).use(['flow', 'form', 'laytpl', 'layedit','laydate'], function () {
-	var layedit = layui.layedit, flow = layui.flow,laydate = layui.laydate;;
+}).use(['flow', 'form', 'laytpl','laydate'], function () {
+	var  flow = layui.flow,laydate = layui.laydate;;
 	form = layui.form;
     var ins1=laydate.render({
 		elem: '#calendar'
@@ -61,7 +61,7 @@ layui.config({
 						lis.push(item.content);
 						lis.push('</p>');
 						lis.push('<div class="author">');
-						lis.push('<a target="_blank" href=""><i class="layui-icon layui-icon-username"></i>'+item.accountName+'</a>');
+						lis.push('<a target="_blank" href="../user/user-home.html?account='+item.account+'"><i class="layui-icon layui-icon-username"></i>'+item.accountName+'</a>');
 						lis.push('</div>');
 						lis.push('</div>');
 						lis.push('</div>');
@@ -91,10 +91,6 @@ function loadWhisper(pageIndex, pageSize, whisper) {
 				laytpl(whisper).render(data, function (html) {
 					whisperview.innerHTML = html;
 				});
-				// form.render();
-				// menu.init();
-				// menu.off();
-				// menu.submit();
 			}
 			else {
 				layer.msg("响应服务器失败", { icon: 7 });
