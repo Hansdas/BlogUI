@@ -1,5 +1,5 @@
 
-var httpAddress='http://127.0.0.1:5000/';
+var httpAddress='https://www.tiantianboke.com/';
 var url=httpAddress+'api/';
 function doBeforeSend(xhr)
 {
@@ -11,9 +11,13 @@ function doBeforeSend(xhr)
 function doComplete(xhr)
 {
     var resfrshToken=xhr.getResponseHeader('refreshToken');
-    if (resfrshToken!=null) {
+    if (resfrshToken!=null||resfrshToken!='isExpires') {
         localStorage.setItem("token",resfrshToken );
     } 
+    else
+    {
+        localStorage.removeItem('token') ;
+    }
 }
 layui.use('layer',function(){
     var layer=layui.layer;
