@@ -24,6 +24,8 @@ layui.use(["form"], function () {
 					layer.msg(response.message, { icon: 5 });
 				}
 			},
+			complete: function (xhr) {
+			}
 		});
 		return false;
 	})

@@ -11,7 +11,7 @@ function doBeforeSend(xhr)
 function doComplete(xhr)
 {
     var resfrshToken=xhr.getResponseHeader('refreshToken');
-    if (resfrshToken!=null||resfrshToken!='isExpires') {
+    if (resfrshToken!=null&&resfrshToken!='isExpires') {
         localStorage.setItem("token",resfrshToken );
     } 
     else
