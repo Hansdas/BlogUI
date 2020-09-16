@@ -88,7 +88,7 @@
     </div>
     <script src="/style/js/jquery.js"></script>
     <script src="/style/layui/layui.js"></script>
-    <script src="/style//js/request.js?v=20112171144"></script>
+    <script src="/style//js/request.js?v=202009161051"></script>
     <script src="/style/js/util.js?v=202009091015"></script>
     <script src="/style/js/signalr.js"></script>
     <script src="/style/js/login.js"></script>
@@ -116,11 +116,7 @@
                     if (response.code == '200') {
                         $("#nologin").hide();
                         $("#user").show();
-                        if (response.data.headPhoto == "") {
-                            $("#photo").attr('src', '/style/images/touxiang.jpg');
-                        } else {
-                            $("#photo").attr('src', response.data.headPhoto);
-                        }
+                        $("#photo").attr('src', response.data.headPhoto);
                         connection.start().then(function () {
                             connection.invoke('SetConnectionMaps', response.data.account);
                         })
