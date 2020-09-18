@@ -57,7 +57,7 @@ layui.config({
                 success: function (response) {
                     if (response.code == '403') {
                         layer.msg('你还未登录', {
-                            time: 1500,
+                            time: 1500
                         }, function () {
                             parent.location.href = "../login/login.html";
                         });
