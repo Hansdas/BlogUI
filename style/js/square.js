@@ -72,7 +72,7 @@ function loadVideo(){
     initLoading("video", 7,125);
     var condition= JSON.stringify({
         'pageIndex': 1,
-        'pageSize': 3,
+        'pageSize': 3
     });
     $.ajax({
         url: url + 'video/page',
@@ -137,7 +137,7 @@ function loadWhisper(index, top) {
         datatype: 'json',
         data: {
             'pageIndex': index,
-            'top': top,
+            'top': top
         },
         success: function (res) {
             if (res.code == '200') {
@@ -169,7 +169,7 @@ function review(id,account){
         title: '留言',
         type: 2,
         area: ['1000px', '500px'],
-        content: '../whisper/review.html?id='+id+'&revicer='+account,
+        content: '../whisper/review.html?id='+id+'&revicer='+account
     });
 }
 function loadReadRank(){
