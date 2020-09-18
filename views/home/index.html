@@ -96,7 +96,7 @@
         layui.use(['element', 'form', 'layer'], function () {
             var i = getSearchString('i');
             redirectUrl(i);
-            setIframeHeight("content")
+            setIframeHeight("content");
             var element = layui.element;
             element.render('nav');
             var connection = new signalR.HubConnectionBuilder().withUrl(httpAddress + 'chatHub').build();
@@ -119,7 +119,7 @@
                         $("#photo").attr('src', response.data.headPhoto);
                         connection.start().then(function () {
                             connection.invoke('SetConnectionMaps', response.data.account);
-                        })
+                        });
                         $.ajax({
                             url: url + 'tidings',
                             type: 'get',
