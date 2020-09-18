@@ -63,7 +63,7 @@ layui.config({
                         });
                     }
                     layer.close(loading);
-                },
+                }
             })
         }
     }
@@ -125,7 +125,7 @@ function loadarticle() {
                 });
             }
 
-        },
+        }
     })
 }
 
@@ -149,7 +149,7 @@ function loadWhisper(index, top) {
                     $('.layui-flow-more').html('右上角查看更多！');
                 }
             }
-        },       
+        }      
     });
 }
 
