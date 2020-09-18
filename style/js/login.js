@@ -40,7 +40,7 @@ function loginout()
 		data:{
 			'token':token
 		},
-		dataType: 'json',
+		dataType: 'json'
 	});
 	localStorage.removeItem('token');
 	window.open('../login/login.html?v=1','_top')
