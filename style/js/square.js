@@ -63,7 +63,7 @@ layui.config({
                         });
                     }
                     layer.close(loading);
-                }
+                } 
             })
         }
     }
