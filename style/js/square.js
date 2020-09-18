@@ -189,6 +189,6 @@ function loadReadRank(){
                     liHtmlDom.innerHTML = html;
                 })
             }
-        },       
+        }       
     });  
 }
