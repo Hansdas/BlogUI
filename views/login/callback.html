@@ -31,7 +31,7 @@
                 success: function (res) {
                     if (res.code == "200") {
                         localStorage.setItem("token", res.data);
-                        window.location.href = "../home/index.html";
+                        window.location.href = "../home/index.html?i=0";
                     }
                     else {
                         layer.close(loading)
