@@ -1,5 +1,5 @@
 
-var httpAddress='http://127.0.0.1:5000/';
+var httpAddress='http://111.229.211.248:5000/';
 var url=httpAddress+'api/';
 function doBeforeSend(xhr)
 {
